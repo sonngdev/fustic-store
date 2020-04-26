@@ -29,9 +29,9 @@ export default function Home() {
         <img src="/logo.svg" alt="Logo" className="logo" />
       </div>
 
-      <div className="main-page">
+      <div className="main-page" onClick={() => setReveal(null)}>
         <header>
-          <button className="menu-button" onClick={() => setReveal(!reveal ? 'menu' : null)}>
+          <button className="menu-button" onClick={(e) => { e.stopPropagation(); setReveal(!reveal ? 'menu' : null); }}>
             <div className="hamburger-icon">
               <div />
               <div />
