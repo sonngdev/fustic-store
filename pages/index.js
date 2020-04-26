@@ -43,7 +43,9 @@ export default function Home() {
               <img src="/brand.svg" alt="Brand" />
             </a>
           </Link>
-          <div className="cart-button">Cart (0)</div>
+          <button className="cart-button" onClick={(e) => { e.stopPropagation(); setReveal(!reveal ? 'cart' : null); }}>
+            Cart (1)
+          </button>
         </header>
 
         <main>
@@ -52,6 +54,25 @@ export default function Home() {
         <footer>
           Not At All Clothing
         </footer>
+      </div>
+
+      <div className="cart">
+        <table>
+          <thead>
+            <tr>
+              <th>Cart (1)</th>
+              <th>420,000 vnd</th>
+              <th>$20.00</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ACID TEE</td>
+              <td>420,000</td>
+              <td>20.00</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <style jsx>{`
@@ -66,29 +87,48 @@ export default function Home() {
         }
 
         .menu {
-          left: ${reveal === 'menu' ? '0' : '-280px'};
+          position: fixed;
+          top: 0;
           height: 100%;
           width: 280px;
-          top: 0;
-          position: fixed;
+          left: ${reveal === 'menu' ? '0' : '-280px'};
           transition: all 0.3s ease;
+        }
 
+        .main-page {
+          position: relative;
+          overflow-x: hidden;
+          min-height: 100vh;
+          left: ${reveal === 'menu' ? '280px' : reveal === 'cart' ? '-280px' : '0'};
+          transition: all 0.3s ease;
+        }
+
+        .cart {
+          position: fixed;
+          top: 0;
+          height: 100%;
+          width: 280px;
+          right: ${reveal === 'cart' ? '0' : '-280px'};
+          transition: all 0.3s ease;
+        }
+
+        .menu {
           padding: 80px 30px 30px;
 
           .item, .subitem {
             display: block;
             text-decoration: none;
+
+            @include hover;
           }
 
           .item {
             font-weight: bold;
             margin-bottom: 0.8rem;
-            @include hover;
           }
 
           .subitem {
             text-transform: uppercase;
-            @include hover;
           }
 
           ul {
@@ -108,13 +148,30 @@ export default function Home() {
           }
         }
 
-        .main-page {
-          overflow-x: hidden;
-          position: relative;
-          left: ${reveal === 'menu' ? '280px' : '0'};
-          transition: all 0.3s ease;
-          min-height: 100vh;
+        .cart {
+          font-size: 13.33px;
+          padding: 15px;
 
+          table th, table td {
+            text-align: left;
+            height: 25px;
+
+            &:first-child {
+              width: 100px;
+            }
+
+            &:nth-child(2) {
+              width: 90px;
+            }
+
+            &:last-child {
+              text-align: right;
+              width: 50px;
+            }
+          }
+        }
+
+        .main-page {
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -145,12 +202,15 @@ export default function Home() {
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-areas: "menu-button brand cart-button";
 
-            .menu-button {
-              grid-area: menu-button;
-              justify-self: left;
+            button {
               border: none;
               padding: 0;
               cursor: pointer;
+            }
+
+            .menu-button {
+              grid-area: menu-button;
+              justify-self: left;
 
               .hamburger-icon {
                 width: 20px;
@@ -172,6 +232,7 @@ export default function Home() {
             .cart-button {
               grid-area: cart-button;
               justify-self: right;
+              visibility: ${reveal === 'cart' ? 'hidden' : 'visible'};
             }
           }
         }
