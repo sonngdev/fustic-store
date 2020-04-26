@@ -1,11 +1,12 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState } from 'react'
 
 export default function Home() {
   const [reveal, setReveal] = useState(null);
 
   return (
-    <div>
+    <div className="container">
       <Head>
         <title>Not At All Clothing</title>
         <link rel="icon" href="/favicon.ico" />
@@ -13,7 +14,19 @@ export default function Home() {
       </Head>
 
       <div className="menu">
+        <Link href="/"><a className="item">Products</a></Link>
+        <ul>
+          <li><Link href="/t-shirts"><a className="subitem">T-Shirts</a></Link></li>
+          <li><Link href="/sweaters"><a className="subitem">Sweaters</a></Link></li>
+          <li><Link href="/hoodies"><a className="subitem">Hoodies</a></Link></li>
+          <li><Link href="/prints"><a className="subitem">Prints</a></Link></li>
+        </ul>
 
+        <Link href="/contact"><a className="item">Contact</a></Link>
+        <a href="https://www.instagram.com/notatallclothing" className="item">Instagram</a>
+        <a href="https://www.facebook.com/notatall.clothing" className="item">Facebook</a>
+
+        <img src="/logo.svg" alt="Logo" className="logo" />
       </div>
 
       <div className="main-page">
@@ -25,7 +38,11 @@ export default function Home() {
               <div />
             </div>
           </button>
-          <img className="logo" src="/logo.svg" alt="Logo" />
+          <Link href="/">
+            <a className="brand">
+              <img src="/brand.svg" alt="Brand" />
+            </a>
+          </Link>
           <div className="cart-button">Cart (0)</div>
         </header>
 
@@ -38,23 +55,70 @@ export default function Home() {
       </div>
 
       <style jsx>{`
+        @mixin hover {
+          &:not([disabled]):hover {
+            color: var(--accent-color);
+          }
+        }
+
+        .container {
+          overflow: hidden;
+        }
+
         .menu {
-          left: ${reveal === 'menu' ? '0' : '-300px'};
+          left: ${reveal === 'menu' ? '0' : '-280px'};
           height: 100%;
-          width: 300px;
+          width: 280px;
+          top: 0;
+          position: fixed;
+          transition: all 0.3s ease;
+
+          padding: 80px 30px 30px;
+
+          .item, .subitem {
+            display: block;
+            text-decoration: none;
+          }
+
+          .item {
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            @include hover;
+          }
+
+          .subitem {
+            text-transform: uppercase;
+            @include hover;
+          }
+
+          ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 3rem;
+
+            li {
+              margin-bottom: 0.5rem;
+            }
+          }
+
+          .logo {
+            width: 4rem;
+            margin-top: 1rem;
+          }
         }
 
         .main-page {
-          display: inline-flex;
+          overflow-x: hidden;
+          position: relative;
+          left: ${reveal === 'menu' ? '280px' : '0'};
+          transition: all 0.3s ease;
+          min-height: 100vh;
+
+          display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-
-          overflow-x: hidden;
-          position: relative;
-          left: ${reveal === 'menu' ? '300px' : '0'};
-          transition: all 0.3s ease;
-          height: 100%;
 
           main {
             padding: 5rem 0;
@@ -79,13 +143,14 @@ export default function Home() {
 
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            grid-template-areas: "menu-button logo cart-button";
+            grid-template-areas: "menu-button brand cart-button";
 
             .menu-button {
               grid-area: menu-button;
               justify-self: left;
               border: none;
               padding: 0;
+              cursor: pointer;
 
               .hamburger-icon {
                 width: 20px;
@@ -99,8 +164,8 @@ export default function Home() {
               }
             }
 
-            .logo {
-              grid-area: logo;
+            .brand {
+              grid-area: brand;
               justify-self: center;
             }
 
@@ -113,11 +178,12 @@ export default function Home() {
       `}</style>
 
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
         :root {
           --background-color: #0f0f0f;
           --text-color: #a7a7a7;
+          --accent-color: #00ff08;
         }
 
         html,
