@@ -1,6 +1,10 @@
-import { useState } from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
+/* eslint-disable no-nested-ternary */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import Head from 'next/head';
+import Link from 'next/link';
 
 export default function Layout({ children }) {
   const [reveal, setReveal] = useState(null);
@@ -29,9 +33,9 @@ export default function Layout({ children }) {
         <img src="/logo.svg" alt="Logo" className="logo" />
       </div>
 
-      <div className="main-page" onClick={() => setReveal(null)}>
+      <div className="main-page" onClick={() => setReveal(null)} onKeyPress={() => setReveal(null)}>
         <header>
-          <button className="menu-button" onClick={(e) => { e.stopPropagation(); setReveal(!reveal ? 'menu' : null); }}>
+          <button type="button" className="menu-button" onClick={(e) => { e.stopPropagation(); setReveal(!reveal ? 'menu' : null); }}>
             <div className="hamburger-icon">
               <div />
               <div />
@@ -43,7 +47,7 @@ export default function Layout({ children }) {
               <img src="/brand.svg" alt="Brand" />
             </a>
           </Link>
-          <button className="cart-button" onClick={(e) => { e.stopPropagation(); setReveal(!reveal ? 'cart' : null); }}>
+          <button type="button" className="cart-button" onClick={(e) => { e.stopPropagation(); setReveal(!reveal ? 'cart' : null); }}>
             Cart (1)
           </button>
         </header>
@@ -76,7 +80,8 @@ export default function Layout({ children }) {
         </table>
       </div>
 
-      <style jsx>{`
+      <style jsx>
+        {`
         .container {
           overflow: hidden;
         }
@@ -233,9 +238,11 @@ export default function Layout({ children }) {
             }
           }
         }
-      `}</style>
+      `}
+      </style>
 
-      <style jsx global>{`
+      <style jsx global>
+        {`
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
         :root {
@@ -258,7 +265,16 @@ export default function Layout({ children }) {
           background-color: var(--background-color);
           color: var(--text-color);
         }
-      `}</style>
+      `}
+      </style>
     </div>
-  )
+  );
 }
+
+Layout.propTypes = {
+  children: PropTypes.node,
+};
+
+Layout.defaultProps = {
+  children: null,
+};
