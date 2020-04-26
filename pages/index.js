@@ -1,92 +1,113 @@
 import Head from 'next/head'
+import { useState } from 'react'
 
 export default function Home() {
+  const [reveal, setReveal] = useState(null);
+
   return (
-    <div className="container">
+    <div>
       <Head>
         <title>Not At All Clothing</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <header>
-        <div className="hamburger-icon">
-          <div />
-          <div />
-          <div />
-        </div>
-        <img className="logo" src="/logo.svg" alt="logo" />
-        <div className="cart">Cart (0)</div>
-      </header>
+      <div className="menu">
 
-      <main>
-      </main>
+      </div>
 
-      <footer>
-        Not At All Clothing
-      </footer>
+      <div className="main-page">
+        <header>
+          <button className="menu-button" onClick={() => setReveal(!reveal ? 'menu' : null)}>
+            <div className="hamburger-icon">
+              <div />
+              <div />
+              <div />
+            </div>
+          </button>
+          <img className="logo" src="/logo.svg" alt="Logo" />
+          <div className="cart-button">Cart (0)</div>
+        </header>
+
+        <main>
+        </main>
+
+        <footer>
+          Not At All Clothing
+        </footer>
+      </div>
 
       <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
+        .menu {
+          left: ${reveal === 'menu' ? '0' : '-300px'};
+          height: 100%;
+          width: 300px;
+        }
+
+        .main-page {
+          display: inline-flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-        }
 
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+          overflow-x: hidden;
+          position: relative;
+          left: ${reveal === 'menu' ? '300px' : '0'};
+          transition: all 0.3s ease;
+          height: 100%;
 
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        header {
-          position: fixed;
-          top: 0;
-          width: 100vw;
-          padding: 15px;
-
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          grid-template-areas: "menu logo cart";
-
-          .hamburger-icon {
-            grid-area: menu;
-            justify-self: left;
-            width: 20px;
-            height: 20px;
+          main {
+            padding: 5rem 0;
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+          }
 
-            div {
-              height: 10px;
-              background-color: var(--text-color);
-              margin: 2.2px 0;
+          footer {
+            width: 100%;
+            height: 100px;
+            border-top: 1px solid #eaeaea;
+          }
+
+          header {
+            position: sticky;
+            top: 0;
+            width: 100vw;
+            padding: 15px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-areas: "menu-button logo cart-button";
+
+            .menu-button {
+              grid-area: menu-button;
+              justify-self: left;
+              border: none;
+              padding: 0;
+
+              .hamburger-icon {
+                width: 20px;
+                height: 20px;
+
+                div {
+                  height: 2px;
+                  background-color: var(--text-color);
+                  margin: 4px 0;
+                }
+              }
             }
-          }
 
-          .logo {
-            grid-area: logo;
-            justify-self: center;
-          }
+            .logo {
+              grid-area: logo;
+              justify-self: center;
+            }
 
-          .cart {
-            grid-area: cart;
-            justify-self: right;
+            .cart-button {
+              grid-area: cart-button;
+              justify-self: right;
+            }
           }
         }
       `}</style>
