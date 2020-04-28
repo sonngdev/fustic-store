@@ -7,7 +7,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 export default function Layout({ children }) {
-  const [reveal, setReveal] = useState('cart');
+  const [reveal, setReveal] = useState(null);
 
   return (
     <div className="container">
