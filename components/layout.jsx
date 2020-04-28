@@ -117,11 +117,6 @@ export default function Layout({ children }) {
 
           .item, .subitem {
             display: block;
-            text-decoration: none;
-
-            &:hover {
-              color: var(--accent-color);
-            }
           }
 
           .item {
@@ -180,7 +175,6 @@ export default function Layout({ children }) {
           align-items: center;
 
           main {
-            padding: 5rem 0;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -244,18 +238,23 @@ export default function Layout({ children }) {
       <style jsx global>
         {`
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
         :root {
           --background-color: #0f0f0f;
           --text-color: #a7a7a7;
           --accent-color: #00ff08;
+          --heading-font: Raleway;
+          --body-font: Poppins;
+          --number-font: Mukta;
         }
 
         html,
         body {
           padding: 0;
           margin: 0;
-          font-family: 'Raleway', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+          font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
             Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
         }
@@ -264,6 +263,19 @@ export default function Layout({ children }) {
           box-sizing: border-box;
           background-color: var(--background-color);
           color: var(--text-color);
+        }
+
+        p {
+          margin: 0 0 0.5rem;
+          font-size: 15px;
+        }
+
+        a {
+          text-decoration: none;
+
+          &:hover {
+            color: var(--accent-color);
+          }
         }
       `}
       </style>
