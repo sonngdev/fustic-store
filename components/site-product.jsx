@@ -12,35 +12,48 @@ export default function SiteProduct({ product }) {
   const thumbnail = images.find((image) => image.isThumbnail);
 
   return (
-    <div className="site-product">
-      <img src={thumbnail.url} alt={name} className="thumbnail" />
-      <Link href={`/${categorySlug}/${slug}`}><a className="name">{name}</a></Link>
-      <p className="price">{priceVnd.toLocaleString()} vnd / ${priceUsd.toLocaleString()}</p>
+    <Link href={`/${categorySlug}/${slug}`}>
+      <a>
+        <div className="site-product">
+          <img src={thumbnail.url} alt={name} className="thumbnail" />
+          <p className="name">{name}</p>
+          <p className="price">
+            {priceVnd.toLocaleString()}
+            {' '}
+            vnd / $
+            {priceUsd.toLocaleString()}
+          </p>
 
-      <style jsx>
-        {`
-        .site-product {
-          margin-bottom: 3rem;
-          text-align: center;
+          <style jsx>
+            {`
+            .site-product {
+              margin-bottom: 3rem;
+              text-align: center;
 
-          .thumbnail {
-            width: 240px;
-            height: 320px;
-            object-fit: cover;
-            margin-bottom: 0.5rem;
-          }
+              &:hover .name {
+                color: var(--color-accent);
+              }
 
-          .name {
-            display: block;
-            font-family: var(--font-heading);
-          }
+              .thumbnail {
+                width: 240px;
+                height: 320px;
+                object-fit: cover;
+                margin-bottom: 0.5rem;
+              }
 
-          .price {
-            font-family: var(--font-number);
-          }
-        }
-        `}
-      </style>
-    </div>
+              .name {
+                font-family: var(--font-heading);
+                margin-bottom: 0;
+              }
+
+              .price {
+                font-family: var(--font-number);
+              }
+            }
+            `}
+          </style>
+        </div>
+      </a>
+    </Link>
   );
 }
