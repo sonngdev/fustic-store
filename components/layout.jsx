@@ -121,7 +121,7 @@ export default function Layout({ children }) {
 
           .item {
             font-weight: var(--fontweight-bold);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
           }
 
           ul {
@@ -234,6 +234,7 @@ export default function Layout({ children }) {
               grid-area: cart-button;
               justify-self: right;
               visibility: ${reveal === 'cart' ? 'hidden' : 'visible'};
+              font-size: var(--fontsize-small);
             }
           }
         }

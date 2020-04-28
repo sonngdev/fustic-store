@@ -38,12 +38,12 @@ export default function SiteProduct({ product }) {
                 width: 240px;
                 height: 320px;
                 object-fit: cover;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.8rem;
               }
 
               .name {
                 font-family: var(--font-heading);
-                margin-bottom: 0;
+                margin-bottom: 0.3rem;
               }
 
               .price {
