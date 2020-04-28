@@ -121,18 +121,18 @@ export default function Layout({ children }) {
 
           .item {
             font-weight: var(--fontweight-bold);
-            margin-bottom: 0.8rem;
+            margin-bottom: var(--spacing-md);
           }
 
           ul {
             list-style: none;
             margin: 0;
             padding: 0;
-            margin-top: 0.2rem;
-            margin-bottom: 3rem;
+            margin-top: var(--spacing-xs);
+            margin-bottom: var(--spacing-xl);
 
             li {
-              margin-bottom: 0.7rem;
+              margin-bottom: var(--spacing-md);
 
               .subitem {
                 text-transform: uppercase;
@@ -143,7 +143,7 @@ export default function Layout({ children }) {
 
           .logo {
             width: 4rem;
-            margin-top: 1rem;
+            margin-top: var(--spacing-md);
           }
         }
 

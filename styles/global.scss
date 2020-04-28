@@ -6,12 +6,20 @@
   --color-background: #0f0f0f;
   --color-text: #a7a7a7;
   --color-accent: #00ff08;
+
   --font-heading: Raleway;
   --font-body: Poppins;
   --font-number: Mukta;
+
   --fontsize-small: 13.33px;
   --fontsize-normal: 15px;
+
   --fontweight-bold: 600;
+
+  --spacing-xs: 0.3rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 0.8rem;
+  --spacing-xl: 3rem;
 }
 
 html,
@@ -29,7 +37,7 @@ body {
 }
 
 p {
-  margin: 0 0 0.5rem;
+  margin: 0 0 var(--spacing-md);
   font-size: var(--fontsize-normal);
 }
 

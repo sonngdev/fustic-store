@@ -27,7 +27,7 @@ export default function SiteProduct({ product }) {
           <style jsx>
             {`
             .site-product {
-              margin-bottom: 3rem;
+              margin-bottom: var(--spacing-xl);
               text-align: center;
 
               &:hover .name {
@@ -38,12 +38,12 @@ export default function SiteProduct({ product }) {
                 width: 240px;
                 height: 320px;
                 object-fit: cover;
-                margin-bottom: 0.8rem;
+                margin-bottom: var(--spacing-md);
               }
 
               .name {
                 font-family: var(--font-heading);
-                margin-bottom: 0.3rem;
+                margin-bottom: var(--spacing-xs);
               }
 
               .price {
