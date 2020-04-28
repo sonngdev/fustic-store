@@ -120,7 +120,7 @@ export default function Layout({ children }) {
           }
 
           .item {
-            font-weight: var(--fontweight-bold);
+            font-weight: bold;
             margin-bottom: var(--spacing-md);
           }
 
@@ -151,10 +151,6 @@ export default function Layout({ children }) {
           font-family: var(--font-number);
           font-size: var(--fontsize-small);
           padding: 15px;
-
-          table th {
-            font-weight: var(--fontweight-bold);
-          }
 
           table th, table td {
             height: 25px;
