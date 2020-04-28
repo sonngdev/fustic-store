@@ -92,7 +92,7 @@ export default function Layout({ children }) {
           height: 100%;
           width: 280px;
           left: ${reveal === 'menu' ? '0' : '-280px'};
-          transition: all 0.3s ease;
+          transition: left 0.3s ease;
         }
 
         .main-page {
@@ -100,7 +100,7 @@ export default function Layout({ children }) {
           overflow-x: hidden;
           min-height: 100vh;
           left: ${reveal === 'menu' ? '280px' : reveal === 'cart' ? '-280px' : '0'};
-          transition: all 0.3s ease;
+          transition: left 0.3s ease;
         }
 
         .cart {
@@ -109,7 +109,7 @@ export default function Layout({ children }) {
           height: 100%;
           width: 280px;
           right: ${reveal === 'cart' ? '0' : '-280px'};
-          transition: all 0.3s ease;
+          transition: right 0.3s ease;
         }
 
         .menu {
