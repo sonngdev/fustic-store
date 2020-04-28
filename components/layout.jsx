@@ -7,7 +7,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 export default function Layout({ children }) {
-  const [reveal, setReveal] = useState(null);
+  const [reveal, setReveal] = useState('cart');
 
   return (
     <div className="container">
@@ -120,22 +120,24 @@ export default function Layout({ children }) {
           }
 
           .item {
-            font-weight: bold;
-            margin-bottom: 0.8rem;
-          }
-
-          .subitem {
-            text-transform: uppercase;
+            font-weight: var(--fontweight-bold);
+            margin-bottom: 0.5rem;
           }
 
           ul {
             list-style: none;
             margin: 0;
             padding: 0;
+            margin-top: 0.2rem;
             margin-bottom: 3rem;
 
             li {
-              margin-bottom: 0.5rem;
+              margin-bottom: 0.7rem;
+
+              .subitem {
+                text-transform: uppercase;
+                font-family: var(--font-heading);
+              }
             }
           }
 
@@ -146,18 +148,24 @@ export default function Layout({ children }) {
         }
 
         .cart {
-          font-size: 13.33px;
+          font-family: var(--font-number);
+          font-size: var(--fontsize-small);
           padding: 15px;
 
+          table th {
+            font-weight: var(--fontweight-bold);
+          }
+
           table th, table td {
-            text-align: left;
             height: 25px;
 
             &:first-child {
+              text-align: left;
               width: 100px;
             }
 
             &:nth-child(2) {
+              text-align: left;
               width: 90px;
             }
 
@@ -173,6 +181,7 @@ export default function Layout({ children }) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          padding-top: 3.375rem;
 
           main {
             flex: 1;
@@ -189,7 +198,7 @@ export default function Layout({ children }) {
           }
 
           header {
-            position: sticky;
+            position: fixed;
             top: 0;
             width: 100vw;
             padding: 15px;
@@ -197,12 +206,6 @@ export default function Layout({ children }) {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-areas: "menu-button brand cart-button";
-
-            button {
-              border: none;
-              padding: 0;
-              cursor: pointer;
-            }
 
             .menu-button {
               grid-area: menu-button;
@@ -223,6 +226,8 @@ export default function Layout({ children }) {
             .brand {
               grid-area: brand;
               justify-self: center;
+              display: flex;
+              align-items: center;
             }
 
             .cart-button {
@@ -248,6 +253,9 @@ export default function Layout({ children }) {
           --font-heading: Raleway;
           --font-body: Poppins;
           --font-number: Mukta;
+          --fontsize-small: 13.33px;
+          --fontsize-normal: 15px;
+          --fontweight-bold: 600;
         }
 
         html,
@@ -267,7 +275,7 @@ export default function Layout({ children }) {
 
         p {
           margin: 0 0 0.5rem;
-          font-size: 15px;
+          font-size: var(--fontsize-normal);
         }
 
         a {
@@ -276,6 +284,12 @@ export default function Layout({ children }) {
           &:hover {
             color: var(--color-accent);
           }
+        }
+
+        button {
+          border: none;
+          padding: 0;
+          cursor: pointer;
         }
       `}
       </style>
