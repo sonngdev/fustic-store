@@ -214,7 +214,7 @@ export default function Layout({ children }) {
 
                 div {
                   height: 2px;
-                  background-color: var(--text-color);
+                  background-color: var(--color-text);
                   margin: 4px 0;
                 }
               }
@@ -242,27 +242,27 @@ export default function Layout({ children }) {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
         :root {
-          --background-color: #0f0f0f;
-          --text-color: #a7a7a7;
-          --accent-color: #00ff08;
-          --heading-font: Raleway;
-          --body-font: Poppins;
-          --number-font: Mukta;
+          --color-background: #0f0f0f;
+          --color-text: #a7a7a7;
+          --color-accent: #00ff08;
+          --font-heading: Raleway;
+          --font-body: Poppins;
+          --font-number: Mukta;
         }
 
         html,
         body {
           padding: 0;
           margin: 0;
-          font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+          font-family: var(--font-body), -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
             Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
         }
 
         * {
           box-sizing: border-box;
-          background-color: var(--background-color);
-          color: var(--text-color);
+          background-color: var(--color-background);
+          color: var(--color-text);
         }
 
         p {
@@ -274,7 +274,7 @@ export default function Layout({ children }) {
           text-decoration: none;
 
           &:hover {
-            color: var(--accent-color);
+            color: var(--color-accent);
           }
         }
       `}

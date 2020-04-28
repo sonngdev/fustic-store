@@ -32,11 +32,11 @@ export default function SiteProduct({ product }) {
 
           .name {
             display: block;
-            font-family: var(--heading-font);
+            font-family: var(--font-heading);
           }
 
           .price {
-            font-family: var(--number-font);
+            font-family: var(--font-number);
           }
         }
         `}
