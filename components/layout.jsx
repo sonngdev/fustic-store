@@ -33,7 +33,9 @@ export default function Layout({ children }) {
         <img src="/logo.svg" alt="Logo" className="logo" />
       </div>
 
-      <div className="main-page" onClick={() => setReveal(null)} onKeyPress={() => setReveal(null)}>
+      <div className="main-page">
+        <div className="overlay" onClick={() => setReveal(null)} onKeyPress={() => setReveal(null)} />
+
         <header>
           <button type="button" className="menu-button" onClick={(e) => { e.stopPropagation(); setReveal(!reveal ? 'menu' : null); }}>
             <div className="hamburger-icon">
@@ -178,6 +180,18 @@ export default function Layout({ children }) {
           justify-content: center;
           align-items: center;
           padding-top: 3.375rem;
+
+          position: relative;
+
+          .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            display: ${reveal ? 'block' : 'none'};
+            opacity: 0;
+          }
 
           main {
             flex: 1;
