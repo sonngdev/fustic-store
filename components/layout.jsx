@@ -27,7 +27,7 @@ export default function Layout({ children }) {
         </ul>
 
         <Link href="/contact"><a className="item">Contact</a></Link>
-        <a href="https://www.instagram.com/notatallclothing" className="item">Instagram</a>
+        <a href="https://www.instagram.com/notatallstore" className="item">Instagram</a>
         <a href="https://www.facebook.com/notatall.clothing" className="item">Facebook</a>
 
         <img src="/logo.svg" alt="Logo" className="logo" />
