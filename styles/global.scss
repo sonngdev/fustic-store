@@ -28,17 +28,13 @@ body {
   margin: 0;
   font-family: var(--font-body), -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: var(--fontsize-normal);
 }
 
 * {
   box-sizing: border-box;
   background-color: var(--color-background);
   color: var(--color-text);
-}
-
-p {
-  margin: 0 0 var(--spacing-md);
-  font-size: var(--fontsize-normal);
 }
 
 a {

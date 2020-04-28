@@ -16,13 +16,13 @@ export default function SiteProduct({ product }) {
       <a>
         <div className="site-product">
           <img src={thumbnail.url} alt={name} className="thumbnail" />
-          <p className="name">{name}</p>
-          <p className="price">
+          <div className="name">{name}</div>
+          <div className="price">
             {priceVnd.toLocaleString()}
             {' '}
             vnd / $
             {priceUsd.toLocaleString()}
-          </p>
+          </div>
 
           <style jsx>
             {`
