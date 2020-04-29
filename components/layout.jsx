@@ -212,10 +212,16 @@ export default function Layout({ children }) {
             top: 0;
             width: 100vw;
             padding: 15px;
+            background-color: var(--color-background);
 
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-areas: "menu-button brand cart-button";
+
+            button {
+              background-color: transparent;
+              border: none;
+            }
 
             .menu-button {
               grid-area: menu-button;
@@ -243,7 +249,7 @@ export default function Layout({ children }) {
             .cart-button {
               grid-area: cart-button;
               justify-self: right;
-              visibility: ${reveal === 'cart' ? 'hidden' : 'visible'};
+              opacity: ${reveal === 'cart' ? 0 : 1};
               font-size: var(--fontsize-small);
             }
           }
