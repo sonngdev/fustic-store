@@ -220,9 +220,10 @@ export default function Layout({ children }) {
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-areas: "menu-button brand cart-button";
 
-            button {
+            .menu-button, .cart-button {
               background-color: transparent;
               border: none;
+              padding: 0 7px;
             }
 
             .menu-button {

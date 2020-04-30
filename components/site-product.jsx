@@ -25,10 +25,6 @@ export default function SiteProduct({ product }) {
               margin-bottom: var(--spacing-xl);
               text-align: center;
 
-              &:hover .price {
-                color: var(--color-text);
-              }
-
               .thumbnail {
                 width: 240px;
                 height: 320px;
@@ -44,6 +40,7 @@ export default function SiteProduct({ product }) {
 
               .price {
                 font-family: var(--font-number);
+                color: var(--color-text);
               }
             }
             `}
