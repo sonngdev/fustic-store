@@ -20,10 +20,10 @@ export default function Layout({ children }) {
       <div className="menu">
         <Link href="/"><a className="item">Products</a></Link>
         <ul>
-          <li><Link href="/t-shirts"><a className="subitem">T-Shirts</a></Link></li>
-          <li><Link href="/sweaters"><a className="subitem">Sweaters</a></Link></li>
-          <li><Link href="/hoodies"><a className="subitem">Hoodies</a></Link></li>
-          <li><Link href="/prints"><a className="subitem">Prints</a></Link></li>
+          <li><Link href="/[categorySlug]" as="/t-shirts"><a className="subitem">T-Shirts</a></Link></li>
+          <li><Link href="/[categorySlug]" as="/sweaters"><a className="subitem">Sweaters</a></Link></li>
+          <li><Link href="/[categorySlug]" as="/hoodies"><a className="subitem">Hoodies</a></Link></li>
+          <li><Link href="/[categorySlug]" as="/prints"><a className="subitem">Prints</a></Link></li>
         </ul>
 
         <Link href="/contact"><a className="item">Contact</a></Link>
