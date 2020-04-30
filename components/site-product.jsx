@@ -17,12 +17,7 @@ export default function SiteProduct({ product }) {
         <div className="site-product">
           <img src={thumbnail.url} alt={name} className="thumbnail" />
           <div className="name">{name}</div>
-          <div className="price">
-            {priceVnd.toLocaleString()}
-            {' '}
-            vnd / $
-            {priceUsd.toLocaleString()}
-          </div>
+          <div className="price">{priceVnd.toLocaleString()} vnd / ${priceUsd.toLocaleString()}</div>
 
           <style jsx>
             {`
@@ -30,8 +25,8 @@ export default function SiteProduct({ product }) {
               margin-bottom: var(--spacing-xl);
               text-align: center;
 
-              &:hover .name {
-                color: var(--color-accent);
+              &:hover .price {
+                color: var(--color-text);
               }
 
               .thumbnail {
