@@ -8,6 +8,7 @@ import {
   ButtonNext,
 } from 'pure-react-carousel';
 import Layout from 'components/layout';
+import s from './styles/index.module.scss';
 
 export default function Product({ category, product }) {
   return (
@@ -22,16 +23,18 @@ export default function Product({ category, product }) {
         naturalSlideWidth={240}
         naturalSlideHeight={320}
         totalSlides={product.images.length}
+        infinite
+        className={s.pureCarousel}
       >
-        <Slider>
+        <Slider className={s.slider}>
           {product.images.map((image, i) => (
             <Slide index={i} key={image.url}>
-              <Image src={image.url} alt={`${product.name} ${i + 1}`} />
+              <Image src={image.url} alt={`${product.name} ${i + 1}`} className={s.image} />
             </Slide>
           ))}
         </Slider>
-        <ButtonBack>Back</ButtonBack>
-        <ButtonNext>Next</ButtonNext>
+        <ButtonBack className={s.buttonBack}>&lt;</ButtonBack>
+        <ButtonNext className={s.buttonNext}>&gt;</ButtonNext>
       </CarouselProvider>
 
       <style jsx>

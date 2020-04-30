@@ -1,0 +1,31 @@
+.pureCarousel {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 240px 1fr;
+  grid-template-areas: "button-back slider button-next";
+  justify-items: center;
+  align-items: center;
+
+  .slider {
+    grid-area: slider;
+    width: 240px;
+    height: 320px;
+
+    .image {
+      object-fit: cover;
+    }
+  }
+
+  .buttonBack, .buttonNext {
+    font-size: 2rem;
+    font-weight: 100;
+  }
+
+  .buttonBack {
+    grid-area: button-back;
+  }
+
+  .buttonNext {
+    grid-area: button-next;
+  }
+}
