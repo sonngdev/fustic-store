@@ -1,15 +1,7 @@
 import Head from 'next/head';
-import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  Image,
-  ButtonBack,
-  ButtonNext,
-} from 'pure-react-carousel';
 import Layout from 'components/layout';
 import CategoryName from 'components/category-name';
-import s from './styles/index.module.scss';
+import ProductImages from 'components/product-images';
 
 export default function Product({ category, product }) {
   return (
@@ -20,23 +12,7 @@ export default function Product({ category, product }) {
 
       <CategoryName category={category} />
 
-      <CarouselProvider
-        naturalSlideWidth={240}
-        naturalSlideHeight={320}
-        totalSlides={product.images.length}
-        infinite
-        className={s.pureCarousel}
-      >
-        <Slider className={s.slider}>
-          {product.images.map((image, i) => (
-            <Slide index={i} key={image.url}>
-              <Image src={image.url} alt={`${product.name} ${i + 1}`} className={s.image} />
-            </Slide>
-          ))}
-        </Slider>
-        <ButtonBack className={s.buttonBack}>&lt;</ButtonBack>
-        <ButtonNext className={s.buttonNext}>&gt;</ButtonNext>
-      </CarouselProvider>
+      <ProductImages product={product} />
     </Layout>
   );
 }
