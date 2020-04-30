@@ -209,6 +209,7 @@ export default function Layout({ children }) {
           header {
             position: fixed;
             top: 0;
+            z-index: 1000;
             width: 100vw;
             padding: var(--padding-header);
             background-color: var(--color-background);
