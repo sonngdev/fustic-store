@@ -41,8 +41,8 @@ export async function getStaticPaths() {
   }
 }
 
-// GET /categories/:id
-// GET /categories/:id/products
+// GET /categories/:slug
+// GET /categories/:slug/products
 export async function getStaticProps({ params }) {
   const category = {
     id: 1,
