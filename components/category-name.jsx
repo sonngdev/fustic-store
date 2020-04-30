@@ -15,5 +15,5 @@ export default function CategoryName({ category }) {
         `}
       </style>
     </>
-  )
+  );
 }

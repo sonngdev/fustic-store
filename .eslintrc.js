@@ -22,6 +22,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    'react/jsx-one-expression-per-line': 'off',
     'react/react-in-jsx-scope': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
   },

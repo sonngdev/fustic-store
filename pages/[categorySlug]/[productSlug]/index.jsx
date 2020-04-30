@@ -96,7 +96,7 @@ export async function getStaticPaths() {
   return {
     paths,
     fallback: false,
-  }
+  };
 }
 
 // GET /categories/:slug

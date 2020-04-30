@@ -27,7 +27,7 @@ export async function getStaticPaths() {
       { params: { categorySlug: 'prints' } },
     ],
     fallback: false,
-  }
+  };
 }
 
 // GET /categories/:slug
