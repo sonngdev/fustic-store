@@ -6,7 +6,6 @@ import {
   ButtonBack,
   ButtonNext,
 } from 'pure-react-carousel';
-import s from './styles/product-images.module.scss';
 
 export default function ProductImages({ product }) {
   return (
@@ -15,17 +14,54 @@ export default function ProductImages({ product }) {
       naturalSlideHeight={320}
       totalSlides={product.images.length}
       infinite
-      className={s.pureCarousel}
+      className="pure-carousel"
     >
-      <Slider className={s.slider}>
+      <Slider className="slider">
         {product.images.map((image, i) => (
           <Slide index={i} key={image.url}>
-            <Image src={image.url} alt={`${product.name} ${i + 1}`} className={s.image} />
+            <Image src={image.url} alt={`${product.name} ${i + 1}`} className="image" />
           </Slide>
         ))}
       </Slider>
-      <ButtonBack className={s.buttonBack}>&lt;</ButtonBack>
-      <ButtonNext className={s.buttonNext}>&gt;</ButtonNext>
+      <ButtonBack className="button-back">&lt;</ButtonBack>
+      <ButtonNext className="button-next">&gt;</ButtonNext>
+
+      <style jsx global>
+        {`
+        .pure-carousel {
+          width: 100vw;
+          display: grid;
+          grid-template-columns: 1fr 240px 1fr;
+          grid-template-areas: "button-back slider button-next";
+          justify-items: center;
+          align-items: center;
+
+          .slider {
+            grid-area: slider;
+            width: 240px;
+            height: 320px;
+
+            .image {
+              object-fit: cover;
+            }
+          }
+
+          .button-back, .button-next {
+            font-size: 2rem;
+            font-weight: 100;
+            background: transparent;
+          }
+
+          .button-back {
+            grid-area: button-back;
+          }
+
+          .button-next {
+            grid-area: button-next;
+          }
+        }
+        `}
+      </style>
     </CarouselProvider>
   );
 }
