@@ -6,7 +6,7 @@ import {
   ButtonBack,
   ButtonNext,
 } from 'pure-react-carousel';
-import s from './styles/index.module.scss';
+import s from './styles/product-images.module.scss';
 
 export default function ProductImages({ product }) {
   return (
