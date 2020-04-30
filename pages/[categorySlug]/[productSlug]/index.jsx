@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Layout from 'components/layout';
 import CategoryName from 'components/category-name';
 import ProductImages from 'components/product-images';
+import Select from 'components/select';
+import Button from 'components/button';
 
 export default function Product({ category, product }) {
   return (
@@ -13,6 +15,53 @@ export default function Product({ category, product }) {
       <CategoryName category={category} />
 
       <ProductImages product={product} />
+
+      <div className="product">
+        <h2 className="name">{product.name}</h2>
+        <div className="price">{product.priceVnd.toLocaleString()} vnd / ${product.priceUsd.toLocaleString()}</div>
+
+        <div style={{ marginBottom: 'var(--spacing-sm)' }}>
+          <label htmlFor="select">
+            Size
+            {' '}
+            <Select id="select">
+              {product.sizes.map((size) => (
+                <option value={size} key={size}>{size}</option>
+              ))}
+            </Select>
+          </label>
+          <span className="guide">H: &lt; 165cm</span>
+        </div>
+
+        <Button>Add To Cart</Button>
+      </div>
+
+      <style jsx>
+        {`
+        .product {
+          text-align: left;
+          width: 100%;
+          margin-top: var(--spacing-lg);
+          padding: 0 var(--padding-page) 0;
+
+          .name {
+            font-size: var(--fontsize-normal);
+            font-weight: normal;
+            margin: 0 0 var(--spacing-sm);
+          }
+
+          .price {
+            color: var(--color-accent);
+            font-family: var(--font-number);
+            margin-bottom: var(--spacing-md);
+          }
+
+          .guide {
+            margin-left: var(--spacing-md);
+          }
+        }
+        `}
+      </style>
     </Layout>
   );
 }
