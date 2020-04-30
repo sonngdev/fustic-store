@@ -8,6 +8,7 @@ import {
   ButtonNext,
 } from 'pure-react-carousel';
 import Layout from 'components/layout';
+import CategoryName from 'components/category-name';
 import s from './styles/index.module.scss';
 
 export default function Product({ category, product }) {
@@ -17,7 +18,7 @@ export default function Product({ category, product }) {
         <title>{product.name} – {category.name} – Not At All Clothing</title>
       </Head>
 
-      <h1 className="category">{category.name}</h1>
+      <CategoryName category={category} />
 
       <CarouselProvider
         naturalSlideWidth={240}
@@ -36,18 +37,6 @@ export default function Product({ category, product }) {
         <ButtonBack className={s.buttonBack}>&lt;</ButtonBack>
         <ButtonNext className={s.buttonNext}>&gt;</ButtonNext>
       </CarouselProvider>
-
-      <style jsx>
-        {`
-        .category {
-          font-size: var(--fontsize-small);
-          font-weight: normal;
-          text-transform: uppercase;
-          margin-top: 0;
-          margin-bottom: calc(var(--spacing-xl) - var(--fontsize-small) - 2px);
-        }
-        `}
-      </style>
     </Layout>
   );
 }

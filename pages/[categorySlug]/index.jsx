@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Layout from 'components/layout';
+import CategoryName from 'components/category-name';
 import SiteProduct from 'components/site-product';
 
 export default function Category({ category, products }) {
@@ -9,21 +10,9 @@ export default function Category({ category, products }) {
         <title>{category.name} – Not At All Clothing</title>
       </Head>
 
-      <h1 className="category">{category.name}</h1>
+      <CategoryName category={category} />
 
       {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
-
-      <style jsx>
-        {`
-        .category {
-          font-size: var(--fontsize-small);
-          font-weight: normal;
-          text-transform: uppercase;
-          margin-top: 0;
-          margin-bottom: calc(var(--spacing-xl) - var(--fontsize-small) - 2px);
-        }
-        `}
-      </style>
     </Layout>
   );
 }
