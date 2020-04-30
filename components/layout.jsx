@@ -115,7 +115,7 @@ export default function Layout({ children }) {
         }
 
         .menu {
-          padding: 80px 30px 30px;
+          padding: calc(26px + 2 * var(--padding-header) + var(--spacing-xl)) 30px 30px;
 
           .item, .subitem {
             display: block;
@@ -179,7 +179,7 @@ export default function Layout({ children }) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          padding-top: 3.375rem;
+          padding-top: calc(26px + 2 * var(--padding-header));
 
           position: relative;
 
@@ -197,7 +197,6 @@ export default function Layout({ children }) {
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
           }
 
@@ -211,7 +210,7 @@ export default function Layout({ children }) {
             position: fixed;
             top: 0;
             width: 100vw;
-            padding: 15px;
+            padding: var(--padding-header);
             background-color: var(--color-background);
 
             display: grid;
