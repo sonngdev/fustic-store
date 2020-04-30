@@ -179,6 +179,7 @@ export default function Layout({ children }) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          padding-top: calc(26px + 2 * var(--padding-header));
 
           position: relative;
 
@@ -198,7 +199,6 @@ export default function Layout({ children }) {
             flex-direction: column;
             align-items: center;
             width: 100%;
-            margin-top: calc(26px + 2 * var(--padding-header));
             margin-bottom: var(--spacing-xl);
           }
 
