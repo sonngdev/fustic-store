@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Layout from 'components/layout';
 import CategoryName from 'components/category-name';
+import ProductGrid from 'components/product-grid';
 import SiteProduct from 'components/site-product';
 
 export default function Category({ category, products }) {
@@ -12,7 +13,19 @@ export default function Category({ category, products }) {
 
       <CategoryName category={category} />
 
-      {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
+      <div className="category">
+        <ProductGrid>
+          {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
+        </ProductGrid>
+      </div>
+
+      <style jsx>
+        {`
+        .category {
+          width: 100%;
+        }
+        `}
+      </style>
     </Layout>
   );
 }
