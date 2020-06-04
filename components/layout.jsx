@@ -279,7 +279,7 @@ export default function Layout({ children }) {
             }
           }
         }
-      `}
+        `}
       </style>
     </div>
   );
