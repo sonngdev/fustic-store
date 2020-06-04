@@ -88,34 +88,56 @@ export default function Layout({ children }) {
           overflow: hidden;
         }
 
+        @media screen and (max-width: 1200px) {
+          .menu {
+            position: fixed;
+            top: 0;
+            height: 100%;
+            width: 280px;
+            left: ${reveal === 'menu' ? '0' : '-280px'};
+            transition: left 0.3s ease;
+          }
+
+          .main-page {
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            left: ${reveal === 'menu' ? '280px' : reveal === 'cart' ? '-280px' : '0'};
+            transition: left 0.3s ease;
+          }
+
+          .cart {
+            position: fixed;
+            top: 0;
+            height: 100%;
+            width: 280px;
+            right: ${reveal === 'cart' ? '0' : '-280px'};
+            transition: right 0.3s ease;
+          }
+        }
+
+        @media screen and (min-width: 1200px) {
+          .container {
+            display: grid;
+            grid-template-columns: 280px 1fr 280px;
+            grid-template-areas: "menu-button brand cart-button";
+
+            .main-page {
+
+              header .menu-button, header .cart-button {
+                display: none;
+              }
+            }
+
+            .cart {
+              padding-top: calc(26px + 2 * var(--padding-header) + var(--spacing-xl));
+            }
+          }
+        }
+
         .menu {
-          position: fixed;
-          top: 0;
-          height: 100%;
-          width: 280px;
-          left: ${reveal === 'menu' ? '0' : '-280px'};
-          transition: left 0.3s ease;
-        }
-
-        .main-page {
-          position: relative;
-          overflow-x: hidden;
-          min-height: 100vh;
-          left: ${reveal === 'menu' ? '280px' : reveal === 'cart' ? '-280px' : '0'};
-          transition: left 0.3s ease;
-        }
-
-        .cart {
-          position: fixed;
-          top: 0;
-          height: 100%;
-          width: 280px;
-          right: ${reveal === 'cart' ? '0' : '-280px'};
-          transition: right 0.3s ease;
-        }
-
-        .menu {
-          padding: calc(26px + 2 * var(--padding-header) + var(--spacing-xl)) 30px 30px;
+          padding: 30px;
+          padding-top: calc(26px + 2 * var(--padding-header) + var(--spacing-xl));
 
           .item, .subitem {
             display: block;
