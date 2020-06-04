@@ -18,19 +18,21 @@ export default function Layout({ children }) {
       </Head>
 
       <div className="menu">
-        <Link href="/"><a className="item">Products</a></Link>
-        <ul>
-          <li><Link href="/[categorySlug]" as="/t-shirts"><a className="subitem">T-Shirts</a></Link></li>
-          <li><Link href="/[categorySlug]" as="/sweaters"><a className="subitem">Sweaters</a></Link></li>
-          <li><Link href="/[categorySlug]" as="/hoodies"><a className="subitem">Hoodies</a></Link></li>
-          <li><Link href="/[categorySlug]" as="/prints"><a className="subitem">Prints</a></Link></li>
-        </ul>
+        <div className="menu-container">
+          <Link href="/"><a className="item">Products</a></Link>
+          <ul>
+            <li><Link href="/[categorySlug]" as="/t-shirts"><a className="subitem">T-Shirts</a></Link></li>
+            <li><Link href="/[categorySlug]" as="/sweaters"><a className="subitem">Sweaters</a></Link></li>
+            <li><Link href="/[categorySlug]" as="/hoodies"><a className="subitem">Hoodies</a></Link></li>
+            <li><Link href="/[categorySlug]" as="/prints"><a className="subitem">Prints</a></Link></li>
+          </ul>
 
-        <Link href="/contact"><a className="item">Contact</a></Link>
-        <a href="https://www.instagram.com/notatallstore" className="item">Instagram</a>
-        <a href="https://www.facebook.com/notatall.clothing" className="item">Facebook</a>
+          <Link href="/contact"><a className="item">Contact</a></Link>
+          <a href="https://www.instagram.com/notatallstore" className="item">Instagram</a>
+          <a href="https://www.facebook.com/notatall.clothing" className="item">Facebook</a>
 
-        <img src="/logo.svg" alt="Logo" className="logo" />
+          <img src="/logo.svg" alt="Logo" className="logo" />
+        </div>
       </div>
 
       <div className="main-page">
@@ -64,22 +66,24 @@ export default function Layout({ children }) {
       </div>
 
       <div className="cart">
-        <table>
-          <thead>
-            <tr>
-              <th>Cart (1)</th>
-              <th>420,000 vnd</th>
-              <th>$20.00</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>ACID TEE</td>
-              <td>420,000</td>
-              <td>20.00</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="cart-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Cart (1)</th>
+                <th>420,000 vnd</th>
+                <th>$20.00</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ACID TEE</td>
+                <td>420,000</td>
+                <td>20.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <style jsx>
@@ -98,14 +102,6 @@ export default function Layout({ children }) {
             transition: left 0.3s ease;
           }
 
-          .main-page {
-            position: relative;
-            overflow-x: hidden;
-            min-height: 100vh;
-            left: ${reveal === 'menu' ? '280px' : reveal === 'cart' ? '-280px' : '0'};
-            transition: left 0.3s ease;
-          }
-
           .cart {
             position: fixed;
             top: 0;
@@ -113,6 +109,14 @@ export default function Layout({ children }) {
             width: 280px;
             right: ${reveal === 'cart' ? '0' : '-280px'};
             transition: right 0.3s ease;
+          }
+
+          .main-page {
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            left: ${reveal === 'menu' ? '280px' : reveal === 'cart' ? '-280px' : '0'};
+            transition: left 0.3s ease;
           }
         }
 
@@ -122,6 +126,12 @@ export default function Layout({ children }) {
             grid-template-columns: auto 1fr auto;
             grid-template-areas: "menu-button brand cart-button";
           }
+
+          .menu, .cart {
+            &-container {
+              position: fixed;
+            }
+          }
         }
 
         .menu {
@@ -129,7 +139,7 @@ export default function Layout({ children }) {
           padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xl));
 
           @media screen and (min-width: 1200px) {
-            width: 240px;
+            width: 260px;
           }
 
           .item, .subitem {
@@ -165,16 +175,20 @@ export default function Layout({ children }) {
         }
 
         .cart {
+          display: flex;
+
           font-family: var(--font-number);
           font-size: var(--fontsize-small);
           padding: 15px;
 
           @media screen and (min-width: 1200px) {
+            justify-content: flex-end;
             padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xl));
+            width: 260px;
           }
 
           table th, table td {
-            height: 25px;
+            height: calc(2 * var(--fontsize-small));
 
             &:first-child {
               text-align: left;
@@ -189,6 +203,23 @@ export default function Layout({ children }) {
             &:last-child {
               text-align: right;
               width: 50px;
+            }
+
+            @media screen and (min-width: 1200px) {
+              &:first-child {
+                text-align: left;
+                width: 80px;
+              }
+
+              &:nth-child(2) {
+                text-align: left;
+                width: 90px;
+              }
+
+              &:last-child {
+                text-align: right;
+                width: 50px;
+              }
             }
           }
         }
@@ -231,7 +262,7 @@ export default function Layout({ children }) {
             position: fixed;
             top: 0;
             z-index: 1000;
-            width: 100vw;
+            width: 100%;
             padding: var(--padding-header);
             background-color: var(--color-background);
 
