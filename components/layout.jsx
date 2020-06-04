@@ -119,25 +119,18 @@ export default function Layout({ children }) {
         @media screen and (min-width: 1200px) {
           .container {
             display: grid;
-            grid-template-columns: 280px 1fr 280px;
+            grid-template-columns: auto 1fr auto;
             grid-template-areas: "menu-button brand cart-button";
-
-            .main-page {
-
-              header .menu-button, header .cart-button {
-                display: none;
-              }
-            }
-
-            .cart {
-              padding-top: calc(26px + 2 * var(--padding-header) + var(--spacing-xl));
-            }
           }
         }
 
         .menu {
           padding: 30px;
-          padding-top: calc(26px + 2 * var(--padding-header) + var(--spacing-xl));
+          padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xl));
+
+          @media screen and (min-width: 1200px) {
+            width: 240px;
+          }
 
           .item, .subitem {
             display: block;
@@ -176,6 +169,10 @@ export default function Layout({ children }) {
           font-size: var(--fontsize-small);
           padding: 15px;
 
+          @media screen and (min-width: 1200px) {
+            padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xl));
+          }
+
           table th, table td {
             height: 25px;
 
@@ -201,7 +198,7 @@ export default function Layout({ children }) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          padding-top: calc(26px + 2 * var(--padding-header));
+          padding-top: calc(var(--height-brand) + 2 * var(--padding-header));
 
           position: relative;
 
@@ -246,6 +243,10 @@ export default function Layout({ children }) {
               background-color: transparent;
               border: none;
               padding: 0 7px;
+
+              @media screen and (min-width: 1200px) {
+                display: none;
+              }
             }
 
             .menu-button {
@@ -269,6 +270,10 @@ export default function Layout({ children }) {
               justify-self: center;
               display: flex;
               align-items: center;
+
+              img {
+                height: var(--height-brand);
+              }
             }
 
             .cart-button {
