@@ -11,7 +11,7 @@
   --font-body: Poppins;
   --font-number: Mukta;
 
-  --fontsize-small: 13.33px;
+  --fontsize-small: 13px;
   --fontsize-normal: 15px;
 
   --spacing-xs: 0.3rem;
@@ -26,6 +26,9 @@
   --height-brand: 26px;
 
   @media screen and (min-width: 768px) {
+    --fontsize-small: 12px;
+    --fontsize-normal: 13px;
+
     --padding-header: 20px;
   }
 }
