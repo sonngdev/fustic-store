@@ -1,17 +1,21 @@
 import Layout from 'components/layout';
+import ProductGrid from 'components/product-grid';
 import SiteProduct from 'components/site-product';
 
 export default function Home({ products }) {
   return (
     <Layout>
       <div className="home">
-        {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
+        <ProductGrid>
+          {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
+        </ProductGrid>
       </div>
 
       <style jsx>
         {`
         .home {
           margin-top: var(--spacing-xl);
+          width: 100%;
         }
         `}
       </style>
