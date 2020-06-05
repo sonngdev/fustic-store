@@ -14,50 +14,74 @@ export default function Product({ category, product }) {
 
       <CategoryName category={category} />
 
-      <ProductImages product={product} />
-
       <div className="product">
-        <h2 className="name">{product.name}</h2>
-        <div className="price">{product.priceVnd.toLocaleString()} vnd / ${product.priceUsd.toLocaleString()}</div>
+        <ProductImages product={product} />
 
-        <div style={{ marginBottom: 'var(--spacing-sm)' }}>
-          <label htmlFor="select">
-            Size
-            {' '}
-            <Select id="select">
-              {product.sizes.map((size) => (
-                <option value={size} key={size}>{size}</option>
-              ))}
-            </Select>
-          </label>
-          <span className="guide">H: &lt; 165cm</span>
+        <div className="product-orderer">
+          <h2 className="name">{product.name}</h2>
+          <div className="price">{product.priceVnd.toLocaleString()} vnd / ${product.priceUsd.toLocaleString()}</div>
+
+          <div className="size">
+            <label htmlFor="select">
+              Size
+              {' '}
+              <Select id="select">
+                {product.sizes.map((size) => (
+                  <option value={size} key={size}>{size}</option>
+                ))}
+              </Select>
+            </label>
+            <span className="guide">H: &lt; 165cm</span>
+          </div>
+
+          <Button>Add To Cart</Button>
         </div>
-
-        <Button>Add To Cart</Button>
       </div>
 
       <style jsx>
         {`
         .product {
-          text-align: left;
           width: 100%;
-          margin-top: var(--spacing-lg);
-          padding: 0 var(--padding-page) 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
 
-          .name {
-            font-size: var(--fontsize-normal);
-            font-weight: normal;
-            margin: 0 0 var(--spacing-sm);
+          .product-orderer {
+            text-align: left;
+            width: 100%;
+            margin-top: var(--spacing-lg);
+            padding: 0 var(--padding-page);
+
+            .name {
+              font-size: var(--fontsize-normal);
+              font-weight: normal;
+              margin: 0 0 var(--spacing-sm);
+            }
+
+            .price {
+              color: var(--color-accent);
+              font-family: var(--font-number);
+              margin-bottom: var(--spacing-md);
+            }
+
+            .size {
+              margin-bottom: var(--spacing-md);
+
+              .guide {
+                margin-left: var(--spacing-md);
+              }
+            }
           }
 
-          .price {
-            color: var(--color-accent);
-            font-family: var(--font-number);
-            margin-bottom: var(--spacing-md);
-          }
+          @media screen and (min-width: 1200px) {
+            flex-direction: row;
+            align-items: flex-start;
 
-          .guide {
-            margin-left: var(--spacing-md);
+            .product-orderer {
+              padding: 0;
+              margin-top: var(--spacing-md);
+              margin-left: var(--spacing-xl);
+            }
           }
         }
         `}
