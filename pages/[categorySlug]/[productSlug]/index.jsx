@@ -2,8 +2,8 @@ import Head from 'next/head';
 import Layout from 'components/layout';
 import CategoryName from 'components/category-name';
 import ProductImages from 'components/product-images';
-import Select from 'components/select';
-import Button from 'components/button';
+import Select from 'components/basic/select';
+import Button from 'components/basic/button';
 
 export default function Product({ category, product }) {
   return (
