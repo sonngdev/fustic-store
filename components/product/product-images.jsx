@@ -29,7 +29,7 @@ export default function ProductImages({ product }) {
       <style jsx global>
         {`
         .pure-carousel {
-          width: 100vw;
+          width: 100%;
           display: grid;
           grid-template-columns: 1fr 240px 1fr;
           grid-template-areas: "button-back slider button-next";
