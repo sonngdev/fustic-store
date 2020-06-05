@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function CategoryName({ category }) {
   return (
     <h1 className="category-name">
@@ -17,3 +19,7 @@ export default function CategoryName({ category }) {
     </h1>
   );
 }
+
+CategoryName.propTypes = {
+  category: PropTypes.string.isRequired,
+};

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function ProductGrid({ children }) {
   return (
     <div className="grid">
@@ -38,5 +40,13 @@ export default function ProductGrid({ children }) {
         `}
       </style>
     </div>
-  )
+  );
 }
+
+ProductGrid.propTypes = {
+  children: PropTypes.node,
+};
+
+ProductGrid.defaultProps = {
+  children: null,
+};
