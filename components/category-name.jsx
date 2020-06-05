@@ -1,7 +1,7 @@
 export default function CategoryName({ category }) {
   return (
-    <>
-      <h1 className="category-name">{category.name}</h1>
+    <h1 className="category-name">
+      {category.name}
 
       <style jsx>
         {`
@@ -14,6 +14,6 @@ export default function CategoryName({ category }) {
         }
         `}
       </style>
-    </>
+    </h1>
   );
 }

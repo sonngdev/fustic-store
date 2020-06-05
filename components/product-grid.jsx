@@ -1,9 +1,7 @@
 export default function ProductGrid({ children }) {
   return (
-    <>
-      <div className="grid">
-        {children}
-      </div>
+    <div className="grid">
+      {children}
 
       <style jsx global>
         {`
@@ -39,6 +37,6 @@ export default function ProductGrid({ children }) {
         }
         `}
       </style>
-    </>
+    </div>
   )
 }
