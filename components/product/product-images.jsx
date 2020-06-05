@@ -16,48 +16,84 @@ export default function ProductImages({ product }) {
       infinite
       className="pure-carousel"
     >
-      <Slider className="slider">
-        {product.images.map((image, i) => (
-          <Slide index={i} key={image.url}>
-            <ImageWithZoom src={image.url} alt={`${product.name} ${i + 1}`} className="image" />
-          </Slide>
-        ))}
-      </Slider>
-      <ButtonBack className="button-back">&lt;</ButtonBack>
-      <ButtonNext className="button-next">&gt;</ButtonNext>
+      <div className="container">
+        <Slider className="slider">
+          {product.images.map((image, i) => (
+            <Slide index={i} key={image.url}>
+              <ImageWithZoom src={image.url} alt={`${product.name} ${i + 1}`} className="image" />
+            </Slide>
+          ))}
+        </Slider>
+        <ButtonBack className="button-back">&lt;</ButtonBack>
+        <ButtonNext className="button-next">&gt;</ButtonNext>
+      </div>
 
       <style jsx global>
         {`
         .pure-carousel {
           width: 100%;
-          display: grid;
-          grid-template-columns: 1fr 240px 1fr;
-          grid-template-areas: "button-back slider button-next";
-          justify-items: center;
-          align-items: center;
 
-          .slider {
-            grid-area: slider;
-            width: 240px;
-            height: 320px;
+          .container {
+            display: grid;
+            grid-template-columns: 1fr 240px 1fr;
+            grid-template-areas: "button-back slider button-next";
+            justify-items: center;
+            align-items: center;
 
-            .image {
-              object-fit: cover;
+            .slider {
+              grid-area: slider;
+              width: 240px;
+              height: 320px;
+
+              .image {
+                object-fit: cover;
+              }
+            }
+
+            .button-back, .button-next {
+              font-size: 2rem;
+              font-weight: 100;
+              background: transparent;
+            }
+
+            .button-back {
+              grid-area: button-back;
+            }
+
+            .button-next {
+              grid-area: button-next;
             }
           }
 
-          .button-back, .button-next {
-            font-size: 2rem;
-            font-weight: 100;
-            background: transparent;
-          }
+          @media screen and (min-width: 1200px) {
+            width: auto;
 
-          .button-back {
-            grid-area: button-back;
-          }
+            .container {
+              display: block;
+              position: relative;
 
-          .button-next {
-            grid-area: button-next;
+              .slider {
+                width: 360px;
+                height: 480px;
+              }
+
+              .button-back, .button-next {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                color: white;
+                text-shadow: var(--shadow-md);
+                font-size: 3rem;
+              }
+
+              .button-back {
+                left: 0;
+              }
+
+              .button-next {
+                right: 0;
+              }
+            }
           }
         }
         `}
