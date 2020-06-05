@@ -2,7 +2,7 @@ import {
   CarouselProvider,
   Slider,
   Slide,
-  Image,
+  ImageWithZoom,
   ButtonBack,
   ButtonNext,
 } from 'pure-react-carousel';
@@ -19,7 +19,7 @@ export default function ProductImages({ product }) {
       <Slider className="slider">
         {product.images.map((image, i) => (
           <Slide index={i} key={image.url}>
-            <Image src={image.url} alt={`${product.name} ${i + 1}`} className="image" />
+            <ImageWithZoom src={image.url} alt={`${product.name} ${i + 1}`} className="image" />
           </Slide>
         ))}
       </Slider>
