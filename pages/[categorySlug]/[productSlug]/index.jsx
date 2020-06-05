@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Layout from 'components/layout';
 import CategoryName from 'components/category-name';
-import ProductImages from 'components/product-images';
+import ProductImages from 'components/product/product-images';
 import Select from 'components/basic/select';
 import Button from 'components/basic/button';
 

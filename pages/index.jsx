@@ -1,6 +1,6 @@
 import Layout from 'components/layout';
-import ProductGrid from 'components/product-grid';
-import SiteProduct from 'components/site-product';
+import ProductGrid from 'components/product/product-grid';
+import SiteProduct from 'components/product/site-product';
 
 export default function Home({ products }) {
   return (
