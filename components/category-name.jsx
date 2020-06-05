@@ -21,5 +21,5 @@ export default function CategoryName({ category }) {
 }
 
 CategoryName.propTypes = {
-  category: PropTypes.string.isRequired,
+  category: PropTypes.object.isRequired,
 };
