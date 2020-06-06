@@ -32,9 +32,19 @@ export default function SiteProduct({ product }) {
             object-fit: cover;
             margin-bottom: var(--spacing-md);
 
+            @media screen and (min-width: 768px) {
+              width: 300px;
+              height: 400px;
+            }
+
             @media screen and (min-width: 1200px) {
               width: 222px;
               height: 296px;
+            }
+
+            @media screen and (min-width: 1600px) {
+              width: 360px;
+              height: 450px;
             }
           }
 
