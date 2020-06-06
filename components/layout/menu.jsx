@@ -23,7 +23,7 @@ export default function Menu() {
         {`
         .menu {
           padding: 30px;
-          padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xl));
+          padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xxl));
 
           @media screen and (min-width: 1200px) {
             width: 260px;
@@ -43,7 +43,7 @@ export default function Menu() {
             margin: 0;
             padding: 0;
             margin-top: var(--spacing-xs);
-            margin-bottom: var(--spacing-xl);
+            margin-bottom: var(--spacing-xxl);
 
             li {
               margin-bottom: var(--spacing-md);

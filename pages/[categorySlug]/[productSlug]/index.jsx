@@ -49,23 +49,24 @@ export default function Product({ category, product }) {
           .product-orderer {
             text-align: left;
             width: 100%;
-            margin-top: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
             padding: 0 var(--padding-page);
 
             .name {
               font-size: var(--fontsize-normal);
               font-weight: normal;
-              margin: 0 0 var(--spacing-sm);
+              margin: 0 0 var(--spacing-xs);
             }
 
             .price {
               color: var(--color-accent);
               font-family: var(--font-number);
-              margin-bottom: var(--spacing-md);
+              font-weight: 900;
+              margin-bottom: var(--spacing-lg);
             }
 
             .size {
-              margin-bottom: var(--spacing-md);
+              margin-bottom: var(--spacing-sm);
 
               .guide {
                 margin-left: var(--spacing-md);
@@ -79,8 +80,8 @@ export default function Product({ category, product }) {
 
             .product-orderer {
               padding: 0;
-              margin-top: var(--spacing-md);
-              margin-left: var(--spacing-xl);
+              margin-top: 0;
+              margin-left: var(--spacing-xxl);
             }
           }
         }

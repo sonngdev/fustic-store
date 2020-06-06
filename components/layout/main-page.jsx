@@ -67,7 +67,7 @@ export default function MainPage({
             flex-direction: column;
             align-items: center;
             width: 100%;
-            margin-bottom: var(--spacing-xl);
+            margin-bottom: var(--spacing-xxl);
           }
 
           footer {

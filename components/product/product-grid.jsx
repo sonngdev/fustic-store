@@ -15,7 +15,7 @@ export default function ProductGrid({ children }) {
 
           > * {
             margin: 0;
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
           }
 
           @media screen and (min-width: 576px) {
@@ -33,7 +33,7 @@ export default function ProductGrid({ children }) {
 
             > * {
               margin-left: 0;
-              margin-right: var(--spacing-xl);
+              margin-right: var(--spacing-xxl);
             }
           }
         }

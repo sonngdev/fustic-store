@@ -31,7 +31,7 @@ export default function Cart() {
 
           @media screen and (min-width: 1200px) {
             justify-content: flex-end;
-            padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xl));
+            padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xxl));
             width: 260px;
           }
 
