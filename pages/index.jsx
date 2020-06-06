@@ -8,6 +8,8 @@ export default function Home({ products }) {
       <div className="home">
         <ProductGrid>
           {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
+          {products.map((product) => <SiteProduct product={product} key={product.slug + '1'} />)}
+          {products.map((product) => <SiteProduct product={product} key={product.slug + '2'} />)}
         </ProductGrid>
       </div>
 
