@@ -36,6 +36,8 @@ export default function Layout({ children }) {
         {`
         .layout {
           overflow: hidden;
+          max-width: 1920px;
+          margin: 0 auto;
         }
         `}
       </style>
