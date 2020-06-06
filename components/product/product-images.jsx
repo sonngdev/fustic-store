@@ -73,8 +73,8 @@ export default function ProductImages({ product }) {
               position: relative;
 
               .slider {
-                width: 360px;
-                height: 480px;
+                width: 450px;
+                height: 600px;
               }
 
               .button-back, .button-next {

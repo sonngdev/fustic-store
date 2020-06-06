@@ -81,7 +81,7 @@ export default function Product({ category, product }) {
             .product-orderer {
               padding: 0;
               margin-top: 0;
-              margin-left: var(--spacing-xxl);
+              margin-left: var(--spacing-xxxl);
             }
           }
         }
