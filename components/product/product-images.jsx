@@ -73,8 +73,8 @@ export default function ProductImages({ product }) {
               position: relative;
 
               .slider {
-                width: 450px;
-                height: 600px;
+                width: 360px;
+                height: 480px;
               }
 
               .button-back, .button-next {
@@ -93,6 +93,20 @@ export default function ProductImages({ product }) {
               .button-next {
                 right: 0;
               }
+            }
+          }
+
+          @media screen and (min-width: 1400px) {
+            .container .slider {
+              width: 450px;
+              height: 600px;
+            }
+          }
+
+          @media screen and (min-width: 1600px) {
+            .container .slider {
+              width: 600px;
+              height: 900px;
             }
           }
         }

@@ -81,6 +81,12 @@ export default function Product({ category, product }) {
             .product-orderer {
               padding: 0;
               margin-top: 0;
+              margin-left: var(--spacing-xxl);
+            }
+          }
+
+          @media screen and (min-width: 1400px) {
+            .product-orderer {
               margin-left: var(--spacing-xxxl);
             }
           }
