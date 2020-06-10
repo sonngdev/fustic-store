@@ -7,7 +7,7 @@ export default function Paypal() {
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: '8'
+            value: '0.5'
           }
         }]
       });
@@ -26,7 +26,7 @@ export default function Paypal() {
   return (
     <>
       <Head>
-        <script src="https://www.paypal.com/sdk/js?client-id=AVhHplhUoO7AJdreVmzdYVx_gxNs_TdLZtf81Zuv7AnX8WvEsErqDTOjdBG2s5IlgvOlvNwjwzbeKM6a"></script>
+        <script src="https://www.paypal.com/sdk/js?client-id=AZ1fsAfRMVncgp8kvZc0rNJnVjKpEwfORHg6Sppa4FYu0wBAdVJ7xX-T3tVzFGlmF7vgC66Dglw89orz"></script>
       </Head>
 
       <h1>Hello Paypal</h1>
