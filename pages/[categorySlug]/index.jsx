@@ -8,7 +8,7 @@ export default function Category({ category, products }) {
   return (
     <Layout>
       <Head>
-        <title>{category.name} – Not At All Clothing</title>
+        <title>{category.name} – Fustic Store</title>
       </Head>
 
       <CategoryName category={category} />

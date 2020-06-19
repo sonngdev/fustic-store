@@ -9,7 +9,7 @@ export default function Product({ category, product }) {
   return (
     <Layout>
       <Head>
-        <title>{product.name} – {category.name} – Not At All Clothing</title>
+        <title>{product.name} – {category.name} – Fustic Store</title>
       </Head>
 
       <CategoryName category={category} />

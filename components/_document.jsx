@@ -1,11 +1,13 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html, Head, Main, NextScript,
+} from 'next/document';
 
-class NotatallDocument extends Document {
+class FusticDocument extends Document {
   render() {
     return (
       <Html>
         <Head>
-          <title>Not At All Clothing</title>
+          <title>Fustic Store</title>
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Head>
@@ -15,8 +17,8 @@ class NotatallDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default NotatallDocument;
+export default FusticDocument;

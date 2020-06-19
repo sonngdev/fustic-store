@@ -25,7 +25,7 @@ export default function MainPage({
       </main>
 
       <footer>
-        Not At All Clothing
+        Fustic Store
       </footer>
 
       <style jsx>
