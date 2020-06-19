@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Head from 'next/head';
 
 import Menu from './menu';
 import Cart from './cart';
