@@ -17,7 +17,7 @@ export default function Header({
       </button>
       <Link href="/">
         <a className="brand">
-          <img src="/brand.svg" alt="Brand" />
+          <img src="/brand.png" alt="Fustic brand" />
         </a>
       </Link>
       <button type="button" className="cart-button" onClick={showCart}>
