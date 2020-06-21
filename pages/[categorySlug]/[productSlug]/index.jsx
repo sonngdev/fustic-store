@@ -59,8 +59,6 @@ export default function Product({ category, product }) {
             }
 
             .price {
-              color: var(--color-accent);
-              font-family: var(--font-number);
               font-weight: 900;
               margin-bottom: var(--spacing-lg);
             }

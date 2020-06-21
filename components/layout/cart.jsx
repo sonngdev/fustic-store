@@ -25,7 +25,6 @@ export default function Cart() {
         .cart {
           display: flex;
 
-          font-family: var(--font-number);
           font-size: var(--fontsize-small);
           padding: 15px;
 

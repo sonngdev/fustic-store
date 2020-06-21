@@ -50,7 +50,6 @@ export default function Menu() {
 
               .subitem {
                 text-transform: uppercase;
-                font-family: var(--font-heading);
               }
             }
           }

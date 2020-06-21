@@ -49,13 +49,11 @@ export default function SiteProduct({ product }) {
           }
 
           .name {
-            font-family: var(--font-heading);
             margin-bottom: var(--spacing-xs);
             font-weight: bold;
           }
 
           .price {
-            font-family: var(--font-number);
             color: var(--color-text);
           }
         }

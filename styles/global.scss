@@ -1,15 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;400;500;600;700&display=swap');
 
 :root {
   --color-background: #0f0f0f;
-  --color-text: #a7a7a7;
-  --color-accent: #00ff08;
+  --color-text: white;
 
-  --font-heading: Raleway;
-  --font-body: Poppins;
-  --font-number: Mukta;
+  --font-body: 'IBM Plex Sans';
+
+  --fontweight-thin: 100;
+  --fontweight-regular: 400;
+  --fontweight-medium: 500;
+  --fontweight-semibold: 600;
+  --fontweight-bold: 700;
 
   --fontsize-small: 13px;
   --fontsize-normal: 15px;
@@ -55,10 +56,6 @@ body {
 a {
   text-decoration: none;
   color: var(--color-text);
-
-  &:hover {
-    color: var(--color-accent);
-  }
 }
 
 button {
