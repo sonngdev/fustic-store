@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 /**
  * https://github.com/willmcpo/body-scroll-lock#readme
@@ -9,7 +9,7 @@ export default function useDisableBodyScroll(targetElement, predicate) {
     if (predicate) {
       disableBodyScroll(targetElement);
     } else {
-      enableBodyScroll(targetElement);
+      clearAllBodyScrollLocks();
     }
   }, [predicate]);
 }
