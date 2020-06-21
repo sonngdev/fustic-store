@@ -1,32 +1,42 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Menu() {
+  const { asPath } = useRouter();
+
+  const links = [
+    { href: '/', as: '/', text: 'Collections' },
+    { href: '/[categorySlug]', as: '/t-shirts', text: 'T-Shirts' },
+    { href: '/[categorySlug]', as: '/sweaters', text: 'Sweaters' },
+    { href: '/[categorySlug]', as: '/hoodies', text: 'Hoodies' },
+    { href: '/[categorySlug]', as: '/prints', text: 'Prints' },
+  ];
+
   return (
     <div className="menu">
       <div className="menu-container">
-        <Link href="/"><a className="item">Products</a></Link>
+        <div className="item">Products</div>
         <ul>
-          <li><Link href="/[categorySlug]" as="/t-shirts"><a className="subitem">T-Shirts</a></Link></li>
-          <li><Link href="/[categorySlug]" as="/sweaters"><a className="subitem">Sweaters</a></Link></li>
-          <li><Link href="/[categorySlug]" as="/hoodies"><a className="subitem">Hoodies</a></Link></li>
-          <li><Link href="/[categorySlug]" as="/prints"><a className="subitem">Prints</a></Link></li>
+          {links.map(({ href, as, text }) => (
+            <li key={text}>
+              <Link href={href} as={as}>
+                <a className={`subitem ${as === asPath ? 'active' : ''}`}>
+                  {text}
+                </a>
+              </Link>
+            </li>
+          ))}
         </ul>
-
-        <Link href="/contact"><a className="item">Contact</a></Link>
-        <a href="https://www.instagram.com/notatallstore" className="item">Instagram</a>
-        <a href="https://www.facebook.com/notatall.clothing" className="item">Facebook</a>
-
-        <img src="/logo.svg" alt="Logo" className="logo" />
       </div>
 
       <style jsx>
         {`
         .menu {
-          padding: 30px;
+          padding: 40px;
           padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xxl));
 
           @media screen and (min-width: 1200px) {
-            width: 260px;
+            width: 230px;
           }
 
           .item, .subitem {
@@ -34,8 +44,10 @@ export default function Menu() {
           }
 
           .item {
-            font-weight: bold;
-            margin-bottom: var(--spacing-md);
+            font-weight: var(--fontweight-bold);
+            margin-bottom: var(--spacing-lg);
+            text-transform: uppercase;
+            font-size: var(--fontsize-small);
           }
 
           ul {
@@ -50,13 +62,18 @@ export default function Menu() {
 
               .subitem {
                 text-transform: uppercase;
+
+                &.active::before {
+                  content: '\A';
+                  width: 7px;
+                  height: 7px;
+                  border-radius: 50%;
+                  background-color: var(--color-text);
+                  position: absolute;
+                  margin: 5px -20px;
+                }
               }
             }
-          }
-
-          .logo {
-            width: 4rem;
-            margin-top: var(--spacing-md);
           }
         }
         `}

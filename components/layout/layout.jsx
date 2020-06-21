@@ -43,7 +43,15 @@ export default function Layout({ children }) {
             top: 0;
             height: 100%;
             width: 280px;
-            left: ${reveal === 'menu' ? '0' : '-280px'};
+            left: ${reveal === 'menu' ? '0' : '-230px'};
+            transition: left 0.3s ease;
+          }
+
+          .main-page {
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            left: ${reveal === 'menu' ? '230px' : reveal === 'cart' ? '-280px' : '0'};
             transition: left 0.3s ease;
           }
 
@@ -54,14 +62,6 @@ export default function Layout({ children }) {
             width: 280px;
             right: ${reveal === 'cart' ? '0' : '-280px'};
             transition: right 0.3s ease;
-          }
-
-          .main-page {
-            position: relative;
-            overflow-x: hidden;
-            min-height: 100vh;
-            left: ${reveal === 'menu' ? '280px' : reveal === 'cart' ? '-280px' : '0'};
-            transition: left 0.3s ease;
           }
         }
 
