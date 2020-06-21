@@ -12,7 +12,7 @@ export default function Layout({ children }) {
 
   return (
     <div className="layout">
-      <Menu />
+      <Menu visible={reveal === 'menu'} />
 
       <MainPage
         showMenu={(e) => { e.stopPropagation(); setReveal(!reveal ? 'menu' : ''); }}
@@ -23,7 +23,7 @@ export default function Layout({ children }) {
         {children}
       </MainPage>
 
-      <Cart />
+      <Cart visible={reveal === 'cart'} />
 
       <style jsx>
         {`

@@ -1,10 +1,14 @@
 /* eslint-disable no-useless-escape */
-
+import PropTypes from 'prop-types';
 import cx from 'classnames';
+
+import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function Menu() {
+export default function Menu({ visible }) {
+  useDisableBodyScroll(null, visible);
+
   const { asPath } = useRouter();
 
   const links = [
@@ -82,3 +86,7 @@ export default function Menu() {
     </div>
   );
 }
+
+Menu.propTypes = {
+  visible: PropTypes.bool.isRequired,
+};

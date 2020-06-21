@@ -1,7 +1,15 @@
+import { useRef } from 'react';
+import PropTypes from 'prop-types';
+
+import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import CartProductSmall from 'components/product/cart-product-small';
 import Button from 'components/basic/button';
 
-export default function Cart() {
+export default function Cart({ visible }) {
+  const itemList = useRef();
+
+  useDisableBodyScroll(itemList.current, visible);
+
   return (
     <div className="cart">
       <div className="head">
@@ -13,7 +21,7 @@ export default function Cart() {
         </div>
       </div>
 
-      <div className="items scrollbar-visible">
+      <div className="items scrollbar-visible" ref={itemList}>
         <hr />
         <CartProductSmall />
         <hr />
@@ -79,3 +87,7 @@ export default function Cart() {
     </div>
   );
 }
+
+Cart.propTypes = {
+  visible: PropTypes.bool.isRequired,
+};
