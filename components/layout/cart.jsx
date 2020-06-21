@@ -1,73 +1,41 @@
 export default function Cart() {
   return (
     <div className="cart">
-      <div className="cart-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Cart (1)</th>
-              <th>420,000 vnd</th>
-              <th>$20.00</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>ACID TEE</td>
-              <td>420,000</td>
-              <td>20.00</td>
-            </tr>
-          </tbody>
-        </table>
+      <div className="head">
+        <div className="count">Cart (1)</div>
+        <div className="total">
+          Total
+          <br />
+          1.360.000 vnd • $56
+        </div>
       </div>
 
       <style jsx>
         {`
         .cart {
           display: flex;
-
-          font-size: var(--fontsize-small);
           padding: 15px;
+
+          .head {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+
+            .count {
+              font-size: smaller;
+            }
+
+            .total {
+              font-size: var(--fontsize-small);
+              text-align: right;
+              text-transform: uppercase;
+            }
+          }
 
           @media screen and (min-width: 1200px) {
             justify-content: flex-end;
             padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xxl));
             width: 260px;
-          }
-
-          table th, table td {
-            height: calc(2 * var(--fontsize-small));
-
-            &:first-child {
-              text-align: left;
-              width: 100px;
-            }
-
-            &:nth-child(2) {
-              text-align: left;
-              width: 90px;
-            }
-
-            &:last-child {
-              text-align: right;
-              width: 50px;
-            }
-
-            @media screen and (min-width: 1200px) {
-              &:first-child {
-                text-align: left;
-                width: 80px;
-              }
-
-              &:nth-child(2) {
-                text-align: left;
-                width: 90px;
-              }
-
-              &:last-child {
-                text-align: right;
-                width: 50px;
-              }
-            }
           }
         }
         `}

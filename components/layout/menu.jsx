@@ -14,20 +14,18 @@ export default function Menu() {
 
   return (
     <div className="menu">
-      <div className="menu-container">
-        <div className="item">Products</div>
-        <ul>
-          {links.map(({ href, as, text }) => (
-            <li key={text}>
-              <Link href={href} as={as}>
-                <a className={`subitem ${as === asPath ? 'active' : ''}`}>
-                  {text}
-                </a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div className="item">Products</div>
+      <ul>
+        {links.map(({ href, as, text }) => (
+          <li key={text}>
+            <Link href={href} as={as}>
+              <a className={`subitem ${as === asPath ? 'active' : ''}`}>
+                {text}
+              </a>
+            </Link>
+          </li>
+        ))}
+      </ul>
 
       <style jsx>
         {`
