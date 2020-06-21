@@ -73,3 +73,23 @@ hr {
   background-color: var(--color-text);
   opacity: 0.2;
 }
+
+.scrollbar-visible {
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-scrollbar:vertical {
+      width: 8px;
+  }
+
+  &::-webkit-scrollbar:horizontal {
+      height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      border: 2px solid var(--color-background); /* should match background, can't be transparent */
+      background-color: rgba(255, 255, 255, 0.5);
+  }
+}

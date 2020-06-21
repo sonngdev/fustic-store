@@ -13,7 +13,11 @@ export default function Cart() {
         </div>
       </div>
 
-      <div className="items">
+      <div className="items scrollbar-visible">
+        <hr />
+        <CartProductSmall />
+        <hr />
+        <CartProductSmall />
         <hr />
         <CartProductSmall />
         <hr />
@@ -30,8 +34,6 @@ export default function Cart() {
         {`
         .cart {
           padding: 15px;
-          display: grid;
-          grid-template-rows: auto auto auto;
 
           .head {
             display: grid;
@@ -53,7 +55,9 @@ export default function Cart() {
 
           .items {
             overflow: auto;
+            padding-bottom: var(--spacing-lg);
             margin-bottom: var(--spacing-lg);
+            max-height: calc(100vh - 125px);
 
             hr {
               margin: 2rem 0;
