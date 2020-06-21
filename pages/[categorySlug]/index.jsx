@@ -99,6 +99,7 @@ export async function getStaticProps({ params }) {
     props: {
       category,
       products,
+      key: params.categorySlug,
     },
   };
 }
