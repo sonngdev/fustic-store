@@ -1,3 +1,6 @@
+/* eslint-disable no-useless-escape */
+
+import cx from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -19,7 +22,7 @@ export default function Menu() {
         {links.map(({ href, as, text }) => (
           <li key={text}>
             <Link href={href} as={as}>
-              <a className={`subitem ${as === asPath ? 'active' : ''}`}>
+              <a className={cx('subitem', { active: as === '/' ? asPath === '/' : asPath.startsWith(as) })}>
                 {text}
               </a>
             </Link>
