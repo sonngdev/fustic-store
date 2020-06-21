@@ -44,11 +44,11 @@ export default function CartProductSmall() {
             font-size: smaller;
 
             > *:not(:last-child) {
-              margin-bottom: var(--spacing-md);
+              margin-bottom: var(--spacing-sm);
             }
 
             .name {
-              margin-bottom: var(--spacing-sm);
+              margin-bottom: var(--spacing-xs);
             }
 
             .category-size {

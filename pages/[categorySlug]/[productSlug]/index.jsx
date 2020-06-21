@@ -49,25 +49,25 @@ export default function Product({ category, product }) {
           .product-orderer {
             text-align: left;
             width: 100%;
-            margin-top: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
             padding: 0 var(--padding-page);
 
             .name {
               font-size: var(--fontsize-normal);
               font-weight: normal;
-              margin: 0 0 var(--spacing-xs);
+              margin: 0 0 var(--spacing-xxs);
             }
 
             .price {
               font-weight: 900;
-              margin-bottom: var(--spacing-lg);
+              margin-bottom: var(--spacing-md);
             }
 
             .size {
-              margin-bottom: var(--spacing-sm);
+              margin-bottom: var(--spacing-xs);
 
               .guide {
-                margin-left: var(--spacing-md);
+                margin-left: var(--spacing-sm);
               }
             }
           }

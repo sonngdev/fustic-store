@@ -30,7 +30,7 @@ export default function SiteProduct({ product }) {
             width: 240px;
             height: 320px;
             object-fit: cover;
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
 
             @media screen and (min-width: 768px) {
               width: 300px;
@@ -49,7 +49,7 @@ export default function SiteProduct({ product }) {
           }
 
           .name {
-            margin-bottom: var(--spacing-xs);
+            margin-bottom: var(--spacing-xxs);
             font-weight: bold;
           }
 

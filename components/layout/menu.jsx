@@ -50,7 +50,7 @@ export default function Menu({ visible }) {
 
           .item {
             font-weight: var(--fontweight-bold);
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
             text-transform: uppercase;
             font-size: var(--fontsize-small);
           }
@@ -59,11 +59,10 @@ export default function Menu({ visible }) {
             list-style: none;
             margin: 0;
             padding: 0;
-            margin-top: var(--spacing-xs);
             margin-bottom: var(--spacing-xxl);
 
             li {
-              margin-bottom: var(--spacing-md);
+              margin-bottom: var(--spacing-sm);
 
               .subitem {
                 text-transform: uppercase;

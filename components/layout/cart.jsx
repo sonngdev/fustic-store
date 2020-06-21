@@ -48,7 +48,7 @@ export default function Cart({ visible }) {
             grid-template-columns: 1fr 1fr;
             align-items: center;
             width: 100%;
-            padding-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
 
             .count {
               font-size: smaller;
@@ -63,12 +63,12 @@ export default function Cart({ visible }) {
 
           .items {
             overflow: auto;
-            padding-bottom: var(--spacing-lg);
-            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
             max-height: calc(100vh - 125px);
 
             hr {
-              margin: 2rem 0;
+              margin: var(--spacing-lg) 0;
 
               &:first-of-type {
                 margin-top: 0;
