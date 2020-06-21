@@ -1,4 +1,6 @@
 /* eslint-disable no-useless-escape */
+
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
@@ -7,7 +9,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 export default function Menu({ visible }) {
-  useDisableBodyScroll(null, visible);
+  const menu = useRef(null);
+  useDisableBodyScroll(menu.current, visible);
 
   const { asPath } = useRouter();
 
@@ -20,7 +23,7 @@ export default function Menu({ visible }) {
   ];
 
   return (
-    <div className="menu">
+    <div className="menu" ref={menu}>
       <div className="item">Products</div>
       <ul>
         {links.map(({ href, as, text }) => (
