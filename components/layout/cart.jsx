@@ -61,7 +61,7 @@ export default function Cart({ visible }) {
             overflow: auto;
             padding-bottom: var(--spacing-md);
             margin-bottom: var(--spacing-md);
-            max-height: calc(100vh - 125px);
+            max-height: calc(100vh - 200px);
 
             hr {
               margin: var(--spacing-lg) 0;
