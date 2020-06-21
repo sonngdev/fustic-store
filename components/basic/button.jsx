@@ -14,7 +14,7 @@ export default function Button({ block, solid, ...rest }) {
       <style jsx>
         {`
           button {
-            font-size: var(--fontsize-small);
+            font-size: var(--fontsize-sm);
             text-transform: uppercase;
 
             padding: 15px 25px;

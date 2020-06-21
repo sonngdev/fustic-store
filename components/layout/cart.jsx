@@ -50,12 +50,8 @@ export default function Cart({ visible }) {
             width: 100%;
             padding-bottom: var(--spacing-sm);
 
-            .count {
-              font-size: smaller;
-            }
-
             .total {
-              font-size: var(--fontsize-small);
+              font-size: var(--fontsize-sm);
               text-align: right;
               text-transform: uppercase;
             }

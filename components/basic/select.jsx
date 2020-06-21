@@ -37,7 +37,7 @@ export default function Select(props) {
             right: 8px;
             top: 5px;
             z-index: 0;
-            line-height: var(--fontsize-normal);
+            line-height: var(--fontsize-md);
           }
         }
         `}

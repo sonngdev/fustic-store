@@ -52,7 +52,7 @@ export default function Menu({ visible }) {
             font-weight: var(--fontweight-bold);
             margin-bottom: var(--spacing-md);
             text-transform: uppercase;
-            font-size: var(--fontsize-small);
+            font-size: var(--fontsize-sm);
           }
 
           ul {
@@ -66,6 +66,7 @@ export default function Menu({ visible }) {
 
               .subitem {
                 text-transform: uppercase;
+                font-size: var(--fontsize-lg);
 
                 &.active::before {
                   content: '\A';

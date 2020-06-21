@@ -12,8 +12,9 @@
   --fontweight-semibold: 600;
   --fontweight-bold: 700;
 
-  --fontsize-small: 10px;
-  --fontsize-normal: 15px;
+  --fontsize-sm: 10px;
+  --fontsize-md: 12.5px;
+  --fontsize-lg: 15px;
 
   --spacing-xxs: 0.3rem;
   --spacing-xs: 0.5rem;
@@ -32,8 +33,8 @@
   --height-brand: 26px;
 
   @media screen and (min-width: 768px) {
-    --fontsize-small: 12px;
-    --fontsize-normal: 13px;
+    --fontsize-sm: 12px;
+    --fontsize-md: 13px;
 
     --padding-header: 20px;
   }
@@ -46,7 +47,7 @@ body {
   font-family: var(--font-body), -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: var(--fontweight-medium);
-  font-size: var(--fontsize-normal);
+  font-size: var(--fontsize-md);
   background-color: var(--color-background);
   color: var(--color-text);
 }

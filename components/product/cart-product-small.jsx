@@ -41,7 +41,6 @@ export default function CartProductSmall() {
 
           .info {
             text-transform: uppercase;
-            font-size: smaller;
 
             > *:not(:last-child) {
               margin-bottom: var(--spacing-sm);
@@ -52,7 +51,7 @@ export default function CartProductSmall() {
             }
 
             .category-size {
-              font-size: var(--fontsize-small);
+              font-size: var(--fontsize-sm);
             }
 
             .quantity {
@@ -60,7 +59,7 @@ export default function CartProductSmall() {
               justify-content: space-between;
               align-items: center;
               width: 120px;
-              font-size: var(--fontsize-normal);
+              font-size: var(--fontsize-md);
               font-weight: var(--fontweight-semibold);
 
               .minus {

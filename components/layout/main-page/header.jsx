@@ -67,7 +67,7 @@ export default function Header({
           .cart-button {
             grid-area: cart-button;
             justify-self: right;
-            font-size: var(--fontsize-small);
+            font-size: var(--fontsize-sm);
             text-transform: uppercase;
             opacity: ${reveal === 'cart' ? 0 : 1};
           }

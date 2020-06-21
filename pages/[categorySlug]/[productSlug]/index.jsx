@@ -53,7 +53,7 @@ export default function Product({ category, product }) {
             padding: 0 var(--padding-page);
 
             .name {
-              font-size: var(--fontsize-normal);
+              font-size: var(--fontsize-md);
               font-weight: normal;
               margin: 0 0 var(--spacing-xxs);
             }
