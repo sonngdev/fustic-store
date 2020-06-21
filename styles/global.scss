@@ -63,5 +63,13 @@ button {
   cursor: pointer;
   color: var(--color-text);
   font-weight: var(--fontweight-medium);
+  background-color: transparent;
   border: none;
+}
+
+hr {
+  border: 0 none;
+  height: 1px;
+  background-color: var(--color-text);
+  opacity: 0.2;
 }
