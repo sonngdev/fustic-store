@@ -9,11 +9,7 @@ export default function Header({
   return (
     <header>
       <button type="button" className="menu-button" onClick={showMenu}>
-        <div className="hamburger-icon">
-          <div />
-          <div />
-          <div />
-        </div>
+        <img className="hamburger-icon" src="/icons/menu.svg" alt="Menu" />
       </button>
       <Link href="/">
         <a className="brand">
@@ -32,7 +28,6 @@ export default function Header({
           z-index: 1000;
           width: 100%;
           padding: var(--padding-header);
-          background-color: var(--color-background);
 
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
@@ -55,12 +50,6 @@ export default function Header({
             .hamburger-icon {
               width: 20px;
               height: 20px;
-
-              div {
-                height: 2px;
-                background-color: var(--color-text);
-                margin: 4px 0;
-              }
             }
           }
 
@@ -78,8 +67,9 @@ export default function Header({
           .cart-button {
             grid-area: cart-button;
             justify-self: right;
-            opacity: ${reveal === 'cart' ? 0 : 1};
             font-size: var(--fontsize-small);
+            text-transform: uppercase;
+            opacity: ${reveal === 'cart' ? 0 : 1};
           }
         }
         `}
