@@ -31,8 +31,9 @@ export async function getStaticProps() {
       id: 1,
       category: {
         id: 1,
-        slug: 't-shirt',
-        name: 'T-SHIRT',
+        slug: 't-shirts',
+        name: 'T-Shirts',
+        singularName: 'T-Shirt',
       },
       name: 'BATHEROPE KIDS',
       slug: 'batherobe-kids',
@@ -54,8 +55,9 @@ export async function getStaticProps() {
       id: 2,
       category: {
         id: 1,
-        slug: 't-shirt',
-        name: 'T-SHIRT',
+        slug: 't-shirts',
+        name: 'T-Shirts',
+        singularName: 'T-Shirt',
       },
       name: 'DOPE BATHEROPE KIDS',
       slug: 'dope-batherope-kids',

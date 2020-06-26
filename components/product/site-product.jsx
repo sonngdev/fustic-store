@@ -21,7 +21,7 @@ export default function SiteProduct({ product }) {
             <div className="name-category">
               {name}
               <br />
-              {category.name}
+              {category.singularName}
             </div>
 
             <div className="price">{formatPriceVnd(priceVnd)} VND • ${priceUsd.toLocaleString()}</div>
@@ -32,6 +32,8 @@ export default function SiteProduct({ product }) {
       <style jsx>
         {`
         .site-product {
+          text-transform: uppercase;
+
           .thumbnail {
             width: 240px;
             height: 320px;
