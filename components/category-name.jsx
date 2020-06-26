@@ -9,7 +9,6 @@ export default function CategoryName({ category }) {
         {`
         .category-name {
           font-size: var(--fontsize-sm);
-          font-weight: normal;
           text-transform: uppercase;
           margin-top: 0;
           margin-bottom: calc(var(--spacing-xxl) - var(--fontsize-sm) - 2px);
