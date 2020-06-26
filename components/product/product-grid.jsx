@@ -15,7 +15,7 @@ export default function ProductGrid({ children }) {
 
           > * {
             margin: 0;
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-xxl);
           }
 
           @media screen and (min-width: 576px) {
