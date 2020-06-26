@@ -46,12 +46,8 @@ export default function CartProductSmall() {
               margin-bottom: var(--spacing-sm);
             }
 
-            .name {
-              margin-bottom: var(--spacing-xs);
-            }
-
             .category-size {
-              font-size: var(--fontsize-sm);
+              font-size: var(--fontsize-xs);
             }
 
             .quantity {

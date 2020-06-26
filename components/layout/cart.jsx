@@ -51,9 +51,10 @@ export default function Cart({ visible }) {
             padding-bottom: var(--spacing-sm);
 
             .total {
-              font-size: var(--fontsize-sm);
+              font-size: var(--fontsize-xs);
               text-align: right;
               text-transform: uppercase;
+              line-height: 0.6rem;
             }
           }
 
