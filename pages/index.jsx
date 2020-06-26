@@ -8,8 +8,8 @@ export default function Home({ products }) {
       <div className="home">
         <ProductGrid>
           {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
-          {products.map((product) => <SiteProduct product={product} key={product.slug + '1'} />)}
-          {products.map((product) => <SiteProduct product={product} key={product.slug + '2'} />)}
+          {products.map((product) => <SiteProduct product={product} key={`${product.slug}1`} />)}
+          {products.map((product) => <SiteProduct product={product} key={`${product.slug}2`} />)}
         </ProductGrid>
       </div>
 
@@ -29,17 +29,20 @@ export async function getStaticProps() {
   const products = [
     {
       id: 1,
-      categoryId: 1,
-      categorySlug: 't-shirts',
-      name: 'ACID TEE',
-      slug: 'acid-tee',
+      category: {
+        id: 1,
+        slug: 't-shirt',
+        name: 'T-SHIRT',
+      },
+      name: 'BATHEROPE KIDS',
+      slug: 'batherobe-kids',
       images: [
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: true,
         },
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: false,
         },
       ],
@@ -49,17 +52,20 @@ export async function getStaticProps() {
     },
     {
       id: 2,
-      categoryId: 1,
-      categorySlug: 't-shirts',
-      name: 'DOPE ACID TEE',
-      slug: 'dope-acid-tee',
+      category: {
+        id: 1,
+        slug: 't-shirt',
+        name: 'T-SHIRT',
+      },
+      name: 'DOPE BATHEROPE KIDS',
+      slug: 'dope-batherope-kids',
       images: [
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: true,
         },
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: false,
         },
       ],
