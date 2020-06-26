@@ -1,11 +1,12 @@
 import Link from 'next/link';
+import { formatPriceVnd } from 'utils/string';
 
 export default function SiteProduct({ product }) {
   const {
     name,
     slug,
     images,
-    categorySlug,
+    category,
     priceVnd,
     priceUsd,
   } = product;
@@ -13,19 +14,24 @@ export default function SiteProduct({ product }) {
 
   return (
     <div className="site-product">
-      <Link href={`/${categorySlug}/${slug}`}>
+      <Link href={`/${category.slug}/${slug}`}>
         <a>
           <img src={thumbnail.url} alt={name} className="thumbnail" />
-          <div className="name">{name}</div>
-          <div className="price">{priceVnd.toLocaleString()} vnd / ${priceUsd.toLocaleString()}</div>
+          <div className="info">
+            <div className="name-category">
+              {name}
+              <br />
+              {category.name}
+            </div>
+
+            <div className="price">{formatPriceVnd(priceVnd)} VND • ${priceUsd.toLocaleString()}</div>
+          </div>
         </a>
       </Link>
 
       <style jsx>
         {`
         .site-product {
-          text-align: center;
-
           .thumbnail {
             width: 240px;
             height: 320px;
@@ -48,13 +54,21 @@ export default function SiteProduct({ product }) {
             }
           }
 
-          .name {
-            margin-bottom: var(--spacing-xxs);
-            font-weight: bold;
-          }
+          .info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
 
-          .price {
-            color: var(--color-text);
+            .name-category {
+              font-size: var(--fontsize-sm);
+              font-weight: var(--fontweight-bold);
+              line-height: 0.75rem;
+            }
+
+            .price {
+              font-size: var(--fontsize-lg);
+              text-align: right;
+            }
           }
         }
         `}
