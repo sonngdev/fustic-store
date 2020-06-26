@@ -50,22 +50,22 @@ export async function getStaticProps({ params }) {
     id: 1,
     name: params.categorySlug,
     slug: params.categorySlug,
+    singularName: params.categorySlug,
   };
 
   const products = [
     {
       id: 1,
-      categoryId: 1,
-      categorySlug: params.categorySlug,
-      name: 'ACID TEE',
-      slug: 'acid-tee',
+      category,
+      name: 'BATHEROPE KIDS',
+      slug: 'batherobe-kids',
       images: [
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: true,
         },
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: false,
         },
       ],
@@ -75,17 +75,16 @@ export async function getStaticProps({ params }) {
     },
     {
       id: 2,
-      categoryId: 1,
-      categorySlug: params.categorySlug,
-      name: 'DOPE ACID TEE',
-      slug: 'dope-acid-tee',
+      category,
+      name: 'DOPE BATHEROPE KIDS',
+      slug: 'dope-batherope-kids',
       images: [
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: true,
         },
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: false,
         },
       ],
