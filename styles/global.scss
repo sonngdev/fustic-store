@@ -31,9 +31,13 @@
   --shadow-md: 0 .5rem 1rem rgba(0,0,0,.15);
 
   --padding-header: 15px;
-  --padding-page: 40px;
+  --padding-page: 15px;
 
   --height-brand: 26px;
+
+  @media screen and (min-width: 375px) {
+    --padding-page: 40px;
+  }
 
   @media screen and (min-width: 768px) {
     --fontsize-sm: 12px;
