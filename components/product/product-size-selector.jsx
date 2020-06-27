@@ -34,6 +34,8 @@ function ProductSizeSelector({ sizes }) {
             width: 32px;
             height: 32px;
             padding: 0;
+            transition: ease 0.2s;
+            transition-property: border, font-weight;
 
             :disabled {
               opacity: 0.2;
