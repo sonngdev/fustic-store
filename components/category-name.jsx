@@ -11,7 +11,7 @@ export default function CategoryName({ category }) {
           font-size: var(--fontsize-sm);
           text-transform: uppercase;
           margin-top: 0;
-          margin-bottom: calc(var(--spacing-xxl) - var(--fontsize-sm) - 2px);
+          margin-bottom: calc(var(--spacing-xl) - var(--fontsize-sm) - 2px);
         }
         `}
       </style>

@@ -16,7 +16,7 @@ export default function Home({ products }) {
       <style jsx>
         {`
         .home {
-          margin-top: var(--spacing-xxl);
+          margin-top: var(--spacing-xl);
           width: 100%;
         }
         `}

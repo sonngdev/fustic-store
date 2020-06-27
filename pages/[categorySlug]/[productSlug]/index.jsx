@@ -5,14 +5,12 @@ import ProductImages from 'components/product/product-images';
 import Select from 'components/basic/select';
 import Button from 'components/basic/button';
 
-export default function Product({ category, product }) {
+export default function Product({ product }) {
   return (
     <Layout>
       <Head>
-        <title>{product.name} – {category.name} – Fustic Store</title>
+        <title>{product.name} – {product.category.name} – Fustic Store</title>
       </Head>
-
-      <CategoryName category={category} />
 
       <div className="product">
         <ProductImages product={product} />
@@ -45,6 +43,8 @@ export default function Product({ category, product }) {
           display: flex;
           flex-direction: column;
           align-items: center;
+
+          margin-top: var(--spacing-xl);
 
           .product-orderer {
             text-align: left;
@@ -164,13 +164,6 @@ export async function getStaticPaths() {
 // GET /categories/:slug
 // GET /categories/:category_slug/products/:slug
 export async function getStaticProps({ params }) {
-  const category = {
-    id: 1,
-    name: params.categorySlug,
-    slug: params.categorySlug,
-    singularName: params.categorySlug,
-  };
-
   const product = {
     id: 1,
     category: {
@@ -198,7 +191,6 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      category,
       product,
     },
   };
