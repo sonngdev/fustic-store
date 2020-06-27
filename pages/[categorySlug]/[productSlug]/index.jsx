@@ -1,8 +1,7 @@
 import Head from 'next/head';
 import Layout from 'components/layout';
 import ProductImages from 'components/product/product-images';
-import Select from 'components/basic/select';
-import Button from 'components/basic/button';
+import ProductSizeSelector from 'components/product/product-size-selector';
 import { formatPriceVnd } from 'utils/string';
 
 export default function Product({ product }) {
@@ -20,20 +19,10 @@ export default function Product({ product }) {
           <div className="category">{product.category.singularName}</div>
           <div className="price">{formatPriceVnd(product.priceVnd)} VND • ${product.priceUsd.toLocaleString()}</div>
 
-          {/* <div className="size">
-            <label htmlFor="select">
-              Size
-              {' '}
-              <Select id="select">
-                {product.sizes.map((size) => (
-                  <option value={size} key={size}>{size}</option>
-                ))}
-              </Select>
-            </label>
-            <span className="guide">H: &lt; 165cm</span>
-          </div>
+          <div className="size-add">
+            <ProductSizeSelector sizes={product.sizes} />
 
-          <Button>Add To Cart</Button> */}
+          </div>
         </div>
       </div>
 
@@ -65,12 +54,9 @@ export default function Product({ product }) {
               margin-top: var(--spacing-sm);
             }
 
-            .size {
-              margin-bottom: var(--spacing-xs);
-
-              .guide {
-                margin-left: var(--spacing-sm);
-              }
+            .size-add {
+              width: 205px;
+              margin-top: var(--spacing-xs);
             }
           }
 
