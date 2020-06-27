@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Layout from 'components/layout';
 import ProductImages from 'components/product/product-images';
 import ProductSizeSelector from 'components/product/product-size-selector';
+import AddToCartButton from 'components/product/add-to-cart-button';
 import { formatPriceVnd } from 'utils/string';
 
 export default function Product({ product }) {
@@ -21,7 +22,7 @@ export default function Product({ product }) {
 
           <div className="size-add">
             <ProductSizeSelector sizes={product.sizes} />
-
+            <AddToCartButton />
           </div>
         </div>
       </div>
@@ -57,6 +58,10 @@ export default function Product({ product }) {
             .size-add {
               width: 205px;
               margin-top: var(--spacing-xs);
+
+              :global(> :not(:first-child)) {
+                margin-top: var(--spacing-sm);
+              }
             }
           }
 
