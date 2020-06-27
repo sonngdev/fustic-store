@@ -100,17 +100,21 @@ export async function getStaticPaths() {
   const products = [
     {
       id: 1,
-      categoryId: 1,
-      categorySlug: 't-shirts',
-      name: 'ACID TEE',
-      slug: 'acid-tee',
+      category: {
+        id: 1,
+        slug: 't-shirts',
+        name: 'T-Shirts',
+        singularName: 'T-Shirt',
+      },
+      name: 'BATHEROPE KIDS',
+      slug: 'batherobe-kids',
       images: [
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: true,
         },
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: false,
         },
       ],
@@ -120,17 +124,21 @@ export async function getStaticPaths() {
     },
     {
       id: 2,
-      categoryId: 1,
-      categorySlug: 't-shirts',
-      name: 'DOPE ACID TEE',
-      slug: 'dope-acid-tee',
+      category: {
+        id: 1,
+        slug: 't-shirts',
+        name: 'T-Shirts',
+        singularName: 'T-Shirt',
+      },
+      name: 'DOPE BATHEROPE KIDS',
+      slug: 'dope-batherope-kids',
       images: [
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: true,
         },
         {
-          url: 'http://via.placeholder.com/240x320',
+          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
           isThumbnail: false,
         },
       ],
@@ -140,11 +148,11 @@ export async function getStaticPaths() {
     },
   ];
 
-  const categorySlugs = new Set(products.map((product) => product.categorySlug));
+  const categorySlugs = new Set(products.map((product) => product.category.slug));
   const paths = [...categorySlugs].reduce((acc, categorySlug) => {
-    const prods = products.filter((product) => product.categorySlug === categorySlug);
+    const prods = products.filter((product) => product.category.slug === categorySlug);
     const ps = prods.map((prod) => ({ params: { categorySlug, productSlug: prod.slug } }));
-    return [...acc, ...ps];
+    return acc.concat(ps);
   }, []);
 
   return {
@@ -160,21 +168,26 @@ export async function getStaticProps({ params }) {
     id: 1,
     name: params.categorySlug,
     slug: params.categorySlug,
+    singularName: params.categorySlug,
   };
 
   const product = {
     id: 1,
-    categoryId: 1,
-    categorySlug: params.categorySlug,
-    name: 'ACID TEE',
-    slug: 'acid-tee',
+    category: {
+      id: 1,
+      slug: 't-shirts',
+      name: 'T-Shirts',
+      singularName: 'T-Shirt',
+    },
+    name: 'BATHEROPE KIDS',
+    slug: 'batherobe-kids',
     images: [
       {
-        url: 'http://via.placeholder.com/240x320',
+        url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
         isThumbnail: true,
       },
       {
-        url: 'http://via.placeholder.com/240x320',
+        url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
         isThumbnail: false,
       },
     ],

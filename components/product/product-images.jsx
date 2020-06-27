@@ -14,23 +14,27 @@ export default function ProductImages({ product }) {
       naturalSlideHeight={320}
       totalSlides={product.images.length}
       infinite
-      className="pure-carousel"
+      className="product-images"
     >
       <div className="container">
         <Slider className="slider">
           {product.images.map((image, i) => (
             <Slide index={i} key={image.url}>
-              <ImageWithZoom src={image.url} alt={`${product.name} ${i + 1}`} className="image" />
+              <ImageWithZoom src={image.url} alt={`${product.name} ${i + 1}`} />
             </Slide>
           ))}
         </Slider>
-        <ButtonBack className="button-back">&lt;</ButtonBack>
-        <ButtonNext className="button-next">&gt;</ButtonNext>
+        <ButtonBack className="button-back">
+          <img src="/icons/arrow-left.svg" alt="Back" />
+        </ButtonBack>
+        <ButtonNext className="button-next">
+          <img src="/icons/arrow-right.svg" alt="Next" />
+        </ButtonNext>
       </div>
 
       <style jsx global>
         {`
-        .pure-carousel {
+        .product-images {
           width: 100%;
 
           .container {
@@ -45,15 +49,19 @@ export default function ProductImages({ product }) {
               width: 240px;
               height: 320px;
 
-              .image {
-                object-fit: cover;
+              .carousel__image--with-background {
+                background-position: center;
               }
             }
 
             .button-back, .button-next {
-              font-size: 2rem;
-              font-weight: 100;
-              background: transparent;
+              width: 30px;
+              height: 30px;
+
+              img {
+                width: 15px;
+                height: 15px;
+              }
             }
 
             .button-back {
