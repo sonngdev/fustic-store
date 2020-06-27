@@ -1,10 +1,20 @@
+import Vimeo from '@u-wave/react-vimeo';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
 
 export default function Home({ products }) {
   return (
-    <Layout>
+    <Layout offsetTop={false}>
+      <div className="video">
+        <Vimeo
+          video="247516963"
+          background
+          loop
+          className="background-video"
+        />
+      </div>
+
       <div className="home">
         <ProductGrid>
           {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
@@ -15,8 +25,26 @@ export default function Home({ products }) {
 
       <style jsx>
         {`
+        .video {
+          width: 100vw;
+          height: 100vh;
+          overflow: hidden;
+          position: relative;
+
+          :global(.background-video iframe) {
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+
         .home {
-          margin-top: var(--spacing-xl);
+          margin-top: var(--spacing-xxxl);
           width: 100%;
         }
         `}
