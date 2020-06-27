@@ -1,8 +1,10 @@
 function AddToCartButton() {
   return (
     <button type="button" className="add-to-cart">
-      <img src="/eye.png" alt="Eye" />
-      Add to cart
+      <span>
+        <img src="/eye.png" alt="Eye" />
+        Add to cart
+      </span>
 
       <style jsx>
         {`
@@ -11,13 +13,14 @@ function AddToCartButton() {
           border: solid 1px var(--color-text);
           padding: 12px;
           text-transform: uppercase;
-
-          display: grid;
-          grid-template-columns: 45px auto;
-          justify-content: center;
-          align-items: center;
-
           transition: all ease 0.2s;
+
+          span {
+            display: grid;
+            grid-template-columns: 45px auto;
+            justify-content: center;
+            align-items: center;
+          }
 
           img {
             width: 30px;
