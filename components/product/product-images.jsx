@@ -44,6 +44,8 @@ export default function ProductImages({ product }) {
             justify-items: center;
             align-items: center;
 
+            margin: 0 auto;
+
             .slider {
               grid-area: slider;
               width: 240px;
@@ -55,8 +57,9 @@ export default function ProductImages({ product }) {
             }
 
             .button-back, .button-next {
-              width: 30px;
-              height: 30px;
+              width: 25px;
+              height: 25px;
+              padding: 0;
 
               img {
                 width: 15px;
@@ -66,10 +69,14 @@ export default function ProductImages({ product }) {
 
             .button-back {
               grid-area: button-back;
+              justify-self: left;
+              text-align: left;
             }
 
             .button-next {
               grid-area: button-next;
+              justify-self: right;
+              text-align: right;
             }
           }
 

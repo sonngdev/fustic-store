@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import Layout from 'components/layout';
-import CategoryName from 'components/category-name';
 import ProductImages from 'components/product/product-images';
 import Select from 'components/basic/select';
 import Button from 'components/basic/button';
+import { formatPriceVnd } from 'utils/string';
 
 export default function Product({ product }) {
   return (
@@ -16,10 +16,11 @@ export default function Product({ product }) {
         <ProductImages product={product} />
 
         <div className="product-orderer">
-          <h2 className="name">{product.name}</h2>
-          <div className="price">{product.priceVnd.toLocaleString()} vnd / ${product.priceUsd.toLocaleString()}</div>
+          <div className="name">{product.name}</div>
+          <div className="category">{product.category.singularName}</div>
+          <div className="price">{formatPriceVnd(product.priceVnd)} VND • ${product.priceUsd.toLocaleString()}</div>
 
-          <div className="size">
+          {/* <div className="size">
             <label htmlFor="select">
               Size
               {' '}
@@ -32,7 +33,7 @@ export default function Product({ product }) {
             <span className="guide">H: &lt; 165cm</span>
           </div>
 
-          <Button>Add To Cart</Button>
+          <Button>Add To Cart</Button> */}
         </div>
       </div>
 
@@ -45,22 +46,23 @@ export default function Product({ product }) {
           align-items: center;
 
           margin-top: var(--spacing-xl);
+          text-transform: uppercase;
+          padding: 0 var(--padding-page);
 
           .product-orderer {
             text-align: left;
             width: 100%;
             margin-top: var(--spacing-lg);
-            padding: 0 var(--padding-page);
 
-            .name {
-              font-size: var(--fontsize-md);
-              font-weight: normal;
-              margin: 0 0 var(--spacing-xxs);
+            .category {
+              font-size: var(--fontsize-xs);
+              font-weight: var(--fontweight-bold);
+              margin-top: var(--spacing-xxxs);
             }
 
             .price {
-              font-weight: 900;
-              margin-bottom: var(--spacing-md);
+              font-size: var(--fontsize-xl);
+              margin-top: var(--spacing-sm);
             }
 
             .size {
