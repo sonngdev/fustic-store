@@ -25,6 +25,12 @@ export default function Product({ product }) {
             <AddToCartButton />
           </div>
         </div>
+
+        <div className="notes">
+          <p>Do not wear this product with light colors to avoid color transfer</p>
+          <p>Material: 100% cotton<br />Made in vietnam</p>
+          <p>Model is 5’8” wearing a size large t-shirt</p>
+        </div>
       </div>
 
       <style jsx>
@@ -62,6 +68,20 @@ export default function Product({ product }) {
               :global(> :not(:first-child)) {
                 margin-top: var(--spacing-sm);
               }
+            }
+          }
+
+          .notes {
+            font-size: var(--fontsize-xs);
+            font-weight: var(--fontweight-bold);
+            line-height: 0.6rem;
+            width: 100%;
+
+            margin-top: var(--spacing-xl);
+
+            p {
+              width: 180px;
+              margin: 0 0 var(--spacing-xs);
             }
           }
 
