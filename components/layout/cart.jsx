@@ -54,7 +54,7 @@ export default function Cart({ visible }) {
               font-size: var(--fontsize-xs);
               text-align: right;
               text-transform: uppercase;
-              line-height: 0.6rem;
+              line-height: var(--lineheight-xs);
             }
           }
 
