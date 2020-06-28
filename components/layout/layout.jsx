@@ -43,7 +43,7 @@ export default function Layout({ offsetTop, children }) {
             position: fixed;
             top: 0;
             height: 100%;
-            width: 280px;
+            width: 230px;
             left: ${reveal === 'menu' ? '0' : '-230px'};
             transition: left 0.3s ease;
           }
