@@ -65,20 +65,6 @@ export default function Layout({ offsetTop, children }) {
             transition: right 0.3s ease;
           }
         }
-
-        @media screen and (min-width: 1200px) {
-          .layout {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            grid-template-areas: "menu-button brand cart-button";
-          }
-
-          .menu, .cart {
-            &-container {
-              position: fixed;
-            }
-          }
-        }
         `}
       </style>
     </div>

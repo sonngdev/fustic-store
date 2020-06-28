@@ -73,12 +73,13 @@ export default function Menu({ visible }) {
 
                 &.active::before {
                   content: '\A';
-                  width: 7px;
-                  height: 7px;
+                  width: calc(var(--fontsize-lg) / 2);
+                  height: calc(var(--fontsize-lg) / 2);
                   border-radius: 50%;
                   background-color: var(--color-text);
                   position: absolute;
-                  margin: 5px -20px;
+                  margin-top: calc(var(--fontsize-lg) / 3 - 1px);
+                  margin-left: calc(var(--fontsize-lg) * -4 / 3);
                 }
               }
             }
