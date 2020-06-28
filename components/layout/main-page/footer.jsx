@@ -16,13 +16,45 @@ function Footer() {
       </div>
 
       <div className="copyright">
-        All right reserved • @fustic. {currentYear}
+        All rights reserved • @fustic. {currentYear}
       </div>
 
       <style jsx>
         {`
         footer {
-          display: none;
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+          row-gap: var(--spacing-sm);
+          justify-items: center;
+
+          text-align: center;
+
+          .media {
+            display: grid;
+            grid-template-columns: min-content min-content min-content;
+            column-gap: 15px;
+
+            > a {
+              display: flex;
+              align-items: center;
+            }
+
+            img {
+              &.instagram, &.facebook {
+                height: 13px;
+              }
+
+              &.web {
+                height: 8px;
+              }
+            }
+          }
+
+          .copyright {
+            text-transform: uppercase;
+            font-size: var(--fontsize-xs);
+            font-weight: var(--fontweight-bold);
+          }
 
           @media screen and (min-width: 1200px) {
             position: fixed;
@@ -31,36 +63,17 @@ function Footer() {
             width: 100%;
             padding: var(--padding-header);
 
-            display: grid;
+            grid-template-rows: none;
             grid-template-columns: 1fr 1fr;
             align-items: center;
 
             .media {
-              display: grid;
-              grid-template-columns: min-content min-content min-content;
+              justify-self: start;
               column-gap: 18px;
-
-              > a {
-                display: flex;
-                align-items: center;
-              }
-
-              img {
-                &.instagram, &.facebook {
-                  height: 13px;
-                }
-
-                &.web {
-                  height: 8px;
-                }
-              }
             }
 
             .copyright {
               justify-self: end;
-              text-transform: uppercase;
-              font-size: var(--fontsize-xs);
-              font-weight: var(--fontweight-bold);
             }
           }
         }

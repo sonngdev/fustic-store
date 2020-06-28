@@ -36,6 +36,7 @@ export default function MainPage({
           justify-content: center;
           align-items: center;
           padding-top: ${offsetTop ? 'calc(var(--height-brand) + 2 * var(--padding-header))' : '0.1px'};
+          padding-bottom: var(--spacing-xl);
 
           position: relative;
 
