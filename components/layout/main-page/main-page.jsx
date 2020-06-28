@@ -2,6 +2,7 @@
 
 import PropTypes from 'prop-types';
 import Header from './header';
+import Footer from './footer';
 
 export default function MainPage({
   showMenu,
@@ -25,9 +26,7 @@ export default function MainPage({
         {children}
       </main>
 
-      <footer>
-        Fustic Store
-      </footer>
+      <Footer />
 
       <style jsx>
         {`
@@ -58,12 +57,6 @@ export default function MainPage({
             align-items: center;
             width: 100%;
             margin-bottom: var(--spacing-xxl);
-          }
-
-          footer {
-            width: 100%;
-            height: 100px;
-            border-top: 1px solid #eaeaea;
           }
         }
         `}
