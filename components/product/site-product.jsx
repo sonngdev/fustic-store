@@ -64,7 +64,7 @@ export default function SiteProduct({ product }) {
             .name-category {
               font-size: var(--fontsize-sm);
               font-weight: var(--fontweight-bold);
-              line-height: 0.75rem;
+              line-height: var(--lineheight-sm);
             }
 
             .price {

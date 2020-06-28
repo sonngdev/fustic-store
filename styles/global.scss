@@ -43,8 +43,10 @@
   }
 
   @media screen and (min-width: 768px) {
-    --fontsize-sm: 12px;
+    --fontsize-sm: 8px;
     --fontsize-md: 12px;
+
+    --lineheight-sm: 0.6rem;
 
     --padding-header: 35px;
   }
