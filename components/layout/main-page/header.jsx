@@ -19,6 +19,13 @@ export default function Header({
       <button type="button" className="cart-button" onClick={showCart}>
         Cart (1)
       </button>
+      <div className="items">
+        <a>Collections</a>
+        <a>About</a>
+        <button type="button" className="cart-icon-button" onClick={showCart}>
+          <img src="/icons/cart.svg" alt="Cart" />
+        </button>
+      </div>
 
       <style jsx>
         {`
@@ -33,14 +40,14 @@ export default function Header({
           grid-template-columns: 1fr 1fr 1fr;
           grid-template-areas: "menu-button brand cart-button";
 
+          .items {
+            display: none;
+          }
+
           .menu-button, .cart-button {
             background-color: transparent;
             border: none;
             padding: 0 7px;
-
-            @media screen and (min-width: 1200px) {
-              display: none;
-            }
           }
 
           .menu-button {
@@ -70,6 +77,36 @@ export default function Header({
             font-size: var(--fontsize-sm);
             text-transform: uppercase;
             opacity: ${reveal === 'cart' ? 0 : 1};
+          }
+
+          @media screen and (min-width: 1200px) {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "brand items";
+
+            .menu-button, .cart-button {
+              display: none;
+            }
+
+            .brand {
+              justify-self: left;
+            }
+
+            .items {
+              grid-area: items;
+              justify-self: right;
+              text-transform: uppercase;
+              display: block;
+
+              > * {
+                margin-left: 20px;
+              }
+
+              .cart-icon-button img {
+                vertical-align: top;
+                width: 14px;
+                height: 14px;
+              }
+            }
           }
         }
         `}
