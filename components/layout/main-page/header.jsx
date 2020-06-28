@@ -39,6 +39,7 @@ export default function Header({
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
           grid-template-areas: "menu-button brand cart-button";
+          align-items: center;
 
           .items {
             display: none;
@@ -94,17 +95,22 @@ export default function Header({
             .items {
               grid-area: items;
               justify-self: right;
-              text-transform: uppercase;
-              display: block;
 
-              > * {
-                margin-left: 20px;
+              display: grid;
+              grid-template-columns: min-content min-content min-content;
+              column-gap: 30px;
+
+              text-transform: uppercase;
+
+              > a {
+                display: flex;
+                align-items: center;
               }
 
               .cart-icon-button img {
-                vertical-align: top;
-                width: 14px;
-                height: 14px;
+                vertical-align: text-top;
+                width: 16px;
+                height: 16px;
               }
             }
           }

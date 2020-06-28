@@ -38,6 +38,11 @@ function Footer() {
               grid-template-columns: min-content min-content min-content;
               column-gap: 18px;
 
+              > a {
+                display: flex;
+                align-items: center;
+              }
+
               img {
                 &.instagram, &.facebook {
                   height: 13px;
