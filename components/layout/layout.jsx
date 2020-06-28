@@ -15,9 +15,9 @@ export default function Layout({ offsetTop, children }) {
       <Menu visible={reveal === 'menu'} />
 
       <MainPage
-        showMenu={(e) => { e.stopPropagation(); setReveal(!reveal ? 'menu' : ''); }}
-        showCart={(e) => { e.stopPropagation(); setReveal(!reveal ? 'cart' : ''); }}
-        showMainpage={() => setReveal('')}
+        showMenu={(e) => { e.stopPropagation(); setReveal('menu'); }}
+        showCart={(e) => { e.stopPropagation(); setReveal('cart'); }}
+        showMainpage={(e) => { e.stopPropagation(); setReveal(''); }}
         reveal={reveal}
         offsetTop={offsetTop}
       >

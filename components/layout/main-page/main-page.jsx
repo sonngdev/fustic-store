@@ -48,7 +48,7 @@ export default function MainPage({
             left: 0;
             display: ${reveal ? 'block' : 'none'};
             opacity: 0;
-            z-index: 100;
+            z-index: 2000;
           }
 
           main {
