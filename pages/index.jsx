@@ -30,7 +30,7 @@ export default function Home({ products }) {
           height: 100vh;
           overflow: hidden;
           position: relative;
-          background-image: url('https://i.vimeocdn.com/video/672805114_640.webp');
+          background-image: url('https://i.vimeocdn.com/video/672805114_640.jpg');
           background-size: cover;
           background-position: center;
 
