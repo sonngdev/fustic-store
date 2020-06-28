@@ -22,6 +22,8 @@ function Footer() {
       <style jsx>
         {`
         footer {
+          display: none;
+
           @media screen and (min-width: 1200px) {
             position: fixed;
             bottom: 0;
