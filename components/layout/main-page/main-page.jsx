@@ -36,7 +36,7 @@ export default function MainPage({
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          padding-top: ${offsetTop ? 'calc(var(--height-brand) + 2 * var(--padding-header))' : '0'};
+          padding-top: ${offsetTop ? 'calc(var(--height-brand) + 2 * var(--padding-header))' : '0.1px'};
 
           position: relative;
 
