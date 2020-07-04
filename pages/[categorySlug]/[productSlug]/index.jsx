@@ -41,7 +41,6 @@ export default function Product({ product }) {
           flex-direction: column;
           align-items: center;
 
-          margin-top: var(--spacing-xl);
           text-transform: uppercase;
           padding: 0 var(--padding-page);
 
@@ -69,19 +68,19 @@ export default function Product({ product }) {
                 margin-top: var(--spacing-sm);
               }
             }
-          }
 
-          .notes {
-            font-size: var(--fontsize-xs);
-            font-weight: var(--fontweight-bold);
-            line-height: var(--lineheight-xs);
-            width: 100%;
+            .notes {
+              font-size: var(--fontsize-xs);
+              font-weight: var(--fontweight-bold);
+              line-height: var(--lineheight-xs);
+              width: 100%;
 
-            margin-top: var(--spacing-xl);
+              margin-top: var(--spacing-xl);
 
-            p {
-              width: 180px;
-              margin: 0 0 var(--spacing-xs);
+              p {
+                width: 180px;
+                margin: 0 0 var(--spacing-xs);
+              }
             }
           }
 
@@ -101,6 +100,31 @@ export default function Product({ product }) {
           @media screen and (min-width: 1200px) {
             padding-left: var(--width-menu);
             justify-content: flex-start;
+
+            .product-orderer {
+              margin-left: 150px;
+
+              .name {
+                font-size: var(--fontsize-lg);
+              }
+
+              .price {
+                margin-top: 0.1em;
+                font-size: var(--fontsize-xl);
+              }
+
+              .size-add {
+                margin-top: 20px;
+
+                :global(> :not(:first-child)) {
+                  margin-top: 20px;
+                }
+              }
+
+              .notes {
+                margin-top: 60px;
+              }
+            }
           }
 
           @media screen and (min-width: 1400px) {
