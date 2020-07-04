@@ -84,6 +84,10 @@ export default function Menu({ visible }) {
           @media screen and (min-width: 1200px) {
             width: 230px;
             padding-top: 25vh;
+
+            ul li .subitem {
+              font-size: var(--fontsize-md);
+            }
           }
         }
         `}

@@ -34,6 +34,18 @@ export default function Cart({ visible }) {
         <CartProductSmall />
         <hr />
         <CartProductSmall />
+        <hr />
+        <CartProductSmall />
+        <hr />
+        <CartProductSmall />
+        <hr />
+        <CartProductSmall />
+        <hr />
+        <CartProductSmall />
+        <hr />
+        <CartProductSmall />
+        <hr />
+        <CartProductSmall />
       </div>
 
       <Button block>Check out</Button>
@@ -49,11 +61,11 @@ export default function Cart({ visible }) {
             align-items: center;
             width: 100%;
             padding-bottom: var(--spacing-sm);
+            text-transform: uppercase;
 
             .total {
               font-size: var(--fontsize-xs);
               text-align: right;
-              text-transform: uppercase;
               line-height: var(--lineheight-xs);
             }
           }
@@ -76,6 +88,18 @@ export default function Cart({ visible }) {
           @media screen and (min-width: 1200px) {
             background-color: var(--color-background);
             padding: var(--padding-header);
+
+            .head {
+              padding-bottom: 1.5rem;
+
+              .count {
+                font-size: var(--fontsize-lg);
+              }
+            }
+
+            .items {
+              margin-bottom: 2rem;
+            }
           }
         }
         `}
