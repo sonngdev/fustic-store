@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Layout from 'components/layout';
-import CategoryName from 'components/category-name';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
 
@@ -10,8 +9,6 @@ export default function Category({ category, products }) {
       <Head>
         <title>{category.name} – Fustic Store</title>
       </Head>
-
-      <CategoryName category={category} />
 
       <div className="category">
         <ProductGrid>
