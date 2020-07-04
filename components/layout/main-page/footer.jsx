@@ -63,6 +63,8 @@ function Footer() {
             width: 100%;
             padding: var(--padding-header);
 
+            max-width: 1920px;
+
             grid-template-rows: none;
             grid-template-columns: 1fr 1fr;
             align-items: center;
