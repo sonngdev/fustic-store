@@ -87,6 +87,7 @@ export default function Menu({ visible }) {
             --fontsize-menu-subitem: var(--fontsize-md);
 
             width: 230px;
+            padding: var(--padding-header);
             padding-top: 25vh;
           }
         }
