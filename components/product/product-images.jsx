@@ -35,6 +35,8 @@ export default function ProductImages({ product }) {
       <style jsx global>
         {`
         .product-images {
+          --button-size: 15px;
+
           width: 100%;
 
           .container {
@@ -57,30 +59,39 @@ export default function ProductImages({ product }) {
             }
 
             .button-back, .button-next {
-              width: 25px;
-              height: 25px;
+              display: flex;
+              align-items: center;
+
+              width: var(--button-size);
+              height: var(--button-size);
               padding: 0;
 
               img {
-                width: 15px;
-                height: 15px;
+                width: var(--button-size);
+                height: var(--button-size);
               }
             }
 
             .button-back {
               grid-area: button-back;
               justify-self: left;
-              text-align: left;
+              justify-content: left;
             }
 
             .button-next {
               grid-area: button-next;
               justify-self: right;
-              text-align: right;
+              justify-content: right;
             }
           }
 
+          @media screen and (min-width: 768px) {
+            --button-size: 25px;
+          }
+
           @media screen and (min-width: 1200px) {
+            --button-size: 22px;
+
             width: auto;
 
             .container {
@@ -96,9 +107,6 @@ export default function ProductImages({ product }) {
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                color: white;
-                text-shadow: var(--shadow-md);
-                font-size: 3rem;
               }
 
               .button-back {
