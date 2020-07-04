@@ -75,7 +75,7 @@ export default function Cart({ visible }) {
 
           @media screen and (min-width: 1200px) {
             background-color: var(--color-background);
-            padding-top: var(--padding-header);
+            padding: var(--padding-header);
           }
         }
         `}

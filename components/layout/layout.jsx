@@ -43,8 +43,8 @@ export default function Layout({ offsetTop, children }) {
             position: fixed;
             top: 0;
             height: 100%;
-            width: 230px;
-            left: ${reveal === 'menu' ? '0' : '-230px'};
+            width: var(--width-menu);
+            left: ${reveal === 'menu' ? '0' : 'calc(-1 * var(--width-menu))'};
             transition: left 0.3s ease;
           }
 
@@ -52,7 +52,7 @@ export default function Layout({ offsetTop, children }) {
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
-            left: ${reveal === 'menu' ? '230px' : reveal === 'cart' ? '-280px' : '0'};
+            left: ${reveal === 'menu' ? 'var(--width-menu)' : reveal === 'cart' ? 'calc(-1 * var(--width-cart))' : '0'};
             transition: left 0.3s ease;
           }
 
@@ -60,8 +60,8 @@ export default function Layout({ offsetTop, children }) {
             position: fixed;
             top: 0;
             height: 100%;
-            width: 280px;
-            right: ${reveal === 'cart' ? '0' : '-280px'};
+            width: var(--width-cart);
+            right: ${reveal === 'cart' ? '0' : 'calc(-1 * var(--width-cart))'};
             transition: right 0.3s ease;
           }
         }
@@ -78,7 +78,8 @@ export default function Layout({ offsetTop, children }) {
             position: fixed;
             top: 0;
             height: 100vh;
-            right: ${reveal === 'cart' ? '0' : '-280px'};
+            width: var(--width-cart);
+            right: ${reveal === 'cart' ? '0' : 'calc(-1 * var(--width-cart))'};
             transition: right 0.3s ease;
             z-index: 3000;
           }
