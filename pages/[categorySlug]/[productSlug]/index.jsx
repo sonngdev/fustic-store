@@ -42,7 +42,7 @@ export default function Product({ product }) {
           align-items: center;
 
           text-transform: uppercase;
-          padding: 0 var(--padding-page);
+          padding: 8rem var(--padding-page) 0;
 
           .product-orderer {
             text-align: left;
@@ -127,9 +127,9 @@ export default function Product({ product }) {
             }
           }
 
-          @media screen and (min-width: 1400px) {
+          @media screen and (min-width: 1600px) {
             .product-orderer {
-              margin-left: 200px;
+              margin-left: 250px;
             }
           }
         }

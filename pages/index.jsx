@@ -5,7 +5,7 @@ import SiteProduct from 'components/product/site-product';
 
 export default function Home({ products }) {
   return (
-    <Layout offsetTop={false}>
+    <Layout>
       <div className="video">
         <Vimeo
           video="247516963"
@@ -55,7 +55,7 @@ export default function Home({ products }) {
         }
 
         .home {
-          margin-top: 8rem;
+          padding-top: 8rem;
           width: 100%;
 
           @media screen and (min-width: 1200px) {

@@ -20,6 +20,7 @@ export default function Category({ category, products }) {
         {`
         .category {
           width: 100%;
+          padding-top: 8rem;
 
           @media screen and (min-width: 1200px) {
             padding-left: var(--width-menu);
