@@ -55,8 +55,12 @@
 
     --padding-header: 35px;
 
-    --width-menu: 180px;
+    --width-menu: 200px;
     --width-cart: 320px;
+  }
+
+  @media screen and (min-width: 1600px) {
+    --width-menu: 250px;
   }
 }
 

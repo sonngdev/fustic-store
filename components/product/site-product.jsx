@@ -63,8 +63,8 @@ export default function SiteProduct({ product }) {
 
           @media screen and (min-width: 768px) {
             .thumbnail {
-              width: 300px;
-              height: 400px;
+              width: 270px;
+              height: 360px;
             }
 
             .info {
@@ -74,8 +74,8 @@ export default function SiteProduct({ product }) {
 
           @media screen and (min-width: 1200px) {
             .thumbnail {
-              width: 222px;
-              height: 296px;
+              width: 300px;
+              height: 400px;
             }
 
             .info {
@@ -89,8 +89,8 @@ export default function SiteProduct({ product }) {
 
           @media screen and (min-width: 1600px) {
             .thumbnail {
-              width: 320px;
-              height: 400px;
+              width: 420px;
+              height: 560px;
             }
           }
         }
