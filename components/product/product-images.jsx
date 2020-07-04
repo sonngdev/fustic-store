@@ -85,11 +85,20 @@ export default function ProductImages({ product }) {
             }
           }
 
-          @media screen and (min-width: 768px) {
-            --button-size: 25px;
+          @media screen and (min-width: 480px) {
+            --button-size: 20px;
           }
 
-          @media screen and (min-width: 1200px) {
+          @media screen and (min-width: 768px) {
+            --button-size: 25px;
+
+            .container .slider {
+              width: 360px;
+              height: 480px;
+            }
+          }
+
+          @media screen and (min-width: 992px) {
             --button-size: 22px;
 
             width: auto;
@@ -97,11 +106,6 @@ export default function ProductImages({ product }) {
             .container {
               display: block;
               position: relative;
-
-              .slider {
-                width: 360px;
-                height: 480px;
-              }
 
               .button-back, .button-next {
                 position: absolute;
@@ -119,7 +123,7 @@ export default function ProductImages({ product }) {
             }
           }
 
-          @media screen and (min-width: 1400px) {
+          @media screen and (min-width: 1200px) {
             .container .slider {
               width: 450px;
               height: 600px;

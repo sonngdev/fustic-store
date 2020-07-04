@@ -85,19 +85,22 @@ export default function Product({ product }) {
             }
           }
 
-          @media screen and (min-width: 1200px) {
-            padding-left: var(--width-menu);
-          }
-
-          @media screen and (min-width: 1200px) {
+          @media screen and (min-width: 992px) {
             flex-direction: row;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
 
             .product-orderer {
               padding: 0;
               margin-top: 0;
               margin-left: var(--spacing-xxl);
+              width: 320px;
             }
+          }
+
+          @media screen and (min-width: 1200px) {
+            padding-left: var(--width-menu);
+            justify-content: flex-start;
           }
 
           @media screen and (min-width: 1400px) {
