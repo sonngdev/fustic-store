@@ -38,38 +38,59 @@ export default function SiteProduct({ product }) {
             width: 240px;
             height: 320px;
             object-fit: cover;
-            margin-bottom: var(--spacing-sm);
-
-            @media screen and (min-width: 768px) {
-              width: 300px;
-              height: 400px;
-            }
-
-            @media screen and (min-width: 1200px) {
-              width: 222px;
-              height: 296px;
-            }
-
-            @media screen and (min-width: 1600px) {
-              width: 360px;
-              height: 450px;
-            }
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 0.8rem;
           }
 
           .info {
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
+            margin: 0 auto;
 
             .name-category {
               font-size: var(--fontsize-sm);
               font-weight: var(--fontweight-bold);
-              line-height: 0.75rem;
+              line-height: 0.95;
             }
 
             .price {
               font-size: var(--fontsize-lg);
               text-align: right;
+            }
+          }
+
+          @media screen and (min-width: 768px) {
+            .thumbnail {
+              width: 270px;
+              height: 360px;
+            }
+
+            .info {
+              width: 250px;
+            }
+          }
+
+          @media screen and (min-width: 1200px) {
+            .thumbnail {
+              width: 300px;
+              height: 400px;
+            }
+
+            .info {
+              width: 200px;
+
+              .price {
+                font-size: var(--fontsize-md);
+              }
+            }
+          }
+
+          @media screen and (min-width: 1600px) {
+            .thumbnail {
+              width: 420px;
+              height: 560px;
             }
           }
         }

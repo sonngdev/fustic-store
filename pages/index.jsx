@@ -5,7 +5,7 @@ import SiteProduct from 'components/product/site-product';
 
 export default function Home({ products }) {
   return (
-    <Layout offsetTop={false}>
+    <Layout>
       <div className="video">
         <Vimeo
           video="247516963"
@@ -20,6 +20,10 @@ export default function Home({ products }) {
           {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
           {products.map((product) => <SiteProduct product={product} key={`${product.slug}1`} />)}
           {products.map((product) => <SiteProduct product={product} key={`${product.slug}2`} />)}
+          {products.map((product) => <SiteProduct product={product} key={`${product.slug}3`} />)}
+          {products.map((product) => <SiteProduct product={product} key={`${product.slug}4`} />)}
+          {products.map((product) => <SiteProduct product={product} key={`${product.slug}5`} />)}
+          {products.map((product) => <SiteProduct product={product} key={`${product.slug}6`} />)}
         </ProductGrid>
       </div>
 
@@ -51,8 +55,12 @@ export default function Home({ products }) {
         }
 
         .home {
-          margin-top: var(--spacing-xxxl);
+          padding-top: 8rem;
           width: 100%;
+
+          @media screen and (min-width: 1200px) {
+            padding-left: var(--width-menu);
+          }
         }
         `}
       </style>

@@ -34,6 +34,18 @@ export default function Cart({ visible }) {
         <CartProductSmall />
         <hr />
         <CartProductSmall />
+        <hr />
+        <CartProductSmall />
+        <hr />
+        <CartProductSmall />
+        <hr />
+        <CartProductSmall />
+        <hr />
+        <CartProductSmall />
+        <hr />
+        <CartProductSmall />
+        <hr />
+        <CartProductSmall />
       </div>
 
       <Button block>Check out</Button>
@@ -48,24 +60,24 @@ export default function Cart({ visible }) {
             grid-template-columns: 1fr 1fr;
             align-items: center;
             width: 100%;
-            padding-bottom: var(--spacing-sm);
+            padding-bottom: 0.8em;
+            text-transform: uppercase;
 
             .total {
               font-size: var(--fontsize-xs);
               text-align: right;
-              text-transform: uppercase;
-              line-height: 0.6rem;
+              line-height: 0.95;
             }
           }
 
           .items {
             overflow: auto;
-            padding-bottom: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
+            padding-bottom: 1.2em;
+            margin-bottom: 1.2em;
             max-height: calc(100vh - 200px);
 
             hr {
-              margin: var(--spacing-lg) 0;
+              margin: 2rem 0;
 
               &:first-of-type {
                 margin-top: 0;
@@ -74,9 +86,24 @@ export default function Cart({ visible }) {
           }
 
           @media screen and (min-width: 1200px) {
-            justify-content: flex-end;
-            padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xxl));
-            width: 260px;
+            background-color: var(--color-background);
+            padding: var(--padding-header);
+
+            .head {
+              padding-bottom: 1.5rem;
+
+              .count {
+                font-size: var(--fontsize-lg);
+              }
+            }
+
+            .items {
+              margin-bottom: 2rem;
+
+              hr {
+                margin: 2.5rem 0;
+              }
+            }
           }
         }
         `}

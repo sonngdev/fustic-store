@@ -24,12 +24,12 @@ export default function Product({ product }) {
             <ProductSizeSelector sizes={product.sizes} />
             <AddToCartButton />
           </div>
-        </div>
 
-        <div className="notes">
-          <p>Do not wear this product with light colors to avoid color transfer</p>
-          <p>Material: 100% cotton<br />Made in vietnam</p>
-          <p>Model is 5’8” wearing a size large t-shirt</p>
+          <div className="notes">
+            <p>Do not wear this product with light colors to avoid color transfer</p>
+            <p>Material: 100% cotton<br />Made in vietnam</p>
+            <p>Model is 5’8” wearing a size large t-shirt</p>
+          </div>
         </div>
       </div>
 
@@ -41,64 +41,95 @@ export default function Product({ product }) {
           flex-direction: column;
           align-items: center;
 
-          margin-top: var(--spacing-xl);
           text-transform: uppercase;
-          padding: 0 var(--padding-page);
+          padding: 8rem var(--padding-page) 0;
 
           .product-orderer {
             text-align: left;
             width: 100%;
-            margin-top: var(--spacing-lg);
+            margin-top: 2rem;
 
             .category {
               font-size: var(--fontsize-xs);
               font-weight: var(--fontweight-bold);
-              margin-top: var(--spacing-xxxs);
+              margin-top: 0.3em;
             }
 
             .price {
               font-size: var(--fontsize-xl);
-              margin-top: var(--spacing-sm);
+              margin-top: 0.35em;
             }
 
             .size-add {
               width: 205px;
-              margin-top: var(--spacing-xs);
+              margin-top: 0.5em;
 
               :global(> :not(:first-child)) {
-                margin-top: var(--spacing-sm);
+                margin-top: 0.8rem;
+              }
+            }
+
+            .notes {
+              font-size: var(--fontsize-xs);
+              font-weight: var(--fontweight-bold);
+              line-height: 0.95;
+              width: 100%;
+
+              margin-top: 4.8em;
+
+              p {
+                width: 180px;
+                margin: 0 0 0.75em;
               }
             }
           }
 
-          .notes {
-            font-size: var(--fontsize-xs);
-            font-weight: var(--fontweight-bold);
-            line-height: 0.6rem;
-            width: 100%;
-
-            margin-top: var(--spacing-xl);
-
-            p {
-              width: 180px;
-              margin: 0 0 var(--spacing-xs);
-            }
-          }
-
-          @media screen and (min-width: 1200px) {
+          @media screen and (min-width: 992px) {
             flex-direction: row;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
 
             .product-orderer {
               padding: 0;
               margin-top: 0;
-              margin-left: var(--spacing-xxl);
+              margin-left: 4rem;
+              width: 320px;
             }
           }
 
-          @media screen and (min-width: 1400px) {
+          @media screen and (min-width: 1200px) {
+            padding-left: var(--width-menu);
+            justify-content: flex-start;
+
             .product-orderer {
-              margin-left: var(--spacing-xxxl);
+              margin-left: 150px;
+
+              .name {
+                font-size: var(--fontsize-lg);
+              }
+
+              .price {
+                margin-top: 0.1em;
+                font-size: var(--fontsize-xl);
+              }
+
+              .size-add {
+                margin-top: 20px;
+
+                :global(> :not(:first-child)) {
+                  margin-top: 20px;
+                }
+              }
+
+              .notes {
+                margin-top: 60px;
+              }
+            }
+          }
+
+          @media screen and (min-width: 1600px) {
+            .product-orderer {
+              margin-left: 250px;
             }
           }
         }

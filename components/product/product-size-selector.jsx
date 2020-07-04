@@ -24,7 +24,7 @@ function ProductSizeSelector({ sizes }) {
       <style jsx>
         {`
         .product-size-selector {
-          width: 100%;
+          width: 205px;
           display: flex;
           justify-content: space-between;
 

@@ -7,7 +7,7 @@ import Menu from './menu';
 import Cart from './cart';
 import MainPage from './main-page';
 
-export default function Layout({ offsetTop, children }) {
+export default function Layout({ children }) {
   const [reveal, setReveal] = useState('');
 
   return (
@@ -19,7 +19,6 @@ export default function Layout({ offsetTop, children }) {
         showCart={(e) => { e.stopPropagation(); setReveal('cart'); }}
         showMainpage={(e) => { e.stopPropagation(); setReveal(''); }}
         reveal={reveal}
-        offsetTop={offsetTop}
       >
         {children}
       </MainPage>
@@ -43,8 +42,8 @@ export default function Layout({ offsetTop, children }) {
             position: fixed;
             top: 0;
             height: 100%;
-            width: 230px;
-            left: ${reveal === 'menu' ? '0' : '-230px'};
+            width: var(--width-menu);
+            left: ${reveal === 'menu' ? '0' : 'calc(-1 * var(--width-menu))'};
             transition: left 0.3s ease;
           }
 
@@ -52,7 +51,7 @@ export default function Layout({ offsetTop, children }) {
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
-            left: ${reveal === 'menu' ? '230px' : reveal === 'cart' ? '-280px' : '0'};
+            left: ${reveal === 'menu' ? 'var(--width-menu)' : reveal === 'cart' ? 'calc(-1 * var(--width-cart))' : '0'};
             transition: left 0.3s ease;
           }
 
@@ -60,23 +59,29 @@ export default function Layout({ offsetTop, children }) {
             position: fixed;
             top: 0;
             height: 100%;
-            width: 280px;
-            right: ${reveal === 'cart' ? '0' : '-280px'};
+            width: var(--width-cart);
+            right: ${reveal === 'cart' ? '0' : 'calc(-1 * var(--width-cart))'};
             transition: right 0.3s ease;
           }
         }
 
         @media screen and (min-width: 1200px) {
-          .layout {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            grid-template-areas: "menu-button brand cart-button";
+          .menu {
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            height: 100vh;
+            width: var(--width-menu);
           }
 
-          .menu, .cart {
-            &-container {
-              position: fixed;
-            }
+          .cart {
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            width: var(--width-cart);
+            right: ${reveal === 'cart' ? '0' : 'calc(-1 * var(--width-cart))'};
+            transition: right 0.3s ease;
+            z-index: 3000;
           }
         }
         `}
@@ -86,11 +91,9 @@ export default function Layout({ offsetTop, children }) {
 }
 
 Layout.propTypes = {
-  offsetTop: PropTypes.bool,
   children: PropTypes.node,
 };
 
 Layout.defaultProps = {
-  offsetTop: true,
   children: null,
 };

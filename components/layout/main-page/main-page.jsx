@@ -2,13 +2,13 @@
 
 import PropTypes from 'prop-types';
 import Header from './header';
+import Footer from './footer';
 
 export default function MainPage({
   showMenu,
   showCart,
   showMainpage,
   reveal,
-  offsetTop,
   children,
 }) {
   return (
@@ -25,9 +25,7 @@ export default function MainPage({
         {children}
       </main>
 
-      <footer>
-        Fustic Store
-      </footer>
+      <Footer />
 
       <style jsx>
         {`
@@ -36,7 +34,8 @@ export default function MainPage({
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          padding-top: ${offsetTop ? 'calc(var(--height-brand) + 2 * var(--padding-header))' : '0.1px'};
+          padding-top: 0.1px; /* Fix Safari UI glitch with fixed elements */
+          padding-bottom: 3rem;
 
           position: relative;
 
@@ -57,13 +56,14 @@ export default function MainPage({
             flex-direction: column;
             align-items: center;
             width: 100%;
-            margin-bottom: var(--spacing-xxl);
+            margin-bottom: 4rem;
           }
 
-          footer {
-            width: 100%;
-            height: 100px;
-            border-top: 1px solid #eaeaea;
+          @media screen and (min-width: 1200px) {
+            .overlay {
+              background-color: var(--color-background);
+              opacity: 0.6;
+            }
           }
         }
         `}
@@ -77,7 +77,6 @@ MainPage.propTypes = {
   showCart: PropTypes.func.isRequired,
   showMainpage: PropTypes.func.isRequired,
   reveal: PropTypes.string.isRequired,
-  offsetTop: PropTypes.bool.isRequired,
   children: PropTypes.node,
 };
 

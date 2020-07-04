@@ -18,32 +18,33 @@
   --fontsize-lg: 15px;
   --fontsize-xl: 28px;
 
-  --spacing-xxxs: 0.15rem;
-  --spacing-xxs: 0.3rem;
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 0.8rem;
-  --spacing-md: 1.2rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-xxl: 4rem;
-  --spacing-xxxl: 8rem;
-
   --shadow-md: 0 .5rem 1rem rgba(0,0,0,.15);
 
   --padding-header: 15px;
   --padding-page: 15px;
 
   --height-brand: 26px;
+  --width-menu: 230px;
+  --width-cart: 280px;
 
   @media screen and (min-width: 375px) {
     --padding-page: 40px;
   }
 
-  @media screen and (min-width: 768px) {
-    --fontsize-sm: 12px;
-    --fontsize-md: 13px;
+  @media screen and (min-width: 1200px) {
+    --fontsize-sm: 8px;
+    --fontsize-md: 12px;
+    --fontsize-lg: 18px;
+    --fontsize-xl: 40px;
 
-    --padding-header: 20px;
+    --padding-header: 35px;
+
+    --width-menu: 200px;
+    --width-cart: 320px;
+  }
+
+  @media screen and (min-width: 1600px) {
+    --width-menu: 250px;
   }
 }
 

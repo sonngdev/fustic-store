@@ -19,6 +19,13 @@ export default function Header({
       <button type="button" className="cart-button" onClick={showCart}>
         Cart (1)
       </button>
+      <div className="items">
+        <a>Collections</a>
+        <a>About</a>
+        <button type="button" className="cart-icon-button" onClick={showCart}>
+          <img src="/icons/cart.svg" alt="Cart" />
+        </button>
+      </div>
 
       <style jsx>
         {`
@@ -32,15 +39,16 @@ export default function Header({
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
           grid-template-areas: "menu-button brand cart-button";
+          align-items: center;
+
+          .items {
+            display: none;
+          }
 
           .menu-button, .cart-button {
             background-color: transparent;
             border: none;
             padding: 0 7px;
-
-            @media screen and (min-width: 1200px) {
-              display: none;
-            }
           }
 
           .menu-button {
@@ -70,6 +78,43 @@ export default function Header({
             font-size: var(--fontsize-sm);
             text-transform: uppercase;
             opacity: ${reveal === 'cart' ? 0 : 1};
+          }
+
+          @media screen and (min-width: 1200px) {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "brand items";
+
+            max-width: 1920px;
+
+            .menu-button, .cart-button {
+              display: none;
+            }
+
+            .brand {
+              justify-self: left;
+            }
+
+            .items {
+              grid-area: items;
+              justify-self: right;
+
+              display: grid;
+              grid-template-columns: min-content min-content min-content;
+              column-gap: 30px;
+
+              text-transform: uppercase;
+
+              > a {
+                display: flex;
+                align-items: center;
+              }
+
+              .cart-icon-button img {
+                vertical-align: text-top;
+                width: 16px;
+                height: 16px;
+              }
+            }
           }
         }
         `}

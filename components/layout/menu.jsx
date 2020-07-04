@@ -41,11 +41,7 @@ export default function Menu({ visible }) {
         {`
         .menu {
           padding: 40px;
-          padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xxl));
-
-          @media screen and (min-width: 1200px) {
-            width: 230px;
-          }
+          padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + 4rem);
 
           .item, .subitem {
             display: block;
@@ -53,7 +49,7 @@ export default function Menu({ visible }) {
 
           .item {
             font-weight: var(--fontweight-bold);
-            margin-bottom: var(--spacing-md);
+            margin-bottom: 1.5em;
             text-transform: uppercase;
             font-size: var(--fontsize-sm);
           }
@@ -62,10 +58,10 @@ export default function Menu({ visible }) {
             list-style: none;
             margin: 0;
             padding: 0;
-            margin-bottom: var(--spacing-xxl);
+            margin-bottom: 4rem;
 
             li {
-              margin-bottom: var(--spacing-sm);
+              margin-bottom: 0.8em;
 
               .subitem {
                 text-transform: uppercase;
@@ -73,14 +69,23 @@ export default function Menu({ visible }) {
 
                 &.active::before {
                   content: '\A';
-                  width: 7px;
-                  height: 7px;
+                  width: 0.5em;
+                  height: 0.5em;
                   border-radius: 50%;
                   background-color: var(--color-text);
                   position: absolute;
-                  margin: 5px -20px;
+                  margin-top: calc(1em / 3 - 1px);
+                  margin-left: calc(1em * -4 / 3);
                 }
               }
+            }
+          }
+
+          @media screen and (min-width: 1200px) {
+            padding: 25vh 0 var(--padding-header) var(--padding-header);
+
+            ul li .subitem {
+              font-size: var(--fontsize-md);
             }
           }
         }
