@@ -66,7 +66,7 @@ export default function Cart({ visible }) {
             .total {
               font-size: var(--fontsize-xs);
               text-align: right;
-              line-height: var(--lineheight-xs);
+              line-height: 0.95;
             }
           }
 

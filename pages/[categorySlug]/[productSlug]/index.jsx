@@ -72,7 +72,7 @@ export default function Product({ product }) {
             .notes {
               font-size: var(--fontsize-xs);
               font-weight: var(--fontweight-bold);
-              line-height: var(--lineheight-xs);
+              line-height: 0.95;
               width: 100%;
 
               margin-top: 4.8em;
