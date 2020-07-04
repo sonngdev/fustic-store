@@ -86,6 +86,10 @@ export default function Product({ product }) {
           }
 
           @media screen and (min-width: 1200px) {
+            padding-left: var(--width-menu);
+          }
+
+          @media screen and (min-width: 1200px) {
             flex-direction: row;
             align-items: flex-start;
 

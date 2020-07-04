@@ -72,6 +72,7 @@ export default function Layout({ offsetTop, children }) {
             top: 0;
             z-index: 100;
             height: 100vh;
+            width: var(--width-menu);
           }
 
           .cart {
