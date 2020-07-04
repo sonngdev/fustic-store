@@ -55,7 +55,7 @@ export default function Home({ products }) {
         }
 
         .home {
-          margin-top: var(--spacing-xxxl);
+          margin-top: 8rem;
           width: 100%;
 
           @media screen and (min-width: 1200px) {

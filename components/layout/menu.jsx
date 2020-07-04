@@ -41,7 +41,7 @@ export default function Menu({ visible }) {
         {`
         .menu {
           padding: 40px;
-          padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xxl));
+          padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + 4rem);
 
           .item, .subitem {
             display: block;
@@ -49,7 +49,7 @@ export default function Menu({ visible }) {
 
           .item {
             font-weight: var(--fontweight-bold);
-            margin-bottom: var(--spacing-md);
+            margin-bottom: 1.5em;
             text-transform: uppercase;
             font-size: var(--fontsize-sm);
           }
@@ -58,7 +58,7 @@ export default function Menu({ visible }) {
             list-style: none;
             margin: 0;
             padding: 0;
-            margin-bottom: var(--spacing-xxl);
+            margin-bottom: 4rem;
 
             li {
               margin-bottom: 0.8em;

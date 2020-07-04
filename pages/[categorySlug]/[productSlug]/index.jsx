@@ -47,7 +47,7 @@ export default function Product({ product }) {
           .product-orderer {
             text-align: left;
             width: 100%;
-            margin-top: var(--spacing-lg);
+            margin-top: 2rem;
 
             .category {
               font-size: var(--fontsize-xs);
@@ -75,7 +75,7 @@ export default function Product({ product }) {
               line-height: var(--lineheight-xs);
               width: 100%;
 
-              margin-top: var(--spacing-xl);
+              margin-top: 4.8em;
 
               p {
                 width: 180px;
@@ -92,7 +92,7 @@ export default function Product({ product }) {
             .product-orderer {
               padding: 0;
               margin-top: 0;
-              margin-left: var(--spacing-xxl);
+              margin-left: 4rem;
               width: 320px;
             }
           }
@@ -129,7 +129,7 @@ export default function Product({ product }) {
 
           @media screen and (min-width: 1400px) {
             .product-orderer {
-              margin-left: var(--spacing-xxxl);
+              margin-left: 200px;
             }
           }
         }

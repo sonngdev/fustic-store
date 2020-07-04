@@ -36,7 +36,7 @@ export default function MainPage({
           justify-content: center;
           align-items: center;
           padding-top: ${offsetTop ? 'calc(var(--height-brand) + 2 * var(--padding-header))' : '0.1px'};
-          padding-bottom: var(--spacing-xl);
+          padding-bottom: 3rem;
 
           position: relative;
 
@@ -57,7 +57,7 @@ export default function MainPage({
             flex-direction: column;
             align-items: center;
             width: 100%;
-            margin-bottom: var(--spacing-xxl);
+            margin-bottom: 4rem;
           }
 
           @media screen and (min-width: 1200px) {

@@ -72,12 +72,12 @@ export default function Cart({ visible }) {
 
           .items {
             overflow: auto;
-            padding-bottom: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
+            padding-bottom: 1.2em;
+            margin-bottom: 1.2em;
             max-height: calc(100vh - 200px);
 
             hr {
-              margin: var(--spacing-lg) 0;
+              margin: 2rem 0;
 
               &:first-of-type {
                 margin-top: 0;
@@ -99,6 +99,10 @@ export default function Cart({ visible }) {
 
             .items {
               margin-bottom: 2rem;
+
+              hr {
+                margin: 2.5rem 0;
+              }
             }
           }
         }
