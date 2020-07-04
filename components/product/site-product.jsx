@@ -38,28 +38,16 @@ export default function SiteProduct({ product }) {
             width: 240px;
             height: 320px;
             object-fit: cover;
+            display: block;
+            margin: 0 auto;
             margin-bottom: var(--spacing-sm);
-
-            @media screen and (min-width: 768px) {
-              width: 300px;
-              height: 400px;
-            }
-
-            @media screen and (min-width: 1200px) {
-              width: 222px;
-              height: 296px;
-            }
-
-            @media screen and (min-width: 1600px) {
-              width: 360px;
-              height: 450px;
-            }
           }
 
           .info {
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
+            margin: 0 auto;
 
             .name-category {
               font-size: var(--fontsize-sm);
@@ -70,6 +58,39 @@ export default function SiteProduct({ product }) {
             .price {
               font-size: var(--fontsize-lg);
               text-align: right;
+            }
+          }
+
+          @media screen and (min-width: 768px) {
+            .thumbnail {
+              width: 300px;
+              height: 400px;
+            }
+
+            .info {
+              width: 250px;
+            }
+          }
+
+          @media screen and (min-width: 1200px) {
+            .thumbnail {
+              width: 222px;
+              height: 296px;
+            }
+
+            .info {
+              width: 200px;
+
+              .price {
+                font-size: var(--fontsize-md);
+              }
+            }
+          }
+
+          @media screen and (min-width: 1600px) {
+            .thumbnail {
+              width: 320px;
+              height: 400px;
             }
           }
         }
