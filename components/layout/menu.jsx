@@ -43,10 +43,6 @@ export default function Menu({ visible }) {
           padding: 40px;
           padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xxl));
 
-          @media screen and (min-width: 1200px) {
-            width: 230px;
-          }
-
           .item, .subitem {
             display: block;
           }
@@ -83,6 +79,11 @@ export default function Menu({ visible }) {
                 }
               }
             }
+          }
+
+          @media screen and (min-width: 1200px) {
+            width: 230px;
+            padding-top: 25vh;
           }
         }
         `}

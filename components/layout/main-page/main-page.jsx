@@ -59,6 +59,13 @@ export default function MainPage({
             width: 100%;
             margin-bottom: var(--spacing-xxl);
           }
+
+          @media screen and (min-width: 1200px) {
+            .overlay {
+              background-color: var(--color-background);
+              opacity: 0.6;
+            }
+          }
         }
         `}
       </style>

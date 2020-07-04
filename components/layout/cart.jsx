@@ -74,9 +74,8 @@ export default function Cart({ visible }) {
           }
 
           @media screen and (min-width: 1200px) {
-            justify-content: flex-end;
-            padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xxl));
-            width: 260px;
+            background-color: var(--color-background);
+            padding-top: var(--padding-header);
           }
         }
         `}

@@ -65,6 +65,24 @@ export default function Layout({ offsetTop, children }) {
             transition: right 0.3s ease;
           }
         }
+
+        @media screen and (min-width: 1200px) {
+          .menu {
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            height: 100vh;
+          }
+
+          .cart {
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            right: ${reveal === 'cart' ? '0' : '-280px'};
+            transition: right 0.3s ease;
+            z-index: 3000;
+          }
+        }
         `}
       </style>
     </div>
