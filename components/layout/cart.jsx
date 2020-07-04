@@ -60,7 +60,7 @@ export default function Cart({ visible }) {
             grid-template-columns: 1fr 1fr;
             align-items: center;
             width: 100%;
-            padding-bottom: var(--spacing-sm);
+            padding-bottom: 0.8em;
             text-transform: uppercase;
 
             .total {

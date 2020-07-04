@@ -40,7 +40,7 @@ export default function SiteProduct({ product }) {
             object-fit: cover;
             display: block;
             margin: 0 auto;
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: 0.8rem;
           }
 
           .info {

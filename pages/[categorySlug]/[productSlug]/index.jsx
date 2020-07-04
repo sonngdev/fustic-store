@@ -52,20 +52,20 @@ export default function Product({ product }) {
             .category {
               font-size: var(--fontsize-xs);
               font-weight: var(--fontweight-bold);
-              margin-top: var(--spacing-xxxs);
+              margin-top: 0.3em;
             }
 
             .price {
               font-size: var(--fontsize-xl);
-              margin-top: var(--spacing-sm);
+              margin-top: 0.35em;
             }
 
             .size-add {
               width: 205px;
-              margin-top: var(--spacing-xs);
+              margin-top: 0.5em;
 
               :global(> :not(:first-child)) {
-                margin-top: var(--spacing-sm);
+                margin-top: 0.8rem;
               }
             }
 
@@ -79,7 +79,7 @@ export default function Product({ product }) {
 
               p {
                 width: 180px;
-                margin: 0 0 var(--spacing-xs);
+                margin: 0 0 0.75em;
               }
             }
           }

@@ -43,7 +43,7 @@ export default function CartProductSmall() {
             text-transform: uppercase;
 
             > *:not(:last-child) {
-              margin-bottom: var(--spacing-sm);
+              margin-bottom: 0.8em;
             }
 
             .category-size {

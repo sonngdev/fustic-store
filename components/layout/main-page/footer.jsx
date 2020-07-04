@@ -24,7 +24,7 @@ function Footer() {
         footer {
           display: grid;
           grid-template-rows: 1fr 1fr;
-          row-gap: var(--spacing-sm);
+          row-gap: 0.8em;
           justify-items: center;
 
           text-align: center;

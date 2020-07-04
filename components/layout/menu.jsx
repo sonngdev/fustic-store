@@ -40,8 +40,6 @@ export default function Menu({ visible }) {
       <style jsx>
         {`
         .menu {
-          --fontsize-menu-subitem: var(--fontsize-lg);
-
           padding: 40px;
           padding-top: calc(var(--height-brand) + 2 * var(--padding-header) + var(--spacing-xxl));
 
@@ -63,30 +61,32 @@ export default function Menu({ visible }) {
             margin-bottom: var(--spacing-xxl);
 
             li {
-              margin-bottom: var(--spacing-sm);
+              margin-bottom: 0.8em;
 
               .subitem {
                 text-transform: uppercase;
-                font-size: var(--fontsize-menu-subitem);
+                font-size: var(--fontsize-lg);
 
                 &.active::before {
                   content: '\A';
-                  width: calc(var(--fontsize-menu-subitem) / 2);
-                  height: calc(var(--fontsize-menu-subitem) / 2);
+                  width: 0.5em;
+                  height: 0.5em;
                   border-radius: 50%;
                   background-color: var(--color-text);
                   position: absolute;
-                  margin-top: calc(var(--fontsize-menu-subitem) / 3 - 1px);
-                  margin-left: calc(var(--fontsize-menu-subitem) * -4 / 3);
+                  margin-top: calc(1em / 3 - 1px);
+                  margin-left: calc(1em * -4 / 3);
                 }
               }
             }
           }
 
           @media screen and (min-width: 1200px) {
-            --fontsize-menu-subitem: var(--fontsize-md);
-
             padding: 25vh 0 var(--padding-header) var(--padding-header);
+
+            ul li .subitem {
+              font-size: var(--fontsize-md);
+            }
           }
         }
         `}
