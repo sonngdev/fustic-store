@@ -9,7 +9,6 @@ export default function MainPage({
   showCart,
   showMainpage,
   reveal,
-  offsetTop,
   children,
 }) {
   return (
@@ -35,7 +34,7 @@ export default function MainPage({
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          padding-top: ${offsetTop ? 'calc(var(--height-brand) + 2 * var(--padding-header))' : '0.1px'};
+          padding-top: 0.1px; /* Fix Safari UI glitch with fixed elements */
           padding-bottom: 3rem;
 
           position: relative;
@@ -78,7 +77,6 @@ MainPage.propTypes = {
   showCart: PropTypes.func.isRequired,
   showMainpage: PropTypes.func.isRequired,
   reveal: PropTypes.string.isRequired,
-  offsetTop: PropTypes.bool.isRequired,
   children: PropTypes.node,
 };
 

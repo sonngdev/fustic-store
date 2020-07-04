@@ -7,7 +7,7 @@ import Menu from './menu';
 import Cart from './cart';
 import MainPage from './main-page';
 
-export default function Layout({ offsetTop, children }) {
+export default function Layout({ children }) {
   const [reveal, setReveal] = useState('');
 
   return (
@@ -19,7 +19,6 @@ export default function Layout({ offsetTop, children }) {
         showCart={(e) => { e.stopPropagation(); setReveal('cart'); }}
         showMainpage={(e) => { e.stopPropagation(); setReveal(''); }}
         reveal={reveal}
-        offsetTop={offsetTop}
       >
         {children}
       </MainPage>
@@ -92,11 +91,9 @@ export default function Layout({ offsetTop, children }) {
 }
 
 Layout.propTypes = {
-  offsetTop: PropTypes.bool,
   children: PropTypes.node,
 };
 
 Layout.defaultProps = {
-  offsetTop: true,
   children: null,
 };
