@@ -27,6 +27,7 @@ export default function Button({ block, solid, ...rest }) {
             &:hover {
               background-color: var(--color-text);
               color: var(--color-background);
+              font-weight: var(--fontweight-bold);
             }
 
             &.block {
@@ -37,6 +38,12 @@ export default function Button({ block, solid, ...rest }) {
               background-color: var(--color-text);
               color: var(--color-background);
               font-weight: var(--fontweight-bold);
+            }
+
+            @media screen and (min-width: 1200px) {
+              font-size: var(--fontsize-md);
+              font-weight: var(--fontweight-bold);
+              padding: 23px 25px;
             }
           }
         `}
