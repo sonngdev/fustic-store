@@ -1,14 +1,19 @@
 import Vimeo from '@u-wave/react-vimeo';
+import PropTypes from 'prop-types';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
 
-export default function Home({ products }) {
+export default function Home({
+  products,
+  vimeoId,
+  vimeoThumbnailUrl,
+}) {
   return (
     <Layout>
       <div className="video">
         <Vimeo
-          video="247516963"
+          video={vimeoId}
           background
           loop
           className="background-video"
@@ -34,7 +39,7 @@ export default function Home({ products }) {
           height: 100vh;
           overflow: hidden;
           position: relative;
-          background-image: url('https://i.vimeocdn.com/video/672805114_640.jpg');
+          background-image: url('${vimeoThumbnailUrl}');
           background-size: cover;
           background-position: center;
 
@@ -67,6 +72,11 @@ export default function Home({ products }) {
     </Layout>
   );
 }
+
+Home.propTypes = {
+  vimeoId: PropTypes.string.isRequired,
+  vimeoThumbnailUrl: PropTypes.string.isRequired,
+};
 
 export async function getStaticProps() {
   const products = [
@@ -120,9 +130,21 @@ export async function getStaticProps() {
     },
   ];
 
+  const configReq = await fetch('http://localhost:3001/general_configs/active');
+  const configRes = await configReq.json();
+  const vimeoId = configRes.general_config
+    ? configRes.general_config.landing_vimeo_id
+    : '340911673';
+
+  const thumbnailReq = await fetch(`http://vimeo.com/api/v2/video/${vimeoId}.json`);
+  const thumbnailRes = await thumbnailReq.json();
+  const vimeoThumbnailUrl = thumbnailRes[0].thumbnail_large.replace('.webp', '.jpg');
+
   return {
     props: {
       products,
+      vimeoId,
+      vimeoThumbnailUrl,
     },
   };
 }
