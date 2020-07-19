@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
+import { ensureCamel } from 'utils/object';
 
 export default function Home({
   products,
@@ -131,14 +132,14 @@ export async function getStaticProps() {
   ];
 
   const configReq = await fetch('http://localhost:3001/general_configs/active');
-  const configRes = await configReq.json();
-  const vimeoId = configRes.general_config
-    ? configRes.general_config.landing_vimeo_id
+  const configRes = ensureCamel(await configReq.json());
+  const vimeoId = configRes.generalConfig
+    ? configRes.generalConfig.landingVimeoId
     : '340911673';
 
   const thumbnailReq = await fetch(`http://vimeo.com/api/v2/video/${vimeoId}.json`);
-  const thumbnailRes = await thumbnailReq.json();
-  const vimeoThumbnailUrl = thumbnailRes[0].thumbnail_large.replace('.webp', '.jpg');
+  const thumbnailRes = ensureCamel(await thumbnailReq.json());
+  const vimeoThumbnailUrl = thumbnailRes[0].thumbnailLarge.replace('.webp', '.jpg');
 
   return {
     props: {
