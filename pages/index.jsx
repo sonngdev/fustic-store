@@ -23,13 +23,7 @@ export default function Home({
 
       <div className="home">
         <ProductGrid>
-          {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
-          {products.map((product) => <SiteProduct product={product} key={`${product.slug}1`} />)}
-          {products.map((product) => <SiteProduct product={product} key={`${product.slug}2`} />)}
-          {products.map((product) => <SiteProduct product={product} key={`${product.slug}3`} />)}
-          {products.map((product) => <SiteProduct product={product} key={`${product.slug}4`} />)}
-          {products.map((product) => <SiteProduct product={product} key={`${product.slug}5`} />)}
-          {products.map((product) => <SiteProduct product={product} key={`${product.slug}6`} />)}
+          {products.map((product) => <SiteProduct product={product} key={product.id} />)}
         </ProductGrid>
       </div>
 
@@ -77,61 +71,37 @@ export default function Home({
 Home.propTypes = {
   vimeoId: PropTypes.string.isRequired,
   vimeoThumbnailUrl: PropTypes.string.isRequired,
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      priceVnd: PropTypes.number.isRequired,
+      priceUsd: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+      category: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        singularName: PropTypes.string.isRequired,
+        slug: PropTypes.string.isRequired,
+        createdAt: PropTypes.string.isRequired,
+        updatedAt: PropTypes.string.isRequired,
+      }),
+      images: PropTypes.arrayOf(
+        PropTypes.shape({
+          url: PropTypes.string.isRequired,
+          isThumbnail: PropTypes.bool.isRequired,
+          isAltThumbnail: PropTypes.bool.isRequired,
+          createdAt: PropTypes.string.isRequired,
+        }),
+      ),
+    }),
+  ).isRequired,
 };
 
 export async function getStaticProps() {
-  const products = [
-    {
-      id: 1,
-      category: {
-        id: 1,
-        slug: 't-shirts',
-        name: 'T-Shirts',
-        singularName: 'T-Shirt',
-      },
-      name: 'BATHEROPE KIDS',
-      slug: 'batherobe-kids',
-      images: [
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: true,
-        },
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: false,
-        },
-      ],
-      priceVnd: 420000,
-      priceUsd: 20,
-      sizes: ['S', 'M', 'L'],
-    },
-    {
-      id: 2,
-      category: {
-        id: 1,
-        slug: 't-shirts',
-        name: 'T-Shirts',
-        singularName: 'T-Shirt',
-      },
-      name: 'DOPE BATHEROPE KIDS',
-      slug: 'dope-batherope-kids',
-      images: [
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: true,
-        },
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: false,
-        },
-      ],
-      priceVnd: 420000,
-      priceUsd: 20,
-      sizes: ['S', 'M', 'L'],
-    },
-  ];
-
-  const configReq = await fetch('http://localhost:3001/general_configs/active');
+  const configReq = await fetch('http://localhost:3001/general_configs/active.json');
   const configRes = ensureCamel(await configReq.json());
   const vimeoId = configRes.generalConfig
     ? configRes.generalConfig.landingVimeoId
@@ -141,11 +111,15 @@ export async function getStaticProps() {
   const thumbnailRes = ensureCamel(await thumbnailReq.json());
   const vimeoThumbnailUrl = thumbnailRes[0].thumbnailLarge.replace('.webp', '.jpg');
 
+  const productsReq = await fetch('http://localhost:3001/products.json');
+  const productsRes = ensureCamel(await productsReq.json());
+  const { products } = productsRes;
+
   return {
     props: {
-      products,
       vimeoId,
       vimeoThumbnailUrl,
+      products,
     },
   };
 }
