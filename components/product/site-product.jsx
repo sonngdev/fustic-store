@@ -69,7 +69,7 @@ export default function SiteProduct({ product }) {
             }
 
             .info {
-              width: 250px;
+              width: 270px;
             }
           }
 
@@ -80,7 +80,7 @@ export default function SiteProduct({ product }) {
             }
 
             .info {
-              width: 200px;
+              width: 220px;
 
               .price {
                 font-size: var(--fontsize-md);
