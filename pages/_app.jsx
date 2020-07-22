@@ -1,16 +1,22 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/forbid-prop-types */
+/* eslint-disable no-underscore-dangle */
 
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import { useStore } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import { wrapper } from 'store';
 
 import 'normalize.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'styles/global.scss';
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
+  const store = useStore();
   return (
-    <>
+    <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
       <Head>
         <title>Fustic Store</title>
         <link rel="icon" href="/favicon.ico" />
@@ -18,7 +24,7 @@ export default function App({ Component, pageProps }) {
       </Head>
 
       <Component {...pageProps} />
-    </>
+    </PersistGate>
   );
 }
 
@@ -30,3 +36,5 @@ App.propTypes = {
 App.defaultProps = {
   pageProps: {},
 };
+
+export default wrapper.withRedux(App);
