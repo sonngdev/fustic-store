@@ -6,15 +6,14 @@ import SiteProduct from 'components/product/site-product';
 import { ensureCamel } from 'utils/object';
 
 export default function Home({
+  generalConfig,
   products,
-  vimeoId,
-  vimeoThumbnailUrl,
 }) {
   return (
     <Layout>
       <div className="video">
         <Vimeo
-          video={vimeoId}
+          video={generalConfig.landingVimeoId}
           background
           loop
           className="background-video"
@@ -34,7 +33,7 @@ export default function Home({
           height: 100vh;
           overflow: hidden;
           position: relative;
-          background-image: url('${vimeoThumbnailUrl}');
+          background-image: url(${generalConfig.landingPlaceholderImageUrl});
           background-size: cover;
           background-position: center;
 
@@ -69,8 +68,12 @@ export default function Home({
 }
 
 Home.propTypes = {
-  vimeoId: PropTypes.string.isRequired,
-  vimeoThumbnailUrl: PropTypes.string.isRequired,
+  generalConfig: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    active: PropTypes.bool.isRequired,
+    landingVimeoId: PropTypes.string.isRequired,
+    landingPlaceholderImageUrl: PropTypes.string.isRequired,
+  }).isRequired,
   products: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -101,15 +104,14 @@ Home.propTypes = {
 };
 
 export async function getStaticProps() {
-  const configReq = await fetch('http://localhost:3001/general_configs/active.json');
-  const configRes = ensureCamel(await configReq.json());
-  const vimeoId = configRes.generalConfig
-    ? configRes.generalConfig.landingVimeoId
-    : '340911673';
+  const defaultGeneralConfig = {
+    landingVimeoId: '340911673',
+    landingPlaceholderImageUrl: 'https://i.vimeocdn.com/video/789384783_640.jpg',
+  };
 
-  const thumbnailReq = await fetch(`http://vimeo.com/api/v2/video/${vimeoId}.json`);
-  const thumbnailRes = ensureCamel(await thumbnailReq.json());
-  const vimeoThumbnailUrl = thumbnailRes[0].thumbnailLarge.replace('.webp', '.jpg');
+  const generalConfigReq = await fetch('http://localhost:3001/general_configs/active.json');
+  const generalConfigRes = ensureCamel(await generalConfigReq.json());
+  const { generalConfig = defaultGeneralConfig } = generalConfigRes;
 
   const productsReq = await fetch('http://localhost:3001/products.json');
   const productsRes = ensureCamel(await productsReq.json());
@@ -117,8 +119,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      vimeoId,
-      vimeoThumbnailUrl,
+      generalConfig,
       products,
     },
   };
