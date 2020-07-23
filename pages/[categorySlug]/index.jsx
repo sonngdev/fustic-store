@@ -1,7 +1,9 @@
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
+import { get } from 'utils/request';
 
 export default function Category({ category, products }) {
   return (
@@ -32,69 +34,57 @@ export default function Category({ category, products }) {
   );
 }
 
-// GET /categories
+Category.propTypes = {
+  category: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    singularName: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    updatedAt: PropTypes.string.isRequired,
+  }).isRequired,
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      priceVnd: PropTypes.number.isRequired,
+      priceUsd: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+      category: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        singularName: PropTypes.string.isRequired,
+        slug: PropTypes.string.isRequired,
+        createdAt: PropTypes.string.isRequired,
+        updatedAt: PropTypes.string.isRequired,
+      }),
+      images: PropTypes.arrayOf(
+        PropTypes.shape({
+          url: PropTypes.string.isRequired,
+          isThumbnail: PropTypes.bool.isRequired,
+          isAltThumbnail: PropTypes.bool.isRequired,
+          createdAt: PropTypes.string.isRequired,
+        }),
+      ),
+    }),
+  ).isRequired,
+};
+
 export async function getStaticPaths() {
+  const { categories } = await get('http://localhost:3001/categories');
+  const paths = categories.map(({ slug }) => ({ params: { categorySlug: slug } }));
+
   return {
-    paths: [
-      { params: { categorySlug: 't-shirts' } },
-      { params: { categorySlug: 'sweaters' } },
-      { params: { categorySlug: 'hoodies' } },
-      { params: { categorySlug: 'prints' } },
-    ],
+    paths,
     fallback: false,
   };
 }
 
-// GET /categories/:slug
-// GET /categories/:slug/products
 export async function getStaticProps({ params }) {
-  const category = {
-    id: 1,
-    name: params.categorySlug,
-    slug: params.categorySlug,
-    singularName: params.categorySlug,
-  };
-
-  const products = [
-    {
-      id: 1,
-      category,
-      name: 'BATHEROPE KIDS',
-      slug: 'batherobe-kids',
-      images: [
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: true,
-        },
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: false,
-        },
-      ],
-      priceVnd: 420000,
-      priceUsd: 20,
-      sizes: ['S', 'M', 'L'],
-    },
-    {
-      id: 2,
-      category,
-      name: 'DOPE BATHEROPE KIDS',
-      slug: 'dope-batherope-kids',
-      images: [
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: true,
-        },
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: false,
-        },
-      ],
-      priceVnd: 420000,
-      priceUsd: 20,
-      sizes: ['S', 'M', 'L'],
-    },
-  ];
+  const category = await get(`http://localhost:3001/categories/${params.categorySlug}`);
+  const { products } = await get(`http://localhost:3001/products?category_id=${category.id}`);
 
   return {
     props: {
