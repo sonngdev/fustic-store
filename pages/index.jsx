@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
-import { ensureCamel } from 'utils/object';
+import { get } from 'utils/request';
 
 export default function Home({
   generalConfig,
@@ -108,14 +108,8 @@ export async function getStaticProps() {
     landingVimeoId: '340911673',
     landingPlaceholderImageUrl: 'https://i.vimeocdn.com/video/789384783_640.jpg',
   };
-
-  const generalConfigReq = await fetch('http://localhost:3001/general_configs/active.json');
-  const generalConfigRes = ensureCamel(await generalConfigReq.json());
-  const { generalConfig = defaultGeneralConfig } = generalConfigRes;
-
-  const productsReq = await fetch('http://localhost:3001/products.json');
-  const productsRes = ensureCamel(await productsReq.json());
-  const { products } = productsRes;
+  const { generalConfig = defaultGeneralConfig } = await get('http://localhost:3001/general_configs/active.json');
+  const { products } = await get('http://localhost:3001/products.json');
 
   return {
     props: {
