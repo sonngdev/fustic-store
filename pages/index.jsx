@@ -90,7 +90,7 @@ Home.propTypes = {
         slug: PropTypes.string.isRequired,
         createdAt: PropTypes.string.isRequired,
         updatedAt: PropTypes.string.isRequired,
-      }),
+      }).isRequired,
       images: PropTypes.arrayOf(
         PropTypes.shape({
           url: PropTypes.string.isRequired,
@@ -98,7 +98,7 @@ Home.propTypes = {
           isAltThumbnail: PropTypes.bool.isRequired,
           createdAt: PropTypes.string.isRequired,
         }),
-      ),
+      ).isRequired,
     }),
   ).isRequired,
 };
@@ -108,8 +108,8 @@ export async function getStaticProps() {
     landingVimeoId: '340911673',
     landingPlaceholderImageUrl: 'https://i.vimeocdn.com/video/789384783_640.jpg',
   };
-  const { generalConfig = defaultGeneralConfig } = await get('http://localhost:3001/general_configs/active.json');
-  const { products } = await get('http://localhost:3001/products.json');
+  const { generalConfig = defaultGeneralConfig } = await get('http://localhost:3001/general_configs/active');
+  const { products } = await get('http://localhost:3001/products');
 
   return {
     props: {
