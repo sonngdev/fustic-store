@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
-import { get } from 'utils/request';
+import { get, getCategories } from 'utils/request';
 
 export default function Category({ category, products }) {
   return (
@@ -73,7 +73,7 @@ Category.propTypes = {
 };
 
 export async function getStaticPaths() {
-  const { categories } = await get('http://localhost:3001/categories');
+  const { categories } = await getCategories();
   const paths = categories.map(({ slug }) => ({ params: { categorySlug: slug } }));
 
   return {

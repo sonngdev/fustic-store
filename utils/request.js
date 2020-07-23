@@ -5,3 +5,7 @@ export async function get(url) {
   const res = await req.json();
   return ensureCamel(res);
 }
+
+export function getCategories() {
+  return get('http://localhost:3001/categories');
+}
