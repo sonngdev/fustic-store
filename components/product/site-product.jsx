@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { formatPriceVnd } from 'utils/string';
@@ -11,13 +12,20 @@ export default function SiteProduct({ product }) {
     priceVnd,
     priceUsd,
   } = product;
+  const [hovered, setHovered] = useState(false);
   const thumbnail = images.find((image) => image.isThumbnail);
+  const altThumbnail = images.find((image) => image.isAltThumbnail);
 
   return (
-    <div className="site-product">
+    <div
+      className="site-product"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <Link href={`/${category.slug}/${slug}`}>
         <a>
           <img src={thumbnail.url} alt={name} className="thumbnail" />
+          <img src={altThumbnail.url} alt={name} className="alt-thumbnail" />
           <div className="info">
             <div className="name-category">
               {name}
@@ -35,13 +43,20 @@ export default function SiteProduct({ product }) {
         .site-product {
           text-transform: uppercase;
 
-          .thumbnail {
+          .thumbnail, .alt-thumbnail {
             width: 240px;
             height: 320px;
             object-fit: cover;
-            display: block;
             margin: 0 auto;
             margin-bottom: 0.8rem;
+          }
+
+          .thumbnail {
+            display: ${hovered ? 'none' : 'block'};
+          }
+
+          .alt-thumbnail {
+            display: ${hovered ? 'block' : 'none'};
           }
 
           .info {
@@ -63,7 +78,7 @@ export default function SiteProduct({ product }) {
           }
 
           @media screen and (min-width: 768px) {
-            .thumbnail {
+            .thumbnail, .alt-thumbnail {
               width: 270px;
               height: 360px;
             }
@@ -74,7 +89,7 @@ export default function SiteProduct({ product }) {
           }
 
           @media screen and (min-width: 1200px) {
-            .thumbnail {
+            .thumbnail, .alt-thumbnail {
               width: 300px;
               height: 400px;
             }
@@ -89,7 +104,7 @@ export default function SiteProduct({ product }) {
           }
 
           @media screen and (min-width: 1600px) {
-            .thumbnail {
+            .thumbnail, .alt-thumbnail {
               width: 420px;
               height: 560px;
             }
