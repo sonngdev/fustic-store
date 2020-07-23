@@ -33,7 +33,7 @@ export default function SiteProduct({ product }) {
               {category.singularName}
             </div>
 
-            <div className="price">{formatPriceVnd(priceVnd)} VND • ${priceUsd.toLocaleString()}</div>
+            <div className="price">{formatPriceVnd(priceVnd)} VND • ${+priceUsd.toLocaleString()}</div>
           </div>
         </a>
       </Link>
