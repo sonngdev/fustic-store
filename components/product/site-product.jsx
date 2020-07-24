@@ -24,8 +24,8 @@ export default function SiteProduct({ product }) {
     >
       <Link href={`/${category.slug}/${slug}`}>
         <a>
-          <img src={thumbnail.url} alt={name} className="thumbnail" />
-          <img src={altThumbnail.url} alt={name} className="alt-thumbnail" />
+          <img src={thumbnail?.url} alt={name} className="thumbnail" />
+          <img src={altThumbnail?.url} alt={name} className="alt-thumbnail" />
           <div className="info">
             <div className="name-category">
               {name}
