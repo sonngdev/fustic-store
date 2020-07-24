@@ -108,8 +108,8 @@ export async function getStaticProps() {
     landingVimeoId: '340911673',
     landingPlaceholderImageUrl: 'https://i.vimeocdn.com/video/789384783_640.jpg',
   };
-  const { generalConfig = defaultGeneralConfig } = await get('http://localhost:3001/general_configs/active');
-  const { products } = await get('http://localhost:3001/products');
+  const generalConfig = await get('http://localhost:3001/general_configs/active') || defaultGeneralConfig;
+  const products = await get('http://localhost:3001/products');
 
   return {
     props: {

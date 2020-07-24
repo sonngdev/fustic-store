@@ -72,7 +72,7 @@ Category.propTypes = {
 };
 
 export async function getStaticPaths() {
-  const { categories } = await getCategories();
+  const categories = await getCategories();
   const paths = categories.map(({ slug }) => ({ params: { categorySlug: slug } }));
 
   return {
@@ -83,7 +83,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const category = await get(`http://localhost:3001/categories/${params.categorySlug}`);
-  const { products } = await get(`http://localhost:3001/products?category_id=${category.id}`);
+  const products = await get(`http://localhost:3001/products?category_id=${category.id}`);
 
   return {
     props: {
