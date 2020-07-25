@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { clearFromCart } from 'store/actions';
 import Product from 'models/Product';
 import { formatPriceVnd } from 'utils/string';
 
@@ -6,9 +8,14 @@ export default function CartProductSmall({ cartEntry }) {
   const { product, quantity, sizeName } = cartEntry;
   const thumbnail = product.images.find((image) => image.isThumbnail);
 
+  const dispatch = useDispatch();
+  const clearProductFromCart = () => {
+    dispatch(clearFromCart(product, sizeName));
+  };
+
   return (
     <div className="cart-product-small">
-      <button type="button" className="remove-button">
+      <button type="button" className="remove-button" onClick={clearProductFromCart}>
         <img src="/icons/close.svg" alt="Remove item" />
       </button>
 
