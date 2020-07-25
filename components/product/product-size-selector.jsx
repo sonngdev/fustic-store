@@ -1,22 +1,23 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-const allSizes = ['S', 'M', 'L', 'XL', 'XXL'];
-
 function ProductSizeSelector({ sizes }) {
-  const [selected, setSelected] = useState(sizes[0]);
+  const sizesInStock = sizes.filter((s) => s.inStock);
+  const [selected, setSelected] = useState(sizesInStock[0]);
 
   return (
     <div className="product-size-selector">
       {
-        allSizes.map((size) => (
+        sizes.map((size) => (
           <button
+            key={size.name}
             type="button"
-            disabled={!sizes.includes(size)}
+            disabled={!sizesInStock.includes(size)}
             className={cx({ active: size === selected })}
             onClick={() => setSelected(size)}
           >
-            {size}
+            {size.name}
           </button>
         ))
       }
@@ -25,8 +26,6 @@ function ProductSizeSelector({ sizes }) {
         {`
         .product-size-selector {
           width: 205px;
-          display: flex;
-          justify-content: space-between;
 
           button {
             font-weight: var(--fontweight-thin);
@@ -36,6 +35,10 @@ function ProductSizeSelector({ sizes }) {
             padding: 0;
             transition: ease 0.2s;
             transition-property: border, font-weight;
+
+            &:not(:last-of-type) {
+              margin-right: 11px;
+            }
 
             :disabled {
               opacity: 0.2;
@@ -53,5 +56,14 @@ function ProductSizeSelector({ sizes }) {
     </div>
   );
 }
+
+ProductSizeSelector.propTypes = {
+  sizes: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      inStock: PropTypes.bool.isRequired,
+    }),
+  ).isRequired,
+};
 
 export default ProductSizeSelector;

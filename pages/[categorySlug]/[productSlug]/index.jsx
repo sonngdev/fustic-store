@@ -95,7 +95,6 @@ export default function Product({ product }) {
               padding: 0;
               margin-top: 0;
               margin-left: 4rem;
-              width: 320px;
             }
           }
 
