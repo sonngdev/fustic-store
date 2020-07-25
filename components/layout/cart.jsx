@@ -32,7 +32,7 @@ export default function Cart({ visible }) {
         ))}
       </div>
 
-      <Button block>Check out</Button>
+      <Button block disabled={!cart.length}>Check out</Button>
 
       <style jsx>
         {`

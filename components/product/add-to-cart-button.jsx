@@ -5,9 +5,10 @@ import Product from 'models/Product';
 
 function AddToCartButton({ product, size }) {
   const dispatch = useDispatch();
+  const cannotAdd = !size || !size.inStock;
 
   const addProductToCart = () => {
-    if (!size || !size.inStock) return;
+    if (cannotAdd) return;
     dispatch(addToCart(product, size.name));
   };
 
@@ -16,6 +17,7 @@ function AddToCartButton({ product, size }) {
       type="button"
       className="add-to-cart"
       onClick={addProductToCart}
+      disabled={cannotAdd}
     >
       <span>
         <img src="/eye.png" alt="Eye" />
@@ -29,7 +31,25 @@ function AddToCartButton({ product, size }) {
           border: solid 1px var(--color-text);
           padding: 12px;
           text-transform: uppercase;
-          transition: all ease 0.2s;
+
+          &:enabled {
+            transition: all ease 0.2s;
+
+            &:hover {
+              background-color: var(--color-text);
+              color: var(--color-background);
+              font-weight: var(--fontweight-bold);
+
+              img {
+                filter: invert(100%);
+              }
+            }
+          }
+
+          &:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+          }
 
           span {
             display: grid;
@@ -39,16 +59,6 @@ function AddToCartButton({ product, size }) {
 
             img {
               width: 30px;
-            }
-          }
-
-          &:hover {
-            background-color: var(--color-text);
-            color: var(--color-background);
-            font-weight: var(--fontweight-bold);
-
-            img {
-              filter: invert(100%);
             }
           }
 

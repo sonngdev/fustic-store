@@ -20,14 +20,22 @@ export default function Button({ block, solid, ...rest }) {
             padding: 15px 25px;
             border: solid 1px var(--color-text);
             color: var(--color-text);
-            background-color: transparent;
-            transition-property: background-color, color;
-            transition: ease 0.2s;
 
-            &:hover {
-              background-color: var(--color-text);
-              color: var(--color-background);
-              font-weight: var(--fontweight-bold);
+            &:enabled {
+              background-color: transparent;
+              transition-property: background-color, color;
+              transition: ease 0.2s;
+
+              &:hover {
+                background-color: var(--color-text);
+                color: var(--color-background);
+                font-weight: var(--fontweight-bold);
+              }
+            }
+
+            &:disabled {
+              opacity: 0.2;
+              cursor: not-allowed;
             }
 
             &.block {
