@@ -141,5 +141,11 @@ SiteProduct.propTypes = {
         createdAt: PropTypes.string.isRequired,
       }),
     ),
+    sizes: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        inStock: PropTypes.bool.isRequired,
+      }),
+    ),
   }).isRequired,
 };

@@ -99,6 +99,12 @@ Home.propTypes = {
           createdAt: PropTypes.string.isRequired,
         }),
       ).isRequired,
+      sizes: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          inStock: PropTypes.bool.isRequired,
+        }),
+      ),
     }),
   ).isRequired,
 };
