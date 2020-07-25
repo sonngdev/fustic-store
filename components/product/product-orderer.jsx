@@ -1,9 +1,13 @@
-import ProductSizeSelector from 'components/product/product-size-selector';
+import { useState } from 'react';
+import cx from 'classnames';
 import AddToCartButton from 'components/product/add-to-cart-button';
 import { formatPriceVnd } from 'utils/string';
 import Product from 'models/Product';
 
 function ProductOrderer({ product }) {
+  const sizesInStock = product.sizes.filter((s) => s.inStock);
+  const [selectedSize, setSelectedSize] = useState(sizesInStock[0]);
+
   return (
     <div className="product-orderer">
       <div className="name">{product.name}</div>
@@ -11,7 +15,22 @@ function ProductOrderer({ product }) {
       <div className="price">{formatPriceVnd(product.priceVnd)} VND • ${+product.priceUsd.toLocaleString()}</div>
 
       <div className="size-add">
-        <ProductSizeSelector sizes={product.sizes} />
+        <div className="size">
+          {
+            product.sizes.map((size) => (
+              <button
+                key={size.name}
+                type="button"
+                disabled={!sizesInStock.includes(size)}
+                className={cx({ active: size === selectedSize })}
+                onClick={() => setSelectedSize(size)}
+              >
+                {size.name}
+              </button>
+            ))
+          }
+        </div>
+
         <AddToCartButton product={product} />
       </div>
 
@@ -45,6 +64,34 @@ function ProductOrderer({ product }) {
 
             :global(> :not(:first-child)) {
               margin-top: 0.8rem;
+            }
+
+            .size {
+              width: 205px;
+
+              button {
+                font-weight: var(--fontweight-thin);
+                border: solid 1px rgba(255, 255, 255, 0.4);
+                width: 32px;
+                height: 32px;
+                padding: 0;
+                transition: ease 0.2s;
+                transition-property: border, font-weight;
+
+                &:not(:last-of-type) {
+                  margin-right: 11px;
+                }
+
+                :disabled {
+                  opacity: 0.2;
+                  cursor: not-allowed;
+                }
+
+                &.active {
+                  border: solid 1px var(--color-text);
+                  font-weight: var(--fontweight-semibold);
+                }
+              }
             }
           }
 
