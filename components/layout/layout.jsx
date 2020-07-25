@@ -7,12 +7,12 @@ import Menu from './menu';
 import Cart from './cart';
 import MainPage from './main-page';
 
-export default function Layout({ children }) {
+export default function Layout({ children, categories }) {
   const [reveal, setReveal] = useState('');
 
   return (
     <div className="layout">
-      <Menu visible={reveal === 'menu'} />
+      <Menu visible={reveal === 'menu'} categories={categories} />
 
       <MainPage
         showMenu={(e) => { e.stopPropagation(); setReveal('menu'); }}
@@ -92,8 +92,18 @@ export default function Layout({ children }) {
 
 Layout.propTypes = {
   children: PropTypes.node,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }),
+  ),
 };
 
 Layout.defaultProps = {
   children: null,
+  categories: [],
 };

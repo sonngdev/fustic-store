@@ -4,12 +4,12 @@ import Layout from 'components/layout';
 import ProductImages from 'components/product/product-images';
 import ProductSizeSelector from 'components/product/product-size-selector';
 import AddToCartButton from 'components/product/add-to-cart-button';
-import { get } from 'utils/request';
+import { get, getCategories } from 'utils/request';
 import { formatPriceVnd } from 'utils/string';
 
-export default function Product({ product }) {
+export default function Product({ product, categories }) {
   return (
-    <Layout>
+    <Layout categories={categories}>
       <Head>
         <title>{product.name} – {product.category.name} – Fustic Store</title>
       </Head>
@@ -172,6 +172,15 @@ Product.propTypes = {
       }),
     ),
   }).isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export async function getStaticPaths() {
@@ -192,10 +201,12 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const product = await get(`http://localhost:3001/products/${params.productSlug}`);
+  const categories = await getCategories();
 
   return {
     props: {
       product,
+      categories,
     },
   };
 }

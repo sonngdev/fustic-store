@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
-import { get } from 'utils/request';
+import { get, getCategories } from 'utils/request';
 
 export default function Home({
   generalConfig,
   products,
+  categories,
 }) {
   return (
-    <Layout>
+    <Layout categories={categories}>
       <div className="video">
         <Vimeo
           video={generalConfig.landingVimeoId}
@@ -107,6 +108,15 @@ Home.propTypes = {
       ),
     }),
   ).isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export async function getStaticProps() {
@@ -116,11 +126,13 @@ export async function getStaticProps() {
   };
   const generalConfig = await get('http://localhost:3001/general_configs/active') || defaultGeneralConfig;
   const products = await get('http://localhost:3001/products');
+  const categories = await getCategories();
 
   return {
     props: {
       generalConfig,
       products,
+      categories,
     },
   };
 }

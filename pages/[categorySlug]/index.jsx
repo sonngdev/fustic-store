@@ -5,9 +5,9 @@ import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
 import { get, getCategories } from 'utils/request';
 
-export default function Category({ category, products }) {
+export default function Category({ category, products, categories }) {
   return (
-    <Layout>
+    <Layout categories={categories}>
       <Head>
         <title>{category.name} – Fustic Store</title>
       </Head>
@@ -75,6 +75,15 @@ Category.propTypes = {
       ),
     }),
   ).isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export async function getStaticPaths() {
@@ -90,11 +99,13 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const category = await get(`http://localhost:3001/categories/${params.categorySlug}`);
   const products = await get(`http://localhost:3001/products?category_id=${category.id}`);
+  const categories = await getCategories();
 
   return {
     props: {
       category,
       products,
+      categories,
       key: params.categorySlug,
     },
   };

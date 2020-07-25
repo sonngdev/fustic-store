@@ -8,7 +8,7 @@ import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function Menu({ visible }) {
+export default function Menu({ visible, categories }) {
   const menu = useRef(null);
   useDisableBodyScroll(menu.current, visible);
 
@@ -16,10 +16,9 @@ export default function Menu({ visible }) {
 
   const links = [
     { href: '/', as: '/', text: 'Collections' },
-    { href: '/[categorySlug]', as: '/t-shirts', text: 'T-Shirts' },
-    { href: '/[categorySlug]', as: '/sweaters', text: 'Sweaters' },
-    { href: '/[categorySlug]', as: '/hoodies', text: 'Hoodies' },
-    { href: '/[categorySlug]', as: '/prints', text: 'Prints' },
+    ...categories.map(({ slug, name }) => (
+      { href: '/[categorySlug]', as: `/${slug}`, text: name }
+    )),
   ];
 
   return (
@@ -97,4 +96,17 @@ export default function Menu({ visible }) {
 
 Menu.propTypes = {
   visible: PropTypes.bool.isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }),
+  ),
+};
+
+Menu.defaultProps = {
+  categories: [],
 };
