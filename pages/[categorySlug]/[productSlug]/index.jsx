@@ -26,7 +26,7 @@ export default function ProductPage({ product, categories }) {
 
           <div className="size-add">
             <ProductSizeSelector sizes={product.sizes} />
-            <AddToCartButton />
+            <AddToCartButton product={product} />
           </div>
 
           <div className="notes">

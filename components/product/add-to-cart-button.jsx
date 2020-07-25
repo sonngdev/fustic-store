@@ -1,6 +1,16 @@
-function AddToCartButton() {
+import { useDispatch } from 'react-redux';
+import { addToCart } from 'store/actions';
+import Product from 'models/Product';
+
+function AddToCartButton({ product }) {
+  const dispatch = useDispatch();
+
   return (
-    <button type="button" className="add-to-cart">
+    <button
+      type="button"
+      className="add-to-cart"
+      onClick={() => dispatch(addToCart(product))}
+    >
       <span>
         <img src="/eye.png" alt="Eye" />
         Add to cart
@@ -55,5 +65,9 @@ function AddToCartButton() {
     </button>
   );
 }
+
+AddToCartButton.propTypes = {
+  product: Product.isRequired,
+};
 
 export default AddToCartButton;
