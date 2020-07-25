@@ -4,7 +4,7 @@ import Layout from 'components/layout';
 import ProductImages from 'components/product/product-images';
 import ProductSizeSelector from 'components/product/product-size-selector';
 import AddToCartButton from 'components/product/add-to-cart-button';
-import { get, getCategories } from 'utils/request';
+import { getCategories, getProducts, getProduct } from 'utils/request';
 import { formatPriceVnd } from 'utils/string';
 import Category from 'models/Category';
 import Product from 'models/Product';
@@ -148,7 +148,7 @@ ProductPage.propTypes = {
 };
 
 export async function getStaticPaths() {
-  const products = await get('http://localhost:3001/products');
+  const products = await getProducts();
 
   const categorySlugs = new Set(products.map((product) => product.category.slug));
   const paths = [...categorySlugs].reduce((acc, categorySlug) => {
@@ -164,7 +164,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const product = await get(`http://localhost:3001/products/${params.productSlug}`);
+  const product = await getProduct(params.productSlug);
   const categories = await getCategories();
 
   return {
