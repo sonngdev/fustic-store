@@ -1,4 +1,7 @@
-export default function CartProductSmall() {
+import Product from 'models/Product';
+import { formatPriceVnd } from 'utils/string';
+
+export default function CartProductSmall({ product }) {
   return (
     <div className="cart-product-small">
       <button type="button" className="remove-button">
@@ -8,14 +11,14 @@ export default function CartProductSmall() {
       <img className="image" src="https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501" alt="Hoodie" />
 
       <div className="info">
-        <div className="name">Batherope kids tee</div>
-        <div className="category-size">T-Shirt • S</div>
+        <div className="name">{product.name}</div>
+        <div className="category-size">{product.category.singularName} • S</div>
         <div className="quantity">
           <button type="button" className="minus">-</button>
           <span>1</span>
           <button type="button" className="plus">+</button>
         </div>
-        <div className="price">420k vnd • $20</div>
+        <div className="price">{formatPriceVnd(product.priceVnd)} VND • ${+product.priceUsd.toLocaleString()}</div>
       </div>
 
       <style jsx>
@@ -73,3 +76,7 @@ export default function CartProductSmall() {
     </div>
   );
 }
+
+CartProductSmall.propTypes = {
+  product: Product.isRequired,
+};

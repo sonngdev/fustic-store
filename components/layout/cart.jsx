@@ -1,13 +1,15 @@
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import PropTypes from 'prop-types';
-
+import { useSelector } from 'react-redux';
+import { selectCart } from 'store/selectors';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import CartProductSmall from 'components/product/cart-product-small';
 import Button from 'components/basic/button';
 
 export default function Cart({ visible }) {
-  const itemList = useRef();
+  const cart = useSelector(selectCart);
 
+  const itemList = useRef();
   useDisableBodyScroll(itemList.current, visible);
 
   return (
@@ -22,30 +24,12 @@ export default function Cart({ visible }) {
       </div>
 
       <div className="items scrollbar-visible" ref={itemList}>
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
+        {cart.map((product) => (
+          <Fragment key={product.id}>
+            <hr />
+            <CartProductSmall product={product} />
+          </Fragment>
+        ))}
       </div>
 
       <Button block>Check out</Button>
