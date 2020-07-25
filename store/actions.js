@@ -1,8 +1,14 @@
 export const ADD_TO_CART = 'ADD_TO_CART';
+export const MINUS_FROM_CART = 'MINUS_FROM_CART';
 export const CLEAR_FROM_CART = 'CLEAR_FROM_CART';
 
 export const addToCart = (product, sizeName) => ({
   type: ADD_TO_CART,
+  payload: { product, sizeName },
+});
+
+export const minusFromCart = (product, sizeName) => ({
+  type: MINUS_FROM_CART,
   payload: { product, sizeName },
 });
 

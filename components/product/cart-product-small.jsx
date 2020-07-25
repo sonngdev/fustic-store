@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { clearFromCart } from 'store/actions';
+import { addToCart, minusFromCart, clearFromCart } from 'store/actions';
 import Product from 'models/Product';
 import { formatPriceVnd } from 'utils/string';
 
@@ -9,9 +9,9 @@ export default function CartProductSmall({ cartEntry }) {
   const thumbnail = product.images.find((image) => image.isThumbnail);
 
   const dispatch = useDispatch();
-  const clearProductFromCart = () => {
-    dispatch(clearFromCart(product, sizeName));
-  };
+  const addProductToCart = () => dispatch(addToCart(product, sizeName));
+  const minusProductFromCart = () => dispatch(minusFromCart(product, sizeName));
+  const clearProductFromCart = () => dispatch(clearFromCart(product, sizeName));
 
   return (
     <div className="cart-product-small">
@@ -25,9 +25,9 @@ export default function CartProductSmall({ cartEntry }) {
         <div className="name">{product.name}</div>
         <div className="category-size">{product.category.singularName} • {sizeName}</div>
         <div className="quantity">
-          <button type="button" className="minus">-</button>
+          <button type="button" className="minus" onClick={minusProductFromCart} disabled={quantity === 1}>-</button>
           <span>{quantity}</span>
-          <button type="button" className="plus">+</button>
+          <button type="button" className="plus" onClick={addProductToCart}>+</button>
         </div>
         <div className="price">{formatPriceVnd(product.priceVnd)} VND • ${+product.priceUsd.toLocaleString()}</div>
       </div>
