@@ -6,8 +6,10 @@ import ProductSizeSelector from 'components/product/product-size-selector';
 import AddToCartButton from 'components/product/add-to-cart-button';
 import { get, getCategories } from 'utils/request';
 import { formatPriceVnd } from 'utils/string';
+import Category from 'models/Category';
+import Product from 'models/Product';
 
-export default function Product({ product, categories }) {
+export default function ProductPage({ product, categories }) {
   return (
     <Layout categories={categories}>
       <Head>
@@ -140,47 +142,9 @@ export default function Product({ product, categories }) {
   );
 }
 
-Product.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    priceVnd: PropTypes.number.isRequired,
-    priceUsd: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    updatedAt: PropTypes.string.isRequired,
-    category: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      singularName: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      updatedAt: PropTypes.string.isRequired,
-    }),
-    images: PropTypes.arrayOf(
-      PropTypes.shape({
-        url: PropTypes.string.isRequired,
-        isThumbnail: PropTypes.bool.isRequired,
-        isAltThumbnail: PropTypes.bool.isRequired,
-        createdAt: PropTypes.string.isRequired,
-      }),
-    ),
-    sizes: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        inStock: PropTypes.bool.isRequired,
-      }),
-    ),
-  }).isRequired,
-  categories: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      updatedAt: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+ProductPage.propTypes = {
+  product: Product.isRequired,
+  categories: PropTypes.arrayOf(Category).isRequired,
 };
 
 export async function getStaticPaths() {

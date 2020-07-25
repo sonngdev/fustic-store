@@ -4,8 +4,11 @@ import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
 import { get, getCategories } from 'utils/request';
+import Category from 'models/Category';
+import GeneralConfig from 'models/GeneralConfig';
+import Product from 'models/Product';
 
-export default function Home({
+export default function HomePage({
   generalConfig,
   products,
   categories,
@@ -68,55 +71,10 @@ export default function Home({
   );
 }
 
-Home.propTypes = {
-  generalConfig: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    active: PropTypes.bool.isRequired,
-    landingVimeoId: PropTypes.string.isRequired,
-    landingPlaceholderImageUrl: PropTypes.string.isRequired,
-  }).isRequired,
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      priceVnd: PropTypes.number.isRequired,
-      priceUsd: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      updatedAt: PropTypes.string.isRequired,
-      category: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        singularName: PropTypes.string.isRequired,
-        slug: PropTypes.string.isRequired,
-        createdAt: PropTypes.string.isRequired,
-        updatedAt: PropTypes.string.isRequired,
-      }).isRequired,
-      images: PropTypes.arrayOf(
-        PropTypes.shape({
-          url: PropTypes.string.isRequired,
-          isThumbnail: PropTypes.bool.isRequired,
-          isAltThumbnail: PropTypes.bool.isRequired,
-          createdAt: PropTypes.string.isRequired,
-        }),
-      ).isRequired,
-      sizes: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          inStock: PropTypes.bool.isRequired,
-        }),
-      ),
-    }),
-  ).isRequired,
-  categories: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      updatedAt: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+HomePage.propTypes = {
+  generalConfig: GeneralConfig.isRequired,
+  products: PropTypes.arrayOf(Product).isRequired,
+  categories: PropTypes.arrayOf(Category).isRequired,
 };
 
 export async function getStaticProps() {

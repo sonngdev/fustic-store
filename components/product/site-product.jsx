@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { formatPriceVnd } from 'utils/string';
+import Product from 'models/Product';
 
 export default function SiteProduct({ product }) {
   const {
@@ -117,35 +117,5 @@ export default function SiteProduct({ product }) {
 }
 
 SiteProduct.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    priceVnd: PropTypes.number.isRequired,
-    priceUsd: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    updatedAt: PropTypes.string.isRequired,
-    category: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      singularName: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      updatedAt: PropTypes.string.isRequired,
-    }),
-    images: PropTypes.arrayOf(
-      PropTypes.shape({
-        url: PropTypes.string.isRequired,
-        isThumbnail: PropTypes.bool.isRequired,
-        isAltThumbnail: PropTypes.bool.isRequired,
-        createdAt: PropTypes.string.isRequired,
-      }),
-    ),
-    sizes: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        inStock: PropTypes.bool.isRequired,
-      }),
-    ),
-  }).isRequired,
+  product: Product.isRequired,
 };

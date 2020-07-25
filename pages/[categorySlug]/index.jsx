@@ -4,8 +4,10 @@ import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
 import { get, getCategories } from 'utils/request';
+import Category from 'models/Category';
+import Product from 'models/Product';
 
-export default function Category({ category, products, categories }) {
+export default function CategoryPage({ category, products, categories }) {
   return (
     <Layout categories={categories}>
       <Head>
@@ -34,56 +36,10 @@ export default function Category({ category, products, categories }) {
   );
 }
 
-Category.propTypes = {
-  category: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    updatedAt: PropTypes.string.isRequired,
-  }).isRequired,
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      priceVnd: PropTypes.number.isRequired,
-      priceUsd: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      updatedAt: PropTypes.string.isRequired,
-      category: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        singularName: PropTypes.string.isRequired,
-        slug: PropTypes.string.isRequired,
-        createdAt: PropTypes.string.isRequired,
-        updatedAt: PropTypes.string.isRequired,
-      }),
-      images: PropTypes.arrayOf(
-        PropTypes.shape({
-          url: PropTypes.string.isRequired,
-          isThumbnail: PropTypes.bool.isRequired,
-          isAltThumbnail: PropTypes.bool.isRequired,
-          createdAt: PropTypes.string.isRequired,
-        }),
-      ),
-      sizes: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          inStock: PropTypes.bool.isRequired,
-        }),
-      ),
-    }),
-  ).isRequired,
-  categories: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      updatedAt: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+CategoryPage.propTypes = {
+  category: Category.isRequired,
+  products: PropTypes.arrayOf(Product).isRequired,
+  categories: PropTypes.arrayOf(Category).isRequired,
 };
 
 export async function getStaticPaths() {
