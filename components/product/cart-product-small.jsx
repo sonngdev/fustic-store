@@ -4,6 +4,7 @@ import { formatPriceVnd } from 'utils/string';
 
 export default function CartProductSmall({ cartEntry }) {
   const { product, quantity, sizeName } = cartEntry;
+  const thumbnail = product.images.find((image) => image.isThumbnail);
 
   return (
     <div className="cart-product-small">
@@ -11,7 +12,7 @@ export default function CartProductSmall({ cartEntry }) {
         <img src="/icons/close.svg" alt="Remove item" />
       </button>
 
-      <img className="image" src="https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501" alt="Hoodie" />
+      <img className="image" src={thumbnail.url} alt={product.name} />
 
       <div className="info">
         <div className="name">{product.name}</div>
@@ -41,8 +42,10 @@ export default function CartProductSmall({ cartEntry }) {
           }
 
           .image {
-            width: 90px;
+            width: 70px;
             height: 90px;
+            object-fit: contain;
+            margin: 0 10px;
           }
 
           .info {
