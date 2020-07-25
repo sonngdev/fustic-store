@@ -6,6 +6,7 @@ import {
   ButtonBack,
   ButtonNext,
 } from 'pure-react-carousel';
+import Product from 'models/Product';
 
 export default function ProductImages({ product }) {
   return (
@@ -142,3 +143,7 @@ export default function ProductImages({ product }) {
     </CarouselProvider>
   );
 }
+
+ProductImages.propTypes = {
+  product: Product.isRequired,
+};
