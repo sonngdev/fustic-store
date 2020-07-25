@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { selectCart } from 'store/selectors';
+import { getCartQuantity } from 'utils/cart';
 
 export default function Header({
   showMenu,
   showCart,
   reveal,
 }) {
+  const cart = useSelector(selectCart);
+
   return (
     <header>
       <button type="button" className="menu-button" onClick={showMenu}>
@@ -17,7 +22,7 @@ export default function Header({
         </a>
       </Link>
       <button type="button" className="cart-button" onClick={showCart}>
-        Cart (1)
+        Cart ({getCartQuantity(cart)})
       </button>
       <div className="items">
         <a>Collections</a>
