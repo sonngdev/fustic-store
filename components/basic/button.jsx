@@ -33,11 +33,6 @@ export default function Button({ block, solid, ...rest }) {
               }
             }
 
-            &:disabled {
-              opacity: 0.2;
-              cursor: not-allowed;
-            }
-
             &.block {
               width: 100%;
             }

@@ -75,6 +75,11 @@ button {
   font-weight: var(--fontweight-medium);
   background-color: transparent;
   border: none;
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
 }
 
 hr {

@@ -46,11 +46,6 @@ function AddToCartButton({ product, size }) {
             }
           }
 
-          &:disabled {
-            opacity: 0.2;
-            cursor: not-allowed;
-          }
-
           span {
             display: grid;
             grid-template-columns: 45px auto;

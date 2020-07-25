@@ -82,11 +82,6 @@ function ProductOrderer({ product }) {
                   margin-right: 11px;
                 }
 
-                :disabled {
-                  opacity: 0.2;
-                  cursor: not-allowed;
-                }
-
                 &.active {
                   border: solid 1px var(--color-text);
                   font-weight: var(--fontweight-semibold);
