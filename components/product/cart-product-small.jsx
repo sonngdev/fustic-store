@@ -1,7 +1,10 @@
+import PropTypes from 'prop-types';
 import Product from 'models/Product';
 import { formatPriceVnd } from 'utils/string';
 
-export default function CartProductSmall({ product }) {
+export default function CartProductSmall({ cartEntry }) {
+  const { product, quantity, sizeName } = cartEntry;
+
   return (
     <div className="cart-product-small">
       <button type="button" className="remove-button">
@@ -12,10 +15,10 @@ export default function CartProductSmall({ product }) {
 
       <div className="info">
         <div className="name">{product.name}</div>
-        <div className="category-size">{product.category.singularName} • S</div>
+        <div className="category-size">{product.category.singularName} • {sizeName}</div>
         <div className="quantity">
           <button type="button" className="minus">-</button>
-          <span>1</span>
+          <span>{quantity}</span>
           <button type="button" className="plus">+</button>
         </div>
         <div className="price">{formatPriceVnd(product.priceVnd)} VND • ${+product.priceUsd.toLocaleString()}</div>
@@ -78,5 +81,9 @@ export default function CartProductSmall({ product }) {
 }
 
 CartProductSmall.propTypes = {
-  product: Product.isRequired,
+  cartEntry: PropTypes.shape({
+    product: Product.isRequired,
+    quantity: PropTypes.number.isRequired,
+    sizeName: PropTypes.string.isRequired,
+  }).isRequired,
 };

@@ -1,15 +1,21 @@
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { addToCart } from 'store/actions';
 import Product from 'models/Product';
 
-function AddToCartButton({ product }) {
+function AddToCartButton({ product, size }) {
   const dispatch = useDispatch();
+
+  const addProductToCart = () => {
+    if (!size || !size.inStock) return;
+    dispatch(addToCart(product, size.name));
+  };
 
   return (
     <button
       type="button"
       className="add-to-cart"
-      onClick={() => dispatch(addToCart(product))}
+      onClick={addProductToCart}
     >
       <span>
         <img src="/eye.png" alt="Eye" />
@@ -68,6 +74,14 @@ function AddToCartButton({ product }) {
 
 AddToCartButton.propTypes = {
   product: Product.isRequired,
+  size: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    inStock: PropTypes.bool.isRequired,
+  }),
+};
+
+AddToCartButton.defaultProps = {
+  size: null,
 };
 
 export default AddToCartButton;

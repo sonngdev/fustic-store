@@ -31,7 +31,7 @@ function ProductOrderer({ product }) {
           }
         </div>
 
-        <AddToCartButton product={product} />
+        <AddToCartButton product={product} size={selectedSize} />
       </div>
 
       <div className="notes">

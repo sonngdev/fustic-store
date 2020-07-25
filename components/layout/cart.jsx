@@ -24,10 +24,10 @@ export default function Cart({ visible }) {
       </div>
 
       <div className="items scrollbar-visible" ref={itemList}>
-        {cart.map((product) => (
-          <Fragment key={product.id}>
+        {cart.map((entry) => (
+          <Fragment key={entry.product.id}>
             <hr />
-            <CartProductSmall product={product} />
+            <CartProductSmall cartEntry={entry} />
           </Fragment>
         ))}
       </div>

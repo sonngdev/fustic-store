@@ -1,6 +1,6 @@
 export const ADD_TO_CART = 'ADD_TO_CART';
 
-export const addToCart = (product) => ({
+export const addToCart = (product, sizeName) => ({
   type: ADD_TO_CART,
-  payload: product,
+  payload: { product, sizeName },
 });
