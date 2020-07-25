@@ -1,8 +1,10 @@
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Layout from 'components/layout';
 import ProductImages from 'components/product/product-images';
 import ProductSizeSelector from 'components/product/product-size-selector';
 import AddToCartButton from 'components/product/add-to-cart-button';
+import { get } from 'utils/request';
 import { formatPriceVnd } from 'utils/string';
 
 export default function Product({ product }) {
@@ -18,7 +20,7 @@ export default function Product({ product }) {
         <div className="product-orderer">
           <div className="name">{product.name}</div>
           <div className="category">{product.category.singularName}</div>
-          <div className="price">{formatPriceVnd(product.priceVnd)} VND • ${product.priceUsd.toLocaleString()}</div>
+          <div className="price">{formatPriceVnd(product.priceVnd)} VND • ${+product.priceUsd.toLocaleString()}</div>
 
           <div className="size-add">
             <ProductSizeSelector sizes={product.sizes} />
@@ -139,58 +141,42 @@ export default function Product({ product }) {
   );
 }
 
-// GET /products
+Product.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+    priceVnd: PropTypes.number.isRequired,
+    priceUsd: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    updatedAt: PropTypes.string.isRequired,
+    category: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      singularName: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }),
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        url: PropTypes.string.isRequired,
+        isThumbnail: PropTypes.bool.isRequired,
+        isAltThumbnail: PropTypes.bool.isRequired,
+        createdAt: PropTypes.string.isRequired,
+      }),
+    ),
+    sizes: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        inStock: PropTypes.bool.isRequired,
+      }),
+    ),
+  }).isRequired,
+};
+
 export async function getStaticPaths() {
-  const products = [
-    {
-      id: 1,
-      category: {
-        id: 1,
-        slug: 't-shirts',
-        name: 'T-Shirts',
-        singularName: 'T-Shirt',
-      },
-      name: 'BATHEROPE KIDS',
-      slug: 'batherobe-kids',
-      images: [
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: true,
-        },
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: false,
-        },
-      ],
-      priceVnd: 420000,
-      priceUsd: 20,
-      sizes: ['S', 'M', 'L'],
-    },
-    {
-      id: 2,
-      category: {
-        id: 1,
-        slug: 't-shirts',
-        name: 'T-Shirts',
-        singularName: 'T-Shirt',
-      },
-      name: 'DOPE BATHEROPE KIDS',
-      slug: 'dope-batherope-kids',
-      images: [
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: true,
-        },
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: false,
-        },
-      ],
-      priceVnd: 420000,
-      priceUsd: 20,
-      sizes: ['S', 'M', 'L'],
-    },
-  ];
+  const products = await get('http://localhost:3001/products');
 
   const categorySlugs = new Set(products.map((product) => product.category.slug));
   const paths = [...categorySlugs].reduce((acc, categorySlug) => {
@@ -205,33 +191,8 @@ export async function getStaticPaths() {
   };
 }
 
-// GET /categories/:slug
-// GET /categories/:category_slug/products/:slug
 export async function getStaticProps({ params }) {
-  const product = {
-    id: 1,
-    category: {
-      id: 1,
-      slug: 't-shirts',
-      name: 'T-Shirts',
-      singularName: 'T-Shirt',
-    },
-    name: 'BATHEROPE KIDS',
-    slug: 'batherobe-kids',
-    images: [
-      {
-        url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-        isThumbnail: true,
-      },
-      {
-        url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-        isThumbnail: false,
-      },
-    ],
-    priceVnd: 420000,
-    priceUsd: 20,
-    sizes: ['S', 'M', 'L'],
-  };
+  const product = await get(`http://localhost:3001/products/${params.productSlug}`);
 
   return {
     props: {
