@@ -3,13 +3,18 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
+
 import { saveCheckoutInfo } from 'store/actions';
+import { countryList } from 'utils/country';
+import { getCategories } from 'utils/request';
+import Category from 'models/Category';
+
 import Layout from 'components/layout';
 import Button from 'components/basic/button';
 import Select from 'components/basic/select';
-import { countryList } from 'utils/country';
 
-function CheckoutInfoPage() {
+function CheckoutInfoPage({ categories }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -45,7 +50,7 @@ function CheckoutInfoPage() {
   };
 
   return (
-    <Layout>
+    <Layout categories={categories}>
       <div className="checkout-info-page">
         <form onSubmit={submitInfo}>
           <section className="contact">
@@ -193,6 +198,20 @@ function CheckoutInfoPage() {
       </div>
     </Layout>
   );
+}
+
+CheckoutInfoPage.propTypes = {
+  categories: PropTypes.arrayOf(Category).isRequired,
+};
+
+export async function getStaticProps() {
+  const categories = await getCategories();
+
+  return {
+    props: {
+      categories,
+    },
+  };
 }
 
 export default CheckoutInfoPage;

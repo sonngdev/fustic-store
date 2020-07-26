@@ -1,13 +1,18 @@
 import { Fragment, useState } from 'react';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
+
 import { selectCart } from 'store/selectors';
 import { getCartTotal } from 'utils/cart';
+import { getCategories } from 'utils/request';
+import Category from 'models/Category';
+
 import Layout from 'components/layout';
 import CartProductSmall from 'components/product/cart-product-small';
 import Button from 'components/basic/button';
 
-function CartPage() {
+function CartPage({ categories }) {
   const cart = useSelector(selectCart);
   const [vndSubtotal, usdSubtotal] = getCartTotal(cart);
   const [vndShipping, usdShipping] = [35000, 60];
@@ -20,7 +25,7 @@ function CartPage() {
   const [discountCode, setDiscountCode] = useState('');
 
   return (
-    <Layout>
+    <Layout categories={categories}>
       <Head>
         <title>Shopping Cart – Fustic Store</title>
       </Head>
@@ -224,6 +229,20 @@ function CartPage() {
       </style>
     </Layout>
   );
+}
+
+CartPage.propTypes = {
+  categories: PropTypes.arrayOf(Category).isRequired,
+};
+
+export async function getStaticProps() {
+  const categories = await getCategories();
+
+  return {
+    props: {
+      categories,
+    },
+  };
 }
 
 export default CartPage;
