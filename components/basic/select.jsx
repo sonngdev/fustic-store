@@ -25,6 +25,7 @@ export default function Select(props) {
             padding: 12px;
             padding-right: 22px;
             width: 100%;
+            height: 43px;
             font-size: var(--fontsize-md);
             text-transform: uppercase;
 
