@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Layout from 'components/layout';
 import Button from 'components/basic/button';
+import Select from 'components/basic/select';
+import { countryList } from 'utils/country';
 
 function CheckoutInfoPage() {
   const [firstName, setFirstName] = useState('');
@@ -10,12 +12,14 @@ function CheckoutInfoPage() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState('Vietnam');
   const [city, setCity] = useState('');
   const [district, setDistrict] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
+
+  const toVietnam = country === 'Vietnam';
 
   return (
     <Layout>
@@ -32,9 +36,17 @@ function CheckoutInfoPage() {
         <section className="shipping">
           <small>Shipping</small>
           <article className="inputs">
-            <input required type="text" className="country" name="country" placeholder="Country" value={country} onChange={(e) => setCountry(e.target.value)} />
-            <input required type="text" className="city" name="city" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
-            <input required type="text" className="district" name="district" placeholder="District" value={district} onChange={(e) => setDistrict(e.target.value)} />
+            <Select onChange={(e) => setCountry(e.target.value)} name="country" className="country" required>
+              {countryList.map((c) => (
+                <option key={c} value={c} selected={c === country}>{c}</option>
+              ))}
+            </Select>
+            {toVietnam && (
+              <input required type="text" className="city" name="city" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
+            )}
+            {toVietnam && (
+              <input required type="text" className="district" name="district" placeholder="District" value={district} onChange={(e) => setDistrict(e.target.value)} />
+            )}
             <input required type="text" className="zip-code" name="zip-code" placeholder="Zip • Postal code" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
             <input required type="text" className="address" name="address" placeholder="Address*" value={address} onChange={(e) => setAddress(e.target.value)} />
             <input required type="text" className="notes" name="notes" placeholder="Notes • Instructions" value={notes} onChange={(e) => setNotes(e.target.value)} />
@@ -91,11 +103,17 @@ function CheckoutInfoPage() {
               .inputs {
                 margin-top: 0.8em;
                 display: grid;
-                grid-template-areas:
+                grid-template-areas: ${toVietnam ? (`
                   "country city"
                   "district zip-code"
                   "address address"
-                  "notes notes";
+                  "notes notes"
+                `) : (`
+                  "country zip-code"
+                  "address address"
+                  "notes notes"
+                `)};
+
                 gap: 10px;
 
                 .country {
