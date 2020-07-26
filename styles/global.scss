@@ -89,6 +89,17 @@ hr {
   opacity: 0.2;
 }
 
+input {
+  color: var(--color-text);
+  border: solid 1px rgba(white, 0.4);
+  border-radius: 0;
+  background-color: transparent;
+  padding: 12px;
+  width: 100%;
+  font-size: var(--fontsize-md);
+  text-transform: uppercase;
+}
+
 .scrollbar-visible {
   &::-webkit-scrollbar {
     -webkit-appearance: none;

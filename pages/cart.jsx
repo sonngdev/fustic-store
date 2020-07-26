@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
 import { selectCart } from 'store/selectors';
@@ -15,6 +15,8 @@ function CartPage() {
     vndSubtotal + vndShipping + vndTax,
     usdSubtotal + usdShipping + usdTax,
   ];
+
+  const [discountCode, setDiscountCode] = useState('');
 
   return (
     <Layout>
@@ -59,6 +61,19 @@ function CartPage() {
             </tbody>
           </table>
         </div>
+
+        <div className="discount-code">
+          <input
+            type="text"
+            placeholder="Discount code"
+            value={discountCode}
+            onChange={(e) => setDiscountCode(e.target.value)}
+          />
+          <button type="button" className="add-discount">
+            <span>+</span>
+          </button>
+        </div>
+
       </div>
 
       <style jsx>
@@ -111,6 +126,32 @@ function CartPage() {
                 font-weight: var(--fontweight-regular);
                 padding-left: 10%;
                 width: 30%;
+              }
+            }
+          }
+
+          .discount-code {
+            position: relative;
+            width: 100%;
+            margin-top: 0.5rem;
+
+            .add-discount {
+              position: absolute;
+              top: 10px;
+              right: 10px;
+
+              background-color: var(--color-text);
+              color: var(--color-background);
+              padding: 0.1em;
+              height: 1.5em;
+              width: 1.5em;
+
+              span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.5em;
+                line-height: 0.7;
               }
             }
           }
