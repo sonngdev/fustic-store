@@ -4,12 +4,14 @@ import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-const Button = forwardRef(({ block, solid, ...rest }, ref) => (
+const Button = forwardRef(({
+  block, solid, className, ...rest
+}, ref) => (
   <>
     <button
       ref={ref}
       type="submit"
-      className={cx({ block, solid })}
+      className={cx(className, { block, solid })}
       {...rest}
     />
 
@@ -43,6 +45,10 @@ const Button = forwardRef(({ block, solid, ...rest }, ref) => (
           background-color: var(--color-text);
           color: var(--color-background);
           font-weight: var(--fontweight-bold);
+
+          &:hover {
+            opacity: 0.8;
+          }
         }
 
         @media screen and (min-width: 1200px) {
@@ -59,11 +65,13 @@ const Button = forwardRef(({ block, solid, ...rest }, ref) => (
 Button.propTypes = {
   block: PropTypes.bool,
   solid: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 Button.defaultProps = {
   block: false,
   solid: false,
+  className: '',
 };
 
 export default Button;

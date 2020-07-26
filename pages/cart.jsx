@@ -5,6 +5,7 @@ import { selectCart } from 'store/selectors';
 import { getCartTotal } from 'utils/cart';
 import Layout from 'components/layout';
 import CartProductSmall from 'components/product/cart-product-small';
+import Button from 'components/basic/button';
 
 function CartPage() {
   const cart = useSelector(selectCart);
@@ -74,6 +75,7 @@ function CartPage() {
           </button>
         </div>
 
+        <Button block solid className="payment-button">Payment</Button>
       </div>
 
       <style jsx>
@@ -154,6 +156,10 @@ function CartPage() {
                 line-height: 0.7;
               }
             }
+          }
+
+          :global(.payment-button) {
+            margin-top: 3rem;
           }
 
           @media screen and (min-width: 375px) {
