@@ -3,18 +3,13 @@ import PropTypes from 'prop-types';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
-import { getCategories, getProducts, getActiveGeneralConfig } from 'utils/request';
-import Category from 'models/Category';
+import { getProducts, getActiveGeneralConfig } from 'utils/request';
 import GeneralConfig from 'models/GeneralConfig';
 import Product from 'models/Product';
 
-export default function HomePage({
-  generalConfig,
-  products,
-  categories,
-}) {
+export default function HomePage({ generalConfig, products }) {
   return (
-    <Layout categories={categories}>
+    <Layout>
       <div className="video">
         <Vimeo
           video={generalConfig.landingVimeoId}
@@ -24,7 +19,7 @@ export default function HomePage({
         />
       </div>
 
-      <div className="home">
+      <div className="home-page">
         <ProductGrid>
           {products.map((product) => <SiteProduct product={product} key={product.id} />)}
         </ProductGrid>
@@ -57,7 +52,7 @@ export default function HomePage({
           }
         }
 
-        .home {
+        .home-page {
           padding-top: 8rem;
           width: 100%;
 
@@ -74,7 +69,6 @@ export default function HomePage({
 HomePage.propTypes = {
   generalConfig: GeneralConfig.isRequired,
   products: PropTypes.arrayOf(Product).isRequired,
-  categories: PropTypes.arrayOf(Category).isRequired,
 };
 
 export async function getStaticProps() {
@@ -84,13 +78,11 @@ export async function getStaticProps() {
   };
   const generalConfig = await getActiveGeneralConfig() || defaultGeneralConfig;
   const products = await getProducts();
-  const categories = await getCategories();
 
   return {
     props: {
       generalConfig,
       products,
-      categories,
     },
   };
 }

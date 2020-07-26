@@ -1,19 +1,35 @@
 /* eslint-disable no-useless-escape */
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-
-import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function Menu({ visible, categories }) {
+import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
+import { getCategories } from 'utils/request';
+
+function useCategories() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const request = async () => {
+      const cs = await getCategories();
+      setCategories(cs);
+    };
+    request();
+  }, []);
+
+  return categories;
+}
+
+export default function Menu({ visible }) {
   const menu = useRef(null);
   useDisableBodyScroll(menu.current, visible);
 
-  const { asPath } = useRouter();
+  const categories = useCategories();
 
+  const { asPath } = useRouter();
   const links = [
     { href: '/', as: '/', text: 'Collections' },
     ...categories.map(({ slug, name }) => (
@@ -96,17 +112,4 @@ export default function Menu({ visible, categories }) {
 
 Menu.propTypes = {
   visible: PropTypes.bool.isRequired,
-  categories: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      updatedAt: PropTypes.string.isRequired,
-    }),
-  ),
-};
-
-Menu.defaultProps = {
-  categories: [],
 };

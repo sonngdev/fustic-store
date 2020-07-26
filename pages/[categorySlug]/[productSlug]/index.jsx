@@ -1,27 +1,25 @@
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Layout from 'components/layout';
 import ProductImages from 'components/product/product-images';
 import ProductOrderer from 'components/product/product-orderer';
-import { getCategories, getProducts, getProduct } from 'utils/request';
-import Category from 'models/Category';
+import { getProducts, getProduct } from 'utils/request';
 import Product from 'models/Product';
 
-export default function ProductPage({ product, categories }) {
+export default function ProductPage({ product }) {
   return (
-    <Layout categories={categories}>
+    <Layout>
       <Head>
         <title>{product.name} – {product.category.name} – Fustic Store</title>
       </Head>
 
-      <div className="product">
+      <div className="product-page">
         <ProductImages product={product} />
         <ProductOrderer product={product} />
       </div>
 
       <style jsx>
         {`
-        .product {
+        .product-page {
           width: 100%;
           display: flex;
           flex-direction: column;
@@ -49,7 +47,6 @@ export default function ProductPage({ product, categories }) {
 
 ProductPage.propTypes = {
   product: Product.isRequired,
-  categories: PropTypes.arrayOf(Category).isRequired,
 };
 
 export async function getStaticPaths() {
@@ -70,12 +67,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const product = await getProduct(params.productSlug);
-  const categories = await getCategories();
 
   return {
     props: {
       product,
-      categories,
     },
   };
 }

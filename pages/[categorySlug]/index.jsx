@@ -7,14 +7,14 @@ import { getCategories, getCategory, getProducts } from 'utils/request';
 import Category from 'models/Category';
 import Product from 'models/Product';
 
-export default function CategoryPage({ category, products, categories }) {
+export default function CategoryPage({ category, products }) {
   return (
-    <Layout categories={categories}>
+    <Layout>
       <Head>
         <title>{category.name} – Fustic Store</title>
       </Head>
 
-      <div className="category">
+      <div className="category-page">
         <ProductGrid>
           {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
         </ProductGrid>
@@ -22,7 +22,7 @@ export default function CategoryPage({ category, products, categories }) {
 
       <style jsx>
         {`
-        .category {
+        .category-page {
           width: 100%;
           padding-top: 8rem;
 
@@ -39,7 +39,6 @@ export default function CategoryPage({ category, products, categories }) {
 CategoryPage.propTypes = {
   category: Category.isRequired,
   products: PropTypes.arrayOf(Product).isRequired,
-  categories: PropTypes.arrayOf(Category).isRequired,
 };
 
 export async function getStaticPaths() {
@@ -55,13 +54,11 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const category = await getCategory(params.categorySlug);
   const products = await getProducts(category.id);
-  const categories = await getCategories();
 
   return {
     props: {
       category,
       products,
-      categories,
       key: params.categorySlug,
     },
   };
