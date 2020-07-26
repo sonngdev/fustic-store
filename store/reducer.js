@@ -3,6 +3,7 @@ import {
   MINUS_FROM_CART,
   CLEAR_FROM_CART,
   SAVE_CHECKOUT_INFO,
+  UPDATE_CART_PRODUCTS,
 } from './actions';
 
 const defaultState = {
@@ -42,6 +43,15 @@ function minusProduct(cart, product, sizeName) {
 function clearProduct(cart, product, sizeName) {
   const entry = cart.find((e) => e.product.id === product.id && e.sizeName === sizeName);
   return cart.filter((e) => e !== entry);
+}
+
+function updateCartProducts(cart, products) {
+  return cart.map((e) => {
+    const updatedProduct = products.find((p) => p.id === e.product.id);
+
+    if (!updatedProduct) return e;
+    return { ...e, product: updatedProduct };
+  });
 }
 
 function saveCheckoutInfo(info) {
@@ -84,6 +94,11 @@ export default function reducer(state = defaultState, action) {
       return {
         ...state,
         checkoutInfo: saveCheckoutInfo(action.payload),
+      };
+    case UPDATE_CART_PRODUCTS:
+      return {
+        ...state,
+        cart: updateCartProducts(state.cart, action.payload),
       };
     default:
       return state;

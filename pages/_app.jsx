@@ -2,19 +2,35 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-underscore-dangle */
 
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { useStore } from 'react-redux';
+import { useStore, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-
 import { wrapper } from 'store';
+import { updateCartProducts } from 'store/actions';
+import { getProducts } from 'utils/request';
 
 import 'normalize.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'styles/global.scss';
 
+function useUpdatedCartProducts() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const request = async () => {
+      const products = await getProducts();
+      dispatch(updateCartProducts(products));
+    };
+    request();
+  }, []);
+}
+
 function App({ Component, pageProps }) {
   const store = useStore();
+  useUpdatedCartProducts();
+
   return (
     <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
       <Head>
