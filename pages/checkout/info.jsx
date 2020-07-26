@@ -148,8 +148,7 @@ function CheckoutInfoPage({ categories }) {
                   "address address"
                   "notes notes"
                 `)};
-
-                gap: 10px;
+                gap: 10px 8px;
 
                 .country {
                   grid-area: country;
