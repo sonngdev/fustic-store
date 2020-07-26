@@ -44,6 +44,7 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
           display: grid;
           grid-template-columns: 10px 90px auto;
           align-items: start;
+          width: 100%;
 
           button {
             padding: 0;
