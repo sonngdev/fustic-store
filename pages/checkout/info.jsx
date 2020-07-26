@@ -77,13 +77,16 @@ function CheckoutInfoPage() {
             </article>
           </section>
 
-          <Button block solid className="continue-button">Continue</Button>
+          <div className="continue-button">
+            <Button block solid>Continue</Button>
+          </div>
         </form>
 
         <style jsx>
           {`
           .checkout-info-page {
             width: 100%;
+            max-width: 500px;
             padding: 6rem var(--padding-page) 0;
 
             .contact {
@@ -169,12 +172,20 @@ function CheckoutInfoPage() {
               }
             }
 
-            :global(.continue-button) {
-              margin-top: 4rem;
+            .continue-button {
+              margin: 4rem auto 0;
             }
 
             @media screen and (min-width: 375px) {
               --padding-page: 25px;
+            }
+
+            @media screen and (min-width: 1200px) {
+              padding-top: 8rem;
+
+              .continue-button {
+                width: 200px;
+              }
             }
           }
           `}
