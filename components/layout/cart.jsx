@@ -35,7 +35,7 @@ export default function Cart({ visible }) {
         ))}
       </div>
 
-      <Link href="/cart">
+      <Link href="/checkout/info">
         <Button block disabled={!cart.length}>Check out</Button>
       </Link>
 
