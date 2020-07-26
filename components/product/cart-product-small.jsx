@@ -51,14 +51,14 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
           }
 
           .remove-button img {
-              width: 10px;
-              height: 10px;
+            width: 10px;
+            height: 10px;
           }
 
           .image {
             width: 70px;
             height: 90px;
-            object-fit: contain;
+            object-fit: cover;
             margin: 0 10px;
           }
 
