@@ -31,7 +31,7 @@ export default function Menu({ visible }) {
 
   const { asPath } = useRouter();
   const links = [
-    { href: '/', as: '/', text: 'Collections' },
+    { href: '/#home-page', as: '/#home-page', text: 'Collections' },
     ...categories.map(({ slug, name }) => (
       { href: '/[categorySlug]', as: `/${slug}`, text: name }
     )),
@@ -44,7 +44,7 @@ export default function Menu({ visible }) {
         {links.map(({ href, as, text }) => (
           <li key={text}>
             <Link href={href} as={as}>
-              <a className={cx('subitem', { active: as === '/' ? asPath === '/' : asPath.startsWith(as) })}>
+              <a className={cx('subitem', { active: as === '/#home-page' ? asPath === '/#home-page' : asPath.startsWith(as) })}>
                 {text}
               </a>
             </Link>

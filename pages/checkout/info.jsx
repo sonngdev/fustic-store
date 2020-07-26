@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 
 import { saveCheckoutInfo } from 'store/actions';
 import { countryList } from 'utils/country';
@@ -26,7 +26,6 @@ function CheckoutInfoPage() {
 
   const toVietnam = country === 'Vietnam';
 
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const submitInfo = (e) => {
@@ -43,7 +42,7 @@ function CheckoutInfoPage() {
       address,
       notes,
     }));
-    router.push('/checkout/cart');
+    Router.push('/checkout/cart');
   };
 
   return (

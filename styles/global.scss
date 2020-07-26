@@ -58,6 +58,7 @@ body {
   font-size: var(--fontsize-md);
   background-color: var(--color-background);
   color: var(--color-text);
+  scroll-behavior: smooth;
 }
 
 * {

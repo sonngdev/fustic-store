@@ -19,7 +19,7 @@ export default function HomePage({ generalConfig, products }) {
         />
       </div>
 
-      <div className="home-page">
+      <div className="home-page" id="home-page">
         <ProductGrid>
           {products.map((product) => <SiteProduct product={product} key={product.id} />)}
         </ProductGrid>
