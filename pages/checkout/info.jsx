@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import { saveCheckoutInfo } from 'store/actions';
 import Layout from 'components/layout';
 import Button from 'components/basic/button';
 import Select from 'components/basic/select';
@@ -23,9 +25,22 @@ function CheckoutInfoPage() {
   const toVietnam = country === 'Vietnam';
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const submitInfo = (e) => {
     e.preventDefault();
+    dispatch(saveCheckoutInfo({
+      firstName,
+      lastName,
+      email,
+      phone,
+      country,
+      city,
+      district,
+      zipCode,
+      address,
+      notes,
+    }));
     router.push('/checkout/cart');
   };
 

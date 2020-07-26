@@ -2,10 +2,12 @@ import {
   ADD_TO_CART,
   MINUS_FROM_CART,
   CLEAR_FROM_CART,
+  SAVE_CHECKOUT_INFO,
 } from './actions';
 
 const defaultState = {
   cart: [],
+  checkoutInfo: null,
 };
 
 function addProduct(cart, product, sizeName) {
@@ -42,6 +44,25 @@ function clearProduct(cart, product, sizeName) {
   return cart.filter((e) => e !== entry);
 }
 
+function saveCheckoutInfo(info) {
+  return {
+    contact: {
+      firstName: info.firstName,
+      lastName: info.lastName,
+      email: info.email,
+      phone: info.phone,
+    },
+    shipping: {
+      country: info.country,
+      city: info.city,
+      district: info.district,
+      zipCode: info.zipCode,
+      address: info.address,
+      notes: info.notes,
+    },
+  };
+}
+
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case ADD_TO_CART:
@@ -58,6 +79,11 @@ export default function reducer(state = defaultState, action) {
       return {
         ...state,
         cart: clearProduct(state.cart, action.payload.product, action.payload.sizeName),
+      };
+    case SAVE_CHECKOUT_INFO:
+      return {
+        ...state,
+        checkoutInfo: saveCheckoutInfo(action.payload),
       };
     default:
       return state;
