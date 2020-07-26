@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Layout from 'components/layout';
+import Button from 'components/basic/button';
 
 function CheckoutInfoPage() {
   const [firstName, setFirstName] = useState('');
@@ -19,26 +20,28 @@ function CheckoutInfoPage() {
   return (
     <Layout>
       <div className="checkout-info-page">
-        <div className="contact">
+        <section className="contact">
           <small>Contact info</small>
-          <section className="inputs">
+          <article className="inputs">
             <input required type="text" className="first-name" name="first-name" placeholder="First name*" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
             <input required type="text" className="last-name" name="last-name" placeholder="Last name*" value={lastName} onChange={(e) => setLastName(e.target.value)} />
             <input required type="email" className="email" name="email" placeholder="Email*" value={email} onChange={(e) => setEmail(e.target.value)} />
             <input required type="tel" className="phone" name="phone" placeholder="Phone number*" value={phone} onChange={(e) => setPhone(e.target.value)} />
-          </section>
-        </div>
-        <div className="shipping">
+          </article>
+        </section>
+        <section className="shipping">
           <small>Shipping</small>
-          <section className="inputs">
+          <article className="inputs">
             <input required type="text" className="country" name="country" placeholder="Country" value={country} onChange={(e) => setCountry(e.target.value)} />
             <input required type="text" className="city" name="city" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
             <input required type="text" className="district" name="district" placeholder="District" value={district} onChange={(e) => setDistrict(e.target.value)} />
             <input required type="text" className="zip-code" name="zip-code" placeholder="Zip • Postal code" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
             <input required type="text" className="address" name="address" placeholder="Address*" value={address} onChange={(e) => setAddress(e.target.value)} />
             <input required type="text" className="notes" name="notes" placeholder="Notes • Instructions" value={notes} onChange={(e) => setNotes(e.target.value)} />
-          </section>
-        </div>
+          </article>
+        </section>
+
+        <Button block solid className="continue-button">Continue</Button>
 
         <style jsx>
           {`
@@ -119,6 +122,10 @@ function CheckoutInfoPage() {
                   grid-area: notes;
                 }
               }
+            }
+
+            :global(.continue-button) {
+              margin-top: 4rem;
             }
 
             @media screen and (min-width: 375px) {
