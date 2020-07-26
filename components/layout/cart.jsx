@@ -1,6 +1,7 @@
 import { Fragment, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
 import { selectCart } from 'store/selectors';
 import { getCartTotal, getCartQuantity } from 'utils/cart';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
@@ -34,7 +35,9 @@ export default function Cart({ visible }) {
         ))}
       </div>
 
-      <Button block disabled={!cart.length}>Check out</Button>
+      <Link href="/cart">
+        <Button block disabled={!cart.length}>Check out</Button>
+      </Link>
 
       <style jsx>
         {`
