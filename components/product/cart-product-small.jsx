@@ -4,7 +4,7 @@ import { addToCart, minusFromCart, clearFromCart } from 'store/actions';
 import Product from 'models/Product';
 import { formatPriceVnd } from 'utils/string';
 
-export default function CartProductSmall({ cartEntry }) {
+export default function CartProductSmall({ cartEntry, noneditable }) {
   const { product, quantity, sizeName } = cartEntry;
   const thumbnail = product.images.find((image) => image.isThumbnail);
 
@@ -24,11 +24,17 @@ export default function CartProductSmall({ cartEntry }) {
       <div className="info">
         <div className="name">{product.name}</div>
         <div className="category-size">{product.category.singularName} • {sizeName}</div>
-        <div className="quantity">
-          <button type="button" className="minus" onClick={minusProductFromCart} disabled={quantity === 1}>-</button>
-          <span>{quantity}</span>
-          <button type="button" className="plus" onClick={addProductToCart}>+</button>
-        </div>
+        {noneditable ? (
+          <div className="quantity noneditable">
+            {quantity}
+          </div>
+        ) : (
+          <div className="quantity editable">
+            <button type="button" className="minus" onClick={minusProductFromCart} disabled={quantity === 1}>-</button>
+            <span>{quantity}</span>
+            <button type="button" className="plus" onClick={addProductToCart}>+</button>
+          </div>
+        )}
         <div className="price">{formatPriceVnd(product.priceVnd)} VND • ${+product.priceUsd.toLocaleString()}</div>
       </div>
 
@@ -67,19 +73,22 @@ export default function CartProductSmall({ cartEntry }) {
             }
 
             .quantity {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              width: 120px;
               font-size: var(--fontsize-md);
               font-weight: var(--fontweight-semibold);
 
-              .minus {
-                padding-right: 10px;
-              }
+              &.editable {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 120px;
 
-              .plus {
-                padding-left: 10px;
+                .minus {
+                  padding-right: 10px;
+                }
+
+                .plus {
+                  padding-left: 10px;
+                }
               }
             }
           }
@@ -96,4 +105,9 @@ CartProductSmall.propTypes = {
     quantity: PropTypes.number.isRequired,
     sizeName: PropTypes.string.isRequired,
   }).isRequired,
+  noneditable: PropTypes.bool,
+};
+
+CartProductSmall.defaultProps = {
+  noneditable: false,
 };
