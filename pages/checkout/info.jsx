@@ -94,6 +94,7 @@ function CheckoutInfoPage() {
               .inputs {
                 margin-top: 0.8em;
                 display: grid;
+                grid-template-columns: 1fr 1fr;
                 grid-template-areas:
                   "first-name last-name"
                   "email email"
@@ -128,6 +129,7 @@ function CheckoutInfoPage() {
               .inputs {
                 margin-top: 0.8em;
                 display: grid;
+                grid-template-columns: 1fr 1fr;
                 grid-template-areas: ${toVietnam ? (`
                   "country city"
                   "district zip-code"
