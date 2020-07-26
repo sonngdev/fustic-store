@@ -98,7 +98,7 @@ function CartPage() {
           }
 
           .total {
-            margin-top: 2rem;
+            margin-top: 3rem;
             padding: 0;
             width: 100%;
 
