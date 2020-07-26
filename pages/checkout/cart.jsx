@@ -75,7 +75,9 @@ function CartPage() {
           </button>
         </div>
 
-        <Button block solid className="payment-button">Payment</Button>
+        <div className="payment-button">
+          <Button block solid>Payment</Button>
+        </div>
       </div>
 
       <style jsx>
@@ -90,11 +92,15 @@ function CartPage() {
           align-items: center;
 
           .cart-entries {
-            width: 100%;
+            width: 260px;
 
             hr {
               margin: 2rem 0;
             }
+          }
+
+          .total, .discount-code, .payment-button {
+            max-width: 300px;
           }
 
           .total {
@@ -134,8 +140,8 @@ function CartPage() {
 
           .discount-code {
             position: relative;
-            width: 100%;
             margin-top: 0.5rem;
+            width: 100%;
 
             .add-discount {
               position: absolute;
@@ -158,12 +164,21 @@ function CartPage() {
             }
           }
 
-          :global(.payment-button) {
+          .payment-button {
+            width: 100%;
             margin-top: 3rem;
           }
 
           @media screen and (min-width: 375px) {
             --padding-page: 50px;
+
+            .total table tr > :last-child {
+              padding-left: 14%;
+            }
+          }
+
+          @media screen and (min-width: 1200px) {
+
           }
         }
         `}

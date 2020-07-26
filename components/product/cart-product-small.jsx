@@ -42,7 +42,8 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
         {`
         .cart-product-small {
           display: grid;
-          grid-template-columns: 10px 90px auto;
+          grid-template-columns: 10px 70px auto;
+          column-gap: 6%;
           align-items: start;
           width: 100%;
 
@@ -59,7 +60,6 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
             width: 70px;
             height: 90px;
             object-fit: cover;
-            margin: 0 10px;
           }
 
           .info {
