@@ -26,7 +26,7 @@ function CartPage() {
       </Head>
 
       <div className="cart-page">
-        <div className="cart-entries">
+        <div className="cart-entries scrollbar-visible">
           {cart.map((entry, i) => (
             <Fragment key={`${entry.product.id}${entry.sizeName}`}>
               {i !== 0 && <hr />}
@@ -177,8 +177,47 @@ function CartPage() {
             }
           }
 
-          @media screen and (min-width: 1200px) {
+          @media screen and (min-width: 768px) {
+            display: grid;
+            grid-template-columns: 4fr 6fr;
+            grid-template-areas:
+              "cart-entries total"
+              "cart-entries total"
+              "cart-entries discount-code"
+              "cart-entries payment-button";
+            column-gap: 4em;
 
+            padding-top: 12rem;
+            max-width: 700px;
+
+            .cart-entries {
+              grid-area: cart-entries;
+              max-height: 350px;
+              overflow: auto;
+              justify-self: right;
+              align-self: start;
+            }
+
+            .total {
+              grid-area: total;
+              align-self: stretch;
+              margin-top: 0;
+
+              table {
+                height: 100%;
+              }
+            }
+
+            .discount-code {
+              grid-area: discount-code;
+              margin-top: 0;
+            }
+
+            .payment-button {
+              grid-area: payment-button;
+              margin-top: 0;
+              align-self: end;
+            }
           }
         }
         `}
