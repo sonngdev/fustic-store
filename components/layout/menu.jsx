@@ -1,25 +1,40 @@
 /* eslint-disable no-useless-escape */
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-
-import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
+import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
+import { getCategories } from 'utils/request';
+
+function useCategories() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const request = async () => {
+      const cs = await getCategories();
+      setCategories(cs);
+    };
+    request();
+  }, []);
+
+  return categories;
+}
 
 export default function Menu({ visible }) {
   const menu = useRef(null);
   useDisableBodyScroll(menu.current, visible);
 
-  const { asPath } = useRouter();
+  const categories = useCategories();
 
+  const { asPath } = useRouter();
   const links = [
-    { href: '/', as: '/', text: 'Collections' },
-    { href: '/[categorySlug]', as: '/t-shirts', text: 'T-Shirts' },
-    { href: '/[categorySlug]', as: '/sweaters', text: 'Sweaters' },
-    { href: '/[categorySlug]', as: '/hoodies', text: 'Hoodies' },
-    { href: '/[categorySlug]', as: '/prints', text: 'Prints' },
+    { href: '/#home-page', as: '/#home-page', text: 'Collections' },
+    ...categories.map(({ slug, name }) => (
+      { href: '/[categorySlug]', as: `/${slug}`, text: name }
+    )),
   ];
 
   return (
@@ -29,7 +44,7 @@ export default function Menu({ visible }) {
         {links.map(({ href, as, text }) => (
           <li key={text}>
             <Link href={href} as={as}>
-              <a className={cx('subitem', { active: as === '/' ? asPath === '/' : asPath.startsWith(as) })}>
+              <a className={cx('subitem', { active: as === '/#home-page' ? asPath === '/#home-page' : asPath.startsWith(as) })}>
                 {text}
               </a>
             </Link>

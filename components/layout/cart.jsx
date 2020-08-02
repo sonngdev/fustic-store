@@ -1,54 +1,43 @@
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import PropTypes from 'prop-types';
-
+import { useSelector } from 'react-redux';
+import Link from 'next/link';
+import { selectCart } from 'store/selectors';
+import { getCartTotal, getCartQuantity } from 'utils/cart';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import CartProductSmall from 'components/product/cart-product-small';
 import Button from 'components/basic/button';
 
 export default function Cart({ visible }) {
-  const itemList = useRef();
+  const cart = useSelector(selectCart);
+  const [vndTotal, usdTotal] = getCartTotal(cart);
 
+  const itemList = useRef();
   useDisableBodyScroll(itemList.current, visible);
 
   return (
     <div className="cart">
       <div className="head">
-        <div className="count">Cart (1)</div>
+        <div className="count">Cart ({getCartQuantity(cart)})</div>
         <div className="total">
           Total
           <br />
-          1.360.000 vnd • $56
+          {vndTotal.toLocaleString()} vnd • ${usdTotal.toLocaleString()}
         </div>
       </div>
 
       <div className="items scrollbar-visible" ref={itemList}>
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
-        <hr />
-        <CartProductSmall />
+        {cart.map((entry) => (
+          <Fragment key={`${entry.product.id}${entry.sizeName}`}>
+            <hr />
+            <CartProductSmall cartEntry={entry} />
+          </Fragment>
+        ))}
       </div>
 
-      <Button block>Check out</Button>
+      <Link href="/checkout/info">
+        <Button block disabled={!cart.length}>Check out</Button>
+      </Link>
 
       <style jsx>
         {`

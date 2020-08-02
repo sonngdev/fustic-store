@@ -1,16 +1,20 @@
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
+import { getCategories, getCategory, getProducts } from 'utils/request';
+import Category from 'models/Category';
+import Product from 'models/Product';
 
-export default function Category({ category, products }) {
+export default function CategoryPage({ category, products }) {
   return (
     <Layout>
       <Head>
         <title>{category.name} – Fustic Store</title>
       </Head>
 
-      <div className="category">
+      <div className="category-page">
         <ProductGrid>
           {products.map((product) => <SiteProduct product={product} key={product.slug} />)}
         </ProductGrid>
@@ -18,7 +22,7 @@ export default function Category({ category, products }) {
 
       <style jsx>
         {`
-        .category {
+        .category-page {
           width: 100%;
           padding-top: 8rem;
 
@@ -32,69 +36,24 @@ export default function Category({ category, products }) {
   );
 }
 
-// GET /categories
+CategoryPage.propTypes = {
+  category: Category.isRequired,
+  products: PropTypes.arrayOf(Product).isRequired,
+};
+
 export async function getStaticPaths() {
+  const categories = await getCategories();
+  const paths = categories.map(({ slug }) => ({ params: { categorySlug: slug } }));
+
   return {
-    paths: [
-      { params: { categorySlug: 't-shirts' } },
-      { params: { categorySlug: 'sweaters' } },
-      { params: { categorySlug: 'hoodies' } },
-      { params: { categorySlug: 'prints' } },
-    ],
+    paths,
     fallback: false,
   };
 }
 
-// GET /categories/:slug
-// GET /categories/:slug/products
 export async function getStaticProps({ params }) {
-  const category = {
-    id: 1,
-    name: params.categorySlug,
-    slug: params.categorySlug,
-    singularName: params.categorySlug,
-  };
-
-  const products = [
-    {
-      id: 1,
-      category,
-      name: 'BATHEROPE KIDS',
-      slug: 'batherobe-kids',
-      images: [
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: true,
-        },
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: false,
-        },
-      ],
-      priceVnd: 420000,
-      priceUsd: 20,
-      sizes: ['S', 'M', 'L'],
-    },
-    {
-      id: 2,
-      category,
-      name: 'DOPE BATHEROPE KIDS',
-      slug: 'dope-batherope-kids',
-      images: [
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: true,
-        },
-        {
-          url: 'https://cdn.shopify.com/s/files/1/0186/4545/0816/products/CFSS20FLAT_48_600x.png?v=1589340501',
-          isThumbnail: false,
-        },
-      ],
-      priceVnd: 420000,
-      priceUsd: 20,
-      sizes: ['S', 'M', 'L'],
-    },
-  ];
+  const category = await getCategory(params.categorySlug);
+  const products = await getProducts(category.id);
 
   return {
     props: {

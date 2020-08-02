@@ -58,6 +58,7 @@ body {
   font-size: var(--fontsize-md);
   background-color: var(--color-background);
   color: var(--color-text);
+  scroll-behavior: smooth;
 }
 
 * {
@@ -75,6 +76,11 @@ button {
   font-weight: var(--fontweight-medium);
   background-color: transparent;
   border: none;
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
 }
 
 hr {
@@ -82,6 +88,17 @@ hr {
   height: 1px;
   background-color: var(--color-text);
   opacity: 0.2;
+}
+
+input {
+  color: var(--color-text);
+  border: solid 1px rgba(white, 0.4);
+  border-radius: 0;
+  background-color: transparent;
+  padding: 12px;
+  width: 100%;
+  font-size: var(--fontsize-md);
+  text-transform: uppercase;
 }
 
 .scrollbar-visible {
