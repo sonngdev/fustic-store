@@ -7,23 +7,23 @@ export async function get(url) {
 }
 
 export function getCategories() {
-  return get('http://localhost:3001/categories');
+  return get(`${process.env.NEXT_PUBLIC_API_HOST}/categories`);
 }
 
 export function getCategory(slug) {
-  return get(`http://localhost:3001/categories/${slug}`);
+  return get(`${process.env.NEXT_PUBLIC_API_HOST}/categories/${slug}`);
 }
 
 export function getProducts(categoryId = null) {
   return categoryId
-    ? get(`http://localhost:3001/products?category_id=${categoryId}`)
-    : get('http://localhost:3001/products');
+    ? get(`${process.env.NEXT_PUBLIC_API_HOST}/products?category_id=${categoryId}`)
+    : get(`${process.env.NEXT_PUBLIC_API_HOST}/products`);
 }
 
 export function getProduct(slug) {
-  return get(`http://localhost:3001/products/${slug}`);
+  return get(`${process.env.NEXT_PUBLIC_API_HOST}/products/${slug}`);
 }
 
 export function getActiveGeneralConfig() {
-  return get('http://localhost:3001/general_configs/active');
+  return get(`${process.env.NEXT_PUBLIC_API_HOST}/general_configs/active`);
 }
