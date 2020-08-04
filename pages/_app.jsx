@@ -7,10 +7,13 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { useStore, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import smoothscroll from 'smoothscroll-polyfill';
+
 import { wrapper } from 'store';
 import { updateCartProducts } from 'store/actions';
 import { getProducts } from 'utils/request';
 
+import 'smoothscroll-anchor-polyfill';
 import 'normalize.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'styles/global.scss';
@@ -30,6 +33,13 @@ function useUpdatedCartProducts() {
 function App({ Component, pageProps }) {
   const store = useStore();
   useUpdatedCartProducts();
+
+  /**
+   * This only polyfills javascript. To polyfill anchors scrolling
+   * behavior, we need smoothscroll-anchor-polyfill in addition.
+   * https://github.com/jonaskuske/smoothscroll-anchor-polyfill
+   */
+  useEffect(() => { smoothscroll.polyfill(); });
 
   return (
     <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
