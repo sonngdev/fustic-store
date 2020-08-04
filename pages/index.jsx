@@ -4,7 +4,7 @@ import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
 import { getProducts, getActiveGeneralConfig } from 'utils/request';
-import GeneralConfig from 'models/GeneralConfig';
+import GeneralConfig, { DefaultGeneralConfig } from 'models/GeneralConfig';
 import Product from 'models/Product';
 
 export default function HomePage({ generalConfig, products }) {
@@ -67,7 +67,10 @@ export default function HomePage({ generalConfig, products }) {
 }
 
 HomePage.propTypes = {
-  generalConfig: GeneralConfig.isRequired,
+  generalConfig: PropTypes.oneOfType([
+    GeneralConfig,
+    DefaultGeneralConfig,
+  ]).isRequired,
   products: PropTypes.arrayOf(Product).isRequired,
 };
 

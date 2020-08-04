@@ -7,4 +7,10 @@ const GeneralConfig = PropTypes.shape({
   landingPlaceholderImageUrl: PropTypes.string.isRequired,
 });
 
+const DefaultGeneralConfig = PropTypes.shape({
+  landingVimeoId: PropTypes.string.isRequired,
+  landingPlaceholderImageUrl: PropTypes.string.isRequired,
+});
+
+export { DefaultGeneralConfig };
 export default GeneralConfig;
