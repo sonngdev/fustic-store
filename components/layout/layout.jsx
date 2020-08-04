@@ -12,7 +12,7 @@ export default function Layout({ children }) {
 
   return (
     <div className="layout">
-      <Menu visible={reveal === 'menu'} />
+      <Menu visible={reveal === 'menu'} hideMenu={() => setReveal('')} />
 
       <MainPage
         showMenu={(e) => { e.stopPropagation(); setReveal('menu'); }}

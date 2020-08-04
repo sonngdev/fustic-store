@@ -23,15 +23,15 @@ function useCategories() {
   return categories;
 }
 
-export default function Menu({ visible }) {
+export default function Menu({ visible, hideMenu }) {
   const menu = useRef(null);
   useDisableBodyScroll(menu.current, visible);
 
   const categories = useCategories();
 
-  const { asPath } = useRouter();
+  const { pathname, asPath } = useRouter();
   const links = [
-    { href: '/#home-page', as: '/#home-page', text: 'Collections' },
+    { href: '/', as: '/#home-page', text: 'Collections' },
     ...categories.map(({ slug, name }) => (
       { href: '/[categorySlug]', as: `/${slug}`, text: name }
     )),
@@ -41,15 +41,29 @@ export default function Menu({ visible }) {
     <div className="menu" ref={menu}>
       <div className="item">Products</div>
       <ul>
-        {links.map(({ href, as, text }) => (
+        {links.map(({ href, as, text }) => (as === '/#home-page' ? (
           <li key={text}>
             <Link href={href} as={as}>
-              <a className={cx('subitem', { active: as === '/#home-page' ? asPath === '/#home-page' : asPath.startsWith(as) })}>
+              <a
+                role="link"
+                tabIndex="0"
+                onClick={hideMenu}
+                onKeyPress={hideMenu}
+                className={cx('subitem', { active: pathname === '/' })}
+              >
                 {text}
               </a>
             </Link>
           </li>
-        ))}
+        ) : (
+          <li key={text}>
+            <Link href={href} as={as}>
+              <a className={cx('subitem', { active: asPath.startsWith(as) })}>
+                {text}
+              </a>
+            </Link>
+          </li>
+        )))}
       </ul>
 
       <style jsx>
@@ -112,4 +126,5 @@ export default function Menu({ visible }) {
 
 Menu.propTypes = {
   visible: PropTypes.bool.isRequired,
+  hideMenu: PropTypes.func.isRequired,
 };
