@@ -5,7 +5,7 @@ const Product = PropTypes.shape({
   name: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   priceVnd: PropTypes.number.isRequired,
-  priceUsd: PropTypes.string.isRequired,
+  priceUsd: PropTypes.number.isRequired,
   createdAt: PropTypes.string.isRequired,
   updatedAt: PropTypes.string.isRequired,
   category: PropTypes.shape({
@@ -26,6 +26,7 @@ const Product = PropTypes.shape({
   ).isRequired,
   sizes: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       inStock: PropTypes.bool.isRequired,
     }),
