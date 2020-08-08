@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
-import { getProducts, getGeneralConfig } from 'utils/request';
+import { getProducts, getGeneralConfig, getVimeoThumbnail } from 'utils/request';
 import GeneralConfig, { DefaultGeneralConfig } from 'models/GeneralConfig';
 import Product from 'models/Product';
 
-export default function HomePage({ generalConfig, products }) {
+export default function HomePage({ generalConfig, products, vimeoThumbnailUrl }) {
   return (
     <Layout>
       <div className="video">
@@ -72,20 +72,22 @@ HomePage.propTypes = {
     DefaultGeneralConfig,
   ]).isRequired,
   products: PropTypes.arrayOf(Product).isRequired,
+  vimeoThumbnailUrl: PropTypes.string.isRequired,
 };
 
 export async function getStaticProps() {
   const defaultGeneralConfig = {
     landingVimeoId: '340911673',
-    landingPlaceholderImageUrl: 'https://i.vimeocdn.com/video/789384783_640.jpg',
   };
   const generalConfig = await getGeneralConfig() || defaultGeneralConfig;
   const products = await getProducts();
+  const vimeoThumbnailUrl = await getVimeoThumbnail(generalConfig.landingVimeoId);
 
   return {
     props: {
       generalConfig,
       products,
+      vimeoThumbnailUrl,
     },
   };
 }

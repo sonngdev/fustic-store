@@ -27,3 +27,8 @@ export function getProduct(slug) {
 export function getGeneralConfig() {
   return get(`${process.env.NEXT_PUBLIC_API_HOST}/general-config`);
 }
+
+export async function getVimeoThumbnail(vimeoId) {
+  const info = await get(`http://vimeo.com/api/v2/video/${vimeoId}.json`);
+  return info[0].thumbnailLarge.replace('.webp', '.jpg');
+}
