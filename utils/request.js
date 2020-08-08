@@ -16,7 +16,7 @@ export function getCategory(slug) {
 
 export function getProducts(categoryId = null) {
   return categoryId
-    ? get(`${process.env.NEXT_PUBLIC_API_HOST}/products?category_id=${categoryId}`)
+    ? get(`${process.env.NEXT_PUBLIC_API_HOST}/products?category.id=${categoryId}`)
     : get(`${process.env.NEXT_PUBLIC_API_HOST}/products`);
 }
 
@@ -24,6 +24,6 @@ export function getProduct(slug) {
   return get(`${process.env.NEXT_PUBLIC_API_HOST}/products/${slug}`);
 }
 
-export function getActiveGeneralConfig() {
-  return get(`${process.env.NEXT_PUBLIC_API_HOST}/general_configs/active`);
+export function getGeneralConfig() {
+  return get(`${process.env.NEXT_PUBLIC_API_HOST}/general-config`);
 }

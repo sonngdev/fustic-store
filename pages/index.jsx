@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
-import { getProducts, getActiveGeneralConfig } from 'utils/request';
+import { getProducts, getGeneralConfig } from 'utils/request';
 import GeneralConfig, { DefaultGeneralConfig } from 'models/GeneralConfig';
 import Product from 'models/Product';
 
@@ -79,7 +79,7 @@ export async function getStaticProps() {
     landingVimeoId: '340911673',
     landingPlaceholderImageUrl: 'https://i.vimeocdn.com/video/789384783_640.jpg',
   };
-  const generalConfig = await getActiveGeneralConfig() || defaultGeneralConfig;
+  const generalConfig = await getGeneralConfig() || defaultGeneralConfig;
   const products = await getProducts();
 
   return {
