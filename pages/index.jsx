@@ -32,7 +32,7 @@ export default function HomePage({ generalConfig, products, vimeoThumbnailUrl })
           height: 100vh;
           overflow: hidden;
           position: relative;
-          background-image: url(${generalConfig.landingPlaceholderImageUrl});
+          background-image: url(${vimeoThumbnailUrl});
           background-size: cover;
           background-position: center;
 
