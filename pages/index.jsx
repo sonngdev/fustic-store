@@ -4,7 +4,7 @@ import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
 import { getProducts, getGeneralConfig, getVimeoThumbnail } from 'utils/request';
-import GeneralConfig, { DefaultGeneralConfig } from 'models/GeneralConfig';
+import GeneralConfig from 'models/GeneralConfig';
 import Product from 'models/Product';
 
 export default function HomePage({ generalConfig, products, vimeoThumbnailUrl }) {
@@ -67,21 +67,17 @@ export default function HomePage({ generalConfig, products, vimeoThumbnailUrl })
 }
 
 HomePage.propTypes = {
-  generalConfig: PropTypes.oneOfType([
-    GeneralConfig,
-    DefaultGeneralConfig,
-  ]).isRequired,
+  generalConfig: GeneralConfig.isRequired,
   products: PropTypes.arrayOf(Product).isRequired,
   vimeoThumbnailUrl: PropTypes.string.isRequired,
 };
 
 export async function getStaticProps() {
-  const defaultGeneralConfig = {
-    landingVimeoId: '340911673',
-  };
-  const generalConfig = await getGeneralConfig() || defaultGeneralConfig;
+  const generalConfig = await getGeneralConfig();
   const products = await getProducts();
-  const vimeoThumbnailUrl = await getVimeoThumbnail(generalConfig.landingVimeoId);
+
+  const vimeoId = generalConfig.landingVimeoId || '340911673';
+  const vimeoThumbnailUrl = await getVimeoThumbnail(vimeoId);
 
   return {
     props: {

@@ -7,9 +7,4 @@ const GeneralConfig = PropTypes.shape({
   updatedAt: PropTypes.string.isRequired,
 });
 
-const DefaultGeneralConfig = PropTypes.shape({
-  landingVimeoId: PropTypes.string.isRequired,
-});
-
-export { DefaultGeneralConfig };
 export default GeneralConfig;
