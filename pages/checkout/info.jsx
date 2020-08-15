@@ -42,7 +42,7 @@ function CheckoutInfoPage() {
       address,
       notes,
     }));
-    Router.push('/checkout/cart');
+    Router.push('/checkout/method');
   };
 
   return (
