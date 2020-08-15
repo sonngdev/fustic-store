@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
 import { selectCart } from 'store/selectors';
@@ -78,7 +79,9 @@ function CartPage() {
         </div>
 
         <div className="payment-button">
-          <Button block solid>Payment</Button>
+          <Link href="/checkout/info">
+            <Button block solid>Payment</Button>
+          </Link>
         </div>
       </div>
 
