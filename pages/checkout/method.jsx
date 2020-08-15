@@ -1,12 +1,11 @@
-import { useSelector } from 'react-redux';
 import Router from 'next/router';
-import { selectCheckoutInfo } from 'store/selectors';
 import { checkoutInfoValid } from 'utils/checkout';
+import { useCheckoutInfo } from 'hooks/store';
 import Layout from 'components/layout';
 import LocalCheckout from 'components/checkout/local-checkout';
 
 function CheckoutMethodPage() {
-  const checkoutInfo = useSelector(selectCheckoutInfo);
+  const checkoutInfo = useCheckoutInfo();
 
   if (!checkoutInfoValid(checkoutInfo)) {
     Router.push('/checkout/info');
