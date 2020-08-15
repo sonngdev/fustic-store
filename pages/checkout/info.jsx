@@ -6,23 +6,26 @@ import Router from 'next/router';
 
 import { saveCheckoutInfo } from 'store/actions';
 import { countryList } from 'utils/checkout';
+import { useCheckoutInfo } from 'hooks/store';
 
 import Layout from 'components/layout';
 import Button from 'components/basic/button';
 import Select from 'components/basic/select';
 
 function CheckoutInfoPage() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const checkoutInfo = useCheckoutInfo();
 
-  const [country, setCountry] = useState('Vietnam');
-  const [city, setCity] = useState('');
-  const [district, setDistrict] = useState('');
-  const [zipCode, setZipCode] = useState('');
-  const [address, setAddress] = useState('');
-  const [notes, setNotes] = useState('');
+  const [firstName, setFirstName] = useState(checkoutInfo?.contact?.firstName || '');
+  const [lastName, setLastName] = useState(checkoutInfo?.contact?.lastName || '');
+  const [email, setEmail] = useState(checkoutInfo?.contact?.email || '');
+  const [phone, setPhone] = useState(checkoutInfo?.contact?.phone || '');
+
+  const [country, setCountry] = useState(checkoutInfo?.shipping?.country || 'Vietnam');
+  const [city, setCity] = useState(checkoutInfo?.shipping?.city || '');
+  const [district, setDistrict] = useState(checkoutInfo?.shipping?.district || '');
+  const [zipCode, setZipCode] = useState(checkoutInfo?.shipping?.zipCode || '');
+  const [address, setAddress] = useState(checkoutInfo?.shipping?.address || '');
+  const [notes, setNotes] = useState(checkoutInfo?.shipping?.notes || '');
 
   const toVietnam = country === 'Vietnam';
 
