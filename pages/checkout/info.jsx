@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 
 import { saveCheckoutInfo } from 'store/actions';
-import { countryList } from 'utils/country';
+import { countryList } from 'utils/checkout';
 
 import Layout from 'components/layout';
 import Button from 'components/basic/button';
