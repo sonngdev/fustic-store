@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Radio from 'components/basic/radio';
 
 const LOCAL_CHECKOUT_METHODS = ['cod', 'bank_transfer'];
 
@@ -9,12 +10,13 @@ function LocalCheckout() {
   return (
     <>
       <h1>CÁCH THỨC THANH TOÁN</h1>
-      <input
-        type="radio"
+      <Radio
         value={LOCAL_CHECKOUT_METHODS[0]}
+        id="local-checkout-method-0"
         name="local-checkout-method"
         onChange={changeMethod}
-      />SHIP C.O.D
+        label="SHIP C.O.D"
+      />
       {method === LOCAL_CHECKOUT_METHODS[0] && (
         <article>
           <h2>Thanh toán khi nhận hàng</h2>
@@ -24,12 +26,13 @@ function LocalCheckout() {
           </p>
         </article>
       )}
-      <input
-        type="radio"
+      <Radio
         value={LOCAL_CHECKOUT_METHODS[1]}
+        id="local-checkout-method-1"
         name="local-checkout-method"
         onChange={changeMethod}
-      />CHUYỂN KHOẢN
+        label="CHUYỂN KHOẢN"
+      />
       {method === LOCAL_CHECKOUT_METHODS[1] && (
         <article>
           <h2>Thanh toán trực tuyến</h2>
