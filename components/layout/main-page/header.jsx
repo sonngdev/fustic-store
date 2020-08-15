@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { selectCart } from 'store/selectors';
-import { getCartQuantity } from 'utils/cart';
+import { getCartQuantity } from 'utils/checkout';
 
 export default function Header({
   showMenu,

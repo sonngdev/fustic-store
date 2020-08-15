@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import { selectCart } from 'store/selectors';
-import { getCartTotal, getCartQuantity } from 'utils/cart';
+import { getCartTotal, getCartQuantity } from 'utils/checkout';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import CartProductSmall from 'components/product/cart-product-small';
 import Button from 'components/basic/button';

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
 import { selectCart } from 'store/selectors';
-import { getCartTotal } from 'utils/cart';
+import { getCartTotal } from 'utils/checkout';
 
 import Layout from 'components/layout';
 import CartProductSmall from 'components/product/cart-product-small';
