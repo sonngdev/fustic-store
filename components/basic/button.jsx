@@ -9,10 +9,10 @@ const Button = forwardRef(({
 }, ref) => (
   <>
     <button
+      {...rest}
       ref={ref}
       type="submit"
       className={cx(className, { block, solid })}
-      {...rest}
     />
 
     <style jsx>
