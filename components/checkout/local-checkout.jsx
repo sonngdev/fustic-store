@@ -8,12 +8,13 @@ function LocalCheckout() {
   const changeMethod = (e) => setMethod(e.target.value);
 
   return (
-    <>
+    <div className="local-checkout">
       <h1>CÁCH THỨC THANH TOÁN</h1>
       <Radio
-        value={LOCAL_CHECKOUT_METHODS[0]}
         id="local-checkout-method-0"
         name="local-checkout-method"
+        value={LOCAL_CHECKOUT_METHODS[0]}
+        defaultChecked={method === LOCAL_CHECKOUT_METHODS[0]}
         onChange={changeMethod}
         label="SHIP C.O.D"
       />
@@ -27,9 +28,10 @@ function LocalCheckout() {
         </article>
       )}
       <Radio
-        value={LOCAL_CHECKOUT_METHODS[1]}
         id="local-checkout-method-1"
         name="local-checkout-method"
+        value={LOCAL_CHECKOUT_METHODS[1]}
+        defaultChecked={method === LOCAL_CHECKOUT_METHODS[1]}
         onChange={changeMethod}
         label="CHUYỂN KHOẢN"
       />
@@ -42,11 +44,39 @@ function LocalCheckout() {
             DOAN THANH HAI
           </p>
           <p>
-            Vui lòng ghi rõ số điện thoại đặt hàng vào phần nội dung chuyển tiền. Fustic. Store sẽ liên hệ với bạn để xác nhận đơn hàng và vận chuyển ngay sau khi nhận được thông báo chuyển khoản.
+            Vui lòng ghi rõ số điện thoại đặt hàng vào phần nội dung chuyển tiền.
+            Fustic. Store sẽ liên hệ với bạn để xác nhận đơn hàng và vận chuyển
+            ngay sau khi nhận được thông báo chuyển khoản.
           </p>
         </article>
       )}
-    </>
+
+      <style jsx>
+        {`
+        .local-checkout {
+          h1 {
+            font-size: 19px;
+            margin-bottom: 2rem;
+          }
+
+          article {
+            h2 {
+              font-size: var(--fontsize-md);
+              font-weight: var(--fontweight-regular);
+              opacity: 0.5;
+              margin: 0.4em 0;
+            }
+
+            p {
+              margin: 0.6em 0 1.2em;
+              font-weight: var(--fontweight-regular);
+              line-height: 1.25;
+            }
+          }
+        }
+        `}
+      </style>
+    </div>
   );
 }
 
