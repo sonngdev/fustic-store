@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Router from 'next/router';
 import { useSelector } from 'react-redux';
 
 import { selectCart } from 'store/selectors';
@@ -78,9 +79,10 @@ function CartPage() {
           </button>
         </div>
 
-        <div className="payment-button">
+        <div className="button-group">
+          <Button block onClick={Router.back}>Back</Button>
           <Link href="/checkout/info">
-            <Button block solid>Payment</Button>
+            <Button block solid>Continue</Button>
           </Link>
         </div>
       </div>
@@ -104,7 +106,7 @@ function CartPage() {
             }
           }
 
-          .total, .discount-code, .payment-button {
+          .total, .discount-code, .button-group {
             max-width: 300px;
           }
 
@@ -169,9 +171,13 @@ function CartPage() {
             }
           }
 
-          .payment-button {
+          .button-group {
             width: 100%;
             margin-top: 3rem;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 10px;
           }
 
           @media screen and (min-width: 375px) {
@@ -189,7 +195,7 @@ function CartPage() {
               "cart-entries total"
               "cart-entries total"
               "cart-entries discount-code"
-              "cart-entries payment-button";
+              "cart-entries button-group";
             column-gap: 4em;
 
             padding-top: 12rem;
@@ -218,8 +224,8 @@ function CartPage() {
               margin-top: 0;
             }
 
-            .payment-button {
-              grid-area: payment-button;
+            .button-group {
+              grid-area: button-group;
               margin-top: 0;
               align-self: end;
             }

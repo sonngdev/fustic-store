@@ -78,7 +78,8 @@ function CheckoutInfoPage() {
             </article>
           </section>
 
-          <div className="continue-button">
+          <div className="button-group">
+            <Button block onClick={Router.back}>Back</Button>
             <Button block solid>Continue</Button>
           </div>
         </form>
@@ -172,8 +173,12 @@ function CheckoutInfoPage() {
               }
             }
 
-            .continue-button {
+            .button-group {
               margin: 4rem auto 0;
+
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              grid-column-gap: 10px;
             }
 
             @media screen and (min-width: 375px) {
@@ -182,10 +187,6 @@ function CheckoutInfoPage() {
 
             @media screen and (min-width: 1200px) {
               padding-top: 8rem;
-
-              .continue-button {
-                width: 200px;
-              }
             }
           }
           `}
