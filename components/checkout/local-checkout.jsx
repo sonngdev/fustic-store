@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import Router from 'next/router';
 import Radio from 'components/basic/radio';
+import Button from 'components/basic/button';
 
 const LOCAL_CHECKOUT_METHODS = ['cod', 'bank_transfer'];
 
@@ -50,6 +52,10 @@ function LocalCheckout() {
           </p>
         </article>
       )}
+      <div className="button-group">
+        <Button block onClick={Router.back}>Trở về</Button>
+        <Button block solid>Hoàn tất</Button>
+      </div>
 
       <style jsx>
         {`
@@ -72,6 +78,14 @@ function LocalCheckout() {
               font-weight: var(--fontweight-regular);
               line-height: 1.25;
             }
+          }
+
+          .button-group {
+            margin-top: 3rem;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 10px;
           }
         }
         `}
