@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
-import { selectCart } from 'store/selectors';
 import { getCartQuantity } from 'utils/checkout';
+import { useCart } from 'hooks/store';
 
 export default function Header({
   showMenu,
   showCart,
   reveal,
 }) {
-  const cart = useSelector(selectCart);
+  const cart = useCart();
 
   return (
     <header>

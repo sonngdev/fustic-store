@@ -2,17 +2,15 @@ import { Fragment, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import { useSelector } from 'react-redux';
 
-import { selectCart } from 'store/selectors';
 import { getCartTotal } from 'utils/checkout';
-
+import { useCart } from 'hooks/store';
 import Layout from 'components/layout';
 import CartProductSmall from 'components/product/cart-product-small';
 import Button from 'components/basic/button';
 
 function CartPage() {
-  const cart = useSelector(selectCart);
+  const cart = useCart();
   const [vndSubtotal, usdSubtotal] = getCartTotal(cart);
   const [vndShipping, usdShipping] = [35000, 60];
   const [vndTax, usdTax] = [0, 60];
