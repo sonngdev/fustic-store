@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Router from 'next/router';
 import cx from 'classnames';
+import { useCart, useCheckoutInfo } from 'hooks/store';
+import { createOrder } from 'utils/request';
 import Radio from 'components/basic/radio';
 import Button from 'components/basic/button';
 
@@ -10,7 +12,11 @@ function LocalCheckout() {
   const [method, setMethod] = useState(LOCAL_CHECKOUT_METHODS[0]);
   const changeMethod = (e) => setMethod(e.target.value);
 
+  const cart = useCart();
+  const checkoutInfo = useCheckoutInfo();
+
   const completeOrder = () => {
+    createOrder(method, cart, checkoutInfo);
     Router.push('/checkout/completed');
   };
 
