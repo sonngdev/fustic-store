@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Link from 'next/link';
+import { completeCheckout } from 'store/actions';
 import Layout from 'components/layout';
 import Button from 'components/basic/button';
 
 function CheckoutCompletedPage() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(completeCheckout());
+  }, []);
+
   return (
     <Layout>
       <section className="checkout-completed">
