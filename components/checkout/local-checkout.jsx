@@ -59,6 +59,8 @@ function LocalCheckout() {
       <style jsx>
         {`
         .local-checkout {
+          max-width: 390px;
+
           h1 {
             font-size: 19px;
             margin-bottom: 2rem;
