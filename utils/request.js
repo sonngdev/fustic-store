@@ -1,9 +1,25 @@
-import { ensureCamel } from 'utils/object';
+import { ensureCamel, ensureSnake } from 'utils/object';
 
-export async function get(url) {
-  const req = await fetch(url, { headers: { Accept: 'application/json' } });
+export async function request(method, url, body = null) {
+  const options = {
+    method,
+    headers: { Accept: 'application/json' },
+  };
+  if (body) options.body = JSON.stringify(body);
+
+  const req = await fetch(url, options);
   const res = await req.json();
   return ensureCamel(res);
+}
+
+export function get(url, payload = null) {
+  const endpoint = payload ? `${url}?${new URLSearchParams(payload)}` : url;
+  return request('GET', endpoint);
+}
+
+export function post(url, payload = null) {
+  const body = ensureSnake(payload);
+  return request('POST', url, body);
 }
 
 export function getCategories() {
@@ -15,9 +31,8 @@ export function getCategory(slug) {
 }
 
 export function getProducts(categoryId = null) {
-  return categoryId
-    ? get(`${process.env.NEXT_PUBLIC_API_HOST}/products?category.id=${categoryId}`)
-    : get(`${process.env.NEXT_PUBLIC_API_HOST}/products`);
+  const payload = categoryId ? { 'category.id': categoryId } : null;
+  return get(`${process.env.NEXT_PUBLIC_API_HOST}/products`, payload);
 }
 
 export function getProduct(slug) {
@@ -33,6 +48,28 @@ export async function getVimeoThumbnail(vimeoId) {
   return info[0].thumbnailLarge.replace('.webp', '.jpg');
 }
 
-export async function createOrder(cart, checkoutInfo) {
-  return { totalAmount: 0.2 };
+export async function createOrder(type, cart, checkoutInfo) {
+  const payload = {
+    type,
+
+    firstName: checkoutInfo.contact.firstName,
+    lastName: checkoutInfo.contact.lastName,
+    email: checkoutInfo.contact.email,
+    phone: checkoutInfo.contact.phone,
+
+    country: checkoutInfo.shipping.country,
+    city: checkoutInfo.shipping.city,
+    district: checkoutInfo.shipping.district,
+    zipCode: checkoutInfo.shipping.zipCode,
+    address: checkoutInfo.shipping.address,
+    notes: checkoutInfo.shipping.notes,
+
+    products: cart.map((entry) => ({
+      product: { id: entry.product.id },
+      size: entry.sizeName,
+      quantity: entry.quantity,
+    })),
+  };
+
+  return post(`${process.env.NEXT_PUBLIC_API_HOST}/orders`, payload);
 }
