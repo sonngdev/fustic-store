@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Router from 'next/router';
 import { useCart, useCheckoutInfo } from 'hooks/store';
-import { createOrder } from 'utils/request';
+import { createOrder, updateOrder } from 'utils/request';
 
 function WorldwideCheckout() {
   const [paypalLoaded, setPaypalLoaded] = useState(false);
@@ -11,7 +11,7 @@ function WorldwideCheckout() {
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = 'https://www.paypal.com/sdk/js?client-id=AZ1fsAfRMVncgp8kvZc0rNJnVjKpEwfORHg6Sppa4FYu0wBAdVJ7xX-T3tVzFGlmF7vgC66Dglw89orz';
+    script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID}`;
     script.addEventListener('load', () => setPaypalLoaded(true));
     document.body.appendChild(script);
   }, []);
@@ -20,24 +20,21 @@ function WorldwideCheckout() {
     if (!paypalLoaded) return;
 
     const handleCreateOrder = async (_data, actions) => {
-      const order = await createOrder(cart, checkoutInfo);
+      const order = await createOrder('paypal', cart, checkoutInfo);
       orderRef.current = order;
-
-      console.log('handleCreateOrder', _data);
 
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: order.totalAmount,
+            value: order.totalAmountUsd.toFixed(2),
           },
         }],
       });
     };
 
     const handleOnApprove = async (_data, actions) => {
-      console.log('handleOnApprove', _data);
-
       const orderDetails = await actions.order.capture();
+      updateOrder(orderRef.current.id, orderDetails);
       Router.push('/checkout/completed');
     };
 

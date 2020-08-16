@@ -22,6 +22,11 @@ export function post(url, payload = null) {
   return request('POST', url, body);
 }
 
+export function put(url, payload = null) {
+  const body = ensureSnake(payload);
+  return request('PUT', url, body);
+}
+
 export function getCategories() {
   return get(`${process.env.NEXT_PUBLIC_API_HOST}/categories`);
 }
@@ -72,4 +77,9 @@ export async function createOrder(type, cart, checkoutInfo) {
   };
 
   return post(`${process.env.NEXT_PUBLIC_API_HOST}/orders`, payload);
+}
+
+export async function updateOrder(id, paypalOrder) {
+  const payload = { paypalOrder: JSON.stringify(paypalOrder) };
+  return put(`${process.env.NEXT_PUBLIC_API_HOST}/orders/${id}`, payload);
 }
