@@ -24,6 +24,10 @@ function CheckoutMethodPage() {
         {`
         .checkout-method-page {
           padding: 6rem var(--padding-page) 0;
+
+          @media screen and (min-width: 1200px) {
+            padding-top: 8rem;
+          }
         }
         `}
       </style>
