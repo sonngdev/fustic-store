@@ -37,51 +37,53 @@ function CartPage() {
           ))}
         </div>
 
-        <div className="total">
-          <table>
-            <tbody>
-              <tr>
-                <th>Subtotal</th>
-                <td>{vndSubtotal.toLocaleString()} vnd</td>
-                <td>${usdSubtotal.toLocaleString()}</td>
-              </tr>
-              <tr>
-                <th>Shipping</th>
-                <td>{vndShipping.toLocaleString()} vnd</td>
-                <td>${usdShipping.toLocaleString()}</td>
-              </tr>
-              <tr>
-                <th>Tax</th>
-                <td>{vndTax.toLocaleString()} vnd</td>
-                <td>${usdTax.toLocaleString()}</td>
-              </tr>
-              <tr />
-              <tr>
-                <th>Total</th>
-                <td>{vndTotal.toLocaleString()} vnd</td>
-                <td>${usdTotal.toLocaleString()}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <div className="info">
+          <div className="total">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Subtotal</th>
+                  <td>{vndSubtotal.toLocaleString()} vnd</td>
+                  <td>${usdSubtotal.toLocaleString()}</td>
+                </tr>
+                <tr>
+                  <th>Shipping</th>
+                  <td>{vndShipping.toLocaleString()} vnd</td>
+                  <td>${usdShipping.toLocaleString()}</td>
+                </tr>
+                <tr>
+                  <th>Tax</th>
+                  <td>{vndTax.toLocaleString()} vnd</td>
+                  <td>${usdTax.toLocaleString()}</td>
+                </tr>
+                <tr />
+                <tr>
+                  <th>Total</th>
+                  <td>{vndTotal.toLocaleString()} vnd</td>
+                  <td>${usdTotal.toLocaleString()}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-        <div className="discount-code">
-          <input
-            type="text"
-            placeholder="Discount code"
-            value={discountCode}
-            onChange={(e) => setDiscountCode(e.target.value)}
-          />
-          <button type="button" className="add-discount">
-            <span>+</span>
-          </button>
-        </div>
+          <div className="discount-code">
+            <input
+              type="text"
+              placeholder="Discount code"
+              value={discountCode}
+              onChange={(e) => setDiscountCode(e.target.value)}
+            />
+            <button type="button" className="add-discount">
+              <span>+</span>
+            </button>
+          </div>
 
-        <div className="button-group">
-          <Button block onClick={Router.back}>Back</Button>
-          <Link href="/checkout/info">
-            <Button block solid>Continue</Button>
-          </Link>
+          <div className="button-group">
+            <Button block onClick={Router.back}>Back</Button>
+            <Link href="/checkout/info">
+              <Button block solid>Continue</Button>
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -104,78 +106,83 @@ function CartPage() {
             }
           }
 
-          .total, .discount-code, .button-group {
-            max-width: 300px;
-          }
-
-          .total {
-            margin-top: 3rem;
-            padding: 0;
+          .info {
             width: 100%;
 
-            table {
-              text-transform: uppercase;
+            &, & .total, & .discount-code, & .button-group {
+              max-width: 300px;
+            }
+
+            .total {
+              margin-top: 3rem;
+              padding: 0;
               width: 100%;
 
-              tr {
-                height: 2.2em;
-              }
+              table {
+                text-transform: uppercase;
+                width: 100%;
 
-              tr > :first-child {
-                text-align: left;
-                width: 30%;
-              }
+                tr {
+                  height: 2.2em;
+                }
 
-              tr > :nth-child(2) {
-                text-align: right;
-                opacity: 0.4;
-                font-weight: var(--fontweight-regular);
-                width: 40%;
-              }
+                tr > :first-child {
+                  text-align: left;
+                  width: 30%;
+                }
 
-              tr > :last-child {
-                text-align: left;
-                opacity: 0.4;
-                font-weight: var(--fontweight-regular);
-                padding-left: 10%;
-                width: 30%;
-              }
-            }
-          }
+                tr > :nth-child(2) {
+                  text-align: right;
+                  opacity: 0.4;
+                  font-weight: var(--fontweight-regular);
+                  width: 40%;
+                }
 
-          .discount-code {
-            position: relative;
-            margin-top: 0.5rem;
-            width: 100%;
-
-            .add-discount {
-              position: absolute;
-              top: 10px;
-              right: 10px;
-
-              background-color: var(--color-text);
-              color: var(--color-background);
-              padding: 0.1em;
-              height: 1.5em;
-              width: 1.5em;
-
-              span {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 1.5em;
-                line-height: 0.7;
+                tr > :last-child {
+                  text-align: left;
+                  opacity: 0.4;
+                  font-weight: var(--fontweight-regular);
+                  padding-left: 10%;
+                  width: 30%;
+                }
               }
             }
-          }
 
-          .button-group {
-            width: 100%;
-            margin-top: 3rem;
+            .discount-code {
+              position: relative;
+              margin-top: 0.5rem;
+              width: 100%;
 
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-column-gap: 10px;
+              .add-discount {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+
+                background-color: var(--color-text);
+                color: var(--color-background);
+                padding: 0.1em;
+                height: 1.5em;
+                width: 1.5em;
+
+                span {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  font-size: 1.5em;
+                  line-height: 0.7;
+                }
+              }
+            }
+
+            .button-group {
+              width: 100%;
+              margin-top: 3rem;
+
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              grid-column-gap: 10px;
+            }
+
           }
 
           @media screen and (min-width: 375px) {
@@ -189,43 +196,36 @@ function CartPage() {
           @media screen and (min-width: 768px) {
             display: grid;
             grid-template-columns: 4fr 6fr;
-            grid-template-areas:
-              "cart-entries total"
-              "cart-entries total"
-              "cart-entries discount-code"
-              "cart-entries button-group";
             column-gap: 4em;
 
             padding-top: 12rem;
             max-width: 700px;
 
             .cart-entries {
-              grid-area: cart-entries;
               max-height: 350px;
               overflow: auto;
               justify-self: right;
               align-self: start;
             }
 
-            .total {
-              grid-area: total;
+            .info {
               align-self: stretch;
-              margin-top: 0;
 
-              table {
-                height: 100%;
+              .total {
+                margin-top: 0;
+
+                table {
+                  height: 100%;
+                }
               }
-            }
 
-            .discount-code {
-              grid-area: discount-code;
-              margin-top: 0;
-            }
+              .discount-code {
+                margin-top: 1.5em;
+              }
 
-            .button-group {
-              grid-area: button-group;
-              margin-top: 0;
-              align-self: end;
+              .button-group {
+                margin-top: 6em;
+              }
             }
           }
         }
