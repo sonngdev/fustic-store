@@ -11,10 +11,10 @@ function LocalCheckout() {
   const changeMethod = (e) => setMethod(e.target.value);
 
   return (
-    <div className="local-checkout">
+    <section className="local-checkout">
       <h1>CÁCH THỨC THANH TOÁN</h1>
 
-      <div className="methods">
+      <section className="methods">
         <Radio
           id="local-checkout-method-0"
           name="local-checkout-method"
@@ -52,12 +52,12 @@ function LocalCheckout() {
             ngay sau khi nhận được thông báo chuyển khoản.
           </p>
         </article>
-      </div>
+      </section>
 
-      <div className="button-group">
+      <section className="button-group">
         <Button block onClick={Router.back}>Trở về</Button>
         <Button block solid>Hoàn tất</Button>
-      </div>
+      </section>
 
       <style jsx>
         {`
@@ -127,7 +127,7 @@ function LocalCheckout() {
         }
         `}
       </style>
-    </div>
+    </section>
   );
 }
 
