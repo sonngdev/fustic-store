@@ -270,3 +270,7 @@ export function checkoutInfoValid(info) {
   if (!info.shipping.address) return false;
   return true;
 }
+
+export function cartValid(cart) {
+  return cart.length > 0;
+}
