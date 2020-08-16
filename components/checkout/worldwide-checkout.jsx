@@ -1,7 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Router from 'next/router';
+import { useCart, useCheckoutInfo } from 'hooks/store';
+import { createOrder } from 'utils/request';
 
 function WorldwideCheckout() {
   const [paypalLoaded, setPaypalLoaded] = useState(false);
+  const cart = useCart();
+  const checkoutInfo = useCheckoutInfo();
+  const orderRef = useRef();
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -13,23 +19,37 @@ function WorldwideCheckout() {
   useEffect(() => {
     if (!paypalLoaded) return;
 
-    const createOrder = (_data, actions) => actions.order.create({
-      purchase_units: [{
-        amount: {
-          value: '0.5',
-        },
-      }],
-    });
+    const handleCreateOrder = async (_data, actions) => {
+      const order = await createOrder(cart, checkoutInfo);
+      orderRef.current = order;
 
-    const onApprove = async (_data, actions) => {
+      console.log('handleCreateOrder', _data);
+
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: order.totalAmount,
+          },
+        }],
+      });
+    };
+
+    const handleOnApprove = async (_data, actions) => {
+      console.log('handleOnApprove', _data);
+
       const orderDetails = await actions.order.capture();
-      alert(`Transaction completed by ${orderDetails.payer.name.given_name}`);
+      Router.push('/checkout/completed');
     };
 
     const style = { color: 'silver' };
 
-    window.paypal.Buttons({ createOrder, onApprove, style }).render('#paypal-buttons');
-  }, [paypalLoaded]);
+    document.getElementById('paypal-buttons').innerHTML = '';
+    window.paypal.Buttons({
+      createOrder: handleCreateOrder,
+      onApprove: handleOnApprove,
+      style,
+    }).render('#paypal-buttons');
+  }, [paypalLoaded, cart, checkoutInfo]);
 
   return (
     <section className="worldwide-checkout">

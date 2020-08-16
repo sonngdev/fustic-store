@@ -32,3 +32,7 @@ export async function getVimeoThumbnail(vimeoId) {
   const info = await get(`http://vimeo.com/api/v2/video/${vimeoId}.json`);
   return info[0].thumbnailLarge.replace('.webp', '.jpg');
 }
+
+export async function createOrder(cart, checkoutInfo) {
+  return { totalAmount: 0.2 };
+}
