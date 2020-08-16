@@ -50,7 +50,7 @@ function CheckoutInfoPage() {
   };
 
   if (!cartValid(cart)) {
-    Router.push('/checkout/cart');
+    Router.replace('/checkout/cart');
     return null;
   }
 

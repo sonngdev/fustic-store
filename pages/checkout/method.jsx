@@ -10,12 +10,12 @@ function CheckoutMethodPage() {
   const checkoutInfo = useCheckoutInfo();
 
   if (!cartValid(cart)) {
-    Router.push('/checkout/cart');
+    Router.replace('/checkout/cart');
     return null;
   }
 
   if (!checkoutInfoValid(checkoutInfo)) {
-    Router.push('/checkout/info');
+    Router.replace('/checkout/info');
     return null;
   }
 
