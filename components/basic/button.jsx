@@ -46,7 +46,7 @@ const Button = forwardRef(({
           color: var(--color-background);
           font-weight: var(--fontweight-bold);
 
-          &:hover {
+          &:enabled:hover {
             opacity: 0.8;
           }
         }
