@@ -3,6 +3,7 @@ import { checkoutInfoValid } from 'utils/checkout';
 import { useCheckoutInfo } from 'hooks/store';
 import Layout from 'components/layout';
 import LocalCheckout from 'components/checkout/local-checkout';
+import WorldwideCheckout from 'components/checkout/worldwide-checkout';
 
 function CheckoutMethodPage() {
   const checkoutInfo = useCheckoutInfo();
@@ -17,7 +18,7 @@ function CheckoutMethodPage() {
       <div className="checkout-method-page">
         {checkoutInfo.shipping.country === 'Vietnam'
           ? <LocalCheckout />
-          : <div>Worldwide</div>}
+          : <WorldwideCheckout />}
       </div>
 
       <style jsx>
