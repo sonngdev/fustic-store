@@ -1,12 +1,18 @@
 import Router from 'next/router';
-import { checkoutInfoValid } from 'utils/checkout';
-import { useCheckoutInfo } from 'hooks/store';
+import { cartValid, checkoutInfoValid } from 'utils/checkout';
+import { useCart, useCheckoutInfo } from 'hooks/store';
 import Layout from 'components/layout';
 import LocalCheckout from 'components/checkout/local-checkout';
 import WorldwideCheckout from 'components/checkout/worldwide-checkout';
 
 function CheckoutMethodPage() {
+  const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
+
+  if (!cartValid(cart)) {
+    Router.push('/checkout/cart');
+    return null;
+  }
 
   if (!checkoutInfoValid(checkoutInfo)) {
     Router.push('/checkout/info');

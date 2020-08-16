@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 
-import { getCartTotal } from 'utils/checkout';
+import { getCartTotal, cartValid } from 'utils/checkout';
 import { useCart } from 'hooks/store';
 import Layout from 'components/layout';
 import CartProductSmall from 'components/product/cart-product-small';
@@ -81,7 +81,7 @@ function CartPage() {
           <div className="button-group">
             <Button block onClick={Router.back}>Back</Button>
             <Link href="/checkout/info">
-              <Button block solid>Continue</Button>
+              <Button block solid disabled={!cartValid(cart)}>Continue</Button>
             </Link>
           </div>
         </div>

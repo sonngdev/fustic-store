@@ -5,14 +5,15 @@ import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 
 import { saveCheckoutInfo } from 'store/actions';
-import { countryList } from 'utils/checkout';
-import { useCheckoutInfo } from 'hooks/store';
+import { countryList, cartValid } from 'utils/checkout';
+import { useCheckoutInfo, useCart } from 'hooks/store';
 
 import Layout from 'components/layout';
 import Button from 'components/basic/button';
 import Select from 'components/basic/select';
 
 function CheckoutInfoPage() {
+  const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
 
   const [firstName, setFirstName] = useState(checkoutInfo?.contact?.firstName || '');
@@ -47,6 +48,11 @@ function CheckoutInfoPage() {
     }));
     Router.push('/checkout/method');
   };
+
+  if (!cartValid(cart)) {
+    Router.push('/checkout/cart');
+    return null;
+  }
 
   return (
     <Layout>
