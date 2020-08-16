@@ -3,6 +3,7 @@ export const MINUS_FROM_CART = 'MINUS_FROM_CART';
 export const CLEAR_FROM_CART = 'CLEAR_FROM_CART';
 export const SAVE_CHECKOUT_INFO = 'SAVE_CHECKOUT_INFO';
 export const UPDATE_CART_PRODUCTS = 'UPDATE_CART_PRODUCTS';
+export const COMPLETE_CHECKOUT = 'COMPLETE_CHECKOUT';
 
 export const addToCart = (product, sizeName) => ({
   type: ADD_TO_CART,
@@ -27,4 +28,8 @@ export const saveCheckoutInfo = (info) => ({
 export const updateCartProducts = (products) => ({
   type: UPDATE_CART_PRODUCTS,
   payload: products,
+});
+
+export const completeCheckout = () => ({
+  type: COMPLETE_CHECKOUT,
 });

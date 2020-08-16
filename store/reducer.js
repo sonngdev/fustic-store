@@ -4,6 +4,7 @@ import {
   CLEAR_FROM_CART,
   SAVE_CHECKOUT_INFO,
   UPDATE_CART_PRODUCTS,
+  COMPLETE_CHECKOUT,
 } from './actions';
 
 const defaultState = {
@@ -99,6 +100,10 @@ export default function reducer(state = defaultState, action) {
       return {
         ...state,
         cart: updateCartProducts(state.cart, action.payload),
+      };
+    case COMPLETE_CHECKOUT:
+      return {
+        ...defaultState,
       };
     default:
       return state;
