@@ -67,6 +67,7 @@ function LocalCheckout() {
         {`
         .local-checkout {
           max-width: 390px;
+          margin: 0 auto;
 
           h1 {
             font-size: 19px;
@@ -103,8 +104,7 @@ function LocalCheckout() {
           }
 
           @media screen and (min-width: 992px) {
-            max-width: none;
-            margin-top:
+            max-width: 550px;
 
             h1 {
               text-align: center;

@@ -23,6 +23,7 @@ function CheckoutMethodPage() {
       <style jsx>
         {`
         .checkout-method-page {
+          width: 100%;
           padding: 6rem var(--padding-page) 0;
 
           @media screen and (min-width: 1200px) {
