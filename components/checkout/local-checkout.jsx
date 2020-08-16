@@ -10,6 +10,10 @@ function LocalCheckout() {
   const [method, setMethod] = useState(LOCAL_CHECKOUT_METHODS[0]);
   const changeMethod = (e) => setMethod(e.target.value);
 
+  const completeOrder = () => {
+    Router.push('/checkout/completed');
+  };
+
   return (
     <section className="local-checkout">
       <h1>CÁCH THỨC THANH TOÁN</h1>
@@ -56,7 +60,7 @@ function LocalCheckout() {
 
       <section className="button-group">
         <Button block onClick={Router.back}>Trở về</Button>
-        <Button block solid>Hoàn tất</Button>
+        <Button block solid onClick={completeOrder}>Hoàn tất</Button>
       </section>
 
       <style jsx>
@@ -79,7 +83,7 @@ function LocalCheckout() {
             h2 {
               font-size: var(--fontsize-md);
               font-weight: var(--fontweight-regular);
-              opacity: 0.5;
+              opacity: 0.6;
               margin: 0.4em 0;
             }
 
