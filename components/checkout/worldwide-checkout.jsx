@@ -17,7 +17,7 @@ function WorldwideCheckout() {
   }, []);
 
   useEffect(() => {
-    if (!paypalLoaded) return;
+    if (!paypalLoaded) return () => {};
 
     const handleCreateOrder = async (_data, actions) => {
       const order = await createOrder('paypal', cart, checkoutInfo);
@@ -40,12 +40,13 @@ function WorldwideCheckout() {
 
     const style = { color: 'silver' };
 
-    document.getElementById('paypal-buttons').innerHTML = '';
     window.paypal.Buttons({
       createOrder: handleCreateOrder,
       onApprove: handleOnApprove,
       style,
     }).render('#paypal-buttons');
+
+    return () => { document.getElementById('paypal-buttons').innerHTML = ''; };
   }, [paypalLoaded, cart, checkoutInfo]);
 
   return (
