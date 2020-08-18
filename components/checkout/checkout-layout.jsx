@@ -27,22 +27,26 @@ function CheckoutLayout({ children }) {
 
           @media screen and (min-width: 768px) {
             display: grid;
-            grid-template-columns: 4fr 6fr;
+            grid-template-columns: auto 330px;
             column-gap: 4em;
-
-            max-width: 600px;
+            width: fit-content;
 
             .first {
               max-height: 350px;
+              max-width: 350px;
               overflow: auto;
               justify-self: right;
               align-self: start;
             }
 
             .second {
-              align-self: stretch;
+              align-self: start;
               margin-top: 0;
             }
+          }
+
+          @media screen and (min-width: 1200px) {
+            grid-template-columns: 350px 330px;
           }
         }
         `}

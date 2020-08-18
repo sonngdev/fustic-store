@@ -12,6 +12,8 @@ import { useCheckoutInfo, useCart } from 'hooks/store';
 import Layout from 'components/layout';
 import Button from 'components/basic/button';
 import Select from 'components/basic/select';
+import CheckoutLayout from 'components/checkout/checkout-layout';
+import CartTotal from 'components/checkout/cart-total';
 
 function CheckoutShippingPage() {
   const cart = useCart();
@@ -62,48 +64,54 @@ function CheckoutShippingPage() {
       </Head>
 
       <div className="checkout-shipping-page">
-        <form onSubmit={submitInfo}>
-          <section className="contact">
-            <small>Contact info</small>
-            <article className="inputs">
-              <input required type="text" className="first-name" name="first-name" placeholder="First name*" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-              <input required type="text" className="last-name" name="last-name" placeholder="Last name*" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-              <input required type="email" className="email" name="email" placeholder="Email*" value={email} onChange={(e) => setEmail(e.target.value)} />
-              <input required type="tel" className="phone" name="phone" placeholder="Phone number*" value={phone} onChange={(e) => setPhone(e.target.value)} />
-            </article>
-          </section>
-          <section className="shipping">
-            <small>Shipping</small>
-            <article className="inputs">
-              <Select required className="country" name="country" value={country} onChange={(e) => setCountry(e.target.value)}>
-                {countryList.map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </Select>
-              {toVietnam && (
-                <input required type="text" className="city" name="city" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
-              )}
-              {toVietnam && (
-                <input required type="text" className="district" name="district" placeholder="District" value={district} onChange={(e) => setDistrict(e.target.value)} />
-              )}
-              <input required type="text" className="zip-code" name="zip-code" placeholder="Zip • Postal code" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
-              <input required type="text" className="address" name="address" placeholder="Address*" value={address} onChange={(e) => setAddress(e.target.value)} />
-              <input type="text" className="notes" name="notes" placeholder="Notes • Instructions" value={notes} onChange={(e) => setNotes(e.target.value)} />
-            </article>
-          </section>
+        <CheckoutLayout>
+          <form onSubmit={submitInfo}>
+            <section className="contact">
+              <small>Contact info</small>
+              <article className="inputs">
+                <input required type="text" className="first-name" name="first-name" placeholder="First name*" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                <input required type="text" className="last-name" name="last-name" placeholder="Last name*" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                <input required type="email" className="email" name="email" placeholder="Email*" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input required type="tel" className="phone" name="phone" placeholder="Phone number*" value={phone} onChange={(e) => setPhone(e.target.value)} />
+              </article>
+            </section>
+            <section className="shipping">
+              <small>Shipping</small>
+              <article className="inputs">
+                <Select required className="country" name="country" value={country} onChange={(e) => setCountry(e.target.value)}>
+                  {countryList.map((c) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </Select>
+                {toVietnam && (
+                  <input required type="text" className="city" name="city" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
+                )}
+                {toVietnam && (
+                  <input required type="text" className="district" name="district" placeholder="District" value={district} onChange={(e) => setDistrict(e.target.value)} />
+                )}
+                <input required type="text" className="zip-code" name="zip-code" placeholder="Zip • Postal code" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
+                <input required type="text" className="address" name="address" placeholder="Address*" value={address} onChange={(e) => setAddress(e.target.value)} />
+                <input type="text" className="notes" name="notes" placeholder="Notes • Instructions" value={notes} onChange={(e) => setNotes(e.target.value)} />
+              </article>
+            </section>
+          </form>
 
-          <div className="button-group">
-            <Button block onClick={Router.back}>Back</Button>
-            <Button block solid>Continue</Button>
+          <div className="info">
+            <CartTotal />
+
+            <div className="button-group">
+              <Button block onClick={Router.back}>Back</Button>
+              <Button block solid>Continue</Button>
+            </div>
           </div>
-        </form>
+        </CheckoutLayout>
 
         <style jsx>
           {`
           .checkout-shipping-page {
             width: 100%;
             max-width: 500px;
-            padding: 6rem var(--padding-page) 0;
+            padding: 8rem var(--padding-page) 0;
 
             .contact {
               small {
@@ -199,8 +207,17 @@ function CheckoutShippingPage() {
               --padding-page: 25px;
             }
 
-            @media screen and (min-width: 1200px) {
-              padding-top: 8rem;
+            @media screen and (min-width: 768px) {
+              padding-top: 12rem;
+              max-width: none;
+
+              form {
+                padding-right: 10px;
+              }
+
+              .button-group {
+                margin-top: 6em;
+              }
             }
           }
           `}

@@ -48,6 +48,7 @@ function CheckoutSummaryPage() {
         {`
         .checkout-summary-page {
           --padding-page: 30px;
+          max-width: 500px;
 
           width: 100%;
           padding: 8rem var(--padding-page) 0;
@@ -62,7 +63,7 @@ function CheckoutSummaryPage() {
 
           .info .button-group {
             width: 100%;
-            margin-top: 3rem;
+            margin-top: 4rem;
 
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -75,6 +76,7 @@ function CheckoutSummaryPage() {
 
           @media screen and (min-width: 768px) {
             padding-top: 12rem;
+            max-width: none;
 
             .info .button-group {
               margin-top: 6em;
