@@ -101,7 +101,7 @@ function CheckoutShippingPage() {
 
             <div className="button-group">
               <Button block onClick={Router.back}>Back</Button>
-              <Button block solid>Continue</Button>
+              <Button block solid onClick={submitInfo}>Continue</Button>
             </div>
           </div>
         </CheckoutLayout>
