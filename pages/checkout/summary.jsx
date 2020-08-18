@@ -80,7 +80,7 @@ function CheckoutSummaryPage() {
 
           <div className="button-group">
             <Button block onClick={Router.back}>Back</Button>
-            <Link href="/checkout/info">
+            <Link href="/checkout/shipping">
               <Button block solid disabled={!cartValid(cart)}>Continue</Button>
             </Link>
           </div>

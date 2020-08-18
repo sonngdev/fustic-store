@@ -47,11 +47,11 @@ function CheckoutShippingPage() {
       address,
       notes,
     }));
-    Router.push('/checkout/method');
+    Router.push('/checkout/payment');
   };
 
   if (!cartValid(cart)) {
-    Router.replace('/checkout/cart');
+    Router.replace('/checkout/summary');
     return null;
   }
 
