@@ -25,6 +25,7 @@ function Radio({ id, label, ...rest }) {
                 line-height: 1.4;
                 display: inline-block;
                 color: var(--color-text);
+                text-transform: uppercase;
 
                 &::before {
                   content: '';

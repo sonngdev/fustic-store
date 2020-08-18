@@ -31,13 +31,17 @@ function LocalCheckout() {
           value={LOCAL_CHECKOUT_METHODS[0]}
           defaultChecked={method === LOCAL_CHECKOUT_METHODS[0]}
           onChange={changeMethod}
-          label="SHIP C.O.D"
+          label="Ship C.O.D | Cash on delivery"
         />
         <article className={cx({ active: method === LOCAL_CHECKOUT_METHODS[0] })}>
           <h2>Thanh toán khi nhận hàng</h2>
           <p>
             Áp dụng với đơn hàng dưới 1.000.000 VNĐ<br />
             Fustic. Store sẽ liên hệ với quý khách để xác nhận và vận chuyển hàng.
+          </p>
+          <p>
+            Applicable to orders under 1,000,000 VND.<br />
+            We will contact you to confirm and ship.
           </p>
         </article>
 
@@ -47,12 +51,13 @@ function LocalCheckout() {
           value={LOCAL_CHECKOUT_METHODS[1]}
           defaultChecked={method === LOCAL_CHECKOUT_METHODS[1]}
           onChange={changeMethod}
-          label="CHUYỂN KHOẢN"
+          label="Chuyển khoản | Money transfer"
         />
         <article className={cx({ active: method === LOCAL_CHECKOUT_METHODS[1] })}>
           <h2>Thanh toán trực tuyến</h2>
           <p>
-            Ngân Hàng TMCP Kỹ Thương Việt Nam TECHCOMBANK chi nhánh Hà Nội.<br />
+            TECHCOMBANK<br />
+            chi nhánh Hà Nội.<br />
             19030318358017<br />
             DOAN THANH HAI
           </p>
@@ -60,6 +65,11 @@ function LocalCheckout() {
             Vui lòng ghi rõ số điện thoại đặt hàng vào phần nội dung chuyển tiền.
             Fustic. Store sẽ liên hệ với bạn để xác nhận đơn hàng và vận chuyển
             ngay sau khi nhận được thông báo chuyển khoản.
+          </p>
+          <p>
+            Please fill your phone number in the transfer content section. We
+            will contact you shortly to confirm your purchase after receiving
+            the payment.
           </p>
         </article>
       </section>
@@ -96,7 +106,7 @@ function LocalCheckout() {
 
             p {
               margin: 0.6em 0 1.2em;
-              font-weight: var(--fontweight-regular);
+              font-weight: var(--fontweight-thin);
               line-height: 1.25;
             }
           }
