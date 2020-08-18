@@ -38,8 +38,8 @@ function CheckoutPaymentPage() {
           width: 100%;
           padding: 6rem var(--padding-page) 0;
 
-          @media screen and (min-width: 1200px) {
-            padding-top: 8rem;
+          @media screen and (min-width: 768px) {
+            padding-top: 12rem;
           }
         }
         `}

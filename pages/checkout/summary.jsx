@@ -51,7 +51,7 @@ function CheckoutSummaryPage() {
           max-width: 500px;
 
           width: 100%;
-          padding: 8rem var(--padding-page) 0;
+          padding: 6rem var(--padding-page) 0;
 
           .cart-entries {
             width: 260px;

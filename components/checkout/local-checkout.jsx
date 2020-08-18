@@ -5,6 +5,8 @@ import { useCart, useCheckoutInfo } from 'hooks/store';
 import { createOrder } from 'utils/request';
 import Radio from 'components/basic/radio';
 import Button from 'components/basic/button';
+import CheckoutLayout from 'components/checkout/checkout-layout';
+import CartTotal from 'components/checkout/cart-total';
 
 const LOCAL_CHECKOUT_METHODS = ['cod', 'bank_transfer'];
 
@@ -22,67 +24,71 @@ function LocalCheckout() {
 
   return (
     <section className="local-checkout">
-      <h1>CÁCH THỨC THANH TOÁN</h1>
+      <CheckoutLayout>
+        <section className="methods">
+          <Radio
+            id="local-checkout-method-0"
+            name="local-checkout-method"
+            value={LOCAL_CHECKOUT_METHODS[0]}
+            defaultChecked={method === LOCAL_CHECKOUT_METHODS[0]}
+            onChange={changeMethod}
+            label="Ship C.O.D | Cash on delivery"
+          />
+          <article className={cx({ active: method === LOCAL_CHECKOUT_METHODS[0] })}>
+            <h2>Thanh toán khi nhận hàng</h2>
+            <p>
+              Áp dụng với đơn hàng dưới 1.000.000 VNĐ<br />
+              Fustic. Store sẽ liên hệ với quý khách để xác nhận và vận chuyển hàng.
+            </p>
+            <p>
+              Applicable to orders under 1,000,000 VND.<br />
+              We will contact you to confirm and ship.
+            </p>
+          </article>
 
-      <section className="methods">
-        <Radio
-          id="local-checkout-method-0"
-          name="local-checkout-method"
-          value={LOCAL_CHECKOUT_METHODS[0]}
-          defaultChecked={method === LOCAL_CHECKOUT_METHODS[0]}
-          onChange={changeMethod}
-          label="Ship C.O.D | Cash on delivery"
-        />
-        <article className={cx({ active: method === LOCAL_CHECKOUT_METHODS[0] })}>
-          <h2>Thanh toán khi nhận hàng</h2>
-          <p>
-            Áp dụng với đơn hàng dưới 1.000.000 VNĐ<br />
-            Fustic. Store sẽ liên hệ với quý khách để xác nhận và vận chuyển hàng.
-          </p>
-          <p>
-            Applicable to orders under 1,000,000 VND.<br />
-            We will contact you to confirm and ship.
-          </p>
-        </article>
+          <Radio
+            id="local-checkout-method-1"
+            name="local-checkout-method"
+            value={LOCAL_CHECKOUT_METHODS[1]}
+            defaultChecked={method === LOCAL_CHECKOUT_METHODS[1]}
+            onChange={changeMethod}
+            label="Chuyển khoản | Money transfer"
+          />
+          <article className={cx({ active: method === LOCAL_CHECKOUT_METHODS[1] })}>
+            <h2>Thanh toán trực tuyến</h2>
+            <p>
+              TECHCOMBANK<br />
+              chi nhánh Hà Nội.<br />
+              19030318358017<br />
+              DOAN THANH HAI
+            </p>
+            <p>
+              Vui lòng ghi rõ số điện thoại đặt hàng vào phần nội dung chuyển tiền.
+              Fustic. Store sẽ liên hệ với bạn để xác nhận đơn hàng và vận chuyển
+              ngay sau khi nhận được thông báo chuyển khoản.
+            </p>
+            <p>
+              Please fill your phone number in the transfer content section. We
+              will contact you shortly to confirm your purchase after receiving
+              the payment.
+            </p>
+          </article>
+        </section>
 
-        <Radio
-          id="local-checkout-method-1"
-          name="local-checkout-method"
-          value={LOCAL_CHECKOUT_METHODS[1]}
-          defaultChecked={method === LOCAL_CHECKOUT_METHODS[1]}
-          onChange={changeMethod}
-          label="Chuyển khoản | Money transfer"
-        />
-        <article className={cx({ active: method === LOCAL_CHECKOUT_METHODS[1] })}>
-          <h2>Thanh toán trực tuyến</h2>
-          <p>
-            TECHCOMBANK<br />
-            chi nhánh Hà Nội.<br />
-            19030318358017<br />
-            DOAN THANH HAI
-          </p>
-          <p>
-            Vui lòng ghi rõ số điện thoại đặt hàng vào phần nội dung chuyển tiền.
-            Fustic. Store sẽ liên hệ với bạn để xác nhận đơn hàng và vận chuyển
-            ngay sau khi nhận được thông báo chuyển khoản.
-          </p>
-          <p>
-            Please fill your phone number in the transfer content section. We
-            will contact you shortly to confirm your purchase after receiving
-            the payment.
-          </p>
-        </article>
-      </section>
+        <div className="info">
+          <CartTotal />
 
-      <section className="button-group">
-        <Button block onClick={Router.back}>Trở về</Button>
-        <Button block solid onClick={completeOrder}>Hoàn tất</Button>
-      </section>
+          <section className="button-group">
+            <Button block onClick={Router.back}>Back</Button>
+            <Button block solid onClick={completeOrder}>Complete</Button>
+          </section>
+        </div>
+      </CheckoutLayout>
 
       <style jsx>
         {`
         .local-checkout {
-          max-width: 390px;
+          max-width: 350px;
           margin: 0 auto;
 
           h1 {
@@ -100,7 +106,7 @@ function LocalCheckout() {
             h2 {
               font-size: var(--fontsize-md);
               font-weight: var(--fontweight-regular);
-              opacity: 0.6;
+              opacity: 0.4;
               margin: 0.4em 0;
             }
 
@@ -112,36 +118,22 @@ function LocalCheckout() {
           }
 
           .button-group {
-            margin-top: 3rem;
+            margin-top: 4rem;
 
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-column-gap: 10px;
           }
 
-          @media screen and (min-width: 992px) {
-            max-width: 550px;
+          @media screen and (min-width: 768px) {
+            max-width: none;
 
-            h1 {
-              text-align: center;
-              margin-bottom: 2em;
+            article {
+              min-width: 250px;
             }
 
-            .methods {
-              display: grid;
-              grid-template-columns: 150px 400px;
-
-              article {
-                display: block;
-
-                &:not(.active) p {
-                  display: none;
-                }
-
-                h2 {
-                  margin-top: 0;
-                }
-              }
+            .button-group {
+              margin-top: 6rem;
             }
           }
         }
