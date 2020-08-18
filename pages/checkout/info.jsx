@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Router from 'next/router';
+import Head from 'next/head';
 
 import { saveCheckoutInfo } from 'store/actions';
 import { countryList, cartValid } from 'utils/checkout';
@@ -56,6 +57,10 @@ function CheckoutInfoPage() {
 
   return (
     <Layout>
+      <Head>
+        <title>Shipping – Fustic Store</title>
+      </Head>
+
       <div className="checkout-info-page">
         <form onSubmit={submitInfo}>
           <section className="contact">

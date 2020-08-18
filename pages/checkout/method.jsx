@@ -1,4 +1,5 @@
 import Router from 'next/router';
+import Head from 'next/head';
 import { cartValid, checkoutInfoValid } from 'utils/checkout';
 import { useCart, useCheckoutInfo } from 'hooks/store';
 import Layout from 'components/layout';
@@ -21,6 +22,10 @@ function CheckoutMethodPage() {
 
   return (
     <Layout>
+      <Head>
+        <title>Payment – Fustic Store</title>
+      </Head>
+
       <div className="checkout-method-page">
         {checkoutInfo.shipping.country === 'Vietnam'
           ? <LocalCheckout />

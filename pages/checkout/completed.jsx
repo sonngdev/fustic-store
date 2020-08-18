@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
+import Head from 'next/head';
 import { completeCheckout } from 'store/actions';
 import Layout from 'components/layout';
 import Button from 'components/basic/button';
@@ -14,6 +15,10 @@ function CheckoutCompletedPage() {
 
   return (
     <Layout>
+      <Head>
+        <title>Checkout completed – Fustic Store</title>
+      </Head>
+
       <section className="checkout-completed">
         <h1>Thank you for supporting Fustic. Store</h1>
         <Link href="/">
