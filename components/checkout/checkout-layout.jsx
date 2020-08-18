@@ -32,7 +32,7 @@ function CheckoutLayout({ children }) {
             width: fit-content;
 
             .first {
-              max-height: 350px;
+              max-height: 420px;
               max-width: 350px;
               overflow: auto;
               justify-self: right;
