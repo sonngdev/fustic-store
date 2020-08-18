@@ -19,7 +19,7 @@ function CheckoutCompletedPage() {
         <title>Checkout completed – Fustic Store</title>
       </Head>
 
-      <section className="checkout-completed">
+      <section className="checkout-completed-page">
         <h1>Thank you for supporting Fustic. Store</h1>
         <Link href="/">
           <Button block solid>Done</Button>
@@ -28,7 +28,7 @@ function CheckoutCompletedPage() {
 
       <style jsx>
         {`
-        .checkout-completed {
+        .checkout-completed-page {
           padding: 15rem var(--padding-page) 0;
           text-align: center;
           width: 100%;

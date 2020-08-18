@@ -6,7 +6,7 @@ import Layout from 'components/layout';
 import LocalCheckout from 'components/checkout/local-checkout';
 import WorldwideCheckout from 'components/checkout/worldwide-checkout';
 
-function CheckoutMethodPage() {
+function CheckoutPaymentPage() {
   const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
 
@@ -26,7 +26,7 @@ function CheckoutMethodPage() {
         <title>Payment – Fustic Store</title>
       </Head>
 
-      <div className="checkout-method-page">
+      <div className="checkout-payment-page">
         {checkoutInfo.shipping.country === 'Vietnam'
           ? <LocalCheckout />
           : <WorldwideCheckout />}
@@ -34,7 +34,7 @@ function CheckoutMethodPage() {
 
       <style jsx>
         {`
-        .checkout-method-page {
+        .checkout-payment-page {
           width: 100%;
           padding: 6rem var(--padding-page) 0;
 
@@ -48,4 +48,4 @@ function CheckoutMethodPage() {
   );
 }
 
-export default CheckoutMethodPage;
+export default CheckoutPaymentPage;

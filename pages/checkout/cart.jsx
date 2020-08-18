@@ -9,7 +9,7 @@ import Layout from 'components/layout';
 import CartProductSmall from 'components/product/cart-product-small';
 import Button from 'components/basic/button';
 
-function CartPage() {
+function CheckoutSummaryPage() {
   const cart = useCart();
   const [vndSubtotal, usdSubtotal] = getCartTotal(cart);
   const [vndShipping, usdShipping] = [35000, 60];
@@ -27,7 +27,7 @@ function CartPage() {
         <title>Shopping Cart – Fustic Store</title>
       </Head>
 
-      <div className="cart-page">
+      <div className="checkout-summary-page">
         <div className="cart-entries scrollbar-visible">
           {cart.map((entry, i) => (
             <Fragment key={`${entry.product.id}${entry.sizeName}`}>
@@ -89,7 +89,7 @@ function CartPage() {
 
       <style jsx>
         {`
-        .cart-page {
+        .checkout-summary-page {
           --padding-page: 30px;
 
           width: 100%;
@@ -235,4 +235,4 @@ function CartPage() {
   );
 }
 
-export default CartPage;
+export default CheckoutSummaryPage;

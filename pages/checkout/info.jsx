@@ -13,7 +13,7 @@ import Layout from 'components/layout';
 import Button from 'components/basic/button';
 import Select from 'components/basic/select';
 
-function CheckoutInfoPage() {
+function CheckoutShippingPage() {
   const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
 
@@ -61,7 +61,7 @@ function CheckoutInfoPage() {
         <title>Shipping – Fustic Store</title>
       </Head>
 
-      <div className="checkout-info-page">
+      <div className="checkout-shipping-page">
         <form onSubmit={submitInfo}>
           <section className="contact">
             <small>Contact info</small>
@@ -100,7 +100,7 @@ function CheckoutInfoPage() {
 
         <style jsx>
           {`
-          .checkout-info-page {
+          .checkout-shipping-page {
             width: 100%;
             max-width: 500px;
             padding: 6rem var(--padding-page) 0;
@@ -210,4 +210,4 @@ function CheckoutInfoPage() {
   );
 }
 
-export default CheckoutInfoPage;
+export default CheckoutShippingPage;
