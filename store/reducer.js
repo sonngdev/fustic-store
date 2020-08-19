@@ -3,13 +3,25 @@ import {
   MINUS_FROM_CART,
   CLEAR_FROM_CART,
   SAVE_CHECKOUT_INFO,
+  CHANGE_CHECKOUT_INFO,
   UPDATE_CART_PRODUCTS,
   COMPLETE_CHECKOUT,
 } from './actions';
 
 const defaultState = {
   cart: [],
-  checkoutInfo: null,
+  checkoutInfo: {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    country: 'Vietnam',
+    city: '',
+    district: '',
+    zipCode: '',
+    address: '',
+    notes: '',
+  },
 };
 
 function addProduct(cart, product, sizeName) {
@@ -95,6 +107,14 @@ export default function reducer(state = defaultState, action) {
       return {
         ...state,
         checkoutInfo: saveCheckoutInfo(action.payload),
+      };
+    case CHANGE_CHECKOUT_INFO:
+      return {
+        ...state,
+        checkoutInfo: {
+          ...state.checkoutInfo,
+          [action.payload.key]: action.payload.value,
+        },
       };
     case UPDATE_CART_PRODUCTS:
       return {
