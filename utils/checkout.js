@@ -261,6 +261,7 @@ export function checkoutInfoValid(info) {
   if (!info.email) return false;
   if (!info.phone) return false;
   if (!info.country) return false;
+  if (info.country === 'Vietnam' && (!info.city || !info.district)) return false;
   if (!info.zipCode) return false;
   if (!info.address) return false;
   return true;
