@@ -256,18 +256,15 @@ export const countryList = [
 ];
 
 export function checkoutInfoValid(info) {
-  if (!info) return false;
-  if (!info.contact) return false;
-  if (!info.contact.firstName) return false;
-  if (!info.contact.lastName) return false;
-  if (!info.contact.email) return false;
-  if (!info.contact.phone) return false;
-  if (!info.shipping) return false;
-  if (!info.shipping.country) return false;
-  if (!info.shipping.city) return false;
-  if (!info.shipping.district) return false;
-  if (!info.shipping.zipCode) return false;
-  if (!info.shipping.address) return false;
+  if (!info.firstName) return false;
+  if (!info.lastName) return false;
+  if (!info.email) return false;
+  if (!info.phone) return false;
+  if (!info.country) return false;
+  if (!info.city) return false;
+  if (!info.district) return false;
+  if (!info.zipCode) return false;
+  if (!info.address) return false;
   return true;
 }
 

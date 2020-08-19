@@ -55,20 +55,8 @@ export async function getVimeoThumbnail(vimeoId) {
 
 export async function createOrder(type, cart, checkoutInfo) {
   const payload = {
+    ...checkoutInfo,
     type,
-
-    firstName: checkoutInfo.contact.firstName,
-    lastName: checkoutInfo.contact.lastName,
-    email: checkoutInfo.contact.email,
-    phone: checkoutInfo.contact.phone,
-
-    country: checkoutInfo.shipping.country,
-    city: checkoutInfo.shipping.city,
-    district: checkoutInfo.shipping.district,
-    zipCode: checkoutInfo.shipping.zipCode,
-    address: checkoutInfo.shipping.address,
-    notes: checkoutInfo.shipping.notes,
-
     products: cart.map((entry) => ({
       product: { id: entry.product.id },
       size: entry.sizeName,
