@@ -27,7 +27,7 @@ function CheckoutPaymentPage() {
       </Head>
 
       <div className="checkout-payment-page">
-        {checkoutInfo.shipping.country === 'Vietnam'
+        {checkoutInfo.country === 'Vietnam'
           ? <LocalCheckout />
           : <WorldwideCheckout />}
       </div>
