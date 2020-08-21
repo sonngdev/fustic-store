@@ -64,6 +64,7 @@ export default function SiteProduct({ product }) {
             grid-template-columns: 1fr 1fr;
             align-items: center;
             margin: 0 auto;
+            width: 240px;
 
             .name-category {
               font-size: var(--fontsize-sm);

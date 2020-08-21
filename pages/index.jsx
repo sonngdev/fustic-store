@@ -53,7 +53,7 @@ export default function HomePage({ generalConfig, products, vimeoThumbnailUrl })
         }
 
         .home-page {
-          padding-top: 8rem;
+          padding: 8rem var(--padding-page) 4rem;
           width: 100%;
 
           @media screen and (min-width: 1200px) {

@@ -56,11 +56,21 @@ function WorldwideCheckout() {
       <style jsx>
         {`
         .worldwide-checkout {
-          background-color: white;
-          border-radius: 3px;
-          padding: 10px;
-          max-width: 500px;
-          margin: 0 auto;
+          padding-left: 30px;
+          padding-right: 30px;
+
+          #paypal-buttons {
+            background-color: white;
+            border-radius: 3px;
+            padding: 10px;
+            max-width: 450px;
+            margin: 0 auto;
+          }
+
+          @media screen and (min-width: 375px) {
+            padding-left: 50px;
+            padding-right: 50px;
+          }
         }
         `}
       </style>

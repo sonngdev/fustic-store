@@ -23,8 +23,7 @@ export default function CategoryPage({ category, products }) {
       <style jsx>
         {`
         .category-page {
-          width: 100%;
-          padding-top: 8rem;
+          padding: 8rem var(--padding-page) 4rem;
 
           @media screen and (min-width: 1200px) {
             padding-left: var(--width-menu);

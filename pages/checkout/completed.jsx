@@ -29,9 +29,8 @@ function CheckoutCompletedPage() {
       <style jsx>
         {`
         .checkout-completed-page {
-          padding: 15rem var(--padding-page) 0;
+          padding: 15rem 30px 4rem;
           text-align: center;
-          width: 100%;
           max-width: 350px;
 
           h1 {
@@ -39,6 +38,11 @@ function CheckoutCompletedPage() {
             font-weight: var(--fontweight-regular);
             opacity: 0.6;
             margin-bottom: 1.5em;
+          }
+
+          @media screen and (min-width: 375px) {
+            padding-left: 50px;
+            padding-right: 50px;
           }
 
           @media screen and (min-width: 1200px) {

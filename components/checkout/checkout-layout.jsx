@@ -14,15 +14,25 @@ function CheckoutLayout({ children }) {
       <style jsx>
         {`
         .checkout-layout {
-          width: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
+
+          width: 100%;
+          max-width: 450px;
           margin: 0 auto;
+
+          padding-left: 30px;
+          padding-right: 30px;
 
           .second {
             width: 100%;
             margin-top: 3rem;
+          }
+
+          @media screen and (min-width: 375px) {
+            padding-left: 50px;
+            padding-right: 50px;
           }
 
           @media screen and (min-width: 768px) {

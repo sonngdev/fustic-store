@@ -20,13 +20,12 @@ export default function ProductPage({ product }) {
       <style jsx>
         {`
         .product-page {
-          width: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
 
           text-transform: uppercase;
-          padding: 8rem var(--padding-page) 0;
+          padding: 8rem var(--padding-page) 4rem;
 
           @media screen and (min-width: 992px) {
             flex-direction: row;
