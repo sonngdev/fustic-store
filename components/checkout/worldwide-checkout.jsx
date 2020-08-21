@@ -11,7 +11,7 @@ function WorldwideCheckout() {
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID}`;
+    script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID}&disable-funding=credit`;
     script.addEventListener('load', () => setPaypalLoaded(true));
     document.body.appendChild(script);
   }, []);
