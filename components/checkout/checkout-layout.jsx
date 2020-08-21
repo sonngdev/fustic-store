@@ -1,8 +1,20 @@
 import PropTypes from 'prop-types';
+import cx from 'classnames';
+import { useRouter } from 'next/router';
 
 function CheckoutLayout({ children }) {
+  const { pathname } = useRouter();
+
   return (
     <section className="checkout-layout">
+      <nav>
+        <small className={cx({ active: pathname === '/checkout/summary' })}>Summary</small>
+        <span role="separator">•</span>
+        <small className={cx({ active: pathname === '/checkout/shipping' })}>Shipping</small>
+        <span role="separator">•</span>
+        <small className={cx({ active: pathname === '/checkout/payment' })}>Payment</small>
+      </nav>
+
       <article className="first scrollbar-visible">
         {children[0]}
       </article>
@@ -24,6 +36,19 @@ function CheckoutLayout({ children }) {
 
           padding-left: 30px;
           padding-right: 30px;
+
+          nav {
+            text-transform: uppercase;
+
+            > *:not(.active) {
+              opacity: 0.4;
+            }
+
+            [role=separator] {
+              margin-left: 8px;
+              margin-right: 8px;
+            }
+          }
 
           .second {
             width: 100%;
