@@ -276,7 +276,6 @@ function CheckoutShippingPage() {
 
             @media screen and (min-width: 768px) {
               padding-top: 12rem;
-              max-width: none;
 
               form {
                 padding-right: 10px;

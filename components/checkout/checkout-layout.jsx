@@ -39,7 +39,9 @@ function CheckoutLayout({ children }) {
             display: grid;
             grid-template-columns: auto 330px;
             column-gap: 4em;
+
             width: fit-content;
+            max-width: none;
 
             .first {
               max-height: 420px;

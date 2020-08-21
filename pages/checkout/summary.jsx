@@ -68,7 +68,6 @@ function CheckoutSummaryPage() {
 
           @media screen and (min-width: 768px) {
             padding-top: 12rem;
-            max-width: none;
 
             .info .button-group {
               margin-top: 6em;
