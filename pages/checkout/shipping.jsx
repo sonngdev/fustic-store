@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 import Head from 'next/head';
@@ -38,6 +39,12 @@ function CheckoutShippingPage() {
     Router.replace('/checkout/summary');
     return null;
   }
+
+  // Never let country empty, once this page has been rendered
+  useEffect(() => {
+    if (checkoutInfo.country) return;
+    dispatch(changeCheckoutInfo('country', 'Vietnam'));
+  }, [checkoutInfo]);
 
   return (
     <Layout>

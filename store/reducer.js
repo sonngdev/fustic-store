@@ -14,7 +14,7 @@ const defaultState = {
     lastName: '',
     email: '',
     phone: '',
-    country: 'Vietnam',
+    country: '',
     city: '',
     district: '',
     zipCode: '',
