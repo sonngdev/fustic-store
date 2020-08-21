@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getCartTotal } from 'utils/checkout';
+import { getGeneralConfig } from 'utils/request';
 import { useCart, useCheckoutInfo } from 'hooks/store';
 
 function useSubtotals() {
@@ -9,11 +10,27 @@ function useSubtotals() {
 
 function useShippingFees() {
   const checkoutInfo = useCheckoutInfo();
-  // Using undefined so mathematical operations will result in NaN
-  // If null is used instead, it will be treated as 0 in math operations
+
+  /**
+   * Using undefined so mathematical operations will result in NaN
+   * If null is used instead, it will be treated as 0 in math operations
+   */
+  const [vndShipping, setVndShipping] = useState(undefined);
+  const [usdShipping, setUsdShipping] = useState(undefined);
+
+  useEffect(() => {
+    const request = async () => {
+      const { shippingFeeVnd, shippingFeeUsd } = await getGeneralConfig();
+      setVndShipping(shippingFeeVnd);
+      setUsdShipping(shippingFeeUsd);
+    };
+    request();
+  }, []);
+
+  if (!vndShipping || !usdShipping) return [undefined, undefined];
   if (!checkoutInfo.country) return [undefined, undefined];
-  if (checkoutInfo.country === 'Vietnam') return [35000, undefined];
-  return [undefined, 60];
+  if (checkoutInfo.country === 'Vietnam') return [vndShipping, undefined];
+  return [undefined, usdShipping];
 }
 
 function CartTotal() {
