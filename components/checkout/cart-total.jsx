@@ -19,10 +19,10 @@ function useShippingFees() {
 function CartTotal() {
   const [vndSubtotal, usdSubtotal] = useSubtotals();
   const [vndShipping, usdShipping] = useShippingFees();
-  const [vndTax, usdTax] = [0, 60];
+  const [vndDiscount, usdDiscount] = [0, 0];
   const [vndTotal, usdTotal] = [
-    vndSubtotal + vndShipping + vndTax,
-    usdSubtotal + usdShipping + usdTax,
+    vndSubtotal + vndShipping - vndDiscount,
+    usdSubtotal + usdShipping - usdDiscount,
   ];
 
   const [discountCode, setDiscountCode] = useState('');
@@ -42,9 +42,9 @@ function CartTotal() {
             <td>{usdShipping ? `$${usdShipping.toLocaleString()}` : '-'}</td>
           </tr>
           <tr>
-            <th>Tax</th>
-            <td>{vndTax.toLocaleString()} vnd</td>
-            <td>${usdTax.toLocaleString()}</td>
+            <th>Discount</th>
+            <td>{vndDiscount.toLocaleString()} vnd</td>
+            <td>${usdDiscount.toLocaleString()}</td>
           </tr>
           <tr />
           <tr>
