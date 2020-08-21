@@ -15,31 +15,31 @@ function useShippingFees() {
    * Using undefined so mathematical operations will result in NaN
    * If null is used instead, it will be treated as 0 in math operations
    */
-  const [vndShipping, setVndShipping] = useState(undefined);
-  const [usdShipping, setUsdShipping] = useState(undefined);
+  const [shippingVnd, setShippingVnd] = useState(undefined);
+  const [shippingUsd, setShippingUsd] = useState(undefined);
 
   useEffect(() => {
     const request = async () => {
       const { shippingFeeVnd, shippingFeeUsd } = await getGeneralConfig();
-      setVndShipping(shippingFeeVnd);
-      setUsdShipping(shippingFeeUsd);
+      setShippingVnd(shippingFeeVnd);
+      setShippingUsd(shippingFeeUsd);
     };
     request();
   }, []);
 
-  if (!vndShipping || !usdShipping) return [undefined, undefined];
+  if (!shippingVnd || !shippingUsd) return [undefined, undefined];
   if (!checkoutInfo.country) return [undefined, undefined];
-  if (checkoutInfo.country === 'Vietnam') return [vndShipping, undefined];
-  return [undefined, usdShipping];
+  if (checkoutInfo.country === 'Vietnam') return [shippingVnd, undefined];
+  return [undefined, shippingUsd];
 }
 
 function CartTotal() {
-  const [vndSubtotal, usdSubtotal] = useSubtotals();
-  const [vndShipping, usdShipping] = useShippingFees();
-  const [vndDiscount, usdDiscount] = [0, 0];
-  const [vndTotal, usdTotal] = [
-    vndSubtotal + vndShipping - vndDiscount,
-    usdSubtotal + usdShipping - usdDiscount,
+  const [subtotalVnd, subtotalUsd] = useSubtotals();
+  const [shippingVnd, shippingUsd] = useShippingFees();
+  const [discountVnd, discountUsd] = [0, 0];
+  const [totalVnd, totalUsd] = [
+    subtotalVnd + shippingVnd - discountVnd,
+    subtotalUsd + shippingUsd - discountUsd,
   ];
 
   const [discountCode, setDiscountCode] = useState('');
@@ -50,24 +50,24 @@ function CartTotal() {
         <tbody>
           <tr>
             <th>Subtotal</th>
-            <td>{vndSubtotal.toLocaleString()} vnd</td>
-            <td>${usdSubtotal.toLocaleString()}</td>
+            <td>{subtotalVnd.toLocaleString()} vnd</td>
+            <td>${subtotalUsd.toLocaleString()}</td>
           </tr>
           <tr>
             <th>Shipping</th>
-            <td>{vndShipping ? `${vndShipping.toLocaleString()} vnd` : '–'}</td>
-            <td>{usdShipping ? `$${usdShipping.toLocaleString()}` : '–'}</td>
+            <td>{shippingVnd ? `${shippingVnd.toLocaleString()} vnd` : '–'}</td>
+            <td>{shippingUsd ? `$${shippingUsd.toLocaleString()}` : '–'}</td>
           </tr>
           <tr>
             <th>Discount</th>
-            <td>{vndDiscount.toLocaleString()} vnd</td>
-            <td>${usdDiscount.toLocaleString()}</td>
+            <td>{discountVnd.toLocaleString()} vnd</td>
+            <td>${discountUsd.toLocaleString()}</td>
           </tr>
           <tr />
           <tr>
             <th>Total</th>
-            <td>{vndTotal ? `${vndTotal.toLocaleString()} vnd` : '–'}</td>
-            <td>{usdTotal ? `$${usdTotal.toLocaleString()}` : '–'}</td>
+            <td>{totalVnd ? `${totalVnd.toLocaleString()} vnd` : '–'}</td>
+            <td>{totalUsd ? `$${totalUsd.toLocaleString()}` : '–'}</td>
           </tr>
         </tbody>
       </table>
