@@ -38,8 +38,8 @@ function CartTotal() {
           </tr>
           <tr>
             <th>Shipping</th>
-            <td>{vndShipping ? `${vndShipping.toLocaleString()} vnd` : '-'}</td>
-            <td>{usdShipping ? `$${usdShipping.toLocaleString()}` : '-'}</td>
+            <td>{vndShipping ? `${vndShipping.toLocaleString()} vnd` : '–'}</td>
+            <td>{usdShipping ? `$${usdShipping.toLocaleString()}` : '–'}</td>
           </tr>
           <tr>
             <th>Discount</th>
@@ -49,8 +49,8 @@ function CartTotal() {
           <tr />
           <tr>
             <th>Total</th>
-            <td>{vndTotal ? `${vndTotal.toLocaleString()} vnd` : '-'}</td>
-            <td>{usdTotal ? `$${usdTotal.toLocaleString()}` : '-'}</td>
+            <td>{vndTotal ? `${vndTotal.toLocaleString()} vnd` : '–'}</td>
+            <td>{usdTotal ? `$${usdTotal.toLocaleString()}` : '–'}</td>
           </tr>
         </tbody>
       </table>
