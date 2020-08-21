@@ -13,8 +13,8 @@ export async function request(method, url, body = null) {
 }
 
 export function get(url, payload = null) {
-  const endpoint = payload ? `${url}?${new URLSearchParams(payload)}` : url;
-  return request('GET', endpoint);
+  const urlWithSearch = payload ? `${url}?${new URLSearchParams(payload)}` : url;
+  return request('GET', urlWithSearch);
 }
 
 export function post(url, payload = null) {
