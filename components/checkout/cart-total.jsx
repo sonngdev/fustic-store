@@ -1,11 +1,20 @@
 import { useState } from 'react';
 import { getCartTotal } from 'utils/checkout';
-import { useCart } from 'hooks/store';
+import { useCart, useCheckoutInfo } from 'hooks/store';
+
+function useShippingFees() {
+  const checkoutInfo = useCheckoutInfo();
+  // Using undefined so mathematical operations will result in NaN
+  // If null is used instead, it will be treated as 0 in math operations
+  if (!checkoutInfo.country) return [undefined, undefined];
+  if (checkoutInfo.country === 'Vietnam') return [35000, undefined];
+  return [undefined, 60];
+}
 
 function CartTotal() {
   const cart = useCart();
   const [vndSubtotal, usdSubtotal] = getCartTotal(cart);
-  const [vndShipping, usdShipping] = [35000, 60];
+  const [vndShipping, usdShipping] = useShippingFees();
   const [vndTax, usdTax] = [0, 60];
   const [vndTotal, usdTotal] = [
     vndSubtotal + vndShipping + vndTax,
@@ -25,8 +34,8 @@ function CartTotal() {
           </tr>
           <tr>
             <th>Shipping</th>
-            <td>{vndShipping.toLocaleString()} vnd</td>
-            <td>${usdShipping.toLocaleString()}</td>
+            <td>{vndShipping ? `${vndShipping.toLocaleString()} vnd` : '-'}</td>
+            <td>{usdShipping ? `$${usdShipping.toLocaleString()}` : '-'}</td>
           </tr>
           <tr>
             <th>Tax</th>
@@ -36,8 +45,8 @@ function CartTotal() {
           <tr />
           <tr>
             <th>Total</th>
-            <td>{vndTotal.toLocaleString()} vnd</td>
-            <td>${usdTotal.toLocaleString()}</td>
+            <td>{vndTotal ? `${vndTotal.toLocaleString()} vnd` : '-'}</td>
+            <td>{usdTotal ? `$${usdTotal.toLocaleString()}` : '-'}</td>
           </tr>
         </tbody>
       </table>
