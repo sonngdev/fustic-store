@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { getCartTotal } from 'utils/checkout';
 import { useCart, useCheckoutInfo } from 'hooks/store';
 
+function useSubtotals() {
+  const cart = useCart();
+  return getCartTotal(cart);
+}
+
 function useShippingFees() {
   const checkoutInfo = useCheckoutInfo();
   // Using undefined so mathematical operations will result in NaN
@@ -12,8 +17,7 @@ function useShippingFees() {
 }
 
 function CartTotal() {
-  const cart = useCart();
-  const [vndSubtotal, usdSubtotal] = getCartTotal(cart);
+  const [vndSubtotal, usdSubtotal] = useSubtotals();
   const [vndShipping, usdShipping] = useShippingFees();
   const [vndTax, usdTax] = [0, 60];
   const [vndTotal, usdTotal] = [
