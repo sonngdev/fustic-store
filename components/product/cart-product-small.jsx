@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart, minusFromCart, clearFromCart } from 'store/actions';
 import Product from 'models/Product';
 import { formatPriceVnd } from 'utils/string';
+import Link from 'next/link';
 
 export default function CartProductSmall({ cartEntry, noneditable }) {
   const { product, quantity, sizeName } = cartEntry;
@@ -22,7 +23,13 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
       <img className="image" src={thumbnail.url} alt={product.name} />
 
       <div className="info">
-        <div className="name">{product.name}</div>
+        <div className="name">
+          <Link href={`/${product.category.slug}/${product.slug}`}>
+            <a>
+              {product.name}
+            </a>
+          </Link>
+        </div>
         <div className="category-size">{product.category.singularName} • {sizeName}</div>
         {noneditable ? (
           <div className="quantity noneditable">

@@ -2,13 +2,25 @@ import {
   ADD_TO_CART,
   MINUS_FROM_CART,
   CLEAR_FROM_CART,
-  SAVE_CHECKOUT_INFO,
+  CHANGE_CHECKOUT_INFO,
   UPDATE_CART_PRODUCTS,
+  COMPLETE_CHECKOUT,
 } from './actions';
 
 const defaultState = {
   cart: [],
-  checkoutInfo: null,
+  checkoutInfo: {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    country: '',
+    city: '',
+    district: '',
+    zipCode: '',
+    address: '',
+    notes: '',
+  },
 };
 
 function addProduct(cart, product, sizeName) {
@@ -54,25 +66,6 @@ function updateCartProducts(cart, products) {
   });
 }
 
-function saveCheckoutInfo(info) {
-  return {
-    contact: {
-      firstName: info.firstName,
-      lastName: info.lastName,
-      email: info.email,
-      phone: info.phone,
-    },
-    shipping: {
-      country: info.country,
-      city: info.city,
-      district: info.district,
-      zipCode: info.zipCode,
-      address: info.address,
-      notes: info.notes,
-    },
-  };
-}
-
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case ADD_TO_CART:
@@ -90,15 +83,22 @@ export default function reducer(state = defaultState, action) {
         ...state,
         cart: clearProduct(state.cart, action.payload.product, action.payload.sizeName),
       };
-    case SAVE_CHECKOUT_INFO:
+    case CHANGE_CHECKOUT_INFO:
       return {
         ...state,
-        checkoutInfo: saveCheckoutInfo(action.payload),
+        checkoutInfo: {
+          ...state.checkoutInfo,
+          [action.payload.key]: action.payload.value,
+        },
       };
     case UPDATE_CART_PRODUCTS:
       return {
         ...state,
         cart: updateCartProducts(state.cart, action.payload),
+      };
+    case COMPLETE_CHECKOUT:
+      return {
+        ...defaultState,
       };
     default:
       return state;

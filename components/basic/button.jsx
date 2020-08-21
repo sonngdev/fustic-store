@@ -9,10 +9,10 @@ const Button = forwardRef(({
 }, ref) => (
   <>
     <button
+      {...rest}
       ref={ref}
       type="submit"
       className={cx(className, { block, solid })}
-      {...rest}
     />
 
     <style jsx>
@@ -46,7 +46,7 @@ const Button = forwardRef(({
           color: var(--color-background);
           font-weight: var(--fontweight-bold);
 
-          &:hover {
+          &:enabled:hover {
             opacity: 0.8;
           }
         }

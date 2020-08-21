@@ -1,3 +1,13 @@
+export function getCartTotal(cart) {
+  const vnd = cart.reduce((acc, entry) => acc + entry.product.priceVnd * entry.quantity, 0);
+  const usd = cart.reduce((acc, entry) => acc + entry.product.priceUsd * entry.quantity, 0);
+  return [vnd, usd];
+}
+
+export function getCartQuantity(cart) {
+  return cart.reduce((acc, entry) => acc + entry.quantity, 0);
+}
+
 export const countryList = [
   'Afghanistan',
   'Åland Islands',
@@ -244,3 +254,19 @@ export const countryList = [
   'Zambia',
   'Zimbabwe',
 ];
+
+export function checkoutInfoValid(info) {
+  if (!info.firstName) return false;
+  if (!info.lastName) return false;
+  if (!info.email) return false;
+  if (!info.phone) return false;
+  if (!info.country) return false;
+  if (info.country === 'Vietnam' && (!info.city || !info.district)) return false;
+  if (!info.zipCode) return false;
+  if (!info.address) return false;
+  return true;
+}
+
+export function cartValid(cart) {
+  return cart.length > 0;
+}

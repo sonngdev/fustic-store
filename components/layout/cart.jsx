@@ -1,15 +1,14 @@
 import { Fragment, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import Link from 'next/link';
-import { selectCart } from 'store/selectors';
-import { getCartTotal, getCartQuantity } from 'utils/cart';
+import { getCartTotal, getCartQuantity } from 'utils/checkout';
+import { useCart } from 'hooks/store';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import CartProductSmall from 'components/product/cart-product-small';
 import Button from 'components/basic/button';
 
 export default function Cart({ visible }) {
-  const cart = useSelector(selectCart);
+  const cart = useCart();
   const [vndTotal, usdTotal] = getCartTotal(cart);
 
   const itemList = useRef();
@@ -35,7 +34,7 @@ export default function Cart({ visible }) {
         ))}
       </div>
 
-      <Link href="/checkout/info">
+      <Link href="/checkout/summary">
         <Button block disabled={!cart.length}>Check out</Button>
       </Link>
 

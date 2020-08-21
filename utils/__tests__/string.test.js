@@ -1,4 +1,4 @@
-import { formatPriceVnd, snakeToCamel } from '../string';
+import { formatPriceVnd, snakeToCamel, camelToSnake } from '../string';
 
 describe('formatPriceVnd', () => {
   it('throws if argument is not of type number', () => {
@@ -36,5 +36,33 @@ describe('snakeToCamel', () => {
     expect(snakeToCamel('_foo')).toBe('Foo');
     expect(snakeToCamel('_foo_bar')).toBe('FooBar');
     expect(snakeToCamel('_fooBar')).toBe('FooBar');
+  });
+});
+
+describe('camelToSnake', () => {
+  it('throws if argument is not of type string', () => {
+    expect(() => camelToSnake(42)).toThrow(TypeError);
+    expect(() => camelToSnake(true)).toThrow(TypeError);
+  });
+
+  it('converts a camelCase string to snake_case', () => {
+    expect(camelToSnake('fooBar')).toBe('foo_bar');
+    expect(camelToSnake('fooBarBaz')).toBe('foo_bar_baz');
+  });
+
+  it('ignores strings not in camelCase', () => {
+    expect(camelToSnake('')).toBe('');
+    expect(camelToSnake('foobar')).toBe('foobar');
+    expect(camelToSnake('foo_bar')).toBe('foo_bar');
+    expect(camelToSnake('_foo_bar')).toBe('_foo_bar');
+  });
+
+  it('converts strings that begins with uppercase letter', () => {
+  });
+
+  it('converts uppercase letter regardless of the proceeding character', () => {
+    expect(camelToSnake('FooBar')).toBe('_foo_bar');
+    expect(camelToSnake('foo_Bar')).toBe('foo__bar');
+    expect(camelToSnake('Foo')).toBe('_foo');
   });
 });
