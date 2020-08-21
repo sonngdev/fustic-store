@@ -34,7 +34,7 @@ export default function ProductPage({ product }) {
           }
 
           @media screen and (min-width: 1200px) {
-            padding-left: var(--width-menu);
+            padding: 12rem var(--padding-page) 8rem var(--width-menu);
             justify-content: flex-start;
           }
         }

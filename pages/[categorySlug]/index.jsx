@@ -26,7 +26,7 @@ export default function CategoryPage({ category, products }) {
           padding: 8rem var(--padding-page) 4rem;
 
           @media screen and (min-width: 1200px) {
-            padding-left: var(--width-menu);
+            padding: 12rem var(--padding-page) 8rem var(--width-menu);
           }
         }
         `}

@@ -57,7 +57,7 @@ export default function HomePage({ generalConfig, products, vimeoThumbnailUrl })
           width: 100%;
 
           @media screen and (min-width: 1200px) {
-            padding-left: var(--width-menu);
+            padding: 12rem var(--padding-page) 8rem var(--width-menu);
           }
         }
         `}
