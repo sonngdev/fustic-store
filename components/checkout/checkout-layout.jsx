@@ -69,6 +69,7 @@ function CheckoutLayout({ children }) {
             max-width: none;
 
             .first {
+              padding-top: 1em;
               max-height: 400px;
               height: 100%;
               width: 100%;
