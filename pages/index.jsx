@@ -85,5 +85,6 @@ export async function getStaticProps() {
       products,
       vimeoThumbnailUrl,
     },
+    revalidate: true,
   };
 }
