@@ -1,6 +1,6 @@
 import {
   ADD_TO_CART,
-  MINUS_FROM_CART,
+  SUBTRACT_FROM_CART,
   CLEAR_FROM_CART,
   CHANGE_CHECKOUT_INFO,
   UPDATE_CART_PRODUCTS,
@@ -39,7 +39,7 @@ function addProduct(cart, product, sizeName) {
   return cart.concat(newEntry);
 }
 
-function minusProduct(cart, product, sizeName) {
+function subtractProduct(cart, product, sizeName) {
   const entry = cart.find((e) => e.product.id === product.id && e.sizeName === sizeName);
 
   if (!entry || entry.quantity === 1) return [...cart];
@@ -73,10 +73,10 @@ export default function reducer(state = defaultState, action) {
         ...state,
         cart: addProduct(state.cart, action.payload.product, action.payload.sizeName),
       };
-    case MINUS_FROM_CART:
+    case SUBTRACT_FROM_CART:
       return {
         ...state,
-        cart: minusProduct(state.cart, action.payload.product, action.payload.sizeName),
+        cart: subtractProduct(state.cart, action.payload.product, action.payload.sizeName),
       };
     case CLEAR_FROM_CART:
       return {

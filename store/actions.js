@@ -1,5 +1,5 @@
 export const ADD_TO_CART = 'ADD_TO_CART';
-export const MINUS_FROM_CART = 'MINUS_FROM_CART';
+export const SUBTRACT_FROM_CART = 'SUBTRACT_FROM_CART';
 export const CLEAR_FROM_CART = 'CLEAR_FROM_CART';
 export const CHANGE_CHECKOUT_INFO = 'CHANGE_CHECKOUT_INFO';
 export const UPDATE_CART_PRODUCTS = 'UPDATE_CART_PRODUCTS';
@@ -10,8 +10,8 @@ export const addToCart = (product, sizeName) => ({
   payload: { product, sizeName },
 });
 
-export const minusFromCart = (product, sizeName) => ({
-  type: MINUS_FROM_CART,
+export const subtractFromCart = (product, sizeName) => ({
+  type: SUBTRACT_FROM_CART,
   payload: { product, sizeName },
 });
 

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
-import { addToCart, minusFromCart, clearFromCart } from 'store/actions';
+import { addToCart, subtractFromCart, clearFromCart } from 'store/actions';
 import Product from 'models/Product';
 import { formatPriceVnd } from 'utils/string';
 import useCanAddMoreProduct from 'hooks/useCanAddMoreProduct';
@@ -11,16 +11,16 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
   const thumbnail = product.images.find((image) => image.isThumbnail);
 
   const canAddMoreProduct = useCanAddMoreProduct(product, sizeName);
-  const canMinusAwayProduct = quantity === 1;
+  const canSubtractAwayProduct = quantity === 1;
 
   const dispatch = useDispatch();
   const addProductToCart = () => {
     if (!canAddMoreProduct) return;
     dispatch(addToCart(product, sizeName));
   };
-  const minusProductFromCart = () => {
-    if (canMinusAwayProduct) return;
-    dispatch(minusFromCart(product, sizeName));
+  const subtractProductFromCart = () => {
+    if (canSubtractAwayProduct) return;
+    dispatch(subtractFromCart(product, sizeName));
   };
   const clearProductFromCart = () => dispatch(clearFromCart(product, sizeName));
 
@@ -47,7 +47,7 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
           </div>
         ) : (
           <div className="quantity editable">
-            <button type="button" className="minus" onClick={minusProductFromCart} disabled={canMinusAwayProduct}>-</button>
+            <button type="button" className="subtract" onClick={subtractProductFromCart} disabled={canSubtractAwayProduct}>-</button>
             <span>{quantity}</span>
             <button type="button" className="plus" onClick={addProductToCart} disabled={!canAddMoreProduct}>+</button>
           </div>
@@ -103,7 +103,7 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
                 align-items: center;
                 width: calc(var(--fontsize-md) * 9.6);
 
-                .minus {
+                .subtract {
                   padding-right: 10px;
                 }
 
