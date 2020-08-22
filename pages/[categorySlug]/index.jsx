@@ -60,5 +60,6 @@ export async function getStaticProps({ params }) {
       products,
       key: params.categorySlug,
     },
+    revalidate: true,
   };
 }

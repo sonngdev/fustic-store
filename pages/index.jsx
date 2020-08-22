@@ -21,9 +21,7 @@ export default function HomePage({ generalConfig, products, vimeoThumbnailUrl })
 
       <div className="home-page" id="home-page">
         <ProductGrid>
-          {products.map((product) => <SiteProduct product={product} key={`${product.id}1`} />)}
-          {products.map((product) => <SiteProduct product={product} key={`${product.id}2`} />)}
-          {products.map((product) => <SiteProduct product={product} key={`${product.id}3`} />)}
+          {products.map((product) => <SiteProduct product={product} key={product.id} />)}
         </ProductGrid>
       </div>
 
@@ -87,5 +85,6 @@ export async function getStaticProps() {
       products,
       vimeoThumbnailUrl,
     },
+    revalidate: true,
   };
 }
