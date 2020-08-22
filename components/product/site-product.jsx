@@ -104,7 +104,7 @@ export default function SiteProduct({ product }) {
             }
           }
 
-          @media screen and (min-width: 1600px) {
+          @media screen and (min-width: 1800px) {
             .thumbnail, .alt-thumbnail {
               width: 420px;
               height: 560px;

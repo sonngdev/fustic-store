@@ -131,7 +131,7 @@ export default function ProductImages({ product }) {
             }
           }
 
-          @media screen and (min-width: 1600px) {
+          @media screen and (min-width: 1800px) {
             .container .slider {
               width: 600px;
               height: 800px;

@@ -129,7 +129,7 @@ function LocalCheckout() {
             }
           }
 
-          @media screen and (min-width: 1600px) {
+          @media screen and (min-width: 1800px) {
             article {
               h2, p {
                 font-size: 22px;

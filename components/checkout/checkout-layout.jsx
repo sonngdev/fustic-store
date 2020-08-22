@@ -101,7 +101,7 @@ function CheckoutLayout({ children }) {
             row-gap: 3em;
           }
 
-          @media screen and (min-width: 1600px) {
+          @media screen and (min-width: 1800px) {
             grid-template-columns: 600px 600px;
 
             .first {

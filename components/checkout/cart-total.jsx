@@ -180,7 +180,7 @@ function CartTotal() {
             }
           }
 
-          @media screen and (min-width: 1600px) {
+          @media screen and (min-width: 1800px) {
             font-size: 25px;
 
             table tr {

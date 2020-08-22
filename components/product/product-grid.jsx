@@ -37,7 +37,7 @@ export default function ProductGrid({ children }) {
             }
           }
 
-          @media screen and (min-width: 1600px) {
+          @media screen and (min-width: 1800px) {
             > * {
               margin-right: calc(1.5 * 4rem);
               margin-bottom: calc(1.5 * 4rem);

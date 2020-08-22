@@ -135,7 +135,7 @@ function ProductOrderer({ product }) {
             }
           }
 
-          @media screen and (min-width: 1600px) {
+          @media screen and (min-width: 1800px) {
             margin-left: 250px;
           }
         }

@@ -39,7 +39,7 @@ export default function ProductPage({ product }) {
             align-items: center;
           }
 
-          @media screen and (min-width: 1600px) {
+          @media screen and (min-width: 1800px) {
             padding: 16rem var(--padding-page) 3rem var(--width-menu);
           }
         }

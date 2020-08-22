@@ -64,7 +64,7 @@ function Radio({ id, label, ...rest }) {
               transform: scale(1);
           }
 
-          @media screen and (min-width: 1600px) {
+          @media screen and (min-width: 1800px) {
             font-size: 25px;
           }
         }
