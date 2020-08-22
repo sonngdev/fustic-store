@@ -1,17 +1,27 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import Link from 'next/link';
 import { addToCart, minusFromCart, clearFromCart } from 'store/actions';
 import Product from 'models/Product';
 import { formatPriceVnd } from 'utils/string';
-import Link from 'next/link';
+import useCanAddMoreProduct from 'hooks/useCanAddMoreProduct';
 
 export default function CartProductSmall({ cartEntry, noneditable }) {
   const { product, quantity, sizeName } = cartEntry;
   const thumbnail = product.images.find((image) => image.isThumbnail);
 
+  const canAddMoreProduct = useCanAddMoreProduct(product, sizeName);
+  const canMinusAwayProduct = quantity === 1;
+
   const dispatch = useDispatch();
-  const addProductToCart = () => dispatch(addToCart(product, sizeName));
-  const minusProductFromCart = () => dispatch(minusFromCart(product, sizeName));
+  const addProductToCart = () => {
+    if (!canAddMoreProduct) return;
+    dispatch(addToCart(product, sizeName));
+  };
+  const minusProductFromCart = () => {
+    if (canMinusAwayProduct) return;
+    dispatch(minusFromCart(product, sizeName));
+  };
   const clearProductFromCart = () => dispatch(clearFromCart(product, sizeName));
 
   return (
@@ -37,9 +47,9 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
           </div>
         ) : (
           <div className="quantity editable">
-            <button type="button" className="minus" onClick={minusProductFromCart} disabled={quantity === 1}>-</button>
+            <button type="button" className="minus" onClick={minusProductFromCart} disabled={canMinusAwayProduct}>-</button>
             <span>{quantity}</span>
-            <button type="button" className="plus" onClick={addProductToCart}>+</button>
+            <button type="button" className="plus" onClick={addProductToCart} disabled={!canAddMoreProduct}>+</button>
           </div>
         )}
         <div className="price">{formatPriceVnd(product.priceVnd)} VND • ${+product.priceUsd.toLocaleString()}</div>
