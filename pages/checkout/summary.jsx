@@ -47,7 +47,7 @@ function CheckoutSummaryPage() {
       <style jsx>
         {`
         .checkout-summary-page {
-          padding: 8rem 0 4rem;
+          padding: 6rem 0 4rem;
 
           .cart-entries {
             width: 260px;
@@ -67,11 +67,15 @@ function CheckoutSummaryPage() {
           }
 
           @media screen and (min-width: 768px) {
-            padding-top: 12rem;
+            padding-top: 10rem;
 
             .info .button-group {
               margin-top: 6em;
             }
+          }
+
+          @media screen and (min-width: 1200px) {
+            padding-top: 12rem;
           }
         }
         `}

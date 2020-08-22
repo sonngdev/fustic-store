@@ -7,13 +7,13 @@ function CheckoutLayout({ children }) {
 
   return (
     <section className="checkout-layout">
-      {/* <nav>
+      <nav>
         <small className={cx({ active: pathname === '/checkout/summary' })}>Summary</small>
         <span role="separator">•</span>
         <small className={cx({ active: pathname === '/checkout/shipping' })}>Shipping</small>
         <span role="separator">•</span>
         <small className={cx({ active: pathname === '/checkout/payment' })}>Payment</small>
-      </nav> */}
+      </nav>
 
       <article className="first scrollbar-visible">
         {children[0]}
@@ -39,6 +39,7 @@ function CheckoutLayout({ children }) {
 
           nav {
             text-transform: uppercase;
+            margin-bottom: 2em;
 
             > *:not(.active) {
               opacity: 0.4;
@@ -63,14 +64,24 @@ function CheckoutLayout({ children }) {
           @media screen and (min-width: 768px) {
             display: grid;
             grid-template-columns: auto 330px;
+            grid-template-areas:
+              "nav nav"
+              "first second";
             column-gap: 4em;
+            row-gap: 2em;
 
             width: fit-content;
             max-width: none;
 
+            nav {
+              grid-area: nav;
+              margin: 0 auto;
+            }
+
             .first {
-              padding-top: 1em;
-              max-height: 400px;
+              grid-area: first;
+              padding-top: 0.75em;
+              max-height: 450px;
               height: 100%;
               width: 100%;
               overflow: auto;
@@ -79,6 +90,7 @@ function CheckoutLayout({ children }) {
             }
 
             .second {
+              grid-area: second;
               align-self: start;
               margin-top: 0;
             }
@@ -86,6 +98,7 @@ function CheckoutLayout({ children }) {
 
           @media screen and (min-width: 1200px) {
             grid-template-columns: 350px 330px;
+            row-gap: 3em;
           }
 
           @media screen and (min-width: 1600px) {

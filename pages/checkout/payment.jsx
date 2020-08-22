@@ -35,9 +35,13 @@ function CheckoutPaymentPage() {
       <style jsx>
         {`
         .checkout-payment-page {
-          padding: 8rem 0 4rem;
+          padding: 6rem 0 4rem;
 
           @media screen and (min-width: 768px) {
+            padding-top: 10rem;
+          }
+
+          @media screen and (min-width: 1200px) {
             padding-top: 12rem;
           }
         }
