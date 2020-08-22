@@ -1,40 +1,69 @@
 /* eslint-disable no-useless-escape */
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-
-import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function Menu({ visible }) {
+import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
+import { getCategories } from 'utils/request';
+
+function useCategories() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const request = async () => {
+      const cs = await getCategories();
+      setCategories(cs);
+    };
+    request();
+  }, []);
+
+  return categories;
+}
+
+export default function Menu({ visible, hideMenu }) {
   const menu = useRef(null);
   useDisableBodyScroll(menu.current, visible);
 
-  const { asPath } = useRouter();
+  const categories = useCategories();
 
+  const { pathname, asPath } = useRouter();
   const links = [
-    { href: '/', as: '/', text: 'Collections' },
-    { href: '/[categorySlug]', as: '/t-shirts', text: 'T-Shirts' },
-    { href: '/[categorySlug]', as: '/sweaters', text: 'Sweaters' },
-    { href: '/[categorySlug]', as: '/hoodies', text: 'Hoodies' },
-    { href: '/[categorySlug]', as: '/prints', text: 'Prints' },
+    { href: '/', as: '/#home-page', text: 'Collections' },
+    ...categories.map(({ slug, name }) => (
+      { href: '/[categorySlug]', as: `/${slug}`, text: name }
+    )),
   ];
 
   return (
     <div className="menu" ref={menu}>
       <div className="item">Products</div>
       <ul>
-        {links.map(({ href, as, text }) => (
+        {links.map(({ href, as, text }) => (as === '/#home-page' ? (
           <li key={text}>
             <Link href={href} as={as}>
-              <a className={cx('subitem', { active: as === '/' ? asPath === '/' : asPath.startsWith(as) })}>
+              <a
+                role="link"
+                tabIndex="0"
+                onClick={hideMenu}
+                onKeyPress={hideMenu}
+                className={cx('subitem', { active: pathname === '/' })}
+              >
                 {text}
               </a>
             </Link>
           </li>
-        ))}
+        ) : (
+          <li key={text}>
+            <Link href={href} as={as}>
+              <a className={cx('subitem', { active: asPath.startsWith(as) })}>
+                {text}
+              </a>
+            </Link>
+          </li>
+        )))}
       </ul>
 
       <style jsx>
@@ -97,4 +126,5 @@ export default function Menu({ visible }) {
 
 Menu.propTypes = {
   visible: PropTypes.bool.isRequired,
+  hideMenu: PropTypes.func.isRequired,
 };

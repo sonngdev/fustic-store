@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import { formatPriceVnd } from 'utils/string';
+import Product from 'models/Product';
 
 export default function SiteProduct({ product }) {
   const {
@@ -10,13 +12,20 @@ export default function SiteProduct({ product }) {
     priceVnd,
     priceUsd,
   } = product;
+  const [hovered, setHovered] = useState(false);
   const thumbnail = images.find((image) => image.isThumbnail);
+  const altThumbnail = images.find((image) => image.isAltThumbnail);
 
   return (
-    <div className="site-product">
+    <div
+      className="site-product"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <Link href={`/${category.slug}/${slug}`}>
         <a>
-          <img src={thumbnail.url} alt={name} className="thumbnail" />
+          <img src={thumbnail?.url} alt={name} className="thumbnail" />
+          <img src={altThumbnail?.url} alt={name} className="alt-thumbnail" />
           <div className="info">
             <div className="name-category">
               {name}
@@ -24,7 +33,7 @@ export default function SiteProduct({ product }) {
               {category.singularName}
             </div>
 
-            <div className="price">{formatPriceVnd(priceVnd)} VND • ${priceUsd.toLocaleString()}</div>
+            <div className="price">{formatPriceVnd(priceVnd)} VND • ${+priceUsd.toLocaleString()}</div>
           </div>
         </a>
       </Link>
@@ -34,13 +43,20 @@ export default function SiteProduct({ product }) {
         .site-product {
           text-transform: uppercase;
 
-          .thumbnail {
+          .thumbnail, .alt-thumbnail {
             width: 240px;
             height: 320px;
             object-fit: cover;
-            display: block;
             margin: 0 auto;
             margin-bottom: 0.8rem;
+          }
+
+          .thumbnail {
+            display: ${hovered ? 'none' : 'block'};
+          }
+
+          .alt-thumbnail {
+            display: ${hovered ? 'block' : 'none'};
           }
 
           .info {
@@ -48,6 +64,7 @@ export default function SiteProduct({ product }) {
             grid-template-columns: 1fr 1fr;
             align-items: center;
             margin: 0 auto;
+            width: 240px;
 
             .name-category {
               font-size: var(--fontsize-sm);
@@ -62,24 +79,24 @@ export default function SiteProduct({ product }) {
           }
 
           @media screen and (min-width: 768px) {
-            .thumbnail {
+            .thumbnail, .alt-thumbnail {
               width: 270px;
               height: 360px;
             }
 
             .info {
-              width: 250px;
+              width: 270px;
             }
           }
 
           @media screen and (min-width: 1200px) {
-            .thumbnail {
+            .thumbnail, .alt-thumbnail {
               width: 300px;
               height: 400px;
             }
 
             .info {
-              width: 200px;
+              width: 220px;
 
               .price {
                 font-size: var(--fontsize-md);
@@ -87,10 +104,22 @@ export default function SiteProduct({ product }) {
             }
           }
 
-          @media screen and (min-width: 1600px) {
-            .thumbnail {
+          @media screen and (min-width: 1800px) {
+            .thumbnail, .alt-thumbnail {
               width: 420px;
               height: 560px;
+            }
+
+            .info {
+              width: 400px;
+
+              .name-category {
+                font-size: 13px;
+              }
+
+              .price {
+                font-size: 22px;
+              }
             }
           }
         }
@@ -99,3 +128,7 @@ export default function SiteProduct({ product }) {
     </div>
   );
 }
+
+SiteProduct.propTypes = {
+  product: Product.isRequired,
+};

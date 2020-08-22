@@ -1,11 +1,15 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { getCartQuantity } from 'utils/checkout';
+import { useCart } from 'hooks/store';
 
 export default function Header({
   showMenu,
   showCart,
   reveal,
 }) {
+  const cart = useCart();
+
   return (
     <header>
       <button type="button" className="menu-button" onClick={showMenu}>
@@ -17,10 +21,12 @@ export default function Header({
         </a>
       </Link>
       <button type="button" className="cart-button" onClick={showCart}>
-        Cart (1)
+        Cart ({getCartQuantity(cart)})
       </button>
       <div className="items">
-        <a>Collections</a>
+        <Link href="/#home-page">
+          <a>Collections</a>
+        </Link>
         <a>About</a>
         <button type="button" className="cart-icon-button" onClick={showCart}>
           <img src="/icons/cart.svg" alt="Cart" />
@@ -84,8 +90,6 @@ export default function Header({
             grid-template-columns: 1fr 1fr;
             grid-template-areas: "brand items";
 
-            max-width: 1920px;
-
             .menu-button, .cart-button {
               display: none;
             }
@@ -111,8 +115,8 @@ export default function Header({
 
               .cart-icon-button img {
                 vertical-align: text-top;
-                width: 16px;
-                height: 16px;
+                width: calc(var(--fontsize-md) * 1.23);
+                height: calc(var(--fontsize-md) * 1.23);
               }
             }
           }
