@@ -3,12 +3,11 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from 'store/actions';
 import Product from 'models/Product';
 
-function AddToCartButton({ product, size }) {
+function AddToCartButton({ product, size, disabled }) {
   const dispatch = useDispatch();
-  const cannotAdd = !size || !size.inStock;
 
   const addProductToCart = () => {
-    if (cannotAdd) return;
+    if (disabled) return;
     dispatch(addToCart(product, size.name));
   };
 
@@ -17,7 +16,7 @@ function AddToCartButton({ product, size }) {
       type="button"
       className="add-to-cart"
       onClick={addProductToCart}
-      disabled={cannotAdd}
+      disabled={disabled}
     >
       <span>
         <img src="/eye.png" alt="Eye" />
@@ -80,10 +79,12 @@ AddToCartButton.propTypes = {
     name: PropTypes.string.isRequired,
     inStock: PropTypes.bool.isRequired,
   }),
+  disabled: PropTypes.bool,
 };
 
 AddToCartButton.defaultProps = {
   size: null,
+  disabled: false,
 };
 
 export default AddToCartButton;

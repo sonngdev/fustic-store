@@ -5,8 +5,12 @@ import { formatPriceVnd } from 'utils/string';
 import Product from 'models/Product';
 
 function ProductOrderer({ product }) {
-  const sizesInStock = product.sizes.filter((s) => s.inStock);
-  const [selectedSize, setSelectedSize] = useState(sizesInStock[0]);
+  const [selectedSize, setSelectedSize] = useState(product.sizes.find((s) => s.inStock));
+
+  const selectSize = (size) => () => {
+    if (!size.inStock) return;
+    setSelectedSize(size);
+  };
 
   return (
     <div className="product-orderer">
@@ -21,9 +25,9 @@ function ProductOrderer({ product }) {
               <button
                 key={size.name}
                 type="button"
-                disabled={!sizesInStock.includes(size)}
+                disabled={!size.inStock}
                 className={cx({ active: size === selectedSize })}
-                onClick={() => setSelectedSize(size)}
+                onClick={selectSize(size)}
               >
                 {size.name}
               </button>
@@ -31,7 +35,11 @@ function ProductOrderer({ product }) {
           }
         </div>
 
-        <AddToCartButton product={product} size={selectedSize} />
+        <AddToCartButton
+          product={product}
+          size={selectedSize}
+          disabled={!selectedSize.inStock}
+        />
       </div>
 
       <div className="notes">
