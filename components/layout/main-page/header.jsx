@@ -90,8 +90,6 @@ export default function Header({
             grid-template-columns: 1fr 1fr;
             grid-template-areas: "brand items";
 
-            max-width: 1920px;
-
             .menu-button, .cart-button {
               display: none;
             }
