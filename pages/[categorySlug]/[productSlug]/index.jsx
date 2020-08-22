@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import Layout from 'components/layout';
 import ProductImages from 'components/product/product-images';
 import ProductOrderer from 'components/product/product-orderer';
@@ -6,6 +7,14 @@ import { getProducts, getProduct } from 'utils/request';
 import Product from 'models/Product';
 
 export default function ProductPage({ product }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <div>Loading...</div>
+    );
+  }
+
   return (
     <Layout>
       <Head>
@@ -65,7 +74,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 

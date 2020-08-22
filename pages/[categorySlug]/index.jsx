@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import Layout from 'components/layout';
 import ProductGrid from 'components/product/product-grid';
 import SiteProduct from 'components/product/site-product';
@@ -8,6 +9,14 @@ import Category from 'models/Category';
 import Product from 'models/Product';
 
 export default function CategoryPage({ category, products }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <div>Loading...</div>
+    );
+  }
+
   return (
     <Layout>
       <Head>
@@ -46,7 +55,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
