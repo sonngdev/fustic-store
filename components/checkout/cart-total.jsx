@@ -104,7 +104,7 @@ function CartTotal() {
           onChange={(e) => setDiscountCode(e.target.value)}
         />
         <button type="button" className="add-discount">
-          <span>+</span>
+          <div>+</div>
         </button>
       </div>
 
@@ -150,15 +150,16 @@ function CartTotal() {
 
             .add-discount {
               position: absolute;
-              top: 0.8rem;
-              right: 0.8rem;
+              top: 50%;
+              right: 0.8em;
+              transform: translateY(-50%);
 
               background-color: var(--color-text);
               color: var(--color-background);
               height: 1.5rem;
               width: 1.5rem;
 
-              span {
+              div {
                 display: flex;
                 justify-content: center;
                 align-items: center;
