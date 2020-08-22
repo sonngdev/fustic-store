@@ -90,8 +90,6 @@ export default function Header({
             grid-template-columns: 1fr 1fr;
             grid-template-areas: "brand items";
 
-            max-width: 1920px;
-
             .menu-button, .cart-button {
               display: none;
             }
@@ -117,8 +115,8 @@ export default function Header({
 
               .cart-icon-button img {
                 vertical-align: text-top;
-                width: 16px;
-                height: 16px;
+                width: calc(var(--fontsize-md) * 1.23);
+                height: calc(var(--fontsize-md) * 1.23);
               }
             }
           }

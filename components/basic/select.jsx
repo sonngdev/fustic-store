@@ -22,10 +22,10 @@ export default function Select(props) {
             border: solid 1px rgba(white, 0.4);
             border-radius: 0;
             background-color: transparent;
-            padding: 12px;
-            padding-right: 22px;
+            padding: 1em;
+            padding-right: 1.76em;
             width: 100%;
-            height: 43px;
+            height: 3.44em;
             font-size: var(--fontsize-md);
             text-transform: uppercase;
 
@@ -37,8 +37,8 @@ export default function Select(props) {
 
           .caret {
             position: absolute;
-            right: 10px;
-            top: 16px;
+            right: 0.8em;
+            top: 1.4em;
             z-index: 0;
             width: 8px;
             height: 8px;

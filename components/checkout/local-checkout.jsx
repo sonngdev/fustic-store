@@ -88,14 +88,6 @@ function LocalCheckout() {
       <style jsx>
         {`
         .local-checkout {
-          max-width: 350px;
-          margin: 0 auto;
-
-          h1 {
-            font-size: 19px;
-            margin-bottom: 1.5em;
-          }
-
           article {
             display: none;
 
@@ -134,6 +126,14 @@ function LocalCheckout() {
 
             .button-group {
               margin-top: 6rem;
+            }
+          }
+
+          @media screen and (min-width: 1800px) {
+            article {
+              h2, p {
+                font-size: 22px;
+              }
             }
           }
         }

@@ -2,11 +2,17 @@ import { useState } from 'react';
 import cx from 'classnames';
 import AddToCartButton from 'components/product/add-to-cart-button';
 import { formatPriceVnd } from 'utils/string';
+import useCanAddMoreProduct from 'hooks/useCanAddMoreProduct';
 import Product from 'models/Product';
 
 function ProductOrderer({ product }) {
-  const sizesInStock = product.sizes.filter((s) => s.inStock);
-  const [selectedSize, setSelectedSize] = useState(sizesInStock[0]);
+  const [selectedSize, setSelectedSize] = useState(product.sizes.find((s) => s.inStock));
+
+  const canAddMoreProduct = useCanAddMoreProduct(product, selectedSize?.name);
+  const selectSize = (size) => () => {
+    if (!size.inStock) return;
+    setSelectedSize(size);
+  };
 
   return (
     <div className="product-orderer">
@@ -21,9 +27,9 @@ function ProductOrderer({ product }) {
               <button
                 key={size.name}
                 type="button"
-                disabled={!sizesInStock.includes(size)}
+                disabled={!size.inStock}
                 className={cx({ active: size === selectedSize })}
-                onClick={() => setSelectedSize(size)}
+                onClick={selectSize(size)}
               >
                 {size.name}
               </button>
@@ -31,13 +37,16 @@ function ProductOrderer({ product }) {
           }
         </div>
 
-        <AddToCartButton product={product} size={selectedSize} />
+        <AddToCartButton
+          product={product}
+          size={selectedSize}
+          disabled={!selectedSize?.inStock || !canAddMoreProduct}
+        />
       </div>
 
       <div className="notes">
         <p>Do not wear this product with light colors to avoid color transfer</p>
         <p>Material: 100% cotton<br />Made in vietnam</p>
-        <p>Model is 5’8” wearing a size large t-shirt</p>
       </div>
 
       <style jsx>
@@ -59,7 +68,7 @@ function ProductOrderer({ product }) {
           }
 
           .size-add {
-            width: 205px;
+            width: 16.4em;
             margin-top: 0.5em;
 
             :global(> :not(:first-child)) {
@@ -67,19 +76,19 @@ function ProductOrderer({ product }) {
             }
 
             .size {
-              width: 205px;
+              width: 16.4em;
 
               button {
                 font-weight: var(--fontweight-thin);
                 border: solid 1px rgba(255, 255, 255, 0.4);
-                width: 32px;
-                height: 32px;
+                width: 2.56em;
+                height: 2.56em;
                 padding: 0;
                 transition: ease 0.2s;
                 transition-property: border, font-weight;
 
                 &:not(:last-of-type) {
-                  margin-right: 11px;
+                  margin-right: calc((16.4em - 2.56em * 5) / 4);
                 }
 
                 &.active {
@@ -136,7 +145,7 @@ function ProductOrderer({ product }) {
             }
           }
 
-          @media screen and (min-width: 1600px) {
+          @media screen and (min-width: 1800px) {
             margin-left: 250px;
           }
         }

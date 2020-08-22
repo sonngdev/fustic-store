@@ -43,8 +43,18 @@
     --width-cart: 320px;
   }
 
-  @media screen and (min-width: 1600px) {
-    --width-menu: 250px;
+  @media screen and (min-width: 1800px) {
+    --fontsize-xs: 12px;
+    --fontsize-sm: 11px;
+    --fontsize-md: 18px;
+    --fontsize-lg: 28px;
+    --fontsize-xl: 72px;
+
+    --padding-header: 70px;
+
+    --height-brand: 40px;
+    --width-menu: 350px;
+    --width-cart: 500px;
   }
 }
 
@@ -96,7 +106,7 @@ input {
   border: solid 1px rgba(white, 0.4);
   border-radius: 0;
   background-color: transparent;
-  padding: 12px;
+  padding: 1em;
   width: 100%;
   font-size: var(--fontsize-md);
   text-transform: uppercase;

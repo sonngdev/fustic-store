@@ -47,11 +47,7 @@ function CheckoutSummaryPage() {
       <style jsx>
         {`
         .checkout-summary-page {
-          --padding-page: 30px;
-          max-width: 500px;
-
-          width: 100%;
-          padding: 6rem var(--padding-page) 0;
+          padding: 6rem 0 4rem;
 
           .cart-entries {
             width: 260px;
@@ -70,17 +66,16 @@ function CheckoutSummaryPage() {
             grid-column-gap: 10px;
           }
 
-          @media screen and (min-width: 375px) {
-            --padding-page: 50px;
-          }
-
           @media screen and (min-width: 768px) {
-            padding-top: 12rem;
-            max-width: none;
+            padding-top: 10rem;
 
             .info .button-group {
               margin-top: 6em;
             }
+          }
+
+          @media screen and (min-width: 1200px) {
+            padding-top: 12rem;
           }
         }
         `}

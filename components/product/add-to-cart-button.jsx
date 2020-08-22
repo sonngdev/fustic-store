@@ -3,12 +3,11 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from 'store/actions';
 import Product from 'models/Product';
 
-function AddToCartButton({ product, size }) {
+function AddToCartButton({ product, size, disabled }) {
   const dispatch = useDispatch();
-  const cannotAdd = !size || !size.inStock;
 
   const addProductToCart = () => {
-    if (cannotAdd) return;
+    if (disabled) return;
     dispatch(addToCart(product, size.name));
   };
 
@@ -17,7 +16,7 @@ function AddToCartButton({ product, size }) {
       type="button"
       className="add-to-cart"
       onClick={addProductToCart}
-      disabled={cannotAdd}
+      disabled={disabled}
     >
       <span>
         <img src="/eye.png" alt="Eye" />
@@ -27,9 +26,9 @@ function AddToCartButton({ product, size }) {
       <style jsx>
         {`
         .add-to-cart {
-          width: 205px;
+          width: 16.4em;
           border: solid 1px var(--color-text);
-          padding: 12px;
+          padding: 1em;
           text-transform: uppercase;
 
           &:enabled {
@@ -53,21 +52,18 @@ function AddToCartButton({ product, size }) {
             align-items: center;
 
             img {
-              width: 30px;
+              width: 2.4em;
             }
           }
 
           @media screen and (min-width: 1200px) {
             font-size: var(--fontsize-lg);
-            padding: 20px;
-            width: 295px;
+            padding: 1.1em;
+            width: 16.4em;
 
             span {
-              grid-template-columns: 60px auto;
-
-              img {
-                width: 40px;
-              }
+              grid-template-columns: 2.4em auto;
+              column-gap: 1em;
             }
           }
         }
@@ -83,10 +79,12 @@ AddToCartButton.propTypes = {
     name: PropTypes.string.isRequired,
     inStock: PropTypes.bool.isRequired,
   }),
+  disabled: PropTypes.bool,
 };
 
 AddToCartButton.defaultProps = {
   size: null,
+  disabled: false,
 };
 
 export default AddToCartButton;

@@ -270,3 +270,12 @@ export function checkoutInfoValid(info) {
 export function cartValid(cart) {
   return cart.length > 0;
 }
+
+export function canAddMore(product, sizeName, cart) {
+  if (!sizeName) return false;
+
+  const entry = cart.find((e) => e.product.id === product.id && e.sizeName === sizeName);
+  if (!entry) return true;
+
+  return entry.quantity < 5;
+}

@@ -20,13 +20,12 @@ export default function ProductPage({ product }) {
       <style jsx>
         {`
         .product-page {
-          width: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
 
           text-transform: uppercase;
-          padding: 8rem var(--padding-page) 0;
+          padding: 8rem var(--padding-page) 4rem;
 
           @media screen and (min-width: 992px) {
             flex-direction: row;
@@ -35,8 +34,13 @@ export default function ProductPage({ product }) {
           }
 
           @media screen and (min-width: 1200px) {
-            padding-left: var(--width-menu);
+            padding: 10rem var(--padding-page) 3rem var(--width-menu);
             justify-content: flex-start;
+            align-items: center;
+          }
+
+          @media screen and (min-width: 1800px) {
+            padding: 16rem var(--padding-page) 3rem var(--width-menu);
           }
         }
         `}

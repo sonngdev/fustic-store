@@ -182,9 +182,7 @@ function CheckoutShippingPage() {
         <style jsx>
           {`
           .checkout-shipping-page {
-            width: 100%;
-            max-width: 500px;
-            padding: 6rem var(--padding-page) 0;
+            padding: 6rem 0 4rem;
 
             .contact {
               small {
@@ -276,13 +274,8 @@ function CheckoutShippingPage() {
               grid-column-gap: 10px;
             }
 
-            @media screen and (min-width: 375px) {
-              --padding-page: 25px;
-            }
-
             @media screen and (min-width: 768px) {
-              padding-top: 12rem;
-              max-width: none;
+              padding-top: 10rem;
 
               form {
                 padding-right: 10px;
@@ -291,6 +284,10 @@ function CheckoutShippingPage() {
               .button-group {
                 margin-top: 6em;
               }
+            }
+
+            @media screen and (min-width: 1200px) {
+              padding-top: 12rem;
             }
           }
           `}

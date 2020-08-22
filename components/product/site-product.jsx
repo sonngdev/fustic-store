@@ -64,6 +64,7 @@ export default function SiteProduct({ product }) {
             grid-template-columns: 1fr 1fr;
             align-items: center;
             margin: 0 auto;
+            width: 240px;
 
             .name-category {
               font-size: var(--fontsize-sm);
@@ -103,10 +104,22 @@ export default function SiteProduct({ product }) {
             }
           }
 
-          @media screen and (min-width: 1600px) {
+          @media screen and (min-width: 1800px) {
             .thumbnail, .alt-thumbnail {
               width: 420px;
               height: 560px;
+            }
+
+            .info {
+              width: 400px;
+
+              .name-category {
+                font-size: 13px;
+              }
+
+              .price {
+                font-size: 22px;
+              }
             }
           }
         }
