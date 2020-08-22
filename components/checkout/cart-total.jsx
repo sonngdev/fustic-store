@@ -150,21 +150,20 @@ function CartTotal() {
 
             .add-discount {
               position: absolute;
-              top: 10px;
-              right: 10px;
+              top: 0.8rem;
+              right: 0.8rem;
 
               background-color: var(--color-text);
               color: var(--color-background);
-              padding: 0.1em;
-              height: 1.5em;
-              width: 1.5em;
+              height: 1.5rem;
+              width: 1.5rem;
 
               span {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 1.5em;
-                line-height: 0.7;
+                font-size: 1.5rem;
+                line-height: 0.1;
               }
             }
           }
@@ -178,6 +177,20 @@ function CartTotal() {
           @media screen and (min-width: 768px) {
             .discount-code {
               margin-top: 1.5em;
+            }
+          }
+
+          @media screen and (min-width: 1600px) {
+            font-size: 25px;
+
+            table tr {
+              > :first-child {
+                font-weight: var(--fontweight-regular);
+              }
+
+              > :last-child {
+                padding-left: 18%;
+              }
             }
           }
         }

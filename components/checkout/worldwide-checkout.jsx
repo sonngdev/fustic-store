@@ -38,7 +38,7 @@ function WorldwideCheckout() {
       Router.push('/checkout/completed');
     };
 
-    const style = { color: 'silver' };
+    const style = { color: 'gold' };
 
     window.paypal.Buttons({
       createOrder: handleCreateOrder,
@@ -63,7 +63,7 @@ function WorldwideCheckout() {
             background-color: white;
             border-radius: 3px;
             padding: 10px;
-            max-width: 450px;
+            max-width: 37.5em;
             margin: 0 auto;
           }
 

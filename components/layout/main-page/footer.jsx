@@ -32,7 +32,7 @@ function Footer() {
           .media {
             display: grid;
             grid-template-columns: min-content min-content min-content;
-            column-gap: 15px;
+            column-gap: calc(var(--height-brand) * 0.6);
 
             > a {
               display: flex;
@@ -41,11 +41,11 @@ function Footer() {
 
             img {
               &.instagram, &.facebook {
-                height: 13px;
+                height: calc(var(--height-brand) / 2);
               }
 
               &.web {
-                height: 8px;
+                height: calc(var(--height-brand) / 3);
               }
             }
           }
@@ -69,7 +69,6 @@ function Footer() {
 
             .media {
               justify-self: start;
-              column-gap: 18px;
             }
 
             .copyright {

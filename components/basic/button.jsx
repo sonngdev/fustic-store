@@ -21,7 +21,7 @@ const Button = forwardRef(({
         font-size: var(--fontsize-sm);
         text-transform: uppercase;
 
-        padding: 15px 25px;
+        padding: 1.2em 2em;
         border: solid 1px var(--color-text);
         color: var(--color-text);
 
@@ -54,7 +54,7 @@ const Button = forwardRef(({
         @media screen and (min-width: 1200px) {
           font-size: var(--fontsize-md);
           font-weight: var(--fontweight-bold);
-          padding: 23px 25px;
+          padding: 2em;
         }
       }
       `}

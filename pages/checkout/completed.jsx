@@ -29,9 +29,10 @@ function CheckoutCompletedPage() {
       <style jsx>
         {`
         .checkout-completed-page {
-          padding: 15rem 30px 4rem;
+          padding: 35vh 30px 4rem;
           text-align: center;
-          max-width: 350px;
+          text-transform: uppercase;
+          max-width: 60em;
 
           h1 {
             font-size: var(--fontsize-md);

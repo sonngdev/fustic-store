@@ -109,6 +109,18 @@ export default function SiteProduct({ product }) {
               width: 420px;
               height: 560px;
             }
+
+            .info {
+              width: 400px;
+
+              .name-category {
+                font-size: 13px;
+              }
+
+              .price {
+                font-size: 22px;
+              }
+            }
           }
         }
         `}

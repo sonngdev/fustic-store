@@ -7,13 +7,13 @@ function CheckoutLayout({ children }) {
 
   return (
     <section className="checkout-layout">
-      <nav>
+      {/* <nav>
         <small className={cx({ active: pathname === '/checkout/summary' })}>Summary</small>
         <span role="separator">•</span>
         <small className={cx({ active: pathname === '/checkout/shipping' })}>Shipping</small>
         <span role="separator">•</span>
         <small className={cx({ active: pathname === '/checkout/payment' })}>Payment</small>
-      </nav>
+      </nav> */}
 
       <article className="first scrollbar-visible">
         {children[0]}
@@ -69,8 +69,9 @@ function CheckoutLayout({ children }) {
             max-width: none;
 
             .first {
-              max-height: 420px;
-              max-width: 350px;
+              max-height: 400px;
+              height: 100%;
+              width: 100%;
               overflow: auto;
               justify-self: right;
               align-self: start;
@@ -84,6 +85,14 @@ function CheckoutLayout({ children }) {
 
           @media screen and (min-width: 1200px) {
             grid-template-columns: 350px 330px;
+          }
+
+          @media screen and (min-width: 1600px) {
+            grid-template-columns: 600px 600px;
+
+            .first {
+              max-height: 600px;
+            }
           }
         }
         `}

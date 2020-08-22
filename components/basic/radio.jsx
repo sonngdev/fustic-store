@@ -20,7 +20,7 @@ function Radio({ id, label, ...rest }) {
 
               + label {
                 position: relative;
-                padding-left: 23px;
+                padding-left: 2em;
                 cursor: pointer;
                 line-height: 1.4;
                 display: inline-block;
@@ -32,21 +32,22 @@ function Radio({ id, label, ...rest }) {
                   position: absolute;
                   left: 0;
                   top: 0;
-                  width: 12px;
-                  height: 12px;
-                  border: 2px solid var(--color-text);
+                  width: 1em;
+                  height: 1em;
+                  border: 0.167em solid var(--color-text);
                   border-radius: 100%;
                   background: var(--color-background);
                 }
 
                 &::after {
                   content: '';
-                  width: 6px;
-                  height: 6px;
+                  width: 0.55em;
+                  height: 0.55em;
                   background: var(--color-text);
                   position: absolute;
-                  top: 5px;
-                  left: 5px;
+                  top: 0.38em;
+                  left: 0.4em;
+                  transform: translate(-50%, -50%);
                   border-radius: 100%;
                   transition: all 0.2s ease;
                 }
@@ -61,6 +62,10 @@ function Radio({ id, label, ...rest }) {
           [type="radio"]:checked + label:after {
               opacity: 1;
               transform: scale(1);
+          }
+
+          @media screen and (min-width: 1600px) {
+            font-size: 25px;
           }
         }
         `}

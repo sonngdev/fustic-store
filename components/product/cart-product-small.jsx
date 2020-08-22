@@ -49,7 +49,7 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
         {`
         .cart-product-small {
           display: grid;
-          grid-template-columns: 10px 70px auto;
+          grid-template-columns: calc(var(--fontsize-md) * 0.8) calc(var(--fontsize-md) * 5.6) auto;
           column-gap: 6%;
           align-items: start;
           width: 100%;
@@ -59,36 +59,39 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
           }
 
           .remove-button img {
-            width: 10px;
-            height: 10px;
+            width: calc(var(--fontsize-md) * 0.8);
+            height: calc(var(--fontsize-md) * 0.8);
           }
 
           .image {
-            width: 70px;
-            height: 90px;
+            width: calc(var(--fontsize-md) * 5.6);
+            height: calc(var(--fontsize-md) * 7.2);
             object-fit: cover;
           }
 
           .info {
             text-transform: uppercase;
+            width: max-content;
 
-            > *:not(:last-child) {
-              margin-bottom: 0.8em;
+            .name {
+              margin-bottom: 0.9rem;
             }
 
             .category-size {
               font-size: var(--fontsize-xs);
+              margin-bottom: 1.1rem;
             }
 
             .quantity {
-              font-size: var(--fontsize-md);
+              font-size: calc(var(--fontsize-md) * 1.3);
               font-weight: var(--fontweight-semibold);
+              margin-bottom: 0.9rem;
 
               &.editable {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                width: 120px;
+                width: calc(var(--fontsize-md) * 9.6);
 
                 .minus {
                   padding-right: 10px;
