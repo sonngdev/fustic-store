@@ -100,7 +100,7 @@ export default function ProductImages({ product }) {
           }
 
           @media screen and (min-width: 992px) {
-            --button-size: 22px;
+            --button-size: 1.83em;
 
             width: auto;
 
@@ -134,7 +134,7 @@ export default function ProductImages({ product }) {
           @media screen and (min-width: 1600px) {
             .container .slider {
               width: 600px;
-              height: 900px;
+              height: 800px;
             }
           }
         }

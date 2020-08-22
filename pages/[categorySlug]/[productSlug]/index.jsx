@@ -34,8 +34,13 @@ export default function ProductPage({ product }) {
           }
 
           @media screen and (min-width: 1200px) {
-            padding: 12rem var(--padding-page) 8rem var(--width-menu);
+            padding: 10rem var(--padding-page) 3rem var(--width-menu);
             justify-content: flex-start;
+            align-items: center;
+          }
+
+          @media screen and (min-width: 1600px) {
+            padding: 16rem var(--padding-page) 3rem var(--width-menu);
           }
         }
         `}

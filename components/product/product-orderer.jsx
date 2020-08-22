@@ -37,7 +37,6 @@ function ProductOrderer({ product }) {
       <div className="notes">
         <p>Do not wear this product with light colors to avoid color transfer</p>
         <p>Material: 100% cotton<br />Made in vietnam</p>
-        <p>Model is 5’8” wearing a size large t-shirt</p>
       </div>
 
       <style jsx>
@@ -59,7 +58,7 @@ function ProductOrderer({ product }) {
           }
 
           .size-add {
-            width: 205px;
+            width: 16.4em;
             margin-top: 0.5em;
 
             :global(> :not(:first-child)) {
@@ -67,19 +66,19 @@ function ProductOrderer({ product }) {
             }
 
             .size {
-              width: 205px;
+              width: 16.4em;
 
               button {
                 font-weight: var(--fontweight-thin);
                 border: solid 1px rgba(255, 255, 255, 0.4);
-                width: 32px;
-                height: 32px;
+                width: 2.56em;
+                height: 2.56em;
                 padding: 0;
                 transition: ease 0.2s;
                 transition-property: border, font-weight;
 
                 &:not(:last-of-type) {
-                  margin-right: 11px;
+                  margin-right: calc((16.4em - 2.56em * 5) / 4);
                 }
 
                 &.active {

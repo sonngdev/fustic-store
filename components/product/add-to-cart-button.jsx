@@ -27,9 +27,9 @@ function AddToCartButton({ product, size }) {
       <style jsx>
         {`
         .add-to-cart {
-          width: 205px;
+          width: 16.4em;
           border: solid 1px var(--color-text);
-          padding: 12px;
+          padding: 1em;
           text-transform: uppercase;
 
           &:enabled {
@@ -53,21 +53,18 @@ function AddToCartButton({ product, size }) {
             align-items: center;
 
             img {
-              width: 30px;
+              width: 2.4em;
             }
           }
 
           @media screen and (min-width: 1200px) {
             font-size: var(--fontsize-lg);
-            padding: 20px;
-            width: 295px;
+            padding: 1.1em;
+            width: 16.4em;
 
             span {
-              grid-template-columns: 60px auto;
-
-              img {
-                width: 40px;
-              }
+              grid-template-columns: 2.4em auto;
+              column-gap: 1em;
             }
           }
         }
