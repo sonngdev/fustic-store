@@ -1,27 +1,13 @@
 /* eslint-disable no-useless-escape */
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
-import { getCategories } from 'utils/request';
-
-function useCategories() {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    const request = async () => {
-      const cs = await getCategories();
-      setCategories(cs);
-    };
-    request();
-  }, []);
-
-  return categories;
-}
+import { useCategories } from 'hooks/store';
 
 export default function Menu({ visible }) {
   const menu = useRef(null);
