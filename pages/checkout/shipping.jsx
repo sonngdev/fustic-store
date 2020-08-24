@@ -278,6 +278,7 @@ function CheckoutShippingPage() {
               padding-top: 10rem;
 
               form {
+                padding-left: 5px;
                 padding-right: 10px;
               }
 

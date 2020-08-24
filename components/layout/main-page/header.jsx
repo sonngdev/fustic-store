@@ -24,7 +24,7 @@ export default function Header({
         Cart ({getCartQuantity(cart)})
       </button>
       <div className="items">
-        <Link href="/#home-page">
+        <Link href="/">
           <a>Collections</a>
         </Link>
         <a>About</a>

@@ -10,29 +10,22 @@ import { PersistGate } from 'redux-persist/integration/react';
 import smoothscroll from 'smoothscroll-polyfill';
 
 import { wrapper } from 'store';
-import { updateCartProducts } from 'store/actions';
-import { getProducts } from 'utils/request';
+import { cacheCategories } from 'store/actions';
+import { getCategories } from 'utils/request';
+import Category from 'models/Category';
 
 import 'smoothscroll-anchor-polyfill';
 import 'normalize.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'styles/global.scss';
 
-function useUpdatedCartProducts() {
+function App({ Component, pageProps, categories }) {
+  const store = useStore();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const request = async () => {
-      const products = await getProducts();
-      dispatch(updateCartProducts(products));
-    };
-    request();
-  }, []);
-}
-
-function App({ Component, pageProps }) {
-  const store = useStore();
-  useUpdatedCartProducts();
+    dispatch(cacheCategories(categories));
+  });
 
   /**
    * This only polyfills javascript. To polyfill anchors scrolling
@@ -54,9 +47,15 @@ function App({ Component, pageProps }) {
   );
 }
 
+App.getInitialProps = async () => {
+  const categories = await getCategories();
+  return { categories };
+};
+
 App.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object,
+  categories: PropTypes.arrayOf(Category).isRequired,
 };
 
 App.defaultProps = {

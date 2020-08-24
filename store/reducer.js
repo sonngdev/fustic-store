@@ -1,4 +1,5 @@
 import {
+  CACHE_CATEGORIES,
   ADD_TO_CART,
   SUBTRACT_FROM_CART,
   CLEAR_FROM_CART,
@@ -8,6 +9,7 @@ import {
 } from './actions';
 
 const defaultState = {
+  categories: [],
   cart: [],
   checkoutInfo: {
     firstName: '',
@@ -68,6 +70,11 @@ function updateCartProducts(cart, products) {
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
+    case CACHE_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
+      };
     case ADD_TO_CART:
       return {
         ...state,
