@@ -29,9 +29,12 @@ export default function Select(props) {
             font-size: var(--fontsize-md);
             text-transform: uppercase;
 
-
             &::-ms-expand {
               display: none;
+            }
+
+            :global(option) {
+              color: initial;
             }
           }
 
