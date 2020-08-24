@@ -25,7 +25,7 @@ export default function SiteProduct({ product }) {
       <Link href={`/${category.slug}/${slug}`}>
         <a>
           <div className="thumbnail-container">
-            <img src={altThumbnail?.url} alt={name} className="alt-thumbnail" />
+            {altThumbnail && <img src={altThumbnail.url} alt={name} className="alt-thumbnail" />}
             <img src={thumbnail?.url} alt={name} className="thumbnail" />
           </div>
           <div className="info">
@@ -68,7 +68,7 @@ export default function SiteProduct({ product }) {
             }
 
             .thumbnail {
-              opacity: ${hovered ? 0 : 1};
+              opacity: ${hovered && altThumbnail ? 0 : 1};
               transition: opacity ease-in-out 0.1s;
             }
           }
