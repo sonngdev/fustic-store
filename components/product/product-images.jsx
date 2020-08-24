@@ -2,11 +2,13 @@ import {
   CarouselProvider,
   Slider,
   Slide,
+  Image,
   ImageWithZoom,
   ButtonBack,
   ButtonNext,
 } from 'pure-react-carousel';
 import Product from 'models/Product';
+import { isTouchDevice } from 'utils/browser';
 
 export default function ProductImages({ product }) {
   return (
@@ -21,7 +23,9 @@ export default function ProductImages({ product }) {
         <Slider className="slider">
           {product.images.map((image, i) => (
             <Slide index={i} key={image.url}>
-              <ImageWithZoom src={image.url} alt={`${product.name} ${i + 1}`} />
+              {isTouchDevice()
+                ? <Image src={image.url} alt={`${product.name} ${i + 1}`} />
+                : <ImageWithZoom src={image.url} alt={`${product.name} ${i + 1}`} />}
             </Slide>
           ))}
         </Slider>
@@ -54,8 +58,9 @@ export default function ProductImages({ product }) {
               width: 240px;
               height: 320px;
 
-              .carousel__image--with-background {
+              .carousel__image {
                 background-position: center;
+                object-fit: cover;
               }
             }
 
