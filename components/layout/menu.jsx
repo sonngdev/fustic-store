@@ -31,7 +31,7 @@ export default function Menu({ visible, hideMenu }) {
 
   const { pathname, asPath } = useRouter();
   const links = [
-    { href: '/', as: '/#home-page', text: 'Collections' },
+    { href: '/', as: '/', text: 'Collections' },
     ...categories.map(({ slug, name }) => (
       { href: '/[categorySlug]', as: `/${slug}`, text: name }
     )),
@@ -41,7 +41,7 @@ export default function Menu({ visible, hideMenu }) {
     <div className="menu" ref={menu}>
       <div className="item">Products</div>
       <ul>
-        {links.map(({ href, as, text }) => (as === '/#home-page' ? (
+        {links.map(({ href, as, text }) => (as === '/' ? (
           <li key={text}>
             <Link href={href} as={as}>
               <a
