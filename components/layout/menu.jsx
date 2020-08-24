@@ -23,7 +23,7 @@ function useCategories() {
   return categories;
 }
 
-export default function Menu({ visible, hideMenu }) {
+export default function Menu({ visible }) {
   const menu = useRef(null);
   useDisableBodyScroll(menu.current, visible);
 
@@ -112,5 +112,4 @@ export default function Menu({ visible, hideMenu }) {
 
 Menu.propTypes = {
   visible: PropTypes.bool.isRequired,
-  hideMenu: PropTypes.func.isRequired,
 };
