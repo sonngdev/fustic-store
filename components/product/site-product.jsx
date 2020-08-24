@@ -44,7 +44,7 @@ export default function SiteProduct({ product }) {
         {`
         .site-product {
           --thumbnail-width: 240px;
-          --thumbnail-width: 320px;
+          --thumbnail-height: 320px;
 
           text-transform: uppercase;
 
