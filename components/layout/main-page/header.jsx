@@ -161,9 +161,9 @@ export default function Header({
             .quantity {
               display: inline-block;
               background-color: #CC0000;
-              border-radius: 50%;
-              padding: 0.2em;
-              width: 1.5em;
+              border-radius: 999px;
+              padding: 0.2em 0.4em;
+              min-width: 1.5em;
               height: 1.5em;
               text-align: center;
               margin-left: 0.25em;
@@ -213,9 +213,9 @@ export default function Header({
                 .quantity {
                   display: inline-block;
                   background-color: #CC0000;
-                  border-radius: 50%;
-                  padding: 0.2em;
-                  width: 1.5em;
+                  border-radius: 999px;
+                  padding: 0.2em 0.4em;
+                  min-width: 1.5em;
                   height: 1.5em;
                   text-align: center;
                   margin-left: 0.5em;
