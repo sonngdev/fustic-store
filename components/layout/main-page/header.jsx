@@ -38,6 +38,11 @@ export default function Header({
       </Link>
       <button
         type="button"
+        /**
+         * Same key as animation predicate, so when animation is triggered,
+         * the button is re-rendered
+         */
+        key={cartQuantity}
         className={cx('cart-button', { wobble: animate })}
         onAnimationEnd={() => setAnimate(false)}
         onClick={showCart}
@@ -52,6 +57,11 @@ export default function Header({
         <a className="wobble">About</a>
         <button
           type="button"
+          /**
+           * Same key as animation predicate, so when animation is triggered,
+           * the button is re-rendered
+           */
+          key={cartQuantity}
           className={cx('cart-icon-button', { wobble: animate })}
           onAnimationEnd={() => setAnimate(false)}
           onClick={showCart}
