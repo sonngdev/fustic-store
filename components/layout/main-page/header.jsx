@@ -9,6 +9,7 @@ export default function Header({
   reveal,
 }) {
   const cart = useCart();
+  const cartQuantity = getCartQuantity(cart);
 
   return (
     <header>
@@ -21,7 +22,8 @@ export default function Header({
         </a>
       </Link>
       <button type="button" className="cart-button" onClick={showCart}>
-        Cart ({getCartQuantity(cart)})
+        Cart
+        {!!cartQuantity && <span className="quantity">{cartQuantity}</span>}
       </button>
       <div className="items">
         <Link href="/">
@@ -30,6 +32,7 @@ export default function Header({
         <a>About</a>
         <button type="button" className="cart-icon-button" onClick={showCart}>
           <img src="/icons/cart.svg" alt="Cart" />
+          {!!cartQuantity && <span className="quantity">{cartQuantity}</span>}
         </button>
       </div>
 
@@ -84,6 +87,17 @@ export default function Header({
             font-size: var(--fontsize-sm);
             text-transform: uppercase;
             opacity: ${reveal === 'cart' ? 0 : 1};
+
+            .quantity {
+              display: inline-block;
+              background-color: #CC0000;
+              border-radius: 50%;
+              padding: 0.2em;
+              width: 1.5em;
+              height: 1.5em;
+              text-align: center;
+              margin-left: 0.25em;
+            }
           }
 
           @media screen and (min-width: 1200px) {
@@ -113,10 +127,25 @@ export default function Header({
                 align-items: center;
               }
 
-              .cart-icon-button img {
-                vertical-align: text-top;
-                width: calc(var(--fontsize-md) * 1.23);
-                height: calc(var(--fontsize-md) * 1.23);
+              .cart-icon-button {
+                width: max-content;
+
+                img {
+                  vertical-align: text-top;
+                  width: calc(var(--fontsize-md) * 1.23);
+                  height: calc(var(--fontsize-md) * 1.23);
+                }
+
+                .quantity {
+                  display: inline-block;
+                  background-color: #CC0000;
+                  border-radius: 50%;
+                  padding: 0.2em;
+                  width: 1.5em;
+                  height: 1.5em;
+                  text-align: center;
+                  margin-left: 0.5em;
+                }
               }
             }
           }
