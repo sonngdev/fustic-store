@@ -1,11 +1,28 @@
-import { Fragment, useRef } from 'react';
+import { Fragment, useRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+
+import { updateCartProducts } from 'store/actions';
+import { getProducts } from 'utils/request';
 import { getCartTotal, getCartQuantity } from 'utils/checkout';
 import { useCart } from 'hooks/store';
 import useDisableBodyScroll from 'hooks/useDisableBodyScroll';
+
 import CartProductSmall from 'components/product/cart-product-small';
 import Button from 'components/basic/button';
+
+function useUpdatedCartProducts() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const request = async () => {
+      const products = await getProducts();
+      dispatch(updateCartProducts(products));
+    };
+    request();
+  }, []);
+}
 
 export default function Cart({ visible }) {
   const cart = useCart();
@@ -13,6 +30,8 @@ export default function Cart({ visible }) {
 
   const itemList = useRef();
   useDisableBodyScroll(itemList.current, visible);
+
+  useUpdatedCartProducts();
 
   return (
     <div className="cart">

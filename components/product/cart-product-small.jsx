@@ -49,7 +49,7 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
           <div className="quantity editable">
             <button type="button" className="subtract" onClick={subtractProductFromCart} disabled={canSubtractAwayProduct}>-</button>
             <span>{quantity}</span>
-            <button type="button" className="plus" onClick={addProductToCart} disabled={!canAddMoreProduct}>+</button>
+            <button type="button" className="add" onClick={addProductToCart} disabled={!canAddMoreProduct}>+</button>
           </div>
         )}
         <div className="price">{formatPriceVnd(product.priceVnd)} VND • ${+product.priceUsd.toLocaleString()}</div>
@@ -103,12 +103,18 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
                 align-items: center;
                 width: calc(var(--fontsize-md) * 9.6);
 
-                .subtract {
-                  padding-right: 10px;
-                }
+                button {
+                  width: 1.5em;
+                  height: 1.3em;
+                  padding: 0;
 
-                .plus {
-                  padding-left: 10px;
+                  &.subtract {
+                    text-align: left;
+                  }
+
+                  &.add {
+                    text-align: right;
+                  }
                 }
               }
             }

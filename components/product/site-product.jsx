@@ -24,8 +24,10 @@ export default function SiteProduct({ product }) {
     >
       <Link href={`/${category.slug}/${slug}`}>
         <a>
-          <img src={thumbnail?.url} alt={name} className="thumbnail" />
-          <img src={altThumbnail?.url} alt={name} className="alt-thumbnail" />
+          <div className="thumbnail-container">
+            {altThumbnail && <img src={altThumbnail.url} alt={name} className="alt-thumbnail" />}
+            <img src={thumbnail?.url} alt={name} className="thumbnail" />
+          </div>
           <div className="info">
             <div className="name-category">
               {name}
@@ -41,22 +43,34 @@ export default function SiteProduct({ product }) {
       <style jsx>
         {`
         .site-product {
+          --thumbnail-width: 240px;
+          --thumbnail-height: 320px;
+
           text-transform: uppercase;
 
-          .thumbnail, .alt-thumbnail {
-            width: 240px;
-            height: 320px;
-            object-fit: cover;
-            margin: 0 auto;
+          .thumbnail-container {
+            width: var(--thumbnail-width);
+            height: var(--thumbnail-height);
+            position: relative;
             margin-bottom: 0.8rem;
-          }
 
-          .thumbnail {
-            display: ${hovered ? 'none' : 'block'};
-          }
+            .thumbnail, .alt-thumbnail {
+              width: var(--thumbnail-width);
+              height: var(--thumbnail-height);
+              object-fit: cover;
+              margin: 0 auto;
 
-          .alt-thumbnail {
-            display: ${hovered ? 'block' : 'none'};
+              position: absolute;
+              top: 0;
+              left: 0;
+              bottom: 0;
+              right: 0;
+            }
+
+            .thumbnail {
+              opacity: ${hovered && altThumbnail ? 0 : 1};
+              transition: opacity ease-in-out 0.1s;
+            }
           }
 
           .info {
@@ -79,10 +93,8 @@ export default function SiteProduct({ product }) {
           }
 
           @media screen and (min-width: 768px) {
-            .thumbnail, .alt-thumbnail {
-              width: 270px;
-              height: 360px;
-            }
+            --thumbnail-width: 270px;
+            --thumbnail-height: 360px;
 
             .info {
               width: 270px;
@@ -90,10 +102,8 @@ export default function SiteProduct({ product }) {
           }
 
           @media screen and (min-width: 1200px) {
-            .thumbnail, .alt-thumbnail {
-              width: 300px;
-              height: 400px;
-            }
+            --thumbnail-width: 300px;
+            --thumbnail-height: 400px;
 
             .info {
               width: 220px;
@@ -105,10 +115,8 @@ export default function SiteProduct({ product }) {
           }
 
           @media screen and (min-width: 1800px) {
-            .thumbnail, .alt-thumbnail {
-              width: 420px;
-              height: 560px;
-            }
+            --thumbnail-width: 420px;
+            --thumbnail-height: 560px;
 
             .info {
               width: 400px;

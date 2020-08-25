@@ -1,5 +1,9 @@
 import { useSelector } from 'react-redux';
-import { selectCart, selectCheckoutInfo } from 'store/selectors';
+import { selectCategories, selectCart, selectCheckoutInfo } from 'store/selectors';
+
+export function useCategories() {
+  return useSelector(selectCategories);
+}
 
 export function useCart() {
   return useSelector(selectCart);

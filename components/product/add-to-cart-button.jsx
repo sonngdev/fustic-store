@@ -18,9 +18,9 @@ function AddToCartButton({ product, size, disabled }) {
       onClick={addProductToCart}
       disabled={disabled}
     >
-      <span>
+      <span className="inner">
         <img src="/eye.png" alt="Eye" />
-        Add to cart
+        <span className="text">Add to cart</span>
       </span>
 
       <style jsx>
@@ -45,9 +45,10 @@ function AddToCartButton({ product, size, disabled }) {
             }
           }
 
-          span {
+          .inner {
             display: grid;
-            grid-template-columns: 45px auto;
+            grid-template-columns: 2.4em 6.5em;
+            column-gap: 1em;
             justify-content: center;
             align-items: center;
 
@@ -60,11 +61,6 @@ function AddToCartButton({ product, size, disabled }) {
             font-size: var(--fontsize-lg);
             padding: 1.1em;
             width: 16.4em;
-
-            span {
-              grid-template-columns: 2.4em auto;
-              column-gap: 1em;
-            }
           }
         }
         `}
