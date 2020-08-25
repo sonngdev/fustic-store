@@ -47,7 +47,7 @@ function AddToCartButton({ product, size, disabled }) {
 
           .inner {
             display: grid;
-            grid-template-columns: 2.4em 6.5em;
+            grid-template-columns: 2.4em 6.7em;
             column-gap: 1em;
             justify-content: center;
             align-items: center;
