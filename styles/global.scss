@@ -74,6 +74,11 @@ body {
 
 * {
   box-sizing: border-box;
+  /**
+   * Disable double tap to zoom on mobile
+   * https://stackoverflow.com/a/54207844/9744063
+   */
+  touch-action: manipulation;
 }
 
 a {
