@@ -7,6 +7,7 @@ import {
   ButtonBack,
   ButtonNext,
 } from 'pure-react-carousel';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import Product from 'models/Product';
 import { isTouchDevice } from 'utils/browser';
 
@@ -20,7 +21,11 @@ export default function ProductImages({ product }) {
       className="product-images"
     >
       <div className="container">
-        <Slider className="slider">
+        <Slider
+          className="slider"
+          onTouchStart={() => disableBodyScroll(null)}
+          onTouchEnd={clearAllBodyScrollLocks}
+        >
           {product.images.map((image, i) => (
             <Slide index={i} key={image.url}>
               {isTouchDevice()
@@ -29,10 +34,10 @@ export default function ProductImages({ product }) {
             </Slide>
           ))}
         </Slider>
-        <ButtonBack className="button-back">
+        <ButtonBack className="button-back" disabled={product.images.length === 1}>
           <img src="/icons/arrow-left.svg" alt="Back" />
         </ButtonBack>
-        <ButtonNext className="button-next">
+        <ButtonNext className="button-next" disabled={product.images.length === 1}>
           <img src="/icons/arrow-right.svg" alt="Next" />
         </ButtonNext>
       </div>
