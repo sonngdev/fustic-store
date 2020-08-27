@@ -34,10 +34,10 @@ export default function ProductImages({ product }) {
             </Slide>
           ))}
         </Slider>
-        <ButtonBack className="button-back">
+        <ButtonBack className="button-back" disabled={product.images.length === 1}>
           <img src="/icons/arrow-left.svg" alt="Back" />
         </ButtonBack>
-        <ButtonNext className="button-next">
+        <ButtonNext className="button-next" disabled={product.images.length === 1}>
           <img src="/icons/arrow-right.svg" alt="Next" />
         </ButtonNext>
       </div>
