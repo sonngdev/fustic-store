@@ -4,13 +4,13 @@ function Footer() {
   return (
     <footer>
       <div className="media">
-        <a href="https://www.instagram.com/fustic.studio">
+        <a href="https://www.instagram.com/fustic.studio" target="_blank" rel="noopener noreferrer">
           <img src="/instagram.png" alt="Fustic on Instagram" className="instagram" />
         </a>
-        <a href="https://www.facebook.com/Fustic.studio">
+        <a href="https://www.facebook.com/Fustic.studio" target="_blank" rel="noopener noreferrer">
           <img src="/facebook.png" alt="Fustic on Facebook" className="facebook" />
         </a>
-        <a href="https://fustic.studio">
+        <a href="https://fustic.studio" target="_blank" rel="noopener noreferrer">
           <img src="/eye.png" alt="Fustic Website" className="web" />
         </a>
       </div>

@@ -104,7 +104,7 @@ export default function CartProductSmall({ cartEntry, noneditable }) {
                 width: calc(var(--fontsize-md) * 9.6);
 
                 button {
-                  width: 1.5em;
+                  width: min-content;
                   height: 1.3em;
                   padding: 0;
 
