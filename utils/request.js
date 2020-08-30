@@ -28,7 +28,9 @@ export function put(url, payload = null) {
 }
 
 export function getCategories() {
-  return get(`${process.env.NEXT_PUBLIC_API_HOST}/categories`);
+  const payload = { _sort: 'position:ASC' };
+
+  return get(`${process.env.NEXT_PUBLIC_API_HOST}/categories`, payload);
 }
 
 export function getCategory(slug) {
