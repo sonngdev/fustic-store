@@ -28,7 +28,9 @@ export function put(url, payload = null) {
 }
 
 export function getCategories() {
-  return get(`${process.env.NEXT_PUBLIC_API_HOST}/categories`);
+  const payload = { _sort: 'position:ASC' };
+
+  return get(`${process.env.NEXT_PUBLIC_API_HOST}/categories`, payload);
 }
 
 export function getCategory(slug) {
@@ -36,7 +38,9 @@ export function getCategory(slug) {
 }
 
 export function getProducts(categoryId = null) {
-  const payload = categoryId ? { 'category.id': categoryId } : null;
+  const payload = { _sort: 'created_at:DESC' };
+  if (categoryId) payload['category.id'] = categoryId;
+
   return get(`${process.env.NEXT_PUBLIC_API_HOST}/products`, payload);
 }
 

@@ -13,6 +13,7 @@ import { wrapper } from 'store';
 import { cacheCategories } from 'store/actions';
 import { getCategories } from 'utils/request';
 import Category from 'models/Category';
+import useThemeAdaptiveValue from 'hooks/useThemeAdaptiveValue';
 
 import 'smoothscroll-anchor-polyfill';
 import 'normalize.css';
@@ -34,11 +35,13 @@ function App({ Component, pageProps, categories }) {
    */
   useEffect(() => { smoothscroll.polyfill(); });
 
+  const adaptiveFavicon = useThemeAdaptiveValue('/favicon-black.ico', '/favicon-white.ico');
+
   return (
     <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
       <Head>
-        <title>Fustic Store</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Fustic. Store</title>
+        <link rel="icon" href={adaptiveFavicon} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 

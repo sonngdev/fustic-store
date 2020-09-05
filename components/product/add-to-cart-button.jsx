@@ -72,8 +72,9 @@ function AddToCartButton({ product, size, disabled }) {
 AddToCartButton.propTypes = {
   product: Product.isRequired,
   size: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    inStock: PropTypes.bool.isRequired,
+    quantity: PropTypes.number.isRequired,
   }),
   disabled: PropTypes.bool,
 };

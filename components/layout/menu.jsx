@@ -16,21 +16,27 @@ export default function Menu({ visible }) {
   const categories = useCategories();
 
   const { pathname, asPath } = useRouter();
-  const links = [
-    { href: '/', as: '/', text: 'Collections' },
-    ...categories.map(({ slug, name }) => (
-      { href: '/[categorySlug]', as: `/${slug}`, text: name }
-    )),
-  ];
+  const links = categories.map(({ slug, name }) => ({
+    href: '/[categorySlug]',
+    as: `/${slug}`,
+    text: name,
+  }));
 
   return (
     <div className="menu" ref={menu}>
       <div className="item">Products</div>
       <ul>
+        <li>
+          <Link href="/">
+            <a className={cx('subitem', { active: pathname === '/' })}>
+              Collections
+            </a>
+          </Link>
+        </li>
         {links.map(({ href, as, text }) => (
           <li key={text}>
             <Link href={href} as={as}>
-              <a className={cx('subitem', { active: as === '/' ? pathname === '/' : asPath.startsWith(as) })}>
+              <a className={cx('subitem', { active: asPath.startsWith(as) })}>
                 {text}
               </a>
             </Link>

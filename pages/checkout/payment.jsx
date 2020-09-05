@@ -23,7 +23,16 @@ function CheckoutPaymentPage() {
   return (
     <Layout>
       <Head>
-        <title>Payment – Fustic Store</title>
+        <title>Payment – Checkout – Fustic Store</title>
+        <link rel="canonical" href={`${window.location.origin}/checkout/payment`} />
+        <meta name="description" content="Checkout payment on Fustic. Store" />
+        <meta name="keywords" content="fustic store,fustic studio,checkout,payment" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Fustic. Store" />
+        <meta property="og:url" content={`${window.location.origin}/checkout/payment`} />
+        <meta property="og:title" content="Payment – Checkout – Fustic Store" />
+        <meta property="og:description" content="Checkout payment on Fustic. Store" />
+        <meta property="og:image" content={`${window.location.origin}/fustic-white.png`} />
       </Head>
 
       <div className="checkout-payment-page">
