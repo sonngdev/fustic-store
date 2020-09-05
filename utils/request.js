@@ -53,7 +53,7 @@ export function getGeneralConfig() {
 }
 
 export async function getVimeoThumbnail(vimeoId) {
-  const info = await get(`http://vimeo.com/api/v2/video/${vimeoId}.json`);
+  const info = await get(`https://vimeo.com/api/v2/video/${vimeoId}.json`);
   return info[0].thumbnailLarge.replace('.webp', '.jpg');
 }
 
