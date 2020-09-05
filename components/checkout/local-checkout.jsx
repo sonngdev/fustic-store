@@ -122,6 +122,7 @@ function LocalCheckout() {
 
             article {
               min-width: 250px;
+              max-width: 350px;
             }
 
             .button-group {

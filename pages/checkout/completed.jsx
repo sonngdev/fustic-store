@@ -16,7 +16,16 @@ function CheckoutCompletedPage() {
   return (
     <Layout>
       <Head>
-        <title>Checkout completed – Fustic Store</title>
+        <title>Completed – Checkout – Fustic Store</title>
+        <link rel="canonical" href={`${window.location.origin}/checkout/completed`} />
+        <meta name="description" content="Checkout completed on Fustic. Store" />
+        <meta name="keywords" content="fustic store,fustic studio,checkout,completed" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Fustic. Store" />
+        <meta property="og:url" content={`${window.location.origin}/checkout/completed`} />
+        <meta property="og:title" content="Completed – Checkout – Fustic Store" />
+        <meta property="og:description" content="Checkout completed on Fustic. Store" />
+        <meta property="og:image" content={`${window.location.origin}/fustic-white.png`} />
       </Head>
 
       <section className="checkout-completed-page">

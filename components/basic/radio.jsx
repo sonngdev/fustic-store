@@ -15,43 +15,43 @@ function Radio({ id, label, ...rest }) {
 
           [type="radio"]:checked,
           [type="radio"]:not(:checked) {
-              position: absolute;
-              left: -9999px;
+            position: absolute;
+            left: -9999px;
 
-              + label {
-                position: relative;
-                padding-left: 2em;
-                cursor: pointer;
-                line-height: 1.4;
-                display: inline-block;
-                color: var(--color-text);
-                text-transform: uppercase;
+            + label {
+              position: relative;
+              padding-left: 2em;
+              cursor: pointer;
+              line-height: 1.4;
+              display: inline-block;
+              color: var(--color-text);
+              text-transform: uppercase;
 
-                &::before {
-                  content: '';
-                  position: absolute;
-                  left: 0;
-                  top: 0;
-                  width: 1em;
-                  height: 1em;
-                  border: 0.167em solid var(--color-text);
-                  border-radius: 100%;
-                  background: var(--color-background);
-                }
-
-                &::after {
-                  content: '';
-                  width: 0.55em;
-                  height: 0.55em;
-                  background: var(--color-text);
-                  position: absolute;
-                  top: 0.38em;
-                  left: 0.4em;
-                  transform: translate(-50%, -50%);
-                  border-radius: 100%;
-                  transition: all 0.2s ease;
-                }
+              &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 1em;
+                height: 1em;
+                border: 0.167em solid var(--color-text);
+                border-radius: 50%;
+                background: var(--color-background);
               }
+
+              &::after {
+                content: '';
+                width: 0.55em;
+                height: 0.55em;
+                background: var(--color-text);
+                position: absolute;
+                top: 0.4em;
+                left: 0.4em;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                transition: all 0.2s ease;
+              }
+            }
           }
 
           [type="radio"]:not(:checked) + label:after {

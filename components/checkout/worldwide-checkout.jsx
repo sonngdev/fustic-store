@@ -22,13 +22,14 @@ function WorldwideCheckout() {
     if (!paypalLoaded) return () => {};
 
     const handleCreateOrder = async (_data, actions) => {
-      const order = await createOrder('paypal', cart, checkoutInfo);
-      orderRef.current = order;
+      if (!orderRef.current) {
+        orderRef.current = await createOrder('paypal', cart, checkoutInfo);
+      }
 
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: order.totalAmountUsd.toFixed(2),
+            value: orderRef.current.totalAmountUsd.toFixed(2),
           },
         }],
       });
