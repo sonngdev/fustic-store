@@ -4,14 +4,22 @@ export default function useThemeAdaptiveValue(lightThemeValue, darkThemeValue) {
   const [value, setValue] = useState(null);
 
   useEffect(() => {
+    // Mutable object
+    const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
+
     const updateValue = () => {
-      const newValue = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const newValue = mediaQueryList.matches
         ? darkThemeValue
         : lightThemeValue;
       setValue(newValue);
     };
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateValue);
+    if (mediaQueryList.addEventListener) {
+      mediaQueryList.addEventListener('change', updateValue);
+    } else {
+      mediaQueryList.addListener(updateValue);
+    }
+
     updateValue();
   }, []);
 
