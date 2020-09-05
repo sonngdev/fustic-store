@@ -272,10 +272,16 @@ export function cartValid(cart) {
 }
 
 export function canAddMore(product, sizeName, cart) {
+  const maxPerEntry = 5;
+
   if (!sizeName) return false;
+
+  const sizeInfoFromServer = product.sizes.find((size) => size.name === sizeName);
+  if (!sizeInfoFromServer) return false;
 
   const entry = cart.find((e) => e.product.id === product.id && e.sizeName === sizeName);
   if (!entry) return true;
 
-  return entry.quantity < 5;
+  const limit = Math.min(sizeInfoFromServer.quantity, maxPerEntry);
+  return entry.quantity < limit;
 }
