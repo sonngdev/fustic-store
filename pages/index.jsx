@@ -9,6 +9,9 @@ import GeneralConfig from 'models/GeneralConfig';
 import Product from 'models/Product';
 
 export default function HomePage({ generalConfig, products, vimeoThumbnailUrl }) {
+  const ogImage = vimeoThumbnailUrl
+    || `${window.location.origin}/fustic-white.png`;
+
   return (
     <Layout>
       <Head>
@@ -21,7 +24,7 @@ export default function HomePage({ generalConfig, products, vimeoThumbnailUrl })
         <meta property="og:url" content={window.location.origin} />
         <meta property="og:title" content="Home – Fustic. Store" />
         <meta property="og:description" content="Official store of Fustic. Studio" />
-        <meta property="og:image" content={vimeoThumbnailUrl} />
+        <meta property="og:image" content={ogImage} />
       </Head>
 
       <div className="video">
