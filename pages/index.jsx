@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Vimeo from '@u-wave/react-vimeo';
 import PropTypes from 'prop-types';
 import Layout from 'components/layout';
@@ -10,6 +11,19 @@ import Product from 'models/Product';
 export default function HomePage({ generalConfig, products, vimeoThumbnailUrl }) {
   return (
     <Layout>
+      <Head>
+        <title>Home – Fustic. Store</title>
+        <link rel="canonical" href={window.location.origin} />
+        <meta name="description" content="Official store of Fustic. Studio" />
+        <meta name="keywords" content="fustic store,fustic studio" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Fustic. Store" />
+        <meta property="og:url" content={window.location.origin} />
+        <meta property="og:title" content="Home – Fustic. Store" />
+        <meta property="og:description" content="Official store of Fustic. Studio" />
+        <meta property="og:image" content={vimeoThumbnailUrl} />
+      </Head>
+
       <div className="video">
         <Vimeo
           video={generalConfig.landingVimeoId}

@@ -40,7 +40,7 @@ function App({ Component, pageProps, categories }) {
   return (
     <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
       <Head>
-        <title>Fustic Store</title>
+        <title>Fustic. Store</title>
         <link rel="icon" href={adaptiveFavicon} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
