@@ -6,11 +6,11 @@ import useCanAddMoreProduct from 'hooks/useCanAddMoreProduct';
 import Product from 'models/Product';
 
 function ProductOrderer({ product }) {
-  const [selectedSize, setSelectedSize] = useState(product.sizes.find((s) => s.inStock));
+  const [selectedSize, setSelectedSize] = useState(product.sizes.find((s) => s.quantity > 0));
 
   const canAddMoreProduct = useCanAddMoreProduct(product, selectedSize?.name);
   const selectSize = (size) => () => {
-    if (!size.inStock) return;
+    if (size.quantity <= 0) return;
     setSelectedSize(size);
   };
 
@@ -27,7 +27,7 @@ function ProductOrderer({ product }) {
               <button
                 key={size.name}
                 type="button"
-                disabled={!size.inStock}
+                disabled={size.quantity <= 0}
                 className={cx({ active: size === selectedSize })}
                 onClick={selectSize(size)}
               >
@@ -40,7 +40,7 @@ function ProductOrderer({ product }) {
         <AddToCartButton
           product={product}
           size={selectedSize}
-          disabled={!selectedSize?.inStock || !canAddMoreProduct}
+          disabled={selectedSize?.quantity <= 0 || !canAddMoreProduct}
         />
       </div>
 

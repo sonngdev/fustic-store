@@ -28,7 +28,7 @@ const Product = PropTypes.shape({
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      inStock: PropTypes.bool.isRequired,
+      quantity: PropTypes.number.isRequired,
     }),
   ).isRequired,
 });
