@@ -17,7 +17,16 @@ function CheckoutSummaryPage() {
   return (
     <Layout>
       <Head>
-        <title>Shopping Cart – Fustic Store</title>
+        <title>Summary – Checkout – Fustic Store</title>
+        <link rel="canonical" href={`${window.location.origin}/checkout/summary`} />
+        <meta name="description" content="Checkout summary on Fustic. Store" />
+        <meta name="keywords" content="fustic store,fustic studio,checkout,summary" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Fustic. Store" />
+        <meta property="og:url" content={`${window.location.origin}/checkout/summary`} />
+        <meta property="og:title" content="Summary – Checkout – Fustic Store" />
+        <meta property="og:description" content="Checkout summary on Fustic. Store" />
+        <meta property="og:image" content={`${window.location.origin}/fustic-white.png`} />
       </Head>
 
       <div className="checkout-summary-page">
