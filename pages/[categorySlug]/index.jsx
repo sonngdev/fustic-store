@@ -17,10 +17,22 @@ export default function CategoryPage({ category, products }) {
     );
   }
 
+  const ogImage = products[0]?.images.find((image) => image.isThumbnail)?.url
+    || `${window.location.origin}/fustic-white.png`;
+
   return (
     <Layout>
       <Head>
-        <title>{category.name} – Fustic Store</title>
+        <title>{category.name} – Fustic. Store</title>
+        <link rel="canonical" href={`${window.location.origin}/${category.slug}`} />
+        <meta name="description" content={`${category.name} on Fustic. Store`} />
+        <meta name="keywords" content={`fustic store,fustic studio,${category.name}`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Fustic. Store" />
+        <meta property="og:url" content={`${window.location.origin}/${category.slug}`} />
+        <meta property="og:title" content={`${category.name} – Fustic. Store`} />
+        <meta property="og:description" content={`${category.name} on Fustic. Store`} />
+        <meta property="og:image" content={ogImage} />
       </Head>
 
       <div className="category-page">
