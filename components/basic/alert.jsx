@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 function Alert({ message }) {
   return (
     <div className="alert">
-      {message}
+      <div dangerouslySetInnerHTML={{ __html: message }} />
 
       <style jsx>
         {`

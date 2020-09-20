@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 
 import { Fragment, useState } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 import cx from 'classnames';
@@ -17,7 +18,7 @@ const LOCAL_CHECKOUT_METHODS = ['cod', 'bank_transfer'];
 function buildFlashFromInvalidStockEntries(entries) {
   const exceeded = entries.filter((entry) => entry.stockExceedance > 0);
 
-  return [
+  return [ReactDOMServer.renderToStaticMarkup(
     <div>
       <p>
         {exceeded.map((entry) => (
@@ -37,7 +38,7 @@ function buildFlashFromInvalidStockEntries(entries) {
         ))}
       </p>
     </div>,
-  ];
+  )];
 }
 
 function LocalCheckout() {
