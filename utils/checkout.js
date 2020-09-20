@@ -1,3 +1,8 @@
+/* eslint-disable react/jsx-filename-extension, max-len */
+
+import { Fragment } from 'react';
+import ReactDOMServer from 'react-dom/server';
+
 export function getCartTotal(cart) {
   const vnd = cart.reduce((acc, entry) => acc + entry.product.priceVnd * entry.quantity, 0);
   const usd = cart.reduce((acc, entry) => acc + entry.product.priceUsd * entry.quantity, 0);
@@ -284,4 +289,40 @@ export function canAddMore(product, sizeName, cart) {
 
   const limit = Math.min(sizeInfoFromServer.quantity, maxPerEntry);
   return entry.quantity < limit;
+}
+
+export function buildFlashFromInvalidStockEntries(entries) {
+  const exceeded = entries.filter((entry) => entry.stockExceedance > 0);
+
+  return [ReactDOMServer.renderToStaticMarkup(
+    <div>
+      <div>
+        The following items in your cart exceed our stock. Please choose a different quantity or remove it from your cart:
+        <ul style={{ marginTop: '0.5em' }}>
+          {exceeded.map((entry) => {
+            const leftInStock = entry.quantity - entry.stockExceedance;
+            return (
+              <li key={entry.product.id + entry.sizeName}>
+                {entry.product.name.toUpperCase()} ({entry.sizeName}): {leftInStock ? `only ${leftInStock} in stock` : 'out of stock'}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      <div>
+        Những sản phẩm sau vượt quá số lượng hàng còn lại trong kho. Vui lòng chọn lại số lượng hoặc xoá khỏi giỏ hàng của bạn:
+        <ul style={{ marginTop: '0.5em' }}>
+          {exceeded.map((entry) => {
+            const leftInStock = entry.quantity - entry.stockExceedance;
+            return (
+              <li key={entry.product.id + entry.sizeName}>
+                {entry.product.name.toUpperCase()} ({entry.sizeName}): {leftInStock ? `còn ${leftInStock} chiếc` : 'hết hàng'}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>,
+  )];
 }

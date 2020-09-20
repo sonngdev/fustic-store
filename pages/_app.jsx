@@ -12,7 +12,6 @@ import smoothscroll from 'smoothscroll-polyfill';
 import { wrapper } from 'store';
 import { cacheCategories } from 'store/actions';
 import { getCategories } from 'utils/request';
-import Category from 'models/Category';
 import useThemeAdaptiveValue from 'hooks/useThemeAdaptiveValue';
 
 import 'smoothscroll-anchor-polyfill';
@@ -68,7 +67,6 @@ function App({ Component, pageProps }) {
 App.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object,
-  categories: PropTypes.arrayOf(Category).isRequired,
 };
 
 App.defaultProps = {

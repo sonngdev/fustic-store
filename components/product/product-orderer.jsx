@@ -45,7 +45,7 @@ function ProductOrderer({ product }) {
       </div>
 
       <div className="notes">
-        <p>Do not wear this product with light colors to avoid color transfer</p>
+        <p>Machine wash cold<br />with like colors<br />Do not bleach</p>
         <p>Material: 100% cotton<br />Made in vietnam</p>
       </div>
 

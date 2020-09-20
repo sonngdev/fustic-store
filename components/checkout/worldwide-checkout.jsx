@@ -1,13 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import Router from 'next/router';
+
 import { useCart, useCheckoutInfo } from 'hooks/store';
 import { createOrder, updateOrder } from 'utils/request';
+import { buildFlashFromInvalidStockEntries } from 'utils/checkout';
+import { setFlashMessages } from 'store/actions';
 
 function WorldwideCheckout() {
   const [paypalLoaded, setPaypalLoaded] = useState(false);
   const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
   const orderRef = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -21,19 +26,32 @@ function WorldwideCheckout() {
   useEffect(() => {
     if (!paypalLoaded) return () => {};
 
-    const handleCreateOrder = async (_data, actions) => {
+    const handleClick = async (_data, actions) => {
       if (!orderRef.current) {
         orderRef.current = await createOrder('paypal', cart, checkoutInfo);
       }
 
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: orderRef.current.totalAmountUsd.toFixed(2),
-          },
-        }],
-      });
+      const order = orderRef.current;
+
+      if (order.error) {
+        const flash = typeof order.message === 'string'
+          ? [order.message]
+          : buildFlashFromInvalidStockEntries(order.message);
+        dispatch(setFlashMessages(flash));
+        Router.push('/checkout/summary');
+        return actions.reject();
+      }
+
+      return actions.resolve();
     };
+
+    const handleCreateOrder = async (_data, actions) => actions.order.create({
+      purchase_units: [{
+        amount: {
+          value: orderRef.current.totalAmountUsd.toFixed(2),
+        },
+      }],
+    });
 
     const handleOnApprove = async (_data, actions) => {
       const orderDetails = await actions.order.capture();
@@ -44,6 +62,7 @@ function WorldwideCheckout() {
     const style = { color: 'gold' };
 
     window.paypal.Buttons({
+      onClick: handleClick,
       createOrder: handleCreateOrder,
       onApprove: handleOnApprove,
       style,
