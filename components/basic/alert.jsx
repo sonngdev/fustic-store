@@ -10,13 +10,12 @@ function Alert({ message }) {
       <style jsx>
         {`
         .alert {
-          background-color: #F1B5A9;
+          background-color: #ebcccc;
           color: #721c24;
           padding: 1.2em 2em;
+          font-weight: var(--fontweight-regular);
 
           @media screen and (min-width: 1200px) {
-            font-size: var(--fontsize-md);
-            font-weight: var(--fontweight-bold);
             padding: 2em;
           }
         }

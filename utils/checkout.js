@@ -296,23 +296,33 @@ export function buildFlashFromInvalidStockEntries(entries) {
 
   return [ReactDOMServer.renderToStaticMarkup(
     <div>
-      <p>
-        {exceeded.map((entry) => (
-          <Fragment key={entry.product.id + entry.sizeName}>
-            We only have {entry.quantity - entry.stockExceedance} size {entry.sizeName} {entry.product.name.toUpperCase()} in stock. Please choose a different quantity or different size for the item.
-            <br />
-          </Fragment>
-        ))}
-      </p>
+      <div>
+        The following items in your cart exceed our stock. Please choose a different quantity or remove it from your cart:
+        <ul style={{ marginTop: '0.5em' }}>
+          {exceeded.map((entry) => {
+            const leftInStock = entry.quantity - entry.stockExceedance;
+            return (
+              <li key={entry.product.id + entry.sizeName}>
+                {entry.product.name.toUpperCase()} ({entry.sizeName}): {leftInStock ? `only ${leftInStock} in stock` : 'out of stock'}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
 
-      <p>
-        {exceeded.map((entry) => (
-          <Fragment key={entry.product.id + entry.sizeName}>
-            Size {entry.sizeName} {entry.product.name.toUpperCase()} chỉ còn lại {entry.quantity - entry.stockExceedance} trong kho. Vui lòng chọn lại số lượng hoặc chọn size khác.
-            <br />
-          </Fragment>
-        ))}
-      </p>
+      <div>
+        Những sản phẩm sau vượt quá số lượng hàng còn lại trong kho. Vui lòng chọn lại số lượng hoặc xoá khỏi giỏ hàng của bạn:
+        <ul style={{ marginTop: '0.5em' }}>
+          {exceeded.map((entry) => {
+            const leftInStock = entry.quantity - entry.stockExceedance;
+            return (
+              <li key={entry.product.id + entry.sizeName}>
+                {entry.product.name.toUpperCase()} ({entry.sizeName}): {leftInStock ? `còn ${leftInStock} chiếc` : 'hết hàng'}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>,
   )];
 }

@@ -94,7 +94,7 @@ function CheckoutSummaryPage() {
           }
 
           @media screen and (min-width: 768px) {
-            padding-top: 10rem;
+            padding-top: ${flash.length ? '7rem' : '10rem'};
 
             .alert-container {
               max-width: 700px;
@@ -106,7 +106,7 @@ function CheckoutSummaryPage() {
           }
 
           @media screen and (min-width: 1200px) {
-            padding-top: 12rem;
+            padding-top: ${flash.length ? '7rem' : '12rem'};
 
             .alert-container {
               max-width: 790px;
