@@ -47,7 +47,7 @@ function CheckoutSummaryPage() {
             {cart.map((entry, i) => (
               <Fragment key={`${entry.product.id}${entry.sizeName}`}>
                 {i !== 0 && <hr />}
-                <CartProductSmall cartEntry={entry} noneditable />
+                <CartProductSmall cartEntry={entry} />
               </Fragment>
             ))}
           </div>
