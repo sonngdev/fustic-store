@@ -1,3 +1,8 @@
+/* eslint-disable react/jsx-filename-extension, max-len */
+
+import { Fragment } from 'react';
+import ReactDOMServer from 'react-dom/server';
+
 export function getCartTotal(cart) {
   const vnd = cart.reduce((acc, entry) => acc + entry.product.priceVnd * entry.quantity, 0);
   const usd = cart.reduce((acc, entry) => acc + entry.product.priceUsd * entry.quantity, 0);
@@ -284,4 +289,30 @@ export function canAddMore(product, sizeName, cart) {
 
   const limit = Math.min(sizeInfoFromServer.quantity, maxPerEntry);
   return entry.quantity < limit;
+}
+
+export function buildFlashFromInvalidStockEntries(entries) {
+  const exceeded = entries.filter((entry) => entry.stockExceedance > 0);
+
+  return [ReactDOMServer.renderToStaticMarkup(
+    <div>
+      <p>
+        {exceeded.map((entry) => (
+          <Fragment key={entry.product.id + entry.sizeName}>
+            We only have {entry.quantity - entry.stockExceedance} size {entry.sizeName} {entry.product.name.toUpperCase()} in stock. Please choose a different quantity or different size for the item.
+            <br />
+          </Fragment>
+        ))}
+      </p>
+
+      <p>
+        {exceeded.map((entry) => (
+          <Fragment key={entry.product.id + entry.sizeName}>
+            Size {entry.sizeName} {entry.product.name.toUpperCase()} chỉ còn lại {entry.quantity - entry.stockExceedance} trong kho. Vui lòng chọn lại số lượng hoặc chọn size khác.
+            <br />
+          </Fragment>
+        ))}
+      </p>
+    </div>,
+  )];
 }

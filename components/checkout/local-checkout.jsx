@@ -1,45 +1,19 @@
-/* eslint-disable max-len */
-
-import { Fragment, useState } from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 import cx from 'classnames';
+
 import { useCart, useCheckoutInfo } from 'hooks/store';
 import { setFlashMessages } from 'store/actions';
 import { createOrder } from 'utils/request';
+import { buildFlashFromInvalidStockEntries } from 'utils/checkout';
+
 import Radio from 'components/basic/radio';
 import Button from 'components/basic/button';
 import CheckoutLayout from 'components/checkout/checkout-layout';
 import CartTotal from 'components/checkout/cart-total';
 
 const LOCAL_CHECKOUT_METHODS = ['cod', 'bank_transfer'];
-
-function buildFlashFromInvalidStockEntries(entries) {
-  const exceeded = entries.filter((entry) => entry.stockExceedance > 0);
-
-  return [ReactDOMServer.renderToStaticMarkup(
-    <div>
-      <p>
-        {exceeded.map((entry) => (
-          <Fragment key={entry.product.id + entry.sizeName}>
-            We only have {entry.quantity - entry.stockExceedance} size {entry.sizeName} {entry.product.name.toUpperCase()} in stock. Please choose a different quantity or different size for the item.
-            <br />
-          </Fragment>
-        ))}
-      </p>
-
-      <p>
-        {exceeded.map((entry) => (
-          <Fragment key={entry.product.id + entry.sizeName}>
-            Size {entry.sizeName} {entry.product.name.toUpperCase()} chỉ còn lại {entry.quantity - entry.stockExceedance} trong kho. Vui lòng chọn lại số lượng hoặc chọn size khác.
-            <br />
-          </Fragment>
-        ))}
-      </p>
-    </div>,
-  )];
-}
 
 function LocalCheckout() {
   const [method, setMethod] = useState(LOCAL_CHECKOUT_METHODS[0]);

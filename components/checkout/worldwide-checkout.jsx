@@ -1,43 +1,11 @@
-/* eslint-disable max-len */
-
-import {
-  Fragment,
-  useState,
-  useEffect,
-  useRef,
-} from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import Router from 'next/router';
+
 import { useCart, useCheckoutInfo } from 'hooks/store';
 import { createOrder, updateOrder } from 'utils/request';
+import { buildFlashFromInvalidStockEntries } from 'utils/checkout';
 import { setFlashMessages } from 'store/actions';
-
-function buildFlashFromInvalidStockEntries(entries) {
-  const exceeded = entries.filter((entry) => entry.stockExceedance > 0);
-
-  return [ReactDOMServer.renderToStaticMarkup(
-    <div>
-      <p>
-        {exceeded.map((entry) => (
-          <Fragment key={entry.product.id + entry.sizeName}>
-            We only have {entry.quantity - entry.stockExceedance} size {entry.sizeName} {entry.product.name.toUpperCase()} in stock. Please choose a different quantity or different size for the item.
-            <br />
-          </Fragment>
-        ))}
-      </p>
-
-      <p>
-        {exceeded.map((entry) => (
-          <Fragment key={entry.product.id + entry.sizeName}>
-            Size {entry.sizeName} {entry.product.name.toUpperCase()} chỉ còn lại {entry.quantity - entry.stockExceedance} trong kho. Vui lòng chọn lại số lượng hoặc chọn size khác.
-            <br />
-          </Fragment>
-        ))}
-      </p>
-    </div>,
-  )];
-}
 
 function WorldwideCheckout() {
   const [paypalLoaded, setPaypalLoaded] = useState(false);
