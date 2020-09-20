@@ -15,10 +15,12 @@ import CartTotal from 'components/checkout/cart-total';
 const LOCAL_CHECKOUT_METHODS = ['cod', 'bank_transfer'];
 
 function buildFlashFromInvalidStockEntries(entries) {
+  const exceeded = entries.filter((entry) => entry.stockExceedance > 0);
+
   return [
     <div>
       <p>
-        {entries.map((entry) => (
+        {exceeded.map((entry) => (
           <Fragment key={entry.product.id + entry.sizeName}>
             We only have {entry.quantity - entry.stockExceedance} size {entry.sizeName} {entry.product.name.toUpperCase()} in stock. Please choose a different quantity or different size for the item.
             <br />
@@ -27,7 +29,7 @@ function buildFlashFromInvalidStockEntries(entries) {
       </p>
 
       <p>
-        {entries.map((entry) => (
+        {exceeded.map((entry) => (
           <Fragment key={entry.product.id + entry.sizeName}>
             Size {entry.sizeName} {entry.product.name.toUpperCase()} chỉ còn lại {entry.quantity - entry.stockExceedance} trong kho. Vui lòng chọn lại số lượng hoặc chọn size khác.
             <br />
