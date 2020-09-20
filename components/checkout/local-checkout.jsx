@@ -1,7 +1,11 @@
-import { useState } from 'react';
+/* eslint-disable max-len */
+
+import { Fragment, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 import cx from 'classnames';
 import { useCart, useCheckoutInfo } from 'hooks/store';
+import { setFlashMessages } from 'store/actions';
 import { createOrder } from 'utils/request';
 import Radio from 'components/basic/radio';
 import Button from 'components/basic/button';
@@ -10,6 +14,30 @@ import CartTotal from 'components/checkout/cart-total';
 
 const LOCAL_CHECKOUT_METHODS = ['cod', 'bank_transfer'];
 
+function buildFlashFromInvalidStockEntries(entries) {
+  return [
+    <div>
+      <p>
+        {entries.map((entry) => (
+          <Fragment key={entry.product.id + entry.sizeName}>
+            We only have {entry.quantity - entry.stockExceedance} size {entry.sizeName} {entry.product.name.toUpperCase()} in stock. Please choose a different quantity or different size for the item.
+            <br />
+          </Fragment>
+        ))}
+      </p>
+
+      <p>
+        {entries.map((entry) => (
+          <Fragment key={entry.product.id + entry.sizeName}>
+            Size {entry.sizeName} {entry.product.name.toUpperCase()} chỉ còn lại {entry.quantity - entry.stockExceedance} trong kho. Vui lòng chọn lại số lượng hoặc chọn size khác.
+            <br />
+          </Fragment>
+        ))}
+      </p>
+    </div>,
+  ];
+}
+
 function LocalCheckout() {
   const [method, setMethod] = useState(LOCAL_CHECKOUT_METHODS[0]);
   const changeMethod = (e) => setMethod(e.target.value);
@@ -17,9 +45,18 @@ function LocalCheckout() {
   const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
 
-  const completeOrder = () => {
-    createOrder(method, cart, checkoutInfo);
-    Router.push('/checkout/completed');
+  const dispatch = useDispatch();
+  const completeOrder = async () => {
+    const order = await createOrder(method, cart, checkoutInfo);
+    if (order.error) {
+      const flash = typeof order.message === 'string'
+        ? [order.message]
+        : buildFlashFromInvalidStockEntries(order.message);
+      dispatch(setFlashMessages(flash));
+      Router.push('/checkout/summary');
+    } else {
+      Router.push('/checkout/completed');
+    }
   };
 
   return (
