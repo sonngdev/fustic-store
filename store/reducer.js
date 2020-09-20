@@ -6,6 +6,8 @@ import {
   CHANGE_CHECKOUT_INFO,
   UPDATE_CART_PRODUCTS,
   COMPLETE_CHECKOUT,
+  SET_FLASH_MESSAGES,
+  REMOVE_FLASH_MESSAGES,
 } from './actions';
 
 const defaultState = {
@@ -23,6 +25,7 @@ const defaultState = {
     address: '',
     notes: '',
   },
+  flashMessages: [],
 };
 
 function addProduct(cart, product, sizeName) {
@@ -106,6 +109,16 @@ export default function reducer(state = defaultState, action) {
     case COMPLETE_CHECKOUT:
       return {
         ...defaultState,
+      };
+    case SET_FLASH_MESSAGES:
+      return {
+        ...state,
+        flashMessages: action.payload,
+      };
+    case REMOVE_FLASH_MESSAGES:
+      return {
+        ...state,
+        flashMessages: [],
       };
     default:
       return state;
