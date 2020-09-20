@@ -1,13 +1,50 @@
-import { useState, useEffect, useRef } from 'react';
+/* eslint-disable max-len */
+
+import {
+  Fragment,
+  useState,
+  useEffect,
+  useRef,
+} from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 import { useCart, useCheckoutInfo } from 'hooks/store';
 import { createOrder, updateOrder } from 'utils/request';
+import { setFlashMessages } from 'store/actions';
+
+function buildFlashFromInvalidStockEntries(entries) {
+  const exceeded = entries.filter((entry) => entry.stockExceedance > 0);
+
+  return [ReactDOMServer.renderToStaticMarkup(
+    <div>
+      <p>
+        {exceeded.map((entry) => (
+          <Fragment key={entry.product.id + entry.sizeName}>
+            We only have {entry.quantity - entry.stockExceedance} size {entry.sizeName} {entry.product.name.toUpperCase()} in stock. Please choose a different quantity or different size for the item.
+            <br />
+          </Fragment>
+        ))}
+      </p>
+
+      <p>
+        {exceeded.map((entry) => (
+          <Fragment key={entry.product.id + entry.sizeName}>
+            Size {entry.sizeName} {entry.product.name.toUpperCase()} chỉ còn lại {entry.quantity - entry.stockExceedance} trong kho. Vui lòng chọn lại số lượng hoặc chọn size khác.
+            <br />
+          </Fragment>
+        ))}
+      </p>
+    </div>,
+  )];
+}
 
 function WorldwideCheckout() {
   const [paypalLoaded, setPaypalLoaded] = useState(false);
   const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
   const orderRef = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -21,19 +58,32 @@ function WorldwideCheckout() {
   useEffect(() => {
     if (!paypalLoaded) return () => {};
 
-    const handleCreateOrder = async (_data, actions) => {
+    const handleClick = async (_data, actions) => {
       if (!orderRef.current) {
         orderRef.current = await createOrder('paypal', cart, checkoutInfo);
       }
 
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: orderRef.current.totalAmountUsd.toFixed(2),
-          },
-        }],
-      });
+      const order = orderRef.current;
+
+      if (order.error) {
+        const flash = typeof order.message === 'string'
+          ? [order.message]
+          : buildFlashFromInvalidStockEntries(order.message);
+        dispatch(setFlashMessages(flash));
+        Router.push('/checkout/summary');
+        return actions.reject();
+      }
+
+      return actions.resolve();
     };
+
+    const handleCreateOrder = async (_data, actions) => actions.order.create({
+      purchase_units: [{
+        amount: {
+          value: orderRef.current.totalAmountUsd.toFixed(2),
+        },
+      }],
+    });
 
     const handleOnApprove = async (_data, actions) => {
       const orderDetails = await actions.order.capture();
@@ -44,6 +94,7 @@ function WorldwideCheckout() {
     const style = { color: 'gold' };
 
     window.paypal.Buttons({
+      onClick: handleClick,
       createOrder: handleCreateOrder,
       onApprove: handleOnApprove,
       style,
