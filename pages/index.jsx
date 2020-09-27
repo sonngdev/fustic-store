@@ -10,18 +10,18 @@ import Product from 'models/Product';
 
 export default function HomePage({ generalConfig, products, vimeoThumbnailUrl }) {
   const ogImage = vimeoThumbnailUrl
-    || `${window.location.origin}/fustic-white.png`;
+    || `${process.env.NEXT_PUBLIC_BASE_URL}/fustic-white.png`;
 
   return (
     <Layout>
       <Head>
         <title>Home – Fustic. Store</title>
-        <link rel="canonical" href={window.location.origin} />
+        <link rel="canonical" href={process.env.NEXT_PUBLIC_BASE_URL} />
         <meta name="description" content="Official store of Fustic. Studio" />
         <meta name="keywords" content="fustic store,fustic studio" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Fustic. Store" />
-        <meta property="og:url" content={window.location.origin} />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_BASE_URL} />
         <meta property="og:title" content="Home – Fustic. Store" />
         <meta property="og:description" content="Official store of Fustic. Studio" />
         <meta property="og:image" content={ogImage} />
