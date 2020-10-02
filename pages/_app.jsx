@@ -12,7 +12,6 @@ import smoothscroll from 'smoothscroll-polyfill';
 import { wrapper } from 'store';
 import { cacheCategories } from 'store/actions';
 import { getCategories } from 'utils/request';
-import Category from 'models/Category';
 import useThemeAdaptiveValue from 'hooks/useThemeAdaptiveValue';
 
 import 'smoothscroll-anchor-polyfill';
@@ -20,13 +19,17 @@ import 'normalize.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'styles/global.scss';
 
-function App({ Component, pageProps, categories }) {
+function App({ Component, pageProps }) {
   const store = useStore();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(cacheCategories(categories));
-  });
+    const fetchCategories = async () => {
+      const categories = await getCategories();
+      dispatch(cacheCategories(categories));
+    };
+    fetchCategories();
+  }, []);
 
   /**
    * This only polyfills javascript. To polyfill anchors scrolling
@@ -61,15 +64,9 @@ function App({ Component, pageProps, categories }) {
   );
 }
 
-App.getInitialProps = async () => {
-  const categories = await getCategories();
-  return { categories };
-};
-
 App.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object,
-  categories: PropTypes.arrayOf(Category).isRequired,
 };
 
 App.defaultProps = {

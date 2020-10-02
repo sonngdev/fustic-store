@@ -5,14 +5,18 @@ import Router from 'next/router';
 
 import { cartValid } from 'utils/checkout';
 import { useCart } from 'hooks/store';
+import useFlash from 'hooks/useFlash';
+
 import Layout from 'components/layout';
 import CartProductSmall from 'components/product/cart-product-small';
 import Button from 'components/basic/button';
+import Alert from 'components/basic/alert';
 import CheckoutLayout from 'components/checkout/checkout-layout';
 import CartTotal from 'components/checkout/cart-total';
 
 function CheckoutSummaryPage() {
   const cart = useCart();
+  const flash = useFlash();
 
   return (
     <Layout>
@@ -30,12 +34,20 @@ function CheckoutSummaryPage() {
       </Head>
 
       <div className="checkout-summary-page">
+        {flash.length
+          ? (
+            <div className="alert-container">
+              {flash.map((f) => <Alert key={f} message={f} />)}
+            </div>
+          )
+          : null}
+
         <CheckoutLayout>
           <div className="cart-entries">
             {cart.map((entry, i) => (
               <Fragment key={`${entry.product.id}${entry.sizeName}`}>
                 {i !== 0 && <hr />}
-                <CartProductSmall cartEntry={entry} noneditable />
+                <CartProductSmall cartEntry={entry} />
               </Fragment>
             ))}
           </div>
@@ -58,6 +70,12 @@ function CheckoutSummaryPage() {
         .checkout-summary-page {
           padding: 6rem 0 4rem;
 
+          .alert-container {
+            padding: 0 25px;
+            max-width: 400px;
+            margin: 0 auto 2rem;
+          }
+
           .cart-entries {
             width: 260px;
 
@@ -76,7 +94,11 @@ function CheckoutSummaryPage() {
           }
 
           @media screen and (min-width: 768px) {
-            padding-top: 10rem;
+            padding-top: ${flash.length ? '7rem' : '10rem'};
+
+            .alert-container {
+              max-width: 700px;
+            }
 
             .info .button-group {
               margin-top: 6em;
@@ -84,7 +106,11 @@ function CheckoutSummaryPage() {
           }
 
           @media screen and (min-width: 1200px) {
-            padding-top: 12rem;
+            padding-top: ${flash.length ? '7rem' : '12rem'};
+
+            .alert-container {
+              max-width: 790px;
+            }
           }
         }
         `}

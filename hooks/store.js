@@ -1,5 +1,10 @@
 import { useSelector } from 'react-redux';
-import { selectCategories, selectCart, selectCheckoutInfo } from 'store/selectors';
+import {
+  selectCategories,
+  selectCart,
+  selectCheckoutInfo,
+  selectFlashMessages,
+} from 'store/selectors';
 
 export function useCategories() {
   return useSelector(selectCategories);
@@ -11,4 +16,8 @@ export function useCart() {
 
 export function useCheckoutInfo() {
   return useSelector(selectCheckoutInfo);
+}
+
+export function useFlashMessages() {
+  return useSelector(selectFlashMessages);
 }

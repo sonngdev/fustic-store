@@ -5,6 +5,8 @@ export const CLEAR_FROM_CART = 'CLEAR_FROM_CART';
 export const CHANGE_CHECKOUT_INFO = 'CHANGE_CHECKOUT_INFO';
 export const UPDATE_CART_PRODUCTS = 'UPDATE_CART_PRODUCTS';
 export const COMPLETE_CHECKOUT = 'COMPLETE_CHECKOUT';
+export const SET_FLASH_MESSAGES = 'SET_FLASH_MESSAGES';
+export const REMOVE_FLASH_MESSAGES = 'REMOVE_FLASH_MESSAGES';
 
 export const cacheCategories = (categories) => ({
   type: CACHE_CATEGORIES,
@@ -38,4 +40,13 @@ export const updateCartProducts = (products) => ({
 
 export const completeCheckout = () => ({
   type: COMPLETE_CHECKOUT,
+});
+
+export const setFlashMessages = (messages) => ({
+  type: SET_FLASH_MESSAGES,
+  payload: messages,
+});
+
+export const removeFlashMessages = () => ({
+  type: REMOVE_FLASH_MESSAGES,
 });
