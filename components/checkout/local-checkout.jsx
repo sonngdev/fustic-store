@@ -5,7 +5,7 @@ import cx from 'classnames';
 
 import { useCart, useCheckoutInfo } from 'hooks/store';
 import { setFlashMessages } from 'store/actions';
-import { createOrder } from 'utils/request';
+import { createOrder, confirmOrder } from 'utils/request';
 import { buildFlashFromInvalidStockEntries } from 'utils/checkout';
 
 import Radio from 'components/basic/radio';
@@ -25,15 +25,18 @@ function LocalCheckout() {
   const dispatch = useDispatch();
   const completeOrder = async () => {
     const order = await createOrder(method, cart, checkoutInfo);
+
     if (order.error) {
       const flash = typeof order.message === 'string'
         ? [order.message]
         : buildFlashFromInvalidStockEntries(order.message);
       dispatch(setFlashMessages(flash));
       Router.push('/checkout/summary');
-    } else {
-      Router.push('/checkout/completed');
+      return;
     }
+
+    confirmOrder(order.id);
+    Router.push('/checkout/completed');
   };
 
   return (

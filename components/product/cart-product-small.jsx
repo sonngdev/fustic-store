@@ -4,13 +4,15 @@ import Link from 'next/link';
 import { addToCart, subtractFromCart, clearFromCart } from 'store/actions';
 import Product from 'models/Product';
 import { formatPriceVnd } from 'utils/string';
-import useCanAddMoreProduct from 'hooks/useCanAddMoreProduct';
+import { canAddMore } from 'utils/checkout';
+import { useCart } from 'hooks/store';
 
 export default function CartProductSmall({ cartEntry, noneditable }) {
   const { product, quantity, sizeName } = cartEntry;
   const thumbnail = product.images.find((image) => image.isThumbnail);
 
-  const canAddMoreProduct = useCanAddMoreProduct(product, sizeName);
+  const cart = useCart();
+  const canAddMoreProduct = canAddMore(product, sizeName, cart);
   const canSubtractAwayProduct = quantity === 1;
 
   const dispatch = useDispatch();

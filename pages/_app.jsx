@@ -19,8 +19,12 @@ import 'normalize.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'styles/global.scss';
 
-function App({ Component, pageProps }) {
-  const store = useStore();
+/**
+|--------------------------------------------------
+| CUSTOM HOOKS
+|--------------------------------------------------
+*/
+function useCategoriesPrefetch() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,36 +34,66 @@ function App({ Component, pageProps }) {
     };
     fetchCategories();
   }, []);
+}
 
+function useSmoothScrollPolyfill() {
   /**
    * This only polyfills javascript. To polyfill anchors scrolling
    * behavior, we need smoothscroll-anchor-polyfill in addition.
    * https://github.com/jonaskuske/smoothscroll-anchor-polyfill
    */
   useEffect(() => { smoothscroll.polyfill(); });
+}
 
+function useAdaptiveHead() {
   const adaptiveFaviconDir = useThemeAdaptiveValue('/favicon-black', '/favicon-white');
   const adaptiveBackgroundColor = useThemeAdaptiveValue('#ffffff', '#0f0f0f');
 
   return (
-    <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
-      <Head>
-        <title>Fustic. Store</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <Head>
+      <title>Fustic. Store</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        {/* Generated with https://realfavicongenerator.net/ */}
-        <link rel="apple-touch-icon" sizes="180x180" href={`${adaptiveFaviconDir}/apple-touch-icon.png`} />
-        <link rel="icon" type="image/png" sizes="32x32" href={`${adaptiveFaviconDir}/favicon-32x32.png`} />
-        <link rel="icon" type="image/png" sizes="16x16" href={`${adaptiveFaviconDir}/favicon-16x16.png`} />
-        <link rel="manifest" href={`${adaptiveFaviconDir}/site.webmanifest`} />
-        <link rel="mask-icon" href={`${adaptiveFaviconDir}/safari-pinned-tab.svg" color="#0f0f0f`} />
-        <link rel="shortcut icon" href={`${adaptiveFaviconDir}/favicon.ico`} />
-        <meta name="msapplication-TileColor" content={adaptiveBackgroundColor} />
-        <meta name="msapplication-config" content={`${adaptiveFaviconDir}/browserconfig.xml`} />
-        <meta name="theme-color" content={adaptiveBackgroundColor} />
-      </Head>
+      {/* Generated with https://realfavicongenerator.net/ */}
+      <link rel="apple-touch-icon" sizes="180x180" href={`${adaptiveFaviconDir}/apple-touch-icon.png`} />
+      <link rel="icon" type="image/png" sizes="32x32" href={`${adaptiveFaviconDir}/favicon-32x32.png`} />
+      <link rel="icon" type="image/png" sizes="16x16" href={`${adaptiveFaviconDir}/favicon-16x16.png`} />
+      <link rel="manifest" href={`${adaptiveFaviconDir}/site.webmanifest`} />
+      <link rel="mask-icon" href={`${adaptiveFaviconDir}/safari-pinned-tab.svg" color="#0f0f0f`} />
+      <link rel="shortcut icon" href={`${adaptiveFaviconDir}/favicon.ico`} />
+      <meta name="msapplication-TileColor" content={adaptiveBackgroundColor} />
+      <meta name="msapplication-config" content={`${adaptiveFaviconDir}/browserconfig.xml`} />
+      <meta name="theme-color" content={adaptiveBackgroundColor} />
+    </Head>
+  );
+}
 
+function renderPageContent(Component, pageProps) {
+  const head = useAdaptiveHead();
+
+  return (
+    <>
+      {head}
       <Component {...pageProps} />
+    </>
+  );
+}
+
+/**
+|--------------------------------------------------
+| COMPONENT
+|--------------------------------------------------
+*/
+function App({ Component, pageProps }) {
+  const store = useStore();
+
+  useCategoriesPrefetch();
+  useSmoothScrollPolyfill();
+  const pageContent = renderPageContent(Component, pageProps);
+
+  return (
+    <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
+      {pageContent}
     </PersistGate>
   );
 }
