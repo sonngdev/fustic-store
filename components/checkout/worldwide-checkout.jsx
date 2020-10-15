@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 
 import { useCart, useCheckoutInfo } from 'hooks/store';
-import { createOrder, updateOrder } from 'utils/request';
+import { createOrder, updateOrder, confirmOrder } from 'utils/request';
 import { buildFlashFromInvalidStockEntries } from 'utils/checkout';
 import { setFlashMessages } from 'store/actions';
 
@@ -55,7 +55,8 @@ function WorldwideCheckout() {
 
     const handleOnApprove = async (_data, actions) => {
       const orderDetails = await actions.order.capture();
-      updateOrder(orderRef.current.id, orderDetails);
+      await updateOrder(orderRef.current.id, orderDetails);
+      confirmOrder(orderRef.current.id);
       Router.push('/checkout/completed');
     };
 

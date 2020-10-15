@@ -71,6 +71,10 @@ export async function createOrder(type, cart, checkoutInfo) {
   return post(`${process.env.NEXT_PUBLIC_API_HOST}/orders`, payload);
 }
 
+export async function confirmOrder(orderId) {
+  return post(`${process.env.NEXT_PUBLIC_API_HOST}/orders/${orderId}/confirmations`);
+}
+
 export async function updateOrder(id, paypalOrder) {
   const payload = { paypalOrder: JSON.stringify(paypalOrder) };
   return put(`${process.env.NEXT_PUBLIC_API_HOST}/orders/${id}`, payload);
