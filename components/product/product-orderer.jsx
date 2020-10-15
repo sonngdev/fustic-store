@@ -2,13 +2,16 @@ import { useState } from 'react';
 import cx from 'classnames';
 import AddToCartButton from 'components/product/add-to-cart-button';
 import { formatPriceVnd } from 'utils/string';
-import useCanAddMoreProduct from 'hooks/useCanAddMoreProduct';
+import { canAddMore } from 'utils/checkout';
+import { useCart } from 'hooks/store';
 import Product from 'models/Product';
 
 function ProductOrderer({ product }) {
   const [selectedSize, setSelectedSize] = useState(product.sizes.find((s) => s.quantity > 0));
 
-  const canAddMoreProduct = useCanAddMoreProduct(product, selectedSize?.name);
+  const cart = useCart();
+  const canAddMoreProduct = canAddMore(product, selectedSize?.name, cart);
+
   const selectSize = (size) => () => {
     if (size.quantity <= 0) return;
     setSelectedSize(size);
@@ -22,19 +25,22 @@ function ProductOrderer({ product }) {
 
       <div className="size-add">
         <div className="size">
-          {
-            product.sizes.map((size) => (
+          {product.sizes.map((size) => {
+            const outOfStock = size.quantity <= 0;
+            const cantAddMoreOfThis = !canAddMore(product, size.name, cart);
+
+            return (
               <button
                 key={size.name}
                 type="button"
-                disabled={size.quantity <= 0}
+                disabled={outOfStock || cantAddMoreOfThis}
                 className={cx({ active: size === selectedSize })}
                 onClick={selectSize(size)}
               >
                 {size.name}
               </button>
-            ))
-          }
+            );
+          })}
         </div>
 
         <AddToCartButton
