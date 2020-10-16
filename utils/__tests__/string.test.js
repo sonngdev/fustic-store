@@ -1,4 +1,10 @@
-import { formatPriceVnd, snakeToCamel, camelToSnake } from '../string';
+import {
+  formatPriceVnd,
+  snakeToCamel,
+  camelToSnake,
+  capitalCase,
+  titleCase,
+} from '../string';
 
 describe('formatPriceVnd', () => {
   it('throws if argument is not of type number', () => {
@@ -64,5 +70,42 @@ describe('camelToSnake', () => {
     expect(camelToSnake('FooBar')).toBe('_foo_bar');
     expect(camelToSnake('foo_Bar')).toBe('foo__bar');
     expect(camelToSnake('Foo')).toBe('_foo');
+  });
+});
+
+describe('capitalCase', () => {
+  it('throws if argument is not of type string', () => {
+    expect(() => camelToSnake(42)).toThrow(TypeError);
+    expect(() => camelToSnake(true)).toThrow(TypeError);
+  });
+
+  it('converts first letter to uppercase and the rest to lowercase', () => {
+    expect(capitalCase('foobar')).toBe('Foobar');
+    expect(capitalCase('FOOBAR')).toBe('Foobar');
+    expect(capitalCase('FOO_BAR')).toBe('Foo_bar');
+  });
+
+  it('behaves the same way for multi-words strings', () => {
+    expect(capitalCase('foobar baz')).toBe('Foobar baz');
+    expect(capitalCase('FOOBAR BAZ')).toBe('Foobar baz');
+    expect(capitalCase('FOOBAR BAZ_QUX')).toBe('Foobar baz_qux');
+  });
+});
+
+describe('titleCase', () => {
+  it('throws if argument is not of type string', () => {
+    expect(() => camelToSnake(42)).toThrow(TypeError);
+    expect(() => camelToSnake(true)).toThrow(TypeError);
+  });
+
+  it('capitalizes the first letter of every word', () => {
+    expect(titleCase('foo')).toBe('Foo');
+    expect(titleCase('foo bar')).toBe('Foo Bar');
+    expect(titleCase('fOo baR')).toBe('Foo Bar');
+  });
+
+  it('trims all excessive whitespace', () => {
+    expect(titleCase(' foo  ')).toBe('Foo');
+    expect(titleCase('\t foo bar \n\t baz_QUX')).toBe('Foo Bar Baz_qux');
   });
 });
