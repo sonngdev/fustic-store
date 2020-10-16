@@ -16,3 +16,9 @@ function transformKey(fn) {
 export const ensureCamel = transformKey(snakeToCamel);
 
 export const ensureSnake = transformKey(camelToSnake);
+
+export function objectMap(object, fn) {
+  return Object.fromEntries(
+    Object.entries(object).map(([key, value]) => [key, fn(value, key)]),
+  );
+}
