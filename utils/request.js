@@ -1,4 +1,5 @@
-import { ensureCamel, ensureSnake } from 'utils/object';
+import { ensureCamel, ensureSnake, objectMap } from 'utils/object';
+import { titleCase } from 'utils/string';
 
 export async function request(method, url, body = null) {
   const options = {
@@ -58,8 +59,10 @@ export async function getVimeoThumbnail(vimeoId) {
 }
 
 export async function createOrder(type, cart, checkoutInfo) {
+  const normalized = objectMap(checkoutInfo, titleCase);
+
   const payload = {
-    ...checkoutInfo,
+    ...normalized,
     type,
     products: cart.map((entry) => ({
       product: { id: entry.product.id },
@@ -69,6 +72,10 @@ export async function createOrder(type, cart, checkoutInfo) {
   };
 
   return post(`${process.env.NEXT_PUBLIC_API_HOST}/orders`, payload);
+}
+
+export async function confirmOrder(orderId) {
+  return post(`${process.env.NEXT_PUBLIC_API_HOST}/orders/${orderId}/confirmations`);
 }
 
 export async function updateOrder(id, paypalOrder) {

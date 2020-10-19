@@ -22,15 +22,15 @@ function CheckoutSummaryPage() {
     <Layout>
       <Head>
         <title>Summary – Checkout – Fustic Store</title>
-        <link rel="canonical" href={`${window.location.origin}/checkout/summary`} />
+        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_BASE_URL}/checkout/summary`} />
         <meta name="description" content="Checkout summary on Fustic. Store" />
         <meta name="keywords" content="fustic store,fustic studio,checkout,summary" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Fustic. Store" />
-        <meta property="og:url" content={`${window.location.origin}/checkout/summary`} />
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_BASE_URL}/checkout/summary`} />
         <meta property="og:title" content="Summary – Checkout – Fustic Store" />
         <meta property="og:description" content="Checkout summary on Fustic. Store" />
-        <meta property="og:image" content={`${window.location.origin}/fustic-white.png`} />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/fustic-white.png`} />
       </Head>
 
       <div className="checkout-summary-page">

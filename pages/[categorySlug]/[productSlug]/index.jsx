@@ -16,18 +16,18 @@ export default function ProductPage({ product }) {
   }
 
   const ogImage = product.images.find((image) => image.isThumbnail)?.url
-    || `${window.location.origin}/fustic-white.png`;
+    || `${process.env.NEXT_PUBLIC_BASE_URL}/fustic-white.png`;
 
   return (
     <Layout>
       <Head>
         <title>{product.name} – {product.category.name} – Fustic. Store</title>
-        <link rel="canonical" href={`${window.location.origin}/${product.category.slug}/${product.slug}`} />
+        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_BASE_URL}/${product.category.slug}/${product.slug}`} />
         <meta name="description" content={`${product.name} ${product.category.singularName} on Fustic. Store`} />
         <meta name="keywords" content={`fustic store,fustic studio,${product.category.name},${product.name}`} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Fustic. Store" />
-        <meta property="og:url" content={`${window.location.origin}/${product.category.slug}/${product.slug}`} />
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_BASE_URL}/${product.category.slug}/${product.slug}`} />
         <meta property="og:title" content={`${product.name} – ${product.category.name} – Fustic. Store`} />
         <meta property="og:description" content={`${product.name} ${product.category.singularName} on Fustic. Store`} />
         <meta property="og:image" content={ogImage} />
@@ -96,6 +96,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       product,
+      key: params.productSlug,
     },
     revalidate: true,
   };

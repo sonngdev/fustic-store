@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export default function useThemeAdaptiveValue(lightThemeValue, darkThemeValue) {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(lightThemeValue);
 
   useEffect(() => {
     // Mutable object

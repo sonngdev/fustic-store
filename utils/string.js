@@ -21,3 +21,19 @@ export function camelToSnake(str) {
 
   return str.replace(/[A-Z]/g, (char) => `_${char.toLowerCase()}`);
 }
+
+export function capitalCase(str) {
+  if (typeof str !== 'string') {
+    throw new TypeError(`expected argument of type string, received ${typeof str}`);
+  }
+
+  return `${str.slice(0, 1).toUpperCase()}${str.slice(1).toLowerCase()}`;
+}
+
+export function titleCase(str) {
+  if (typeof str !== 'string') {
+    throw new TypeError(`expected argument of type string, received ${typeof str}`);
+  }
+
+  return str.trim().split(/\s+/g).map(capitalCase).join(' ');
+}
