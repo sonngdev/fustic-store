@@ -29,7 +29,7 @@ export default function Menu({ visible }) {
         <li>
           <Link href="/">
             <a className={cx('subitem', { active: pathname === '/' })}>
-              Collections
+              Latest
             </a>
           </Link>
         </li>

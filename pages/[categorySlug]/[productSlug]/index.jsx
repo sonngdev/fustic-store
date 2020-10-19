@@ -96,6 +96,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       product,
+      key: params.productSlug,
     },
     revalidate: true,
   };
