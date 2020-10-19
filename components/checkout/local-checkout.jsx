@@ -76,7 +76,7 @@ function LocalCheckout() {
             <p>
               TECHCOMBANK<br />
               chi nhánh Hà Nội.<br />
-              19030318358017<br />
+              0901734753<br />
               DOAN THANH HAI
             </p>
             <p>
