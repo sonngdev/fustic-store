@@ -29,7 +29,13 @@ function CheckoutCompletedPage() {
       </Head>
 
       <section className="checkout-completed-page">
-        <h1>Thank you for supporting Fustic. Store</h1>
+        <div className="notice">
+          <h1>Thank you for shopping with Fustic.</h1>
+          <p>
+            Please check your email including spam box or junk box to make sure
+            you receive email confirmation for your order.
+          </p>
+        </div>
         <Link href="/">
           <Button block solid>Done</Button>
         </Link>
@@ -43,11 +49,23 @@ function CheckoutCompletedPage() {
           text-transform: uppercase;
           max-width: 60em;
 
-          h1 {
-            font-size: var(--fontsize-md);
-            font-weight: var(--fontweight-regular);
-            opacity: 0.6;
+          .notice {
             margin-bottom: 1.5em;
+
+            h1, p {
+              font-size: var(--fontsize-md);
+              opacity: 0.6;
+            }
+
+            h1 {
+              font-weight: var(--fontweight-bold);
+            }
+
+            p {
+              font-weight: var(--fontweight-regular);
+              padding-left: 1em;
+              padding-right: 1em;
+            }
           }
 
           @media screen and (min-width: 375px) {
@@ -56,7 +74,7 @@ function CheckoutCompletedPage() {
           }
 
           @media screen and (min-width: 1200px) {
-            h1 {
+            .notice {
               margin-bottom: 3em;
             }
           }
