@@ -27,6 +27,9 @@ function WorldwideCheckout() {
     return () => { document.body.removeChild(script); };
   }, []);
 
+  /**
+   * Paypal SDK docs: https://developer.paypal.com/docs/business/javascript-sdk/javascript-sdk-reference/#
+   */
   useEffect(() => {
     if (!paypalLoaded) return () => {};
 
