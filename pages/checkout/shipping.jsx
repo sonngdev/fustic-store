@@ -23,7 +23,10 @@ function CheckoutShippingPage() {
   const dispatch = useDispatch();
 
   const dispatchChangeInfo = (key) => (e) => {
-    if (key === 'country') {
+    if (key === 'country' && e.target.value === 'Vietnam') {
+      dispatch(changeCheckoutInfo('apartment', ''));
+    }
+    if (key === 'country' && e.target.value !== 'Vietnam') {
       dispatch(changeCheckoutInfo('district', ''));
     }
     dispatch(changeCheckoutInfo(key, e.target.value));
