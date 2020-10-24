@@ -24,7 +24,6 @@ function CheckoutShippingPage() {
 
   const dispatchChangeInfo = (key) => (e) => {
     if (key === 'country') {
-      dispatch(changeCheckoutInfo('city', ''));
       dispatch(changeCheckoutInfo('district', ''));
     }
     dispatch(changeCheckoutInfo(key, e.target.value));
