@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-filename-extension, max-len */
 
-import { Fragment } from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 export function getCartTotal(cart) {
