@@ -125,7 +125,7 @@ function CheckoutShippingPage() {
                     type="text"
                     className="city"
                     name="city"
-                    placeholder="City"
+                    placeholder="City*"
                     value={checkoutInfo.city}
                     onChange={dispatchChangeInfo('city')}
                   />
@@ -136,7 +136,7 @@ function CheckoutShippingPage() {
                     type="text"
                     className="district"
                     name="district"
-                    placeholder="District"
+                    placeholder="District*"
                     value={checkoutInfo.district}
                     onChange={dispatchChangeInfo('district')}
                   />
@@ -146,7 +146,7 @@ function CheckoutShippingPage() {
                   type="text"
                   className="zip-code"
                   name="zip-code"
-                  placeholder="Zip • Postal code"
+                  placeholder="Zip • Postal code*"
                   value={checkoutInfo.zipCode}
                   onChange={dispatchChangeInfo('zipCode')}
                 />
