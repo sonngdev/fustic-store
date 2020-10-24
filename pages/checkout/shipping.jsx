@@ -119,18 +119,16 @@ function CheckoutShippingPage() {
                     <option key={c} value={c}>{c}</option>
                   ))}
                 </Select>
-                {toVietnam && (
-                  <input
-                    required
-                    type="text"
-                    className="city"
-                    name="city"
-                    placeholder="City*"
-                    value={checkoutInfo.city}
-                    onChange={dispatchChangeInfo('city')}
-                  />
-                )}
-                {toVietnam && (
+                <input
+                  required
+                  type="text"
+                  className="city"
+                  name="city"
+                  placeholder="City*"
+                  value={checkoutInfo.city}
+                  onChange={dispatchChangeInfo('city')}
+                />
+                {toVietnam ? (
                   <input
                     required
                     type="text"
@@ -139,6 +137,15 @@ function CheckoutShippingPage() {
                     placeholder="District*"
                     value={checkoutInfo.district}
                     onChange={dispatchChangeInfo('district')}
+                  />
+                ) : (
+                  <input
+                    type="text"
+                    className="apartment"
+                    name="apartment"
+                    placeholder="Apartment"
+                    value={checkoutInfo.apartment}
+                    onChange={dispatchChangeInfo('apartment')}
                   />
                 )}
                 <input
@@ -243,7 +250,8 @@ function CheckoutShippingPage() {
                   "address address"
                   "notes notes"
                 `) : (`
-                  "country zip-code"
+                  "country city"
+                  "apartment zip-code"
                   "address address"
                   "notes notes"
                 `)};
@@ -259,6 +267,10 @@ function CheckoutShippingPage() {
 
                 .district {
                   grid-area: district;
+                }
+
+                .apartment {
+                  grid-area: apartment;
                 }
 
                 .zip-code {
