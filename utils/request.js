@@ -58,6 +58,16 @@ export async function getVimeoThumbnail(vimeoId) {
   return info[0].thumbnailLarge.replace('http:', 'https:').replace('.webp', '.jpg');
 }
 
+export async function validateOrder(cart) {
+  const payload = cart.map((entry) => ({
+    product: { id: entry.product.id },
+    size: entry.sizeName,
+    quantity: entry.quantity,
+  }));
+
+  return post(`${process.env.NEXT_PUBLIC_API_HOST}/orders/validations`, payload);
+}
+
 export async function createOrder(type, cart, checkoutInfo) {
   const normalized = objectMap(checkoutInfo, titleCase);
 
@@ -74,11 +84,11 @@ export async function createOrder(type, cart, checkoutInfo) {
   return post(`${process.env.NEXT_PUBLIC_API_HOST}/orders`, payload);
 }
 
-export async function confirmOrder(orderId) {
-  return post(`${process.env.NEXT_PUBLIC_API_HOST}/orders/${orderId}/confirmations`);
-}
-
 export async function updateOrder(id, paypalOrder) {
   const payload = { paypalOrder: JSON.stringify(paypalOrder) };
   return put(`${process.env.NEXT_PUBLIC_API_HOST}/orders/${id}`, payload);
+}
+
+export async function confirmOrder(orderId) {
+  return post(`${process.env.NEXT_PUBLIC_API_HOST}/orders/${orderId}/confirmations`);
 }
