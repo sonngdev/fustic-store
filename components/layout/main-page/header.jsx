@@ -52,7 +52,7 @@ export default function Header({
       </button>
       <div className="items">
         <Link href="/">
-          <a>Collections</a>
+          <a>Latest</a>
         </Link>
         <a className="wobble">About</a>
         <button
