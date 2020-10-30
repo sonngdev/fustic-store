@@ -5,8 +5,7 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { useStore, useDispatch } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
+import { useDispatch } from 'react-redux';
 import smoothscroll from 'smoothscroll-polyfill';
 
 import { wrapper } from 'store';
@@ -85,17 +84,11 @@ function renderPageContent(Component, pageProps) {
 |--------------------------------------------------
 */
 function App({ Component, pageProps }) {
-  const store = useStore();
-
   useCategoriesPrefetch();
   useSmoothScrollPolyfill();
   const pageContent = renderPageContent(Component, pageProps);
 
-  return (
-    <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
-      {pageContent}
-    </PersistGate>
-  );
+  return pageContent;
 }
 
 App.propTypes = {

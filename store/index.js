@@ -2,7 +2,7 @@
 
 import { createStore } from 'redux';
 import { createWrapper } from 'next-redux-wrapper';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import reducer from './reducer';
 
@@ -18,7 +18,6 @@ const makeStore = ({ isServer }) => {
   const store = createStore(
     persistedReducer,
   );
-  store.__persistor = persistStore(store);
 
   return store;
 };
