@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { cartValid, checkoutInfoValid } from 'utils/checkout';
 import { useCart, useCheckoutInfo } from 'hooks/store';
 import Layout from 'components/layout';
@@ -10,15 +12,14 @@ function CheckoutPaymentPage() {
   const checkoutInfo = useCheckoutInfo();
   const router = useRouter();
 
-  if (!cartValid(cart)) {
-    router.replace('/checkout/summary');
-    return null;
-  }
-
-  if (!checkoutInfoValid(checkoutInfo)) {
-    router.replace('/checkout/shipping');
-    return null;
-  }
+  useEffect(() => {
+    if (!cartValid(cart)) {
+      router.replace('/checkout/summary');
+    }
+    if (!checkoutInfoValid(checkoutInfo)) {
+      router.replace('/checkout/shipping');
+    }
+  });
 
   return (
     <Layout>

@@ -21,6 +21,16 @@ function CheckoutShippingPage() {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  // Never let country empty, once this page has been rendered
+  useEffect(() => {
+    if (!cartValid(cart)) {
+      router.replace('/checkout/summary');
+    }
+    if (!checkoutInfo.country) {
+      dispatch(changeCheckoutInfo('country', 'Vietnam'));
+    }
+  });
+
   const toVietnam = checkoutInfo.country === 'Vietnam';
 
   const dispatchChangeInfo = (key) => (e) => {
@@ -37,17 +47,6 @@ function CheckoutShippingPage() {
     e.preventDefault();
     router.push('/checkout/payment');
   };
-
-  if (!cartValid(cart)) {
-    router.replace('/checkout/summary');
-    return null;
-  }
-
-  // Never let country empty, once this page has been rendered
-  useEffect(() => {
-    if (checkoutInfo.country) return;
-    dispatch(changeCheckoutInfo('country', 'Vietnam'));
-  }, [checkoutInfo]);
 
   return (
     <Layout>
