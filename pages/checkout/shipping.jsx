@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import { changeCheckoutInfo } from 'store/actions';
@@ -18,9 +18,10 @@ import CartTotal from 'components/checkout/cart-total';
 function CheckoutShippingPage() {
   const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const toVietnam = checkoutInfo.country === 'Vietnam';
-  const dispatch = useDispatch();
 
   const dispatchChangeInfo = (key) => (e) => {
     if (key === 'country' && e.target.value === 'Vietnam') {
@@ -34,11 +35,11 @@ function CheckoutShippingPage() {
 
   const submitInfo = (e) => {
     e.preventDefault();
-    Router.push('/checkout/payment');
+    router.push('/checkout/payment');
   };
 
   if (!cartValid(cart)) {
-    Router.replace('/checkout/summary');
+    router.replace('/checkout/summary');
     return null;
   }
 
@@ -184,7 +185,7 @@ function CheckoutShippingPage() {
             <CartTotal />
 
             <div className="button-group">
-              <Button block onClick={Router.back}>Back</Button>
+              <Button block onClick={router.back}>Back</Button>
               <Button
                 block
                 solid

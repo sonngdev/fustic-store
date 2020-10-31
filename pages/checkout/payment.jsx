@@ -1,4 +1,3 @@
-import Router from 'next/router';
 import Head from 'next/head';
 import { cartValid, checkoutInfoValid } from 'utils/checkout';
 import { useCart, useCheckoutInfo } from 'hooks/store';
@@ -9,14 +8,15 @@ import WorldwideCheckout from 'components/checkout/worldwide-checkout';
 function CheckoutPaymentPage() {
   const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
+  const router = useRouter();
 
   if (!cartValid(cart)) {
-    Router.replace('/checkout/summary');
+    router.replace('/checkout/summary');
     return null;
   }
 
   if (!checkoutInfoValid(checkoutInfo)) {
-    Router.replace('/checkout/shipping');
+    router.replace('/checkout/shipping');
     return null;
   }
 

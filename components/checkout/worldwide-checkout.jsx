@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 import { useCart, useCheckoutInfo } from 'hooks/store';
 import {
@@ -17,6 +17,7 @@ function WorldwideCheckout() {
   const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -43,7 +44,7 @@ function WorldwideCheckout() {
           ? [orderValidation.message]
           : buildFlashFromInvalidStockEntries(orderValidation.message);
         dispatch(setFlashMessages(flash));
-        Router.push('/checkout/summary');
+        router.push('/checkout/summary');
         return actions.reject();
       }
 
@@ -70,7 +71,7 @@ function WorldwideCheckout() {
       const orderDetails = await actions.order.capture();
       await updateOrder(order.id, orderDetails);
       confirmOrder(order.id);
-      Router.push('/checkout/completed');
+      router.push('/checkout/completed');
     };
 
     const style = { color: 'gold' };

@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 import { cartValid } from 'utils/checkout';
 import { useCart } from 'hooks/store';
@@ -17,6 +17,7 @@ import CartTotal from 'components/checkout/cart-total';
 function CheckoutSummaryPage() {
   const cart = useCart();
   const flash = useFlash();
+  const router = useRouter();
 
   return (
     <Layout>
@@ -56,7 +57,7 @@ function CheckoutSummaryPage() {
             <CartTotal />
 
             <div className="button-group">
-              <Button block onClick={Router.back}>Back</Button>
+              <Button block onClick={router.back}>Back</Button>
               <Link href="/checkout/shipping">
                 <Button block solid disabled={!cartValid(cart)}>Continue</Button>
               </Link>
