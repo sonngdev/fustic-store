@@ -23,8 +23,10 @@ function CheckoutShippingPage() {
   const dispatch = useDispatch();
 
   const dispatchChangeInfo = (key) => (e) => {
-    if (key === 'country') {
-      dispatch(changeCheckoutInfo('city', ''));
+    if (key === 'country' && e.target.value === 'Vietnam') {
+      dispatch(changeCheckoutInfo('apartment', ''));
+    }
+    if (key === 'country' && e.target.value !== 'Vietnam') {
       dispatch(changeCheckoutInfo('district', ''));
     }
     dispatch(changeCheckoutInfo(key, e.target.value));
@@ -119,26 +121,33 @@ function CheckoutShippingPage() {
                     <option key={c} value={c}>{c}</option>
                   ))}
                 </Select>
-                {toVietnam && (
-                  <input
-                    required
-                    type="text"
-                    className="city"
-                    name="city"
-                    placeholder="City"
-                    value={checkoutInfo.city}
-                    onChange={dispatchChangeInfo('city')}
-                  />
-                )}
-                {toVietnam && (
+                <input
+                  required
+                  type="text"
+                  className="city"
+                  name="city"
+                  placeholder="City*"
+                  value={checkoutInfo.city}
+                  onChange={dispatchChangeInfo('city')}
+                />
+                {toVietnam ? (
                   <input
                     required
                     type="text"
                     className="district"
                     name="district"
-                    placeholder="District"
+                    placeholder="District*"
                     value={checkoutInfo.district}
                     onChange={dispatchChangeInfo('district')}
+                  />
+                ) : (
+                  <input
+                    type="text"
+                    className="apartment"
+                    name="apartment"
+                    placeholder="Apartment"
+                    value={checkoutInfo.apartment}
+                    onChange={dispatchChangeInfo('apartment')}
                   />
                 )}
                 <input
@@ -146,7 +155,7 @@ function CheckoutShippingPage() {
                   type="text"
                   className="zip-code"
                   name="zip-code"
-                  placeholder="Zip • Postal code"
+                  placeholder="Zip • Postal code*"
                   value={checkoutInfo.zipCode}
                   onChange={dispatchChangeInfo('zipCode')}
                 />
@@ -243,7 +252,8 @@ function CheckoutShippingPage() {
                   "address address"
                   "notes notes"
                 `) : (`
-                  "country zip-code"
+                  "country city"
+                  "apartment zip-code"
                   "address address"
                   "notes notes"
                 `)};
@@ -259,6 +269,10 @@ function CheckoutShippingPage() {
 
                 .district {
                   grid-area: district;
+                }
+
+                .apartment {
+                  grid-area: apartment;
                 }
 
                 .zip-code {

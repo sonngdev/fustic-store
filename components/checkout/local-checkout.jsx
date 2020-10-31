@@ -74,10 +74,10 @@ function LocalCheckout() {
           <article className={cx({ active: method === LOCAL_CHECKOUT_METHODS[1] })}>
             <h2>Thanh toán trực tuyến</h2>
             <p>
-              TECHCOMBANK<br />
+              TPBank<br />
               chi nhánh Hà Nội.<br />
-              0901734753<br />
-              DOAN THANH HAI
+              03071728101<br />
+              PHUNG PHUONG LINH
             </p>
             <p>
               Vui lòng ghi rõ số điện thoại đặt hàng vào phần nội dung chuyển tiền.
