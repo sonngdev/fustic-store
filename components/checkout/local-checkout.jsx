@@ -97,7 +97,7 @@ function LocalCheckout() {
           <CartTotal />
 
           <section className="button-group">
-            <Button block onClick={Router.back}>Back</Button>
+            <Button block onClick={router.back}>Back</Button>
             <Button block solid onClick={completeOrder}>Complete</Button>
           </section>
         </div>
