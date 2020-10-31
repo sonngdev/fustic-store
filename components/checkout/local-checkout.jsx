@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import cx from 'classnames';
 
 import { useCart, useCheckoutInfo } from 'hooks/store';
@@ -23,6 +23,7 @@ function LocalCheckout() {
   const checkoutInfo = useCheckoutInfo();
 
   const dispatch = useDispatch();
+  const router = useRouter();
   const completeOrder = async () => {
     const order = await createOrder(method, cart, checkoutInfo);
 
@@ -31,12 +32,12 @@ function LocalCheckout() {
         ? [order.message]
         : buildFlashFromInvalidStockEntries(order.message);
       dispatch(setFlashMessages(flash));
-      Router.push('/checkout/summary');
+      router.push('/checkout/summary');
       return;
     }
 
     confirmOrder(order.id);
-    Router.push('/checkout/completed');
+    router.push('/checkout/completed');
   };
 
   return (
