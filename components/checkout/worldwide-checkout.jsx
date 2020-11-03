@@ -1,9 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 import { useCart, useCheckoutInfo } from 'hooks/store';
-import { createOrder, updateOrder, confirmOrder } from 'utils/request';
+import {
+  validateOrder,
+  createOrder,
+  updateOrder,
+  confirmOrder,
+} from 'utils/request';
 import { buildFlashFromInvalidStockEntries } from 'utils/checkout';
 import { setFlashMessages } from 'store/actions';
 
@@ -11,8 +16,8 @@ function WorldwideCheckout() {
   const [paypalLoaded, setPaypalLoaded] = useState(false);
   const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
-  const orderRef = useRef();
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -23,22 +28,23 @@ function WorldwideCheckout() {
     return () => { document.body.removeChild(script); };
   }, []);
 
+  /**
+   * Paypal SDK docs: https://developer.paypal.com/docs/business/javascript-sdk/javascript-sdk-reference/#
+   */
   useEffect(() => {
     if (!paypalLoaded) return () => {};
 
+    let orderValidation;
+
     const handleClick = async (_data, actions) => {
-      if (!orderRef.current) {
-        orderRef.current = await createOrder('paypal', cart, checkoutInfo);
-      }
+      orderValidation = await validateOrder(cart);
 
-      const order = orderRef.current;
-
-      if (order.error) {
-        const flash = typeof order.message === 'string'
-          ? [order.message]
-          : buildFlashFromInvalidStockEntries(order.message);
+      if (orderValidation.error) {
+        const flash = typeof orderValidation.message === 'string'
+          ? [orderValidation.message]
+          : buildFlashFromInvalidStockEntries(orderValidation.message);
         dispatch(setFlashMessages(flash));
-        Router.push('/checkout/summary');
+        router.push('/checkout/summary');
         return actions.reject();
       }
 
@@ -48,16 +54,24 @@ function WorldwideCheckout() {
     const handleCreateOrder = async (_data, actions) => actions.order.create({
       purchase_units: [{
         amount: {
-          value: orderRef.current.totalAmountUsd.toFixed(2),
+          value: orderValidation.totalAmount.usd.toFixed(2),
         },
       }],
     });
 
     const handleOnApprove = async (_data, actions) => {
+      let order;
+
+      try {
+        order = await createOrder('paypal', cart, checkoutInfo);
+      } catch {
+        return;
+      }
+
       const orderDetails = await actions.order.capture();
-      await updateOrder(orderRef.current.id, orderDetails);
-      confirmOrder(orderRef.current.id);
-      Router.push('/checkout/completed');
+      await updateOrder(order.id, orderDetails);
+      confirmOrder(order.id);
+      router.push('/checkout/completed');
     };
 
     const style = { color: 'gold' };

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import { changeCheckoutInfo } from 'store/actions';
@@ -18,13 +18,26 @@ import CartTotal from 'components/checkout/cart-total';
 function CheckoutShippingPage() {
   const cart = useCart();
   const checkoutInfo = useCheckoutInfo();
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  // Never let country empty, once this page has been rendered
+  useEffect(() => {
+    if (!cartValid(cart)) {
+      router.replace('/checkout/summary');
+    }
+    if (!checkoutInfo.country) {
+      dispatch(changeCheckoutInfo('country', 'Vietnam'));
+    }
+  });
 
   const toVietnam = checkoutInfo.country === 'Vietnam';
-  const dispatch = useDispatch();
 
   const dispatchChangeInfo = (key) => (e) => {
-    if (key === 'country') {
-      dispatch(changeCheckoutInfo('city', ''));
+    if (key === 'country' && e.target.value === 'Vietnam') {
+      dispatch(changeCheckoutInfo('apartment', ''));
+    }
+    if (key === 'country' && e.target.value !== 'Vietnam') {
       dispatch(changeCheckoutInfo('district', ''));
     }
     dispatch(changeCheckoutInfo(key, e.target.value));
@@ -32,19 +45,8 @@ function CheckoutShippingPage() {
 
   const submitInfo = (e) => {
     e.preventDefault();
-    Router.push('/checkout/payment');
+    router.push('/checkout/payment');
   };
-
-  if (!cartValid(cart)) {
-    Router.replace('/checkout/summary');
-    return null;
-  }
-
-  // Never let country empty, once this page has been rendered
-  useEffect(() => {
-    if (checkoutInfo.country) return;
-    dispatch(changeCheckoutInfo('country', 'Vietnam'));
-  }, [checkoutInfo]);
 
   return (
     <Layout>
@@ -119,26 +121,33 @@ function CheckoutShippingPage() {
                     <option key={c} value={c}>{c}</option>
                   ))}
                 </Select>
-                {toVietnam && (
-                  <input
-                    required
-                    type="text"
-                    className="city"
-                    name="city"
-                    placeholder="City"
-                    value={checkoutInfo.city}
-                    onChange={dispatchChangeInfo('city')}
-                  />
-                )}
-                {toVietnam && (
+                <input
+                  required
+                  type="text"
+                  className="city"
+                  name="city"
+                  placeholder="City*"
+                  value={checkoutInfo.city}
+                  onChange={dispatchChangeInfo('city')}
+                />
+                {toVietnam ? (
                   <input
                     required
                     type="text"
                     className="district"
                     name="district"
-                    placeholder="District"
+                    placeholder="District*"
                     value={checkoutInfo.district}
                     onChange={dispatchChangeInfo('district')}
+                  />
+                ) : (
+                  <input
+                    type="text"
+                    className="apartment"
+                    name="apartment"
+                    placeholder="Apartment"
+                    value={checkoutInfo.apartment}
+                    onChange={dispatchChangeInfo('apartment')}
                   />
                 )}
                 <input
@@ -146,7 +155,7 @@ function CheckoutShippingPage() {
                   type="text"
                   className="zip-code"
                   name="zip-code"
-                  placeholder="Zip • Postal code"
+                  placeholder="Zip • Postal code*"
                   value={checkoutInfo.zipCode}
                   onChange={dispatchChangeInfo('zipCode')}
                 />
@@ -175,7 +184,7 @@ function CheckoutShippingPage() {
             <CartTotal />
 
             <div className="button-group">
-              <Button block onClick={Router.back}>Back</Button>
+              <Button block onClick={router.back}>Back</Button>
               <Button
                 block
                 solid
@@ -243,7 +252,8 @@ function CheckoutShippingPage() {
                   "address address"
                   "notes notes"
                 `) : (`
-                  "country zip-code"
+                  "country city"
+                  "apartment zip-code"
                   "address address"
                   "notes notes"
                 `)};
@@ -259,6 +269,10 @@ function CheckoutShippingPage() {
 
                 .district {
                   grid-area: district;
+                }
+
+                .apartment {
+                  grid-area: apartment;
                 }
 
                 .zip-code {

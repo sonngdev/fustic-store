@@ -21,6 +21,7 @@ const defaultState = {
     country: '',
     city: '',
     district: '',
+    apartment: '',
     zipCode: '',
     address: '',
     notes: '',

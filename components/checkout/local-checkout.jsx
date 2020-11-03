@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import cx from 'classnames';
 
 import { useCart, useCheckoutInfo } from 'hooks/store';
@@ -23,6 +23,7 @@ function LocalCheckout() {
   const checkoutInfo = useCheckoutInfo();
 
   const dispatch = useDispatch();
+  const router = useRouter();
   const completeOrder = async () => {
     const order = await createOrder(method, cart, checkoutInfo);
 
@@ -31,12 +32,12 @@ function LocalCheckout() {
         ? [order.message]
         : buildFlashFromInvalidStockEntries(order.message);
       dispatch(setFlashMessages(flash));
-      Router.push('/checkout/summary');
+      router.push('/checkout/summary');
       return;
     }
 
     confirmOrder(order.id);
-    Router.push('/checkout/completed');
+    router.push('/checkout/completed');
   };
 
   return (
@@ -74,10 +75,10 @@ function LocalCheckout() {
           <article className={cx({ active: method === LOCAL_CHECKOUT_METHODS[1] })}>
             <h2>Thanh toán trực tuyến</h2>
             <p>
-              TECHCOMBANK<br />
+              TPBank<br />
               chi nhánh Hà Nội.<br />
-              0901734753<br />
-              DOAN THANH HAI
+              03071728101<br />
+              PHUNG PHUONG LINH
             </p>
             <p>
               Vui lòng ghi rõ số điện thoại đặt hàng vào phần nội dung chuyển tiền.
@@ -96,7 +97,7 @@ function LocalCheckout() {
           <CartTotal />
 
           <section className="button-group">
-            <Button block onClick={Router.back}>Back</Button>
+            <Button block onClick={router.back}>Back</Button>
             <Button block solid onClick={completeOrder}>Complete</Button>
           </section>
         </div>
