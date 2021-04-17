@@ -81,14 +81,20 @@ function LocalCheckout() {
               PHUNG PHUONG LINH
             </p>
             <p>
-              Vui lòng ghi rõ số điện thoại đặt hàng vào phần nội dung chuyển tiền.
-              Fustic. Store sẽ liên hệ với bạn để xác nhận đơn hàng và vận chuyển
-              ngay sau khi nhận được thông báo chuyển khoản.
+              <span className="attention">
+                Vui lòng ghi rõ tên và số điện thoại đặt hàng vào phần nội dung
+                chuyển tiền.&nbsp;
+              </span>
+              Fustic. Store sẽ liên hệ với bạn để xác nhận đơn hàng và vận
+              chuyển ngay sau khi nhận được thông báo chuyển khoản.
             </p>
             <p>
-              Please fill your phone number in the transfer content section. We
-              will contact you shortly to confirm your purchase after receiving
-              the payment.
+              <span className="attention">
+                Please fill your name and phone number in the transfer content
+                section.&nbsp;
+              </span>
+              We will contact you shortly to confirm your purchase after
+              receiving the payment.
             </p>
           </article>
         </section>
@@ -124,6 +130,10 @@ function LocalCheckout() {
               margin: 0.6em 0 1.2em;
               font-weight: var(--fontweight-thin);
               line-height: 1.25;
+
+              .attention {
+                color: #ff5353;
+              }
             }
           }
 
