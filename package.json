@@ -16,7 +16,7 @@
     "classnames": "^2.2.6",
     "next": "9.5.4",
     "next-redux-wrapper": "^6.0.2",
-    "node-sass": "^4.14.0",
+    "node-sass": "^7.0.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "pure-react-carousel": "^1.27.1",
